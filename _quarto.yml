@@ -1,6 +1,9 @@
 project:
   type: website
 
+bibliography: bibliography.bib
+bibliographystyle: american-psychological-association
+
 website:
   title: "Alpha auriga"
   page-navigation: true
