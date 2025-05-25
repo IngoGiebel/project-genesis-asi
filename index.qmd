@@ -1,0 +1,15 @@
+---
+title: "Can artificial intelligence can be conscious?"
+author: "Ingo Giebel"
+# license: CC BY
+date: today
+# last-updated: today
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+```{r}
+1 + 1
+```

@@ -1,0 +1,9 @@
+# Quarto specific
+/.quarto/
+/_site/
+
+# RStudio specific
+.Rhistory
+
+# R packages and environments
+.Rproj.user
