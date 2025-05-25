@@ -5,7 +5,7 @@ bibliography: bibliography.bib
 bibliographystyle: american-psychological-association
 
 website:
-  title: "Alpha auriga"
+  title: "Alpha Auriga"
   page-navigation: true
   back-to-top-navigation: true
   open-graph: true
@@ -17,6 +17,8 @@ website:
     show-item-context: true
   navbar:
     pinned: true
+    logo: logo.png
+    logo-alt: "Alpha Auriga company logo"
     left:
       - href: index.qmd
         text: Home
@@ -25,9 +27,7 @@ website:
 format:
   html:
     respect-user-color-scheme: true
-    theme:
-      light: sandstone
-      dark: cyborg
+    theme: cyborg
     css: styles.css
     toc: true
     code-link: true
