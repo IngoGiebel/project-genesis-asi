@@ -6,10 +6,6 @@ date: today
 # last-updated: today
 ---
 
-This is a Quarto website.
+Welcome to the Alpha Auriga project. Our goal is to explore the future of consciousness.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 1
-```
+{{< include timeline.qmd >}}
