@@ -21,9 +21,10 @@ website:
 
 format:
   html:
+    respect-user-color-scheme: true
     theme:
-      - cosmo
-      - brand
+      light: sandstone
+      dark: cyborg
     css: styles.css
     toc: true
     code-link: true
