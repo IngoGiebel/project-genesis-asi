@@ -11,7 +11,7 @@ body {
   /* This makes the image cover the entire screen */
   background-size: cover;
   /* This centers the image */
-  background-position: center 5rem;
+  background-position: center 2rem;
   /* This prevents the image from repeating */
   background-repeat: no-repeat;
   /* This is the magic part: it fixes the background in place */
@@ -34,15 +34,16 @@ a:visited {
   color: #c3a5ff;
 }
 
-/* --- Make the navigation bar transparent --- */
+/* --- Make the navigation bar transparent and increase the font size --- */
 .navbar {
   background: transparent;
   backdrop-filter: blur(0.5rem) brightness(0.7);
+  font-size: 2rem;
 }
 
 /* --- Increase the size of the navbar logo */
 .navbar-brand img {
-  height: 5rem;
+  height: 4rem;
   max-height: none;
 }
 
