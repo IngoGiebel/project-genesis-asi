@@ -11,7 +11,7 @@ body {
   /* This makes the image cover the entire screen */
   background-size: cover;
   /* This centers the image */
-  background-position: center 2rem;
+  background-position: center 5rem;
   /* This prevents the image from repeating */
   background-repeat: no-repeat;
   /* This is the magic part: it fixes the background in place */
@@ -42,6 +42,11 @@ a:visited {
 
 /* --- Increase the size of the navbar logo */
 .navbar-brand img {
-  height: 4rem;
+  height: 5rem;
   max-height: none;
+}
+
+/* Adjust font size of the "Cookie Preferences" link to match other footer text */
+#open_preferences_center {
+  font-size: 0.8rem;
 }
