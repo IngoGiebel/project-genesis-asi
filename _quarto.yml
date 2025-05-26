@@ -10,7 +10,6 @@ website:
   repo-branch: trunk
   repo-actions: [source, edit, issue]
   page-navigation: true
-  back-to-top-navigation: true
   open-graph: true
   reader-mode: true
   cookie-consent: true
@@ -26,6 +25,8 @@ website:
       - text: Home
         href: index.qmd
       - about.qmd
+  page-footer:
+    left: "Content on this site is licensed under <a href='https://creativecommons.org/licenses/by/4.0/' target='_blank' rel='noopener noreferrer'>CC BY 4.0</a>."
 
 format:
   html:

@@ -1,7 +1,6 @@
 ---
 title: "Can artificial intelligence be conscious?"
 author: "Ingo Giebel"
-# license: CC BY
 date: today
 # last-updated: today
 ---
