@@ -1,8 +1,8 @@
 ---
 title: "Can artificial intelligence be conscious?"
 author: "Ingo Giebel"
-date: today
-# last-updated: today
+date: 2024-05-25
+date-modified: last-modified
 ---
 
 Welcome to the Alpha Auriga project. Our goal is to explore the future of consciousness.
