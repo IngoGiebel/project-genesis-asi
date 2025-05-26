@@ -6,6 +6,9 @@ bibliographystyle: american-psychological-association
 
 website:
   title: "Alpha Auriga"
+  repo-url: https://github.com/IngoGiebel/project-genesis-asi
+  repo-branch: trunk
+  repo-actions: [source, edit, issue]
   page-navigation: true
   back-to-top-navigation: true
   open-graph: true
@@ -20,10 +23,9 @@ website:
     logo: logo.png
     logo-alt: "Alpha Auriga company logo"
     left:
-      - href: index.qmd
-        text: Home
-      - href: about.qmd
-        text: About
+      - text: Home
+        href: index.qmd
+      - about.qmd
 
 format:
   html:
