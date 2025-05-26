@@ -1,29 +1,25 @@
 body {
-  /* --- Background Image Settings --- */
+  /* --- Background image settings --- */
 
-    background:
-      /* Layer 1: The Color Overlay */
-      linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
-      /* Layer 2: Your Image */
-      url('inanna-background.png');
-
+  background:
+    /* Layer 1: Color overlay */
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+    /* Layer 2: Background image */
+    url('inanna-background.png');
   /* Fallback color if the image fails to load */
   background-color: #1a1a1a;
-
   /* This makes the image cover the entire screen */
   background-size: cover;
-
   /* This centers the image */
   background-position: center top;
-
   /* This prevents the image from repeating */
   background-repeat: no-repeat;
-
   /* This is the magic part: it fixes the background in place */
   /* so the content scrolls over it. Creates a parallax effect. */
   background-attachment: fixed;
 
   /* --- Text Readability Settings --- */
+
   color: #DCE4EB;
 }
 
@@ -40,7 +36,12 @@ a:visited {
 
 /* --- Make the navigation bar transparent --- */
 .navbar {
-  background: transparent !important;
+  background: transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* --- Increase the size of the navbar logo */
+.navbar-brand img {
+  height: 4rem;
+  max-height: none;
+}
