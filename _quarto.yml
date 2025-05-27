@@ -11,7 +11,10 @@ website:
   page-navigation: true
   open-graph: true
   reader-mode: true
-  cookie-consent: true
+  cookie-consent:
+    type: express
+    style: simple
+    version: 1
   search:
     location: navbar
     type: overlay
