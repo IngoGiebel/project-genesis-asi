@@ -14,7 +14,7 @@ website:
   cookie-consent: true
   search:
     location: navbar
-    type: textbox
+    type: overlay
     show-item-context: true
   navbar:
     pinned: true
