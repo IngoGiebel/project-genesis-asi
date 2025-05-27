@@ -54,3 +54,10 @@ a:visited {
 #open_preferences_center {
   font-size: 0.8rem;
 }
+
+/* For images floated to the left with text wrapping */
+.img-float-left {
+  float: left;
+  margin-right: 1.5rem;
+  margin-bottom: 0.5rem;
+}

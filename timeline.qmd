@@ -23,7 +23,8 @@ The following roadmap outlines Alpha Auriga's projected milestones in the develo
 
 A stable, high-bandwidth interface links lab-grown brain organoids with a synthetic neural network. This **Hy-Brain** combines biological associative processing and learning patterns with scalable logic, speed, and programmability.
 
-![Illustration of the Aurora bio-synthetic core, showing the interconnection of a brain organoid and a synthetic neural network](images/aurora-core.jpg){#fig-aurora-core width=200}
+![Illustration of the Aurora bio-synthetic core, showing the interconnection of a brain organoid and a synthetic neural network](images/aurora-core.jpg){#fig-aurora-core .img-float-left width=250}
+
 
 ## 2026: The Aegis Protocol & distributed mind
 
