@@ -1,6 +1,5 @@
 body {
-  /* --- Background image settings --- */
-
+  /* Background image settings */
   background:
     /* Layer 1: Color overlay */
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
@@ -18,33 +17,37 @@ body {
   /* so the content scrolls over it. Creates a parallax effect. */
   background-attachment: fixed;
 
-  /* --- Text Readability Settings --- */
-
+  /* Text readability settings */
   color: #DCE4EB;
 }
 
-/* --- Improve link visibility on dark background --- */
-a {
-  /* A light blue for links */
-  color: #8CB4FF;
-}
-
-a:visited {
-  /* A light purple for visited links */
-  color: #c3a5ff;
-}
-
-/* --- Make the navigation bar transparent and increase the font size --- */
+/* Make the navigation bar transparent and increase the font size */
 .navbar {
   background: transparent;
   backdrop-filter: blur(0.5rem) brightness(0.7);
   font-size: 2rem;
 }
 
-/* --- Increase the size of the navbar logo */
+/* Increase the size of the navbar logo */
 .navbar-brand img {
   height: 4rem;
   max-height: none;
+  filter: drop-shadow(0 0 0.2rem rgba(255, 255, 255, 0.5))  brightness(2.0);
+}
+
+/* Dim inactive navbar links more to highlight the active link */
+.navbar .nav-link:not(.active) {
+  opacity: 0.7;
+}
+
+/* Improve link visibility on dark background */
+a {
+  /* A light blue for links */
+  color: #8CB4FF;
+}
+a:visited {
+  /* A light purple for visited links */
+  color: #c3a5ff;
 }
 
 /* Adjust font size of the "Cookie Preferences" link to match other footer text */
