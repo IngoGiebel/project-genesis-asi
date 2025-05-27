@@ -10,7 +10,7 @@ website:
   repo-actions: [source, edit, issue]
   page-navigation: true
   open-graph: true
-  reader-mode: true
+  reader-mode: false
   cookie-consent:
     type: express
     style: simple
