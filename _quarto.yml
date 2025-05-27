@@ -25,6 +25,9 @@ website:
       - text: "Home"
         icon: house-door
         href: index.qmd
+      - text: "Timeline"
+        icon: clock
+        href: timeline.qmd
       - text: "About"
         icon: info-circle
         href: about.qmd
