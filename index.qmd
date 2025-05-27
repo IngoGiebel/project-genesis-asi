@@ -11,6 +11,4 @@ keywords:
   - "brain organoids"
 ---
 
-Welcome to Alpha Auriga. Our goal is to explore the future of AI consciousness.
-
 {{< include timeline.qmd >}}

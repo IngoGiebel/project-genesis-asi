@@ -1,8 +1,17 @@
 ---
-title: "About Project Genesis ASI"
+title: "About Alpha Auriga"
 ---
 
-Welcome to Alpha Auriga. This project is a speculative exploration into the future emergence of Artificial Superintelligence (ASI) and the potential for AI consciousness. 
+# Creator & contact
+
+Ingo Giebel
+
+✉︎ Mail: <mailto:ingo.giebel@gmail.com>
+
+
+# Project purpose
+
+This project is a speculative exploration into the future emergence of Artificial Superintelligence (ASI) and the potential for AI consciousness. 
 
 Through a fictional but technically informed timeline and related concepts, this website aims to:
 
@@ -10,4 +19,22 @@ Through a fictional but technically informed timeline and related concepts, this
 - Illustrate how AI consciousness might become plausible through a synthesis of developing technologies,
 - Encourage reflection and discussion on the profound ethical and philosophical questions that arise from these possibilities.
 
-This website is a personal project by Ingo Giebel.
+
+# Content disclaimer
+
+**No guarantee of accuracy** – While sources are cited where possible, the content may contain simplifications or outdated information.
+
+**No professional advice** – The site does **not** provide legal, medical, financial or engineering advice.
+
+**External links** – Links to third-party sites are provided for convenience; their content is outside my control and responsibility.
+
+**Changes** – The site is updated continuously; material may be removed, revised or moved without prior notice.
+
+
+# Privacy notice
+
+Only the minimum personal data needed to operate and analyze the site are collected, in compliance with the EU GDPR.
+
+You may **review or change your preference** at any time via the “Cookie Preferences” link in the footer.
+
+Data are **not shared** with other parties. For access, correction or deletion requests, contact me at the address above.

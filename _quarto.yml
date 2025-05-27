@@ -11,7 +11,7 @@ website:
   reader-mode: false
   cookie-consent:
     type: express
-    style: simple
+    style: headline
     version: 1
   search:
     location: navbar
