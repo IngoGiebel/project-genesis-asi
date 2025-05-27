@@ -10,7 +10,7 @@ body {
   /* This makes the image cover the entire screen */
   background-size: cover;
   /* This centers the image */
-  background-position: center 2rem;
+  background-position: center 3rem;
   /* This prevents the image from repeating */
   background-repeat: no-repeat;
   /* This is the magic part: it fixes the background in place */
@@ -30,7 +30,7 @@ body {
 
 /* Increase the size of the navbar logo */
 .navbar-brand img {
-  height: 4rem;
+  height: 5rem;
   max-height: none;
   filter: drop-shadow(0 0 0.2rem rgba(255, 255, 255, 0.5))  brightness(2.0);
 }
