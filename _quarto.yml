@@ -1,16 +1,6 @@
 project:
   type: website
 
-keywords:
-  - Alpha Auriga
-  - artificial superintelligence (ASI)
-  - AI consciousness
-  - embodied AI
-  - brain organoids
-
-bibliography: bibliography.bib
-bibliographystyle: american-psychological-association
-
 website:
   description: "Project Alpha Auriga explores a speculative timeline for the emergence of Artificial Superintelligence (ASI), its potential forms, and societal implications."
   repo-url: https://github.com/IngoGiebel/project-genesis-asi
@@ -38,6 +28,9 @@ website:
       - text: "About"
         icon: info-circle
         href: about.qmd
+      - text: "Bibliography"
+        icon: book
+        href: bibliography.qmd
   page-footer:
     left: "Content on this site is licensed under <a href='https://creativecommons.org/licenses/by/4.0/' target='_blank' rel='noopener noreferrer'>CC BY 4.0</a>."
 

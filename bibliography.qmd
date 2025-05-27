@@ -1,0 +1,9 @@
+---
+bibliography: bibliography.bib
+csl: apa.csl
+nocite: |
+  @*
+---
+
+::: {#refs}
+:::
