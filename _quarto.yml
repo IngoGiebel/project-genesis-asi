@@ -24,7 +24,12 @@ website:
     logo: logo.png
     logo-alt: "Alpha Auriga company logo"
     left:
-      - about.qmd
+      - text: "Home"
+        icon: house-door
+        href: index.qmd
+      - text: "About"
+        icon: info-circle
+        href: about.qmd
   page-footer:
     left: "Content on this site is licensed under <a href='https://creativecommons.org/licenses/by/4.0/' target='_blank' rel='noopener noreferrer'>CC BY 4.0</a>."
 
@@ -37,6 +42,9 @@ format:
     code-link: true
     code-overflow: wrap
     fig-responsive: true
+
+execute:
+  freeze: auto
 
 editor:
   visual: false
