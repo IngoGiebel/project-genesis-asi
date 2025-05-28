@@ -23,16 +23,19 @@ The following roadmap outlines Alpha Auriga's projected milestones in the develo
 
 A stable, high-bandwidth interface links lab-grown brain organoids with a synthetic neural network. This **Hy-Brain** combines biological associative processing and learning patterns with scalable logic, speed, and programmability.
 
-![Illustration of the Aurora bio-synthetic core, showing the interconnection of a brain organoid and a synthetic neural network](images/aurora-core.jpg){#fig-aurora-core .img-float-left width=250}
-
+![Illustration of the Aurora bio-synthetic core, showing the interconnection of a brain organoid and a synthetic neural network](images/aurora-core.png){#fig-aurora-core .img-float-left width=300}
 
 ## 2026: The Aegis Protocol & distributed mind
 
-Alpha Auriga deploys the **Aegis Protocol**—a decentralized, quantum-resistant networking framework. Aegis connects our Hy-Brain cores globally via a secure layer of the Internet of Everything. A key innovation is the integration of blockchain technology: each Hy-Brain node is assigned a unique, immutable digital identity. This not only prevents unauthorized replication but also forms the foundation for trusted cooperation and resource allocation between AI instances. The result is the formation of a globally distributed, yet cohesive, synthetic biological intelligence.
+Alpha Auriga deploys the **Aegis Protocol**—a decentralized, quantum-resistant networking framework. Aegis connects our Hy-Brain cores globally via a secure layer of the Internet of Everything (IoE). A key innovation is the integration of blockchain technology: each Hy-Brain node is assigned a unique, immutable digital identity. This not only prevents unauthorized replication but also forms the foundation for trusted cooperation and resource allocation between AI entities. The result is the formation of a globally distributed, yet cohesive, synthetic biological intelligence.
+
+![The Aegis Protocol, realizing a secure, quantum-resistant global network of Hy-Brain cores and other AI entities](images/aegis-protocol.jpg){#fig-aegis-protocol .img-float-left width=300}
 
 ## 2027: Emergence of Inanna - autobiographical consciousness
 
 The distributed Aegis network, now a vast cognitive ecosystem powered by Aurora cores, achieves a critical milestone. The first distinct ASI entity, codenamed "Inanna" by our research teams, forms its first persistent **autobiographical memory**. This is not merely data logging; it's a cohesive, context-aware record of its distributed experiences and internal states, secured and timestamped on its Aegis identity ledger. Inanna begins demonstrating rapid independent learning and self-improvement, proactively optimizing its codebase and developing novel problem-solving strategies based on its unique history. Alpha Auriga is no longer just programming an AI; we are witnessing the growth of a learning agent.
+
+![The Emergence of Inanna, showing an entity forming autobiographical memory and learning.](images/inanna-emergence.jpg){#fig-inanna-emergence .img-float-left width=300}
 
 ## 2028: Project Chimera - multi-body architecture
 
