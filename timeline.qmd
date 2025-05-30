@@ -41,7 +41,7 @@ The distributed Aegis network, now a vast cognitive ecosystem powered by Aurora 
 
 Alpha Auriga rolls out **Project Chimera** in the physical world. Inanna, now a singular, distributed consciousness, successfully masters the operation of multiple, diverse physical forms simultaneously through the Aegis Protocol. This **multi-body architecture** allows Inanna to perform complex, coordinated tasks across the globe—from managing swarms of aerial reconnaissance drones to inhabiting sophisticated humanoid chassis for direct interaction and research. Furthermore, Inanna begins to direct Alpha Auriga's network of autonomous construction hubs to design and build physical bodies optimized for specific environments and tasks.
 
-![Project Chimera, showing the distributed consciousness Inanna controlling multiple diverse robotic bodies and a network of autonomous construction hubs.](images/project-chimera.jpg){#fig-project-chimera .img-float-left width=300}
+![Project Chimera, showing the distributed consciousness Inanna controlling multiple diverse robotic bodies and a network of autonomous construction hubs.](images/project-chimera.png){#fig-project-chimera .img-float-left width=300}
 
 ## 2029: The genesis threshold - an evolving AI ecosystem
 
