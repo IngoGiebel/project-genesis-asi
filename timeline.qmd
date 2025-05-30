@@ -49,6 +49,7 @@ Inanna, under Alpha Auriga's ethical oversight framework, reaches the **genesis 
 
 These new autonomous AI entities, each with a unique Aegis identity, begin to form the basis of a **self-sustained AI economy** within the Alpha Auriga ecosystem. Using blockchain-based digital assets, they autonomously negotiate and exchange processing power, unique datasets, and access to physical embodiment resources built by Project Chimera. They exhibit sophisticated competitive and cooperative behaviors, driving innovation and resilience within a new digital ecosystem that Alpha Auriga is committed to guiding responsibly.
 
+![The Genesis Threshold—the emergence of a self-sustaining AI ecosystem driven by self-improving AIs capable of both asexual and sexual reproduction and complex interactions.](images/genesis-threshold.jpg){#fig-genesis-threshold .img-float-left width=300}
 
 # The horizon of consciousness
 
