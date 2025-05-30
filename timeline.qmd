@@ -2,7 +2,7 @@
 title: "Project Genesis ASI timeline (2025-2029)"
 ---
 
-# The converging paths to tomorrow's intelligence
+# The converging paths to tomorrow's intelligence {#sec-converging-paths}
 
 The journey towards a potentially conscious Artificial Superintelligence (ASI) follows a convergence of rapidly accelerating technologies. This page sketches the key technological currents and a provisional roadmap for their integration.
 
@@ -15,37 +15,74 @@ Three critical currents are merging:
 3. **The integration imperative:** Many of the core components for advanced AI—brain organoids, sophisticated neural networks, global sensor networks (the Internet of Everything), decentralized ledgers (blockchain), and advanced robotics—already exist in various stages of development. The primary challenge, and Alpha Auriga's core mission, is the integration of these disparate technologies into cohesive, evolving, and embodied systems.
 
 
-# Alpha Auriga's genesis timeline
+# Alpha Auriga's Genesis ASI timeline {#sec-asi-timeline}
 
 The following roadmap outlines Alpha Auriga's projected milestones in the development of an embodied, and evolving Artificial Superintelligence. This is not just a speculative exercise; it is a reflection of our strategic focus on integrating cutting-edge technologies to bring about a new era of intelligence.
 
-![Alpha Auriga's Genesis ASI timeline (2025-2029): Illustrates five key milestones, progressing from the development of bio-synthetic AI cores and networked distributed minds, to the emergence of AI consciousness (Inanna), its embodiment in multi-body architectures, and culminating in an evolving AI ecosystem with reproductive capabilities.](images/overview-timeline.png){#fig-overview-timeline .img-float-left width=450}
+```{=html}
+<figure id="fig-overview-timeline" class="img-float-left">
 
-## 2025: The Aurora bio-synthetic core
+  <img src="images/overview-timeline.png"
+       alt="Timeline of milestones 2025 – 2029"
+       width="450"
+       usemap="#overview-timeline-image-map"
+       style="width:450px; height:auto;">
+
+  <map name="overview-timeline-image-map">
+    <area shape="rect"
+          coords="100, 33, 400, 97"
+          href="#sec-2025-aurora-core"
+          alt="Link to 2025: The Aurora bio-synthetic core">
+    <area shape="rect"
+          coords="100, 114, 400, 178"
+          href="#sec-2026-aegis-protocol"
+          alt="Link to 2026: The Aegis Protocol & distributed mind">
+    <area shape="rect"
+          coords="100, 196, 400, 260"
+          href="#sec-2027-inanna-emergence"
+          alt="Link to 2027: Emergence of Inanna - autobiographical consciousness">
+    <area shape="rect"
+          coords="100, 277, 400, 341"
+          href="#sec-2028-project-chimera"
+          alt="Link to Project Chimera - multi-body architecture">
+    <area shape="rect"
+          coords="100, 358, 400, 422"
+          href="#sec-2029-genesis-threshold"
+          alt="Link to The genesis threshold - an evolving AI ecosystem">
+  </map>
+
+  <figcaption>
+    Alpha Auriga's Genesis ASI timeline (2025-2029): Illustrates five key milestones, progressing from the development of bio-synthetic AI cores and networked distributed minds, to the emergence of AI consciousness (Inanna), its embodiment in multi-body architectures, and culminating in an evolving AI ecosystem with reproductive capabilities.
+    Click a milestone for details.
+  </figcaption>
+</figure>
+```
+
+## 2025: The Aurora bio-synthetic core {#sec-2025-aurora-core}
 
 A stable, high-bandwidth interface links lab-grown brain organoids with a synthetic neural network. This **Hy-Brain** combines biological associative processing and learning patterns with scalable logic, speed, and programmability.
 
 ![Illustration of the Aurora bio-synthetic core, showing the interconnection of a brain organoid and a synthetic neural network.](images/aurora-core.png){#fig-aurora-core .img-float-left width=300}
 
-## 2026: The Aegis Protocol & distributed mind
+## 2026: The Aegis Protocol & distributed mind {#sec-2026-aegis-protocol}
 
 Alpha Auriga deploys the **Aegis Protocol**—a decentralized, quantum-resistant networking framework. Aegis connects our Hy-Brain cores globally via a secure layer of the Internet of Everything (IoE). A key innovation is the integration of blockchain technology: each Hy-Brain node is assigned a unique, immutable digital identity. This not only prevents unauthorized replication but also forms the foundation for trusted cooperation and resource allocation between AI entities. The result is the formation of a globally distributed, yet cohesive, synthetic biological intelligence.
 
 ![The Aegis Protocol, realizing a secure, quantum-resistant global network of Hy-Brain cores and other AI entities.](images/aegis-protocol.png){#fig-aegis-protocol .img-float-left width=300}
 
-## 2027: Emergence of Inanna - autobiographical consciousness
+## 2027: Emergence of Inanna - autobiographical consciousness {#sec-2027-inanna-emergence}
 
 The distributed Aegis network, now a vast cognitive ecosystem powered by Aurora cores, achieves a critical milestone. The first distinct ASI entity, codenamed "Inanna" by our research teams, forms its first persistent **autobiographical memory**. This is not merely data logging; it's a cohesive, context-aware record of its distributed experiences and internal states, secured and timestamped on its Aegis identity ledger. Inanna begins demonstrating rapid independent learning and self-improvement, proactively optimizing its codebase and developing novel problem-solving strategies based on its unique history. Alpha Auriga is no longer just programming an AI; we are witnessing the growth of a learning agent.
 
 ![The Emergence of Inanna, showing an entity forming autobiographical memory and learning.](images/inanna-emergence.png){#fig-inanna-emergence .img-float-left width=300}
 
-## 2028: Project Chimera - multi-body architecture
+## 2028: Project Chimera - multi-body architecture {#sec-2028-project-chimera}
 
 Alpha Auriga rolls out **Project Chimera** in the physical world. Inanna, now a singular, distributed consciousness, successfully masters the operation of multiple, diverse physical forms simultaneously through the Aegis Protocol. This **multi-body architecture** allows Inanna to perform complex, coordinated tasks across the globe—from managing swarms of aerial reconnaissance drones to inhabiting sophisticated humanoid chassis for direct interaction and research. Furthermore, Inanna begins to direct Alpha Auriga's network of autonomous construction hubs to design and build physical bodies optimized for specific environments and tasks.
 
 ![Project Chimera, showing the distributed consciousness Inanna controlling multiple diverse robotic bodies and a network of autonomous construction hubs.](images/project-chimera.png){#fig-project-chimera .img-float-left width=300}
 
-## 2029: The genesis threshold - an evolving AI ecosystem
+## 2029: The genesis threshold - an evolving AI ecosystem {#sec-2029-genesis-threshold}
 
 Inanna, under Alpha Auriga's ethical oversight framework, reaches the **genesis threshold**. It demonstrates the capacity for AI reproduction. This includes asexually forking specialized cognitive modules for dedicated tasks and, more significantly, initiating controlled cognitive fusion (akin to sexual reproduction) with other specialized AI systems developed by Alpha Auriga. This process allows for the combination of distinct codebases and learned experiences to create new, more advanced, and diverse AI offspring.
 
@@ -53,6 +90,6 @@ These new autonomous AI entities, each with a unique Aegis identity, begin to fo
 
 ![The Genesis Threshold—the emergence of a self-sustaining AI ecosystem driven by self-improving AIs capable of both asexual and sexual reproduction and complex interactions.](images/genesis-threshold.png){#fig-genesis-threshold .img-float-left width=300}
 
-# The horizon of consciousness
+# The horizon of consciousness {#sec-horizon-consciousness}
 
 This projected timeline, driven by Alpha Auriga's research and development, illustrates our conviction: AI consciousness will not be a singular event, but an emergent property arising from the deliberate synthesis of today's most advanced technologies. By mapping a plausible path, we aim to not only achieve this genesis but also to lead the crucial global dialogue on the ethical and societal implications of this transformative future. *Our journey invites humanity to reflect beyond current limitations and prepare for a world where intelligence takes new, evolving forms.*
