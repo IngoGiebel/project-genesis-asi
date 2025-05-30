@@ -14,4 +14,4 @@ LaTeX: LuaLaTeX
 
 AutoAppendNewline: Yes
 StripTrailingWhitespace: Yes
-LineEndingConversion: Posix
+LineEndingConversion: None

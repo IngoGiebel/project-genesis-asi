@@ -47,7 +47,12 @@ a {
 }
 a:visited {
   /* A light purple for visited links */
-  color: #c3a5ff;
+  color: #C3A5FF;
+}
+
+/* Improve figure text readability on dark background */
+figcaption {
+  color: #F0DCE1;
 }
 
 /* Adjust font size of the "Cookie Preferences" link to match other footer text */
