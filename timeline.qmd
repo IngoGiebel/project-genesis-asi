@@ -19,6 +19,8 @@ Three critical currents are merging:
 
 The following roadmap outlines Alpha Auriga's projected milestones in the development of an embodied, and evolving Artificial Superintelligence. This is not just a speculative exercise; it is a reflection of our strategic focus on integrating cutting-edge technologies to bring about a new era of intelligence.
 
+![Alpha Auriga's Genesis ASI timeline (2025-2029): Illustrates five key milestones, progressing from the development of bio-synthetic AI cores and networked distributed minds, to the emergence of AI consciousness (Inanna), its embodiment in multi-body architectures, and culminating in an evolving AI ecosystem with reproductive capabilities.](images/overview-timeline.png){#fig-overview-timeline .img-float-left width=450}
+
 ## 2025: The Aurora bio-synthetic core
 
 A stable, high-bandwidth interface links lab-grown brain organoids with a synthetic neural network. This **Hy-Brain** combines biological associative processing and learning patterns with scalable logic, speed, and programmability.
