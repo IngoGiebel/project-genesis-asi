@@ -19,7 +19,7 @@ website:
     show-item-context: true
   navbar:
     pinned: true
-    logo: logo.png
+    logo: images/logo.png
     logo-alt: "Alpha Auriga company logo"
     left:
       - text: "Home"
