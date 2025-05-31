@@ -28,6 +28,9 @@ website:
       - text: "Timeline"
         icon: clock
         href: timeline.qmd
+      - text: "Survey"
+        icon: patch-question
+        href: survey.qmd
       - text: "About"
         icon: info-circle
         href: about.qmd
@@ -46,6 +49,7 @@ format:
     code-link: true
     code-overflow: wrap
     fig-responsive: true
+    self-contained-math: true
 
 execute:
   freeze: auto

@@ -1,0 +1,16 @@
+---
+title: "AI consciousness survey"
+---
+
+# Participate in our research
+
+Welcome to the Alpha Auriga survey on perceptions of Artificial Intelligence (AI) consciousness. Your input is valuable in understanding how demographic and socio-cultural factors influence these views.
+
+**About this survey:**
+
+- Participation is **voluntary and anonymous**.
+- All data collected is for research purposes and will be handled in compliance with the [General Data Protection Regulation (GDPR)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679).
+- The core questions should take approximately **2-3 minutes**. Optional reflection questions may take longer.
+- We encourage you to explore the [Project Genesis ASI timeline (2025-2029)](timeline.qmd) page of this website before answering, to consider some speculative future scenarios.
+
+Thank you for your contribution!
