@@ -6,7 +6,7 @@
   publish = "_site"
 
 [[plugins]]
-  package = "@netlify/plugin-quarto"
+  package = "@quarto/netlify-plugin-quarto"
 
 [build.environment]
   QUARTO_VERSION = "1.7.31"
