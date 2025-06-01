@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: alpha-auriga
+      url: https://alpha-auriga.netlify.app
