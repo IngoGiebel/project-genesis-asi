@@ -18,7 +18,6 @@
   "homepage": "https://github.com/IngoGiebel/project-genesis-asi#readme",
   "description": "",
   "devDependencies": {
-    "@quarto/netlify-plugin-quarto": "^0.0.5",
-    "netlify-plugin-quarto": "^0.0.4"
+    "@quarto/netlify-plugin-quarto": "^0.0.5"
   }
 }
