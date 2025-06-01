@@ -5,6 +5,9 @@
   command = "quarto render"
   publish = "_site"
 
+[[plugins]]
+  package = "@netlify/plugin-quarto"
+
 [build.environment]
-  GO_VERSION = "1.24"
   QUARTO_VERSION = "1.7.31"
+  GO_VERSION = "1.24"
