@@ -1,12 +1,5 @@
 [functions]
   directory = "netlify/functions"
 
-[build]
-  command = "quarto render"
-  publish = "_site"
-
-[[plugins]]
-  package = "@quarto/netlify-plugin-quarto"
-
 [build.environment]
   GO_VERSION = "1.24"
