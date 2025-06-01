@@ -8,3 +8,7 @@
 # R packages and environments
 .Rproj.user
 .RData
+
+# Node.js / Netlify plugin
+/node_modules/
+/package-lock.json
