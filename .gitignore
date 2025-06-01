@@ -8,3 +8,6 @@
 # R packages and environments
 .Rproj.user
 .RData
+
+# Local Netlify folder
+.netlify

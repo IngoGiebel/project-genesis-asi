@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: e2967374-4cb0-4ef7-beff-349d6878804c
+      url: https://alpha-auriga.netlify.app
