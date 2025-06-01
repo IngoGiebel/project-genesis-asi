@@ -9,5 +9,4 @@
   package = "@quarto/netlify-plugin-quarto"
 
 [build.environment]
-  QUARTO_VERSION = "1.7.31"
   GO_VERSION = "1.24"
