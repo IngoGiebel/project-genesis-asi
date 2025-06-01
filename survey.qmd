@@ -14,3 +14,51 @@ Welcome to the Alpha Auriga survey on perceptions of Artificial Intelligence (AI
 - We encourage you to explore the [Project Genesis ASI timeline (2025-2029)](timeline.qmd) page of this website before answering, to consider some speculative future scenarios.
 
 Thank you for your contribution!
+
+<form id="aiSurveyForm">
+  <fieldset>
+    <legend>Do you believe that artificial intelligence (AI) can be conscious?</legend>
+    <label><input type="radio" name="ai_can_be_conscious" value="yes" required> Yes</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="no"> No</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="unsure"> Unsure</label>
+  </fieldset>
+  <br>
+  <button type="submit">Submit Your Answers</button>
+</form>
+<div id="form-messages" role="status" aria-live="polite"></div>
+
+<script>
+  const form = document.getElementById('aiSurveyForm');
+  const messageDiv = document.getElementById('form-messages');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent default HTML form submission
+    messageDiv.textContent = 'Submitting...';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/.netlify/functions/submit-survey', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        messageDiv.textContent = 'Thank you! Your submission was successful.';
+        form.reset(); // Clear the form
+        // Optionally, redirect to a success page:
+        // window.location.href = '/survey-success/'; 
+      } else {
+        const result = await response.json();
+        messageDiv.textContent = 'Error: ' + (result.error || 'Submission failed. Please try again.');
+        console.error('Submission error result:', result);
+      }
+    } catch (error) {
+      messageDiv.textContent = 'Network error. Please check your connection and try again.';
+      console.error('Network error:', error);
+    }
+  });
+</script>
