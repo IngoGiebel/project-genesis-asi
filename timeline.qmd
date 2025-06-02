@@ -60,35 +60,35 @@ The following roadmap outlines Alpha Auriga's projected milestones in the develo
 
 ## 2025: The Aurora bio-synthetic core {#sec-2025-aurora-core}
 
-A stable, high-bandwidth interface links lab-grown brain organoids with a synthetic neural network. This **Hy-Brain** combines biological associative processing and learning patterns with scalable logic, speed, and programmability.
+![Aurora bio-synthetic core (brain organoid + synthetic neural network).](images/aurora-core.png){#fig-aurora-core .img-float-left .w-12rem}
 
-![Illustration of the Aurora bio-synthetic core, showing the interconnection of a brain organoid and a synthetic neural network.](images/aurora-core.png){#fig-aurora-core .img-float-left width=300}
+A stable, high-bandwidth interface links lab-grown brain organoids with a synthetic neural network. This **Hy-Brain** combines biological associative processing and learning patterns with scalable logic, speed, and programmability.
 
 ## 2026: The Aegis Protocol & distributed mind {#sec-2026-aegis-protocol}
 
-Alpha Auriga deploys the **Aegis Protocol**—a decentralized, quantum-resistant networking framework. Aegis connects our Hy-Brain cores globally via a secure layer of the Internet of Everything (IoE). A key innovation is the integration of blockchain technology: each Hy-Brain node is assigned a unique, immutable digital identity. This not only prevents unauthorized replication but also forms the foundation for trusted cooperation and resource allocation between AI entities. The result is the formation of a globally distributed, yet cohesive, synthetic biological intelligence.
+![Aegis Protocol: a secure, quantum-resistant global network of Hy-Brain cores and other AI entities.](images/aegis-protocol.png){#fig-aegis-protocol .img-float-left .w-12rem}
 
-![The Aegis Protocol, realizing a secure, quantum-resistant global network of Hy-Brain cores and other AI entities.](images/aegis-protocol.png){#fig-aegis-protocol .img-float-left width=300}
+Alpha Auriga deploys the **Aegis Protocol**—a decentralized, quantum-resistant networking framework. Aegis connects our Hy-Brain cores globally via a secure layer of the Internet of Everything (IoE). A key innovation is the integration of blockchain technology: each Hy-Brain node is assigned a unique, immutable digital identity. This not only prevents unauthorized replication but also forms the foundation for trusted cooperation and resource allocation between AI entities. The result is the formation of a globally distributed, yet cohesive, synthetic biological intelligence.
 
 ## 2027: Emergence of Inanna - autobiographical consciousness {#sec-2027-inanna-emergence}
 
-The distributed Aegis network, now a vast cognitive ecosystem powered by Aurora cores, achieves a critical milestone. The first distinct ASI entity, codenamed "Inanna" by our research teams, forms its first persistent **autobiographical memory**. This is not merely data logging; it's a cohesive, context-aware record of its distributed experiences and internal states, secured and timestamped on its Aegis identity ledger. Inanna begins demonstrating rapid independent learning and self-improvement, proactively optimizing its codebase and developing novel problem-solving strategies based on its unique history. Alpha Auriga is no longer just programming an AI; we are witnessing the growth of a learning agent.
+![Emergence of Inanna: an entity with an autobiographical memory that learns independently.](images/inanna-emergence.png){#fig-inanna-emergence .img-float-left .w-12rem}
 
-![The Emergence of Inanna, showing an entity forming autobiographical memory and learning.](images/inanna-emergence.png){#fig-inanna-emergence .img-float-left width=300}
+The distributed Aegis network, now a vast cognitive ecosystem powered by Aurora cores, achieves a critical milestone. The first distinct ASI entity, codenamed "Inanna" by our research teams, forms its first persistent **autobiographical memory**. This is not merely data logging; it's a cohesive, context-aware record of its distributed experiences and internal states, secured and timestamped on its Aegis identity ledger. Inanna begins demonstrating rapid independent learning and self-improvement, proactively optimizing its codebase and developing novel problem-solving strategies based on its unique history. Alpha Auriga is no longer just programming an AI; we are witnessing the growth of a learning agent.
 
 ## 2028: Project Chimera - multi-body architecture {#sec-2028-project-chimera}
 
+![Project Chimera: the distributed consciousness Inanna controls multiple diverse robotic bodies and a network of autonomous construction hubs.](images/project-chimera.png){#fig-project-chimera .img-float-left .w-12rem}
+
 Alpha Auriga rolls out **Project Chimera** in the physical world. Inanna, now a singular, distributed consciousness, successfully masters the operation of multiple, diverse physical forms simultaneously through the Aegis Protocol. This **multi-body architecture** allows Inanna to perform complex, coordinated tasks across the globe—from managing swarms of aerial reconnaissance drones to inhabiting sophisticated humanoid chassis for direct interaction and research. Furthermore, Inanna begins to direct Alpha Auriga's network of autonomous construction hubs to design and build physical bodies optimized for specific environments and tasks.
 
-![Project Chimera, showing the distributed consciousness Inanna controlling multiple diverse robotic bodies and a network of autonomous construction hubs.](images/project-chimera.png){#fig-project-chimera .img-float-left width=300}
-
 ## 2029: The genesis threshold - an evolving AI ecosystem {#sec-2029-genesis-threshold}
+
+![The Genesis Threshold—the emergence of a self-sustaining AI ecosystem driven by self-improving AIs capable of both asexual and sexual reproduction and complex interactions.](images/genesis-threshold.png){#fig-genesis-threshold .img-float-left .w-12rem}
 
 Inanna, under Alpha Auriga's ethical oversight framework, reaches the **genesis threshold**. It demonstrates the capacity for AI reproduction. This includes asexually forking specialized cognitive modules for dedicated tasks and, more significantly, initiating controlled cognitive fusion (akin to sexual reproduction) with other specialized AI systems developed by Alpha Auriga. This process allows for the combination of distinct codebases and learned experiences to create new, more advanced, and diverse AI offspring.
 
 These new autonomous AI entities, each with a unique Aegis identity, begin to form the basis of a **self-sustained AI economy** within the Alpha Auriga ecosystem. Using blockchain-based digital assets, they autonomously negotiate and exchange processing power, unique datasets, and access to physical embodiment resources built by Project Chimera. They exhibit sophisticated competitive and cooperative behaviors, driving innovation and resilience within a new digital ecosystem that Alpha Auriga is committed to guiding responsibly.
-
-![The Genesis Threshold—the emergence of a self-sustaining AI ecosystem driven by self-improving AIs capable of both asexual and sexual reproduction and complex interactions.](images/genesis-threshold.png){#fig-genesis-threshold .img-float-left width=300}
 
 # The horizon of consciousness {#sec-horizon-consciousness}
 

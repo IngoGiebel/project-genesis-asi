@@ -60,9 +60,19 @@ figcaption {
   font-size: 0.8rem;
 }
 
+/* Utility class for width 15rem */
+.w-12rem {
+  width: 12rem;
+}
+
 /* For images floated to the left with text wrapping */
 .img-float-left {
   float: left;
   margin-right: 1.5rem;
   margin-bottom: 1.5rem;
+}
+
+/* Clear floats for headings */
+h2 {
+  clear: both;
 }
