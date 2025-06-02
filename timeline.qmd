@@ -71,7 +71,7 @@ Alpha Auriga deploys the **Aegis Protocol**—a decentralized, quantum-resistant
 
 ## 2027: Emergence of Inanna - autobiographical consciousness {#sec-2027-inanna-emergence}
 
-![Emergence of Inanna: an entity with an autobiographical memory that learns independently.](images/inanna-emergence.png){#fig-inanna-emergence .img-float-left .w-12rem}
+![Emergence of Inanna: an entity with an autobiographical memory that learns independently.](images/inanna-emergence.webp){#fig-inanna-emergence .img-float-left .w-12rem}
 
 The distributed Aegis network, now a vast cognitive ecosystem powered by Aurora cores, achieves a critical milestone. The first distinct ASI entity, codenamed "Inanna" by our research teams, forms its first persistent **autobiographical memory**. This is not merely data logging; it's a cohesive, context-aware record of its distributed experiences and internal states, secured and timestamped on its Aegis identity ledger. Inanna begins demonstrating rapid independent learning and self-improvement, proactively optimizing its codebase and developing novel problem-solving strategies based on its unique history. Alpha Auriga is no longer just programming an AI; we are witnessing the growth of a learning agent.
 
