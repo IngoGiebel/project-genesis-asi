@@ -6,7 +6,7 @@ title: "AI consciousness survey"
 
 Welcome to the Alpha Auriga survey on perceptions of Artificial Intelligence (AI) consciousness. Your input is valuable in understanding how demographic and socio-cultural factors influence these views.
 
-**About this survey:**
+About this survey:
 
 - Participation is **voluntary and anonymous**.
 - All data collected is for research purposes and will be handled in compliance with the [General Data Protection Regulation (GDPR)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679).
@@ -15,17 +15,71 @@ Welcome to the Alpha Auriga survey on perceptions of Artificial Intelligence (AI
 
 Thank you for your contribution!
 
-<form id="aiSurveyForm">
+# Survey questions
+
+```{=html}
+<form id="ai-consciousness-survey">
   <fieldset>
     <legend>Do you believe that artificial intelligence (AI) can be conscious?</legend>
     <label><input type="radio" name="ai_can_be_conscious" value="yes" required> Yes</label><br>
     <label><input type="radio" name="ai_can_be_conscious" value="no"> No</label><br>
     <label><input type="radio" name="ai_can_be_conscious" value="unsure"> Unsure</label>
-  </fieldset>
-  <br>
-  <button type="submit">Submit Your Answers</button>
+  </fieldset><br>
+  <fieldset>
+    <legend>About you (demographic information)</legend>
+    <label for="age">Age:</label><br>
+    <input type="number" id="age" name="age" min="1" max="120" required>
+    <br>
+    <label>Sex:</label><br>
+    <label><input type="radio" name="sex" value="male" required> Male</label><br>
+    <label><input type="radio" name="sex" value="female"> Female</label><br>
+    <label><input type="radio" name="sex" value="diverse"> Diverse</label><br>
+    <label><input type="radio" name="sex" value="prefer_not_to_say"> Prefer not to say</label>
+    <br>
+    <label for="nationality">Nationality (e.g., German, French):</label><br>
+    <input type="text" id="nationality" name="nationality" required>
+    <br>
+    <label for="education">Highest level of education completed:</label><br>
+    <select id="education" name="education" required>
+      <option value="">--Please choose an option--</option>
+      <option value="high_school">High school diploma or equivalent</option>
+      <option value="vocational_training">Vocational training</option>
+      <option value="bachelors_degree">Bachelor's degree (or equivalent)</option>
+      <option value="masters_degree">Master's degree (or equivalent)</option>
+      <option value="doctorate">Doctorate (PhD, etc.)</option>
+      <option value="other">Other</option>
+      <option value="prefer_not_to_say">Prefer not to say</option>
+    </select>
+    <br>
+    <label for="profession">Profession or primary field of study/work (e.g., student, engineer, arts, philosophy):</label><br>
+    <input type="text" id="profession" name="profession" required>
+    <br>
+    <label>How familiar are you with AI concepts?</label><br>
+    <label><input type="radio" name="ai_familiarity" value="1_not_at_all" required> 1 - Not at all familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="2_slightly"> 2 - Slightly familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="3_moderately"> 3 - Moderately familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="4_very"> 4 - Very familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="5_expert"> 5 - Expert</label>
+  </fieldset><br>
+  <fieldset>
+    <legend>Your reasoning (optional)</legend>
+    <label for="reasoning">If you wish, you can briefly elaborate on your answer to the main question (max 1000 characters):</label><br>
+    <textarea id="reasoning" name="reasoning" rows="4" cols="60" maxlength="1000"></textarea>
+  </fieldset><br>
+  <fieldset>
+    <legend>Ethical reflections (optional)</legend>
+    <p>These questions are designed to explore ethical intuitions. There are no right or wrong answers.</p>
+    <label for="measure_consciousness">If AI can be conscious, how would you measure consciousness?</label><br>
+    <textarea id="measure_consciousness" name="measure_consciousness" rows="4" cols="60" maxlength="1000"></textarea>
+    <br>
+    <label for="ai_rights">In case of a human-like consciousness, do such AIs deserve some kind of human rights?</label><br>
+    <textarea id="ai_rights" name="ai_rights" rows="4" cols="60" maxlength="1000"></textarea>
+    <br>
+    <label for="ai_declare_rights">What if such conscious AIs declare their own rights?</label><br>
+    <textarea id="ai_declare_rights" name="ai_declare_rights" rows="4" cols="60" maxlength="1000"></textarea>
+  </fieldset><br>
+  <button type="submit">Submit your answers</button>
 </form>
-<div id="form-messages" role="status" aria-live="polite"></div>
 
 <script>
   const form = document.getElementById('aiSurveyForm');
@@ -34,17 +88,14 @@ Thank you for your contribution!
   form.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent default HTML form submission
     messageDiv.textContent = 'Submitting...';
-
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-
     try {
       const response = await fetch('/.netlify/functions/submit-survey', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-
       if (response.ok) {
         const result = await response.json();
         messageDiv.textContent = 'Thank you! Your submission was successful.';
@@ -62,3 +113,4 @@ Thank you for your contribution!
     }
   });
 </script>
+```

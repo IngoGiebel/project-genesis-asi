@@ -76,3 +76,101 @@ figcaption {
 h2 {
   clear: both;
 }
+
+/* Style form input fields and textareas for dark theme */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+  background-color: #2B3035;
+  color: #DCE4EB;
+  border: 1px solid #555;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Add some space below the input/select/textarea fields */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select {
+  margin-bottom: 1rem;
+}
+
+/* Space below textareas */
+textarea {
+    margin-bottom: 0.5rem;
+}
+
+/* Style for focused input fields */
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #8CB4FF;
+  box-shadow: 0 0 0 0.2rem rgba(42, 159, 214, 0.25);
+  outline: none;
+}
+
+/* Style for placeholder text */
+::placeholder {
+  color: #777;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  color: #777;
+}
+::-ms-input-placeholder {
+  color: #777;
+}
+
+/* Add space below form labels and style legends */
+form label {
+  display: inline-block;
+  margin-bottom: 0.2rem;
+}
+
+/* More vertical space between a label and the input field below it IF label is block */
+/* Subtle border for fieldsets */
+form fieldset {
+    margin-bottom: 0.5rem;
+    border: 1px solid #444;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+/* Style for fieldset legends */
+form fieldset legend {
+  margin-bottom: 0.8rem;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #E0E0E0;
+}
+
+/* Add a little extra top margin to the "Nationality" label */
+form label[for="nationality"] {
+  margin-top: 0.3rem;
+}
+
+/* Style for the submit button */
+form button[type="submit"] {
+  background-color: #2a9fd6; /* Example: Quarto's primary blue, adjust to Cyborg's button color */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+/* Darker shade for hover */
+form button[type="submit"]:hover {
+  background-color: #1e7bab;
+}
