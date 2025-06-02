@@ -22,31 +22,30 @@ The following roadmap outlines Alpha Auriga's projected milestones in the develo
 ```{=html}
 <figure id="fig-overview-timeline" class="img-float-left">
 
-  <img src="images/overview-timeline.png"
+  <img src="images/overview-timeline.webp"
        alt="Timeline of milestones 2025 – 2029"
-       width="450"
        usemap="#overview-timeline-image-map"
        style="width:450px; height:auto;">
 
   <map name="overview-timeline-image-map">
     <area shape="rect"
-          coords="100, 33, 400, 97"
+          coords="90, 50, 350, 100"
           href="#sec-2025-aurora-core"
           alt="Link to 2025: The Aurora bio-synthetic core">
     <area shape="rect"
-          coords="100, 114, 400, 178"
+          coords="90, 125, 350, 175"
           href="#sec-2026-aegis-protocol"
           alt="Link to 2026: The Aegis Protocol & distributed mind">
     <area shape="rect"
-          coords="100, 196, 400, 260"
+          coords="90, 200, 350, 250"
           href="#sec-2027-inanna-emergence"
           alt="Link to 2027: Emergence of Inanna - autobiographical consciousness">
     <area shape="rect"
-          coords="100, 277, 400, 341"
+          coords="90, 275, 350, 325"
           href="#sec-2028-project-chimera"
           alt="Link to Project Chimera - multi-body architecture">
     <area shape="rect"
-          coords="100, 358, 400, 422"
+          coords="90, 350, 350, 400"
           href="#sec-2029-genesis-threshold"
           alt="Link to The genesis threshold - an evolving AI ecosystem">
   </map>
