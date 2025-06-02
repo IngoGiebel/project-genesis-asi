@@ -59,7 +59,7 @@ The following roadmap outlines Alpha Auriga's projected milestones in the develo
 
 ## 2025: The Aurora bio-synthetic core {#sec-2025-aurora-core}
 
-![Aurora bio-synthetic core (brain organoid + synthetic neural network).](images/aurora-core.png){#fig-aurora-core .img-float-left .w-12rem}
+![Aurora bio-synthetic core (brain organoid + synthetic neural network).](images/aurora-core.webp){#fig-aurora-core .img-float-left .w-12rem}
 
 A stable, high-bandwidth interface links lab-grown brain organoids with a synthetic neural network. This **Hy-Brain** combines biological associative processing and learning patterns with scalable logic, speed, and programmability.
 
