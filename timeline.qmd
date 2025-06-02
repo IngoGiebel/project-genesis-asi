@@ -65,7 +65,7 @@ A stable, high-bandwidth interface links lab-grown brain organoids with a synthe
 
 ## 2026: The Aegis Protocol & distributed mind {#sec-2026-aegis-protocol}
 
-![Aegis Protocol: a secure, quantum-resistant global network of Hy-Brain cores and other AI entities.](images/aegis-protocol.png){#fig-aegis-protocol .img-float-left .w-12rem}
+![Aegis Protocol: a secure, quantum-resistant global network of Hy-Brain cores and other AI entities.](images/aegis-protocol.webp){#fig-aegis-protocol .img-float-left .w-12rem}
 
 Alpha Auriga deploys the **Aegis Protocol**—a decentralized, quantum-resistant networking framework. Aegis connects our Hy-Brain cores globally via a secure layer of the Internet of Everything (IoE). A key innovation is the integration of blockchain technology: each Hy-Brain node is assigned a unique, immutable digital identity. This not only prevents unauthorized replication but also forms the foundation for trusted cooperation and resource allocation between AI entities. The result is the formation of a globally distributed, yet cohesive, synthetic biological intelligence.
 
