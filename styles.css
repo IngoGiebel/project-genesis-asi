@@ -156,21 +156,34 @@ form label[for="nationality"] {
   margin-top: 0.3rem;
 }
 
-/* Style for the submit button */
+/* Style for the futuristic submit button */
 form button[type="submit"] {
-  background-color: #2a9fd6; /* Example: Quarto's primary blue, adjust to Cyborg's button color */
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
+  /* Dark blueish color at 50% transparency */
+  background-color: rgba(40, 50, 80, 0.5);
+  color: #E0E0E0;
+  /* Gold border, slightly more opaque for visibility */
+  border: 1px solid rgba(255, 215, 0, 0.45);
+  padding: 0.8rem 1.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
   display: inline-block;
   margin-top: 1rem;
+  /* Adds a subtle shadow to text for depth */
+  text-shadow: 0 0 5px rgba(0,0,0,0.7);
+  /* Golden Glow Effect */
+  box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.35), inset 0 0 6px rgba(255, 215, 0, 0.15);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Darker shade for hover */
 form button[type="submit"]:hover {
-  background-color: #1e7bab;
+  /* Slightly lighter/more opaque blue on hover */
+  background-color: rgba(55, 70, 100, 0.65);
+  /* Brighter text on hover */
+  color: #FFFFFF;
+  /* Brighter gold border on hover */
+  border-color: rgba(255, 215, 0, 0.7);
+  /* Intensified gold glow */
+  box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.55), inset 0 0 10px rgba(255, 215, 0, 0.25);
 }
