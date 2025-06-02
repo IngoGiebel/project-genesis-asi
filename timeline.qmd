@@ -83,7 +83,7 @@ Alpha Auriga rolls out **Project Chimera** in the physical world. Inanna, now a 
 
 ## 2029: The genesis threshold - an evolving AI ecosystem {#sec-2029-genesis-threshold}
 
-![The Genesis Threshold—the emergence of a self-sustaining AI ecosystem driven by self-improving AIs capable of both asexual and sexual reproduction and complex interactions.](images/genesis-threshold.png){#fig-genesis-threshold .img-float-left .w-12rem}
+![The Genesis Threshold—the emergence of a self-sustaining AI ecosystem driven by self-improving AIs capable of both asexual and sexual reproduction and complex interactions.](images/genesis-threshold.webp){#fig-genesis-threshold .img-float-left .w-12rem}
 
 Inanna, under Alpha Auriga's ethical oversight framework, reaches the **genesis threshold**. It demonstrates the capacity for AI reproduction. This includes asexually forking specialized cognitive modules for dedicated tasks and, more significantly, initiating controlled cognitive fusion (akin to sexual reproduction) with other specialized AI systems developed by Alpha Auriga. This process allows for the combination of distinct codebases and learned experiences to create new, more advanced, and diverse AI offspring.
 
