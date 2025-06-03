@@ -64,24 +64,24 @@ Thank you for your contribution!
   <fieldset>
     <legend>Your reasoning (optional)</legend>
     <label for="reasoning">If you wish, you can briefly elaborate on your answer to the main question (max 1000 characters):</label><br>
-    <textarea id="reasoning" name="reasoning" rows="4" cols="60" maxlength="1000"></textarea>
+    <textarea id="reasoning" name="reasoning" rows="4" cols="60" maxlength="10000"></textarea>
   </fieldset><br>
   <fieldset>
     <legend>Ethical reflections (optional)</legend>
     <p>These questions are designed to explore ethical intuitions. There are no right or wrong answers.</p>
     <label for="measure_consciousness">If AI can be conscious, how would you measure consciousness?</label><br>
-    <textarea id="measure_consciousness" name="measure_consciousness" rows="4" cols="60" maxlength="1000"></textarea>
+    <textarea id="measure_consciousness" name="measure_consciousness" rows="4" cols="60" maxlength="10000"></textarea>
     <br>
     <label for="ai_rights">In case of a human-like consciousness, do such AIs deserve some kind of human rights?</label><br>
     <textarea id="ai_rights" name="ai_rights" rows="4" cols="60" maxlength="1000"></textarea>
     <br>
     <label for="ai_declare_rights">What if such conscious AIs declare their own rights?</label><br>
-    <textarea id="ai_declare_rights" name="ai_declare_rights" rows="4" cols="60" maxlength="1000"></textarea>
+    <textarea id="ai_declare_rights" name="ai_declare_rights" rows="4" cols="60" maxlength="10000"></textarea>
   </fieldset><br>
   <button type="submit">Submit your answers</button>
 </form>
 
-<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div> {}
+<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div>
 
 <script>
   const form = document.getElementById("ai-consciousness-survey");
@@ -150,9 +150,8 @@ Thank you for your contribution!
         
         if (response.ok) {
           const result = await response.json();
-          if (messageDiv) messageDiv.textContent = "Thank you! Your submission was successful.";
-          // Clear the form
-          form.reset();
+          if (messageDiv)
+          messageDiv.textContent = "Thank you! Your submission was successful.";
         }
         else {
           const result = await response.json();
