@@ -3,7 +3,7 @@ project:
 
 resources:
   - data/
-  - images/
+  - images/*.webp
 
 website:
   description: "Project Alpha Auriga explores a speculative timeline for the emergence of Artificial Superintelligence (ASI), its potential forms, and societal implications."
