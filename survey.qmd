@@ -110,16 +110,21 @@ Thank you for your contribution!
         rawCountryDataForReset = await response.json();
         const countryChoicesData = rawCountryDataForReset.map(
           country => ({
-            value: country.alpha2 ? country.alpha2.trim() : "",
-            label: country.name ? country.name.trim() : "Unknown Country"
+            value: country.alpha2,
+            label: country.name
           }));
         
-        // Filter out any entries where the value (alpha2) might be empty or problematic
-        // and add the placeholder at the beginning.
+        // Add the placeholder at the beginning
         const finalCountryChoices = [
-          { value: "", label: "--Please choose an option--", selected: true, disabled: true, placeholder: true },
-          ...countryChoicesData.filter(c => c.value && c.value.length === 2) // Ensure alpha2 is a 2-char code
-        ];
+          {
+            value: "",
+            label: "--Please choose an option--",
+            selected: true,
+            disabled: true,
+            placeholder: true
+          },
+          ...countryChoicesData
+          ];
         
         // Clear any existing options in the select (important if this function is ever re-run)
         nationalitySelectElement.innerHTML = "";
