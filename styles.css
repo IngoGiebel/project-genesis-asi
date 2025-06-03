@@ -92,6 +92,11 @@ textarea {
   box-sizing: border-box;
 }
 
+/* Style for the Age input field to make it narrower */
+form #age {
+  width: 6em;
+}
+
 /* Add some space below the input/select/textarea fields */
 input[type="text"],
 input[type="number"],
