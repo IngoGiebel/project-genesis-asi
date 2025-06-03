@@ -1,5 +1,13 @@
 ---
 title: "AI consciousness survey"
+format: html
+include-in-header:
+  - text: |
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+      <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js" defer></script>
+
+resources:
+  - data/countries.json
 ---
 
 # Participate in our research
@@ -36,8 +44,8 @@ Thank you for your contribution!
     <label><input type="radio" name="sex" value="diverse"> Diverse</label><br>
     <label><input type="radio" name="sex" value="prefer_not_to_say"> Prefer not to say</label>
     <br>
-    <label for="nationality">Nationality (e.g., German, French):</label><br>
-    <input type="text" id="nationality" name="nationality" required>
+    <label for="nationality-select">Nationality:</label><br>
+    <select id="nationality-select" name="nationality_iso_code" required></select>
     <br>
     <label for="education">Highest level of education completed:</label><br>
     <select id="education" name="education" required>
@@ -63,7 +71,7 @@ Thank you for your contribution!
   </fieldset><br>
   <fieldset>
     <legend>Your reasoning (optional)</legend>
-    <label for="reasoning">If you wish, you can briefly elaborate on your answer to the main question (max 1000 characters):</label><br>
+    <label for="reasoning">If you wish, you can briefly elaborate on your answer to the main question (max 10000 characters):</label><br>
     <textarea id="reasoning" name="reasoning" rows="4" cols="60" maxlength="10000"></textarea>
   </fieldset><br>
   <fieldset>
@@ -87,6 +95,79 @@ Thank you for your contribution!
   const form = document.getElementById("ai-consciousness-survey");
   const messageDiv = document.getElementById("form-messages");
   const ageInput = document.getElementById("age");
+  const nationalitySelectElement = document.getElementById("nationality-select");
+  
+  let choicesNationality;
+  let rawCountryDataForReset;
+
+  async function setupNationalityDropdown() {
+    if (nationalitySelectElement) {
+      try {
+        const response = await fetch("data/countries.json"); 
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
+        }
+        rawCountryDataForReset = await response.json();
+        const countryChoicesData = rawCountryDataForReset.map(
+          country => ({
+            value: country.alpha2 ? country.alpha2.trim() : "",
+            label: country.name ? country.name.trim() : "Unknown Country"
+          }));
+        
+        // Filter out any entries where the value (alpha2) might be empty or problematic
+        // and add the placeholder at the beginning.
+        const finalCountryChoices = [
+          { value: "", label: "--Please choose an option--", selected: true, disabled: true, placeholder: true },
+          ...countryChoicesData.filter(c => c.value && c.value.length === 2) // Ensure alpha2 is a 2-char code
+        ];
+        
+        // Clear any existing options in the select (important if this function is ever re-run)
+        nationalitySelectElement.innerHTML = "";
+        
+        // Populate the native select element (good for fallback and if Choices.js fails)
+        finalCountryChoices.forEach(country => {
+          const option = document.createElement("option");
+          option.value = country.value;
+          option.textContent = country.label;
+          if (country.selected) {
+            option.selected = true;
+          }
+          if (country.disabled) {
+            option.disabled = true;
+          }
+          nationalitySelectElement.appendChild(option);
+        });
+        
+        // Initialize Choices.js on the select element
+        choicesNationality = new Choices(
+          nationalitySelectElement,
+          {
+            searchEnabled: true,
+            searchPlaceholderValue: "Search for a country...",
+            removeItemButton: false,
+            itemSelectText: "",
+            allowHTML: false,
+            sorter: function(a, b) {
+              if (a.placeholder || (a.customProperties && a.customProperties.placeholder)) return -1;
+              if (b.placeholder || (b.customProperties && b.customProperties.placeholder)) return 1;
+              return a.label.localeCompare(b.label);
+            },
+          });
+      }
+      catch (error) {
+        console.error("Could not load or initialize country data. Full error object:", error);
+        if (nationalitySelectElement) {
+            nationalitySelectElement.innerHTML = `<option value=''>Error loading countries: ${error.message}</option>`;
+        }
+        if (messageDiv) {
+            messageDiv.textContent = `Error loading country list: ${error.message}. Please try refreshing.`;
+        }
+      }
+    }
+  }
+
+  // Call the setup function when the DOM is ready
+  document.addEventListener("DOMContentLoaded", setupNationalityDropdown);
 
   // Add input event listener for the age field
   if (ageInput) {
@@ -99,7 +180,7 @@ Thank you for your contribution!
         value = value.slice(0, 3);
       }
       
-      // If it's a valid number and exceeds max (120), cap it at max
+      // If it is a valid number and exceeds max (120), cap it at max
       // This provides immediate feedback as they type.
       // The HTML5 validation (max="120") also handles this on form submission.
       const numValue = parseInt(value, 10);

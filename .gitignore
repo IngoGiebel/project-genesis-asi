@@ -1,6 +1,7 @@
 # Quarto specific
 /.quarto/
 /_site/
+/_freeze/
 
 # RStudio specific
 .Rhistory
