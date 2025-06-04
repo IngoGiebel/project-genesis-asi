@@ -40,8 +40,8 @@ Thank you for your contribution!
     <label><input type="radio" name="sex" value="diverse"> Diverse</label><br>
     <label><input type="radio" name="sex" value="prefer_not_to_say"> Prefer not to say</label>
     <br>
-    <label for="nationality-select">Nationality:</label><br>
-    <select id="nationality-select" name="nationality_iso_code" required></select>
+    <label for="nationality">Nationality:</label><br>
+    <select id="nationality" name="nationality" required></select>
     <br>
     <label for="education">Highest level of education completed:</label><br>
     <select id="education" name="education" required>
@@ -91,13 +91,13 @@ Thank you for your contribution!
   const form = document.getElementById("ai-consciousness-survey");
   const messageDiv = document.getElementById("form-messages");
   const ageInput = document.getElementById("age");
-  const nationalitySelectElement = document.getElementById("nationality-select");
+  const nationalityElement = document.getElementById("nationality");
   
   let choicesNationality;
   let rawCountryDataForReset;
 
   async function setupNationalityDropdown() {
-    if (nationalitySelectElement) {
+    if (nationalityElement) {
       try {
         const response = await fetch("data/countries.json"); 
         if (!response.ok) {
@@ -123,7 +123,7 @@ Thank you for your contribution!
           ];
         
         // Clear any existing options in the select (important if this function is ever re-run)
-        nationalitySelectElement.innerHTML = "";
+        nationalityElement.innerHTML = "";
         
         // Populate the native select element (good for fallback and if Choices.js fails)
         finalCountryChoices.forEach(country => {
@@ -136,12 +136,12 @@ Thank you for your contribution!
           if (country.disabled) {
             option.disabled = true;
           }
-          nationalitySelectElement.appendChild(option);
+          nationalityElement.appendChild(option);
         });
         
         // Initialize Choices.js on the select element
         choicesNationality = new Choices(
-          nationalitySelectElement,
+          nationalityElement,
           {
             searchEnabled: true,
             searchPlaceholderValue: "Search for a country...",
@@ -157,8 +157,8 @@ Thank you for your contribution!
       }
       catch (error) {
         console.error("Could not load or initialize country data. Full error object:", error);
-        if (nationalitySelectElement) {
-            nationalitySelectElement.innerHTML = `<option value=''>Error loading countries: ${error.message}</option>`;
+        if (nationalityElement) {
+            nationalityElement.innerHTML = `<option value=''>Error loading countries: ${error.message}</option>`;
         }
         if (messageDiv) {
             messageDiv.textContent = `Error loading country list: ${error.message}. Please try refreshing.`;
