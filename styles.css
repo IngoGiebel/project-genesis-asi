@@ -1,3 +1,8 @@
+:root {
+  --field-pad-x: 0.5rem;
+  --field-pad-y: 0.1rem;
+}
+
 body {
   /* Background image settings */
   background:
@@ -6,7 +11,7 @@ body {
     /* Layer 2: Background image */
     url("images/inanna-background.webp");
   /* Fallback color if the image fails to load */
-  background-color: #1a1a1a;
+  background-color: #1A1A1A;
   /* This makes the image cover the entire screen */
   background-size: cover;
   /* This centers the image */
@@ -32,7 +37,7 @@ body {
 .navbar-brand img {
   height: 4rem;
   max-height: none;
-  filter: drop-shadow(0 0 0.2rem rgba(255, 255, 255, 0.5))  brightness(2.0);
+  filter: drop-shadow(0 0 0.2rem rgba(255, 255, 255, 0.5)) brightness(2.0);
 }
 
 /* Dim inactive navbar links more to highlight the active link */
@@ -87,7 +92,7 @@ textarea {
   color: #DCE4EB;
   border: solid rgba(85, 85, 85, 0.7);
   border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem;
+  padding: var(--field-pad-y) var(--field-pad-x);
   width: 100%;
   box-sizing: border-box;
 }
@@ -97,17 +102,30 @@ form #age {
   width: 6em;
 }
 
+/* Style for the Nationality, Education, Profession input field to make them narrower */
+form #education, #profession {
+  width: 18em;
+}
+.choices[data-type*="select-one"] {
+  width: 18em;
+}
+.choices[data-type*="select-one"] .choices__inner {
+  width: 100%
+}
+
 /* Add some space below the input/select/textarea fields */
 input[type="text"],
 input[type="number"],
 input[type="email"],
 select {
-  margin-bottom: 1rem;
+  line-height: 1.5rem;
+  margin-bottom: 0.8rem;
 }
 
 /* Space below textareas */
 textarea {
-    margin-bottom: 0.5rem;
+  line-height: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Style for focused input fields */
@@ -123,14 +141,14 @@ textarea:focus {
 
 /* Style for placeholder text */
 ::placeholder {
-  color: #777;
+  color: #777777;
   opacity: 1;
 }
 :-ms-input-placeholder {
-  color: #777;
+  color: #777777;
 }
 ::-ms-input-placeholder {
-  color: #777;
+  color: #777777;
 }
 
 /* Add space below form labels and style legends */
@@ -143,17 +161,17 @@ form label {
 /* Subtle border for fieldsets */
 form fieldset {
     margin-bottom: 0.5rem;
-    border: 1px solid #444;
+    border: 1px solid #444444;
     padding: 0.5rem;
     border-radius: 0.25rem;
 }
 
 /* Style for fieldset legends */
 form fieldset legend {
-  margin-bottom: 0.8rem;
-  font-size: 1.2em;
-  font-weight: bold;
   color: #E0E0E0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
 }
 
 /* Add a little extra top margin to the "Nationality" label */
@@ -192,24 +210,26 @@ form button[type="submit"]:hover {
   /* Intensified gold glow */
   box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.55), inset 0 0 10px rgba(255, 215, 0, 0.25);
 }
-/* Add bottom margin to Choices.js container */
-.choices {
-  margin-bottom: 1rem;
-}
 
 /* Basic styling to make Choices.js input area match other inputs */
 .choices__inner {
+  position: relative;
+  font-size: inherit;
   background-color: rgba(43, 48, 53, 0.5);
   color: #DCE4EB;
-  border: 1px solid rgba(85, 85, 85, 0.7);
+  border: solid rgba(85, 85, 85, 0.7);
   border-radius: 0.25rem;
-  padding: 0.275rem 0.65rem;
+  padding: var(--field-pad-y) var(--field-pad-x);
   min-height: auto;
-  font-size: inherit;
 }
-
+.choices__input,
+.choices__placeholder {
+  background-color: transparent;
+  color: #DCE4EB;
+  padding: var(--field-pad-y) var(--field-pad-x);
+}
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
-  background-color: #2a9fd6;
+  background-color: #2A9FD6;
   color: white;
 }
 
@@ -219,4 +239,32 @@ form button[type="submit"]:hover {
 
 .choices[data-type*="select-one"].is-open::after {
   border-color: transparent transparent #DCE4EB transparent;
+}
+
+/* Minimal Choices.js visibility rules */
+/* Hide the original <select> */
+.choices select {
+  display: none;
+}
+/* Keep dropdown hidden until activated */
+.choices__list--dropdown,
+.choices__list[aria-expanded] {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  width: 18em;
+  max-height: 16rem;
+  overflow-y: auto;
+  background: rgba(43, 48, 53, 1);
+  border: 1px solid rgba(85, 85, 85, 0.7);
+}
+/* Show when the container gains .is-open */
+.choices.is-open .choices__list--dropdown,
+.choices.is-open .choices__list[aria-expanded] {
+  display: block;
+}
+/* Highlighted option */
+.choices__list--dropdown .choices__item--selectable.is-highlighted {
+  background: #2A9FD6;
+  color: #FFFFFF;
 }
