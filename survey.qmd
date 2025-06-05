@@ -151,6 +151,15 @@ Thank you for your contribution!
               return a.label.localeCompare(b.label);
             }
           });
+        
+        // Keep highlighted choice in view (mouse OR keyboard)
+        choicesNationality.passedElement.element.addEventListener(
+          "highlightChoice",
+          e => {
+            if (e.detail && e.detail.el) {
+              e.detail.el.scrollIntoView({block: "nearest", behavior: "smooth"});
+            }
+        });
       }
       catch (error) {
         console.error("Could not load or initialize country data. Full error object:", error);
