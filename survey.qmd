@@ -1,9 +1,8 @@
 ---
 title: "AI consciousness survey"
-include-in-header:
+include-after-body:
   - text: |
-      <script src="https://cdn.jsdelivr.net/npm/choices.js@11.1.0/public/assets/scripts/choices.min.js" defer></script>
-      <script src="survey.js" defer></script>
+      <script type="module" src="survey.js"></script>
 ---
 
 # Participate in our research
@@ -23,26 +22,34 @@ Thank you for your contribution!
 
 ```{=html}
 <form id="ai-consciousness-survey">
+
+  <!-- ── MAIN QUESTION ────────────────────────────────────────────────── -->
+
   <fieldset>
     <legend>Do you believe that artificial intelligence (AI) can be conscious?</legend>
+
     <label><input type="radio" name="ai_can_be_conscious" value="yes" required> Yes</label><br>
     <label><input type="radio" name="ai_can_be_conscious" value="no"> No</label><br>
     <label><input type="radio" name="ai_can_be_conscious" value="unsure"> Unsure</label>
-  </fieldset><br>
+  </fieldset>
+  
+  <!-- ── DEMOGRAPHICS ─────────────────────────────────────────────────── -->
+
   <fieldset>
     <legend>About you (demographic information)</legend>
+
     <label for="age">Age:</label><br>
-    <input type="number" id="age" name="age" min="1" max="120" required>
-    <br>
+    <input type="number" id="age" name="age" min="1" max="120" required><br>
+
     <label>Sex:</label><br>
     <label><input type="radio" name="sex" value="male" required> Male</label><br>
     <label><input type="radio" name="sex" value="female"> Female</label><br>
     <label><input type="radio" name="sex" value="diverse"> Diverse</label><br>
-    <label><input type="radio" name="sex" value="prefer_not_to_say"> Prefer not to say</label>
-    <br>
+    <label><input type="radio" name="sex" value="prefer_not_to_say"> Prefer not to say</label><br>
+    
     <label for="nationality">Nationality:</label><br>
-    <select id="nationality" name="nationality" required></select>
-    <br>
+    <select id="nationality" name="nationality" required></select><br>
+
     <label for="education">Highest level of education completed:</label><br>
     <select id="education" name="education" required>
       <option value="">--Please choose an option--</option>
@@ -53,35 +60,45 @@ Thank you for your contribution!
       <option value="doctorate">Doctorate (PhD, etc.)</option>
       <option value="other">Other</option>
       <option value="prefer_not_to_say">Prefer not to say</option>
-    </select>
-    <br>
+    </select><br>
+
     <label for="profession">Profession or primary field of study/work:</label><br>
-    <input type="text" id="profession" name="profession" required>
-    <br>
+    <input type="text" id="profession" name="profession" required><br>
+
     <label>How familiar are you with AI concepts?</label><br>
     <label><input type="radio" name="ai_familiarity" value="1_not_at_all" required> 1 - Not at all familiar</label><br>
     <label><input type="radio" name="ai_familiarity" value="2_slightly"> 2 - Slightly familiar</label><br>
     <label><input type="radio" name="ai_familiarity" value="3_moderately"> 3 - Moderately familiar</label><br>
     <label><input type="radio" name="ai_familiarity" value="4_very"> 4 - Very familiar</label><br>
     <label><input type="radio" name="ai_familiarity" value="5_expert"> 5 - Expert</label>
-  </fieldset><br>
+  </fieldset>
+
+  <!-- ── OPTIONAL REASONING ───────────────────────────────────────────── -->
+
   <fieldset>
     <legend>Your reasoning (optional)</legend>
-    <label for="reasoning">If you wish, you can briefly elaborate on your answer to the main question (max 10000 characters):</label><br>
-    <textarea id="reasoning" name="reasoning" rows="4" cols="60" maxlength="10000"></textarea>
-  </fieldset><br>
+
+    <label for="reasoning">You may elaborate on your answer to the main question (max 10 000 chars):</label><br>
+    <textarea id="reasoning" name="reasoning" rows="4" maxlength="10000"></textarea>
+  </fieldset>
+
+  <!-- ── OPTIONAL ETHICS ──────────────────────────────────────────────── -->
+
   <fieldset>
     <legend>Ethical reflections (optional)</legend>
-    <p>These questions are designed to explore ethical intuitions. There are no right or wrong answers.</p>
+
+    <p>These questions explore ethical intuitions. There are no right or wrong answers.</p>
+
     <label for="measure_consciousness">If AI can be conscious, how would you measure consciousness?</label><br>
-    <textarea id="measure_consciousness" name="measure_consciousness" rows="4" cols="60" maxlength="10000"></textarea>
-    <br>
-    <label for="ai_rights">In case of a human-like consciousness, do such AIs deserve some kind of human rights?</label><br>
-    <textarea id="ai_rights" name="ai_rights" rows="4" cols="60" maxlength="1000"></textarea>
-    <br>
+    <textarea id="measure_consciousness" name="measure_consciousness" rows="4" maxlength="10000"></textarea><br>
+  
+    <label for="ai_rights">If an AI had human-like consciousness, would it deserve human rights?</label><br>
+    <textarea id="ai_rights" name="ai_rights" rows="4" maxlength="10000"></textarea><br>
+
     <label for="ai_declare_rights">What if such conscious AIs declare their own rights?</label><br>
-    <textarea id="ai_declare_rights" name="ai_declare_rights" rows="4" cols="60" maxlength="10000"></textarea>
-  </fieldset><br>
+    <textarea id="ai_declare_rights" name="ai_declare_rights" rows="4" maxlength="10000"></textarea>
+  </fieldset>
+
   <button type="submit">Submit your answers</button>
 </form>
 
