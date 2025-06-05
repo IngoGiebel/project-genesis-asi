@@ -2,7 +2,7 @@ project:
   type: website
 
 resources:
-  - data/
+  - data/countries.min.json
   - images/*.webp
 
 default-image-extension: webp
