@@ -2,8 +2,7 @@
 title: "AI consciousness survey"
 include-in-header:
   - text: |
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
-      <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js" defer></script>
+      <script defer src="https://cdn.jsdelivr.net/npm/choices.js@11.1.0/public/assets/scripts/choices.min.js"></script>
 ---
 
 # Participate in our research
@@ -55,7 +54,7 @@ Thank you for your contribution!
       <option value="prefer_not_to_say">Prefer not to say</option>
     </select>
     <br>
-    <label for="profession">Profession or primary field of study/work (e.g., student, engineer, arts, philosophy):</label><br>
+    <label for="profession">Profession or primary field of study/work:</label><br>
     <input type="text" id="profession" name="profession" required>
     <br>
     <label>How familiar are you with AI concepts?</label><br>
@@ -143,16 +142,14 @@ Thank you for your contribution!
         choicesNationality = new Choices(
           nationalityElement,
           {
-            searchEnabled: true,
             searchPlaceholderValue: "Search for a country...",
-            removeItemButton: false,
             itemSelectText: "",
             allowHTML: false,
             sorter: function(a, b) {
               if (a.placeholder || (a.customProperties && a.customProperties.placeholder)) return -1;
               if (b.placeholder || (b.customProperties && b.customProperties.placeholder)) return 1;
               return a.label.localeCompare(b.label);
-            },
+            }
           });
       }
       catch (error) {

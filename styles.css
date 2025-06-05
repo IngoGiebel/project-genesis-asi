@@ -253,7 +253,7 @@ form button[type="submit"]:hover {
   position: absolute;
   z-index: 999;
   width: 18em;
-  max-height: 16rem;
+  max-height: 14rem;
   overflow-y: auto;
   background: rgba(43, 48, 53, 1);
   border: 1px solid rgba(85, 85, 85, 0.7);
@@ -267,4 +267,7 @@ form button[type="submit"]:hover {
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
   background: #2A9FD6;
   color: #FFFFFF;
+}
+.choices__list--dropdown .choices__item {
+  padding-left: var(--field-pad-x);
 }
