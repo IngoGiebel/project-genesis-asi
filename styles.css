@@ -1,273 +1,296 @@
+/*───────────────────────────────────────────────────────────────
+  DESIGN TOKENS
+────────────────────────────────────────────────────────────────*/
+
 :root {
-  --field-pad-x: 0.5rem;
-  --field-pad-y: 0.1rem;
+  /* colours */
+  --clr-bg-main:        #1A1A1A;
+  --clr-bg-overlay-top: rgba(0,0,0,.70);
+  --clr-bg-overlay-bot: rgba(0,0,0,.50);
+  --clr-panel:          rgba(43,48,53,.50);
+  --clr-panel-solid:    #2B3035;
+  --clr-border:         rgba(85,85,85,.70);
+  --clr-text-main:      #DCE4EB;
+  --clr-text-light:     #E0E0E0;
+  --clr-link:           #8CB4FF;
+  --clr-link-visited:   #C3A5FF;
+  --clr-accent:         #2A9FD6;
+
+  /* sizes */
+  --fs-body:            1rem;
+  --pad-x:              .5rem;
+  --pad-y:              .1rem;
+  --radius:             .25rem;
+
+  /* z-layers */
+  --z-dropdown:  999;
+}
+
+/*───────────────────────────────────────────────────────────────
+  GLOBAL ELEMENTS
+────────────────────────────────────────────────────────────────*/
+
+html {
+  font-size: var(--fs-body);
 }
 
 body {
-  /* Background image settings */
+  color: var(--clr-text-main);
   background:
-    /* Layer 1: Color overlay */
-    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
-    /* Layer 2: Background image */
+    linear-gradient(var(--clr-bg-overlay-top), var(--clr-bg-overlay-bot)),
     url("images/inanna-background.webp");
-  /* Fallback color if the image fails to load */
-  background-color: #1A1A1A;
-  /* This makes the image cover the entire screen */
+  background-color: var(--clr-bg-main);
   background-size: cover;
-  /* This centers the image */
   background-position: center 2rem;
-  /* This prevents the image from repeating */
   background-repeat: no-repeat;
-  /* This is the magic part: it fixes the background in place */
-  /* so the content scrolls over it. Creates a parallax effect. */
   background-attachment: fixed;
-
-  /* Text readability settings */
-  color: #DCE4EB;
 }
 
-/* Make the navigation bar transparent and increase the font size */
-.navbar {
-  background: transparent;
-  backdrop-filter: blur(0.5rem) brightness(0.7);
-  font-size: 1.2rem;
-}
-
-/* Increase the size of the navbar logo */
-.navbar-brand img {
-  height: 4rem;
-  max-height: none;
-  filter: drop-shadow(0 0 0.2rem rgba(255, 255, 255, 0.5)) brightness(2.0);
-}
-
-/* Dim inactive navbar links more to highlight the active link */
-.navbar .nav-link:not(.active) {
-  opacity: 0.7;
-}
-
-/* Improve link visibility on dark background */
 a {
-  /* A light blue for links */
-  color: #8CB4FF;
-}
-a:visited {
-  /* A light purple for visited links */
-  color: #C3A5FF;
+  color: var(--clr-link);
 }
 
-/* Improve figure text readability on dark background */
+a:visited {
+  color: var(--clr-link-visited);
+}
+
 figcaption {
   color: #F0DCE1;
 }
 
-/* Adjust font size of the "Cookie Preferences" link to match other footer text */
-#open_preferences_center {
-  font-size: 0.8rem;
+h2 {
+  clear: both;
 }
 
-/* Utility class for width 15rem */
-.w-12rem {
-  width: 12rem;
+/*───────────────────────────────────────────────────────────────
+  NAVBAR
+────────────────────────────────────────────────────────────────*/
+
+.navbar {
+  background: transparent;
+  backdrop-filter: blur(.5rem) brightness(.7);
+  font-size: 1.2rem;
 }
 
-/* For images floated to the left with text wrapping */
+/* Dim inactive navbar links more to highlight the active link */
+.navbar .nav-link:not(.active) {
+  opacity: .7;
+}
+
+.navbar-brand img {
+  height: 4rem;
+  max-height: none;
+  filter: drop-shadow(0 0 .2rem rgba(255,255,255,.5)) brightness(2);
+}
+
+/*───────────────────────────────────────────────────────────────
+  IMAGES
+────────────────────────────────────────────────────────────────*/
+
 .img-float-left {
   float: left;
   margin-right: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
-/* Clear floats for headings */
-h2 {
-  clear: both;
+/*───────────────────────────────────────────────────────────────
+  FORM — SHARED FIELD STYLES
+────────────────────────────────────────────────────────────────*/
+
+fieldset {
+  margin-bottom: .5rem;
+  padding: .5rem;
+  border: 1px solid #444;
+  border-radius: var(--radius);
 }
 
-/* Style form input fields and textareas for dark theme */
+fieldset legend {
+  margin-bottom: .8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--clr-text-light);
+}
+
+/* Add space below form labels and style legends */
+label {
+  display: inline-block;
+  margin-bottom: .2rem;
+}
+
 input[type="text"],
 input[type="number"],
 input[type="email"],
 select,
 textarea {
-  background-color: rgba(43, 48, 53, 0.5);
-  color: #DCE4EB;
-  border: solid rgba(85, 85, 85, 0.7);
-  border-radius: 0.25rem;
-  padding: var(--field-pad-y) var(--field-pad-x);
   width: 100%;
   box-sizing: border-box;
+  background-color: var(--clr-panel);
+  color: var(--clr-text-main);
+  border: solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: var(--pad-y) var(--pad-x);
+  line-height: 1.5rem;
 }
 
-/* Style for the Age input field to make it narrower */
-form #age {
-  width: 6em;
-}
-
-/* Style for the Nationality, Education, Profession input field to make them narrower */
-form #education, #profession {
-  width: 18em;
-}
-.choices[data-type*="select-one"] {
-  width: 18em;
-}
-.choices[data-type*="select-one"] .choices__inner {
-  width: 100%
-}
-
-/* Add some space below the input/select/textarea fields */
+/* Extra space below the input/select/textarea fields */
 input[type="text"],
 input[type="number"],
 input[type="email"],
 select {
-  line-height: 1.5rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: .8rem;
 }
 
-/* Space below textareas */
+/* Extra space below textareas */
 textarea {
-  line-height: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
 }
 
-/* Style for focused input fields */
+/* Add a little extra top margin to the "Nationality" label */
+label[for="nationality"] {
+  margin-top: .3rem;
+}
+
+#age {
+  width: 6em;
+}
+
+#education,
+#profession,
+.choices {
+  width: 18em;
+}
+
+/* Focused input fields */
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="email"]:focus,
 select:focus,
 textarea:focus {
-  border-color: #8CB4FF;
-  box-shadow: 0 0 0 0.2rem rgba(42, 159, 214, 0.25);
+  border-color: var(--clr-link);
+  box-shadow: 0 0 0 .2rem rgba(42,159,214,.25);
   outline: none;
 }
 
-/* Style for placeholder text */
+/* Placeholder colour */
 ::placeholder {
-  color: #777777;
-  opacity: 1;
-}
-:-ms-input-placeholder {
-  color: #777777;
-}
-::-ms-input-placeholder {
-  color: #777777;
+  color: #777;
 }
 
-/* Add space below form labels and style legends */
-form label {
-  display: inline-block;
-  margin-bottom: 0.2rem;
-}
+/*───────────────────────────────────────────────────────────────
+  CHOICES.JS “Nationality” DROPDOWN
+────────────────────────────────────────────────────────────────*/
 
-/* More vertical space between a label and the input field below it IF label is block */
-/* Subtle border for fieldsets */
-form fieldset {
-    margin-bottom: 0.5rem;
-    border: 1px solid #444444;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-}
-
-/* Style for fieldset legends */
-form fieldset legend {
-  color: #E0E0E0;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.8rem;
-}
-
-/* Add a little extra top margin to the "Nationality" label */
-form label[for="nationality"] {
-  margin-top: 0.3rem;
-}
-
-/* Style for the futuristic submit button */
-form button[type="submit"] {
-  /* Dark blueish color at 50% transparency */
-  background-color: rgba(40, 50, 80, 0.5);
-  color: #E0E0E0;
-  /* Gold border, slightly more opaque for visibility */
-  border: 1px solid rgba(255, 215, 0, 0.45);
-  padding: 0.8rem 1.8rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 1rem;
-  /* Adds a subtle shadow to text for depth */
-  text-shadow: 0 0 5px rgba(0,0,0,0.7);
-  /* Golden Glow Effect */
-  box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.35), inset 0 0 6px rgba(255, 215, 0, 0.15);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-form button[type="submit"]:hover {
-  /* Slightly lighter/more opaque blue on hover */
-  background-color: rgba(55, 70, 100, 0.65);
-  /* Brighter text on hover */
-  color: #FFFFFF;
-  /* Brighter gold border on hover */
-  border-color: rgba(255, 215, 0, 0.7);
-  /* Intensified gold glow */
-  box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.55), inset 0 0 10px rgba(255, 215, 0, 0.25);
-}
-
-/* Basic styling to make Choices.js input area match other inputs */
-.choices__inner {
-  position: relative;
-  font-size: inherit;
-  background-color: rgba(43, 48, 53, 0.5);
-  color: #DCE4EB;
-  border: solid rgba(85, 85, 85, 0.7);
-  border-radius: 0.25rem;
-  padding: var(--field-pad-y) var(--field-pad-x);
-  min-height: auto;
-}
-.choices__input,
-.choices__placeholder {
-  background-color: transparent;
-  color: #DCE4EB;
-  padding: var(--field-pad-y) var(--field-pad-x);
-}
-.choices__list--dropdown .choices__item--selectable.is-highlighted {
-  background-color: #2A9FD6;
-  color: white;
-}
-
-.choices[data-type*="select-one"]::after {
-  border-color: #DCE4EB transparent transparent transparent;
-}
-
-.choices[data-type*="select-one"].is-open::after {
-  border-color: transparent transparent #DCE4EB transparent;
-}
-
-/* Minimal Choices.js visibility rules */
 /* Hide the original <select> */
 .choices select {
   display: none;
 }
+
+.choices__inner {
+  width: 100%;
+  position: relative;
+  font-size: inherit;
+  background-color: var(--clr-panel);
+  color:var(--clr-text-main);
+  border: solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: var(--pad-y) var(--pad-x);
+  min-height: auto;
+}
+
+.choices[data-type*="select-one"]::after {
+  border-color: var(--clr-text-main) transparent transparent transparent;
+}
+
+.choices[data-type*="select-one"].is-open::after {
+  border-color: transparent transparent var(--clr-text-main) transparent;
+}
+
 /* Keep dropdown hidden until activated */
 .choices__list--dropdown,
 .choices__list[aria-expanded] {
   display: none;
   position: absolute;
-  z-index: 999;
+  z-index: var(--z-dropdown);
   width: 18em;
   max-height: 14rem;
   overflow-y: auto;
-  background: rgba(43, 48, 53, 1);
-  border: 1px solid rgba(85, 85, 85, 0.7);
+  background: var(--clr-panel-solid);
+  border: 1px solid var(--clr-border);
 }
+
 /* Show when the container gains .is-open */
 .choices.is-open .choices__list--dropdown,
 .choices.is-open .choices__list[aria-expanded] {
   display: block;
 }
-/* Highlighted option */
-.choices__list--dropdown .choices__item--selectable.is-highlighted {
-  background: #2A9FD6;
-  color: #FFFFFF;
-}
+
 .choices__list--dropdown .choices__item {
-  padding-left: var(--field-pad-x);
+  padding-left: var(--pad-x);
+}
+
+/* Highlighted option */
+.choices__item--selectable.is-highlighted {
+  background-color: var(--clr-accent);
+  color: #FFF;
+}
+
+.choices__input,
+.choices__placeholder {
+  background-color: transparent;
+  color: var(--clr-text-main);
+  padding: var(--pad-y) var(--pad-x);
+}
+
+/*───────────────────────────────────────────────────────────────
+  SUBMIT BUTTON
+────────────────────────────────────────────────────────────────*/
+
+form button[type="submit"] {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .8rem 1.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--clr-text-light);
+  /* Dark blueish color at 50% transparency */
+  background-color: rgba(40,50,80,.5);
+  /* Gold border, slightly more opaque for visibility */
+  border: 1px solid rgba(255,215,0,.45);
+  border-radius: .5rem;
+  /* Adds a subtle shadow to text for depth */
+  text-shadow: 0 0 5px rgba(0,0,0,.7);
+  cursor: pointer;
+  /* Golden Glow Effect */
+  box-shadow: 0 0 10px 2px rgba(255,215,0,.35), inset 0 0 6px rgba(255,215,0,.15);
+  transition: background .3s, box-shadow .3s, color .3s, border-color .3s;
+}
+
+form button[type="submit"]:hover {
+  /* Slightly lighter/more opaque blue on hover */
+  background-color: rgba(55,70,100,.65);
+  /* Brighter text on hover */
+  color: #FFF;
+  /* Brighter gold border on hover */
+  border-color: rgba(255,215,0,.7);
+  /* Intensified gold glow */
+  box-shadow: 0 0 15px 4px rgba(255,215,0,.55), inset 0 0 10px rgba(255,215,0,.25);
+}
+
+/*───────────────────────────────────────────────────────────────
+  UTILITIES
+────────────────────────────────────────────────────────────────*/
+
+.w-12rem {
+  width: 12rem;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Adjust font size of the "Cookie Preferences" link to match other footer text */
+#open_preferences_center {
+  font-size: .8rem;
 }
