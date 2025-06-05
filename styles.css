@@ -173,6 +173,18 @@ textarea:focus,
   outline: none;
 }
 
+/* Inner dot + ring turn blue */
+input[type="radio"] {
+  accent-color: var(--clr-link);
+}
+
+/* Blue glow for focused radio button */
+input[type="radio"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 .15rem rgba(42,159,214,.65);
+  border-radius: 50%;
+}
+
 /* Placeholder colour */
 ::placeholder {
   color: #777;
