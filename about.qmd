@@ -4,9 +4,8 @@ title: "About Alpha Auriga"
 
 # Creator & contact
 
-Ingo Giebel
-
-✉︎ Mail: <mailto:ingo.giebel@gmail.com>
+Ingo Giebel  
+✉︎ Mail: [ingo.giebel@gmail.com](mailto:ingo.giebel@gmail.com?subject=%5BAlpha%20Auriga%5D%20Inquiry)
 
 
 # Project purpose
