@@ -85,6 +85,18 @@ h2 {
 }
 
 /*───────────────────────────────────────────────────────────────
+  HERO ELEMENTS
+────────────────────────────────────────────────────────────────*/
+
+.tagline {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #F07178;
+  line-height: 1.5;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+/*───────────────────────────────────────────────────────────────
   IMAGES
 ────────────────────────────────────────────────────────────────*/
 
@@ -130,7 +142,7 @@ textarea {
   border: solid var(--clr-border);
   border-radius: var(--radius);
   padding: var(--pad-y) var(--pad-x);
-  line-height: 1.5rem;
+  line-height: 1.5;
 }
 
 /* Extra space below the input/select/textarea fields */

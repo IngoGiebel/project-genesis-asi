@@ -15,7 +15,7 @@ Three critical currents are merging:
 3. **The integration imperative:** Many of the core components for advanced AI—brain organoids, sophisticated neural networks, global sensor networks (the Internet of Everything), decentralized ledgers (blockchain), and advanced robotics—already exist in various stages of development. The primary challenge, and Alpha Auriga's core mission, is the integration of these disparate technologies into cohesive, evolving, and embodied systems.
 
 
-# Alpha Auriga's Genesis ASI timeline {#sec-asi-timeline}
+# Timeline {#sec-timeline}
 
 The following roadmap outlines Alpha Auriga's projected milestones in the development of an embodied, and evolving Artificial Superintelligence. This is not just a speculative exercise; it is a reflection of our strategic focus on integrating cutting-edge technologies to bring about a new era of intelligence.
 

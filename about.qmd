@@ -7,7 +7,6 @@ title: "About Alpha Auriga"
 Ingo Giebel  
 ✉︎ Mail: [ingo.giebel@gmail.com](mailto:ingo.giebel@gmail.com?subject=%5BAlpha%20Auriga%5D%20Inquiry)
 
-
 # Project purpose
 
 This project is a speculative exploration into the future emergence of Artificial Superintelligence (ASI) and the potential for AI consciousness. 
@@ -18,7 +17,6 @@ Through a fictional but technically informed timeline and related concepts, this
 - Illustrate how AI consciousness might become plausible through a synthesis of developing technologies,
 - Encourage reflection and discussion on the profound ethical and philosophical questions that arise from these possibilities.
 
-
 # Content disclaimer
 
 **No guarantee of accuracy** – While sources are cited where possible, the content may contain simplifications or outdated information.
@@ -28,7 +26,6 @@ Through a fictional but technically informed timeline and related concepts, this
 **External links** – Links to third-party sites are provided for convenience; their content is outside my control and responsibility.
 
 **Changes** – The site is updated continuously; material may be removed, revised or moved without prior notice.
-
 
 # Privacy notice
 

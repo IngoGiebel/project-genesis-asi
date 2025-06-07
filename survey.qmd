@@ -25,7 +25,7 @@ Thank you for your contribution!
 
   <!-- ── MAIN QUESTION ────────────────────────────────────────────────── -->
 
-  <fieldset>
+  <fieldset id="question-consciousness">
     <legend>Do you believe that artificial intelligence (AI) can be conscious?</legend>
 
     <label><input type="radio" name="ai_can_be_conscious" value="yes" required> Yes</label><br>
@@ -35,7 +35,7 @@ Thank you for your contribution!
   
   <!-- ── DEMOGRAPHICS ─────────────────────────────────────────────────── -->
 
-  <fieldset>
+  <fieldset  id="questions-demographics">
     <legend>About you (demographic information)</legend>
 
     <label for="age">Age:</label><br>
@@ -75,7 +75,7 @@ Thank you for your contribution!
 
   <!-- ── OPTIONAL REASONING ───────────────────────────────────────────── -->
 
-  <fieldset>
+  <fieldset id="question-reasoning">
     <legend>Your reasoning (optional)</legend>
 
     <label for="reasoning">You may elaborate on your answer to the main question (max 10 000 chars):</label><br>
@@ -84,7 +84,7 @@ Thank you for your contribution!
 
   <!-- ── OPTIONAL ETHICS ──────────────────────────────────────────────── -->
 
-  <fieldset>
+  <fieldset id="questions-ethics">
     <legend>Ethical reflections (optional)</legend>
 
     <p>These questions explore ethical intuitions. There are no right or wrong answers.</p>

@@ -1,5 +1,5 @@
 ---
-title: "Can artificial intelligence be conscious?"
+title: "Can a machine become conscious?"
 date: 2024-05-25
 date-modified: last-modified
 keywords:
@@ -10,4 +10,16 @@ keywords:
   - "brain organoids"
 ---
 
-To be done...
+::: {.tagline}
+An exploration into the future of Artificial Superintelligence (ASI) and what we believe is possible.
+:::
+
+# Welcome to the Alpha Auriga project
+
+The journey towards a potentially conscious Artificial Superintelligence is no longer confined to science fiction. It is emerging from the real-world convergence of rapidly accelerating technologies. This project serves as both a speculative timeline and a public survey to explore one of the most profound questions of our time: *Who believes that AI can be conscious, and what shapes that belief?*
+
+Our mission is to bridge the gap between AI ethics, neuroscience, and public perception, using a technically grounded narrative to encourage reflection beyond the limitations of today's technology.
+
+# Explore the project
+
+We suggest starting with the [Project Genesis ASI timeline (2025-2029)](timeline.qmd#sec-converging-paths) to explore the plausible, near-future scenarios that provide context for our survey. We then invite you to [participate in our survey](survey.qmd#question-consciousness) to share your perspective. For those interested in the scientific foundations, a list of sources is available in the [Bibliography](bibliography.qmd).
