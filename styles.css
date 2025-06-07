@@ -32,6 +32,7 @@
 
 html {
   font-size: var(--fs-body);
+  scroll-padding-top: 8.5rem;
 }
 
 body {
@@ -226,7 +227,7 @@ input[type="radio"]:focus-visible {
   position: absolute;
   z-index: var(--z-dropdown);
   width: 18em;
-  max-height: 14rem;
+  max-height: 15.8em;
   overflow-y: auto;
   background: var(--clr-panel-solid);
   border: 1px solid var(--clr-border);
