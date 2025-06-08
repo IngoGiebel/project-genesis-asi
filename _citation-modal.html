@@ -8,6 +8,7 @@
 
   <div class="modal-dialog  modal-dialog-centered modal-lg">
     <div class="modal-content bg-dark text-light border border-secondary">
+
       <div class="modal-header border-0">
         <h5 class="modal-title fw-bold" id="citationModalLabel">How to cite this website</h5>
         <button
@@ -16,27 +17,41 @@
           data-bs-dismiss="modal"
           aria-label="Close"></button>
       </div>
-        <div class="modal-body">
-          <pre class="mb-3">
-            <code class="text-light">
-              @online{
-                giebel2025,
-                author = {Giebel, Ingo},
-                title  = {Alpha {Auriga:} {The} Genesis of {Artificial} {Superintelligence} {(ASI)}},
-                date = {2025-06-10},
-                url    = {https://alpha-auriga.netlify.app}
-              }
-            </code>
-          </pre>
-          <p>Please attribute as:</p>
-          <p class="fst-italic">
-            Giebel, Ingo. 2025.
-            <q>Alpha Auriga: The Genesis of Artificial Superintelligence (ASI).</q>
-            June 10, 2025.
-            <a href="https://alpha-auriga.netlify.app">https://alpha-auriga.netlify.app</a>.
-          </p>
+
+      <div class="modal-body">
+        <div class="quarto-appendix-secondary-label mb-2">
+          BibTeX citation:
         </div>
+        <pre class="sourceCode code-with-copy quarto-appendix-bibtex mb-4">
+          <code class="sourceCode bibtex">
+            @online{
+              giebel2025,
+              author = {Giebel, Ingo},
+              title  = {Alpha {Auriga:} {The} Genesis of {Artificial} {Superintelligence} {(ASI)}},
+              date   = {2025-06-10},
+              url    = {https://alpha-auriga.netlify.app},
+              langid = {en}
+            }
+          </code>
+          <button
+            title="Copy to Clipboard"
+            class="code-copy-button">
+            <i class="bi"></i>
+          </button>
+        </pre>
+        <div class="quarto-appendix-secondary-label mb-1">
+          For attribution, please cite this work as:
+        </div>
+        <p class="fst-italic mb-0">
+          Giebel, Ingo. 2025.
+          “Alpha Auriga: The Genesis of Artificial Superintelligence (ASI).”
+          June 10, 2025.
+          <a href="https://alpha-auriga.netlify.app">
+            https://alpha-auriga.netlify.app
+          </a>.
+        </p>
       </div>
+    </div>
   </div>
 </div>
 

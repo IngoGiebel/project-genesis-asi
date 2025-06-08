@@ -3,26 +3,28 @@
 ────────────────────────────────────────────────────────────────*/
 
 :root {
-  /* colours */
-  --clr-bg-main:        #1A1A1A;
-  --clr-bg-overlay-top: rgba(0,0,0,.70);
-  --clr-bg-overlay-bot: rgba(0,0,0,.50);
-  --clr-panel:          rgba(43,48,53,.50);
-  --clr-panel-solid:    #2B3035;
-  --clr-border:         rgba(85,85,85,.70);
-  --clr-text-main:      #DCE4EB;
-  --clr-text-light:     #E0E0E0;
-  --clr-link:           #8CB4FF;
-  --clr-link-visited:   #C3A5FF;
-  --clr-accent:         #2A9FD6;
+  /* Colours */
+  --clr-bg-main:            #1A1A1A;
+  --clr-bg-overlay-top:     rgba(0,0,0,.70);
+  --clr-bg-overlay-bot:     rgba(0,0,0,.50);
+  --clr-panel:              rgba(43,48,53,.50);
+  --clr-panel-solid:        #2B3035;
+  --clr-border:             rgba(85,85,85,.70);
+  --clr-text-main:          #DCE4EB;
+  --clr-text-light:         #E0E0E0;
+  --clr-link:               #8CB4FF;
+  --clr-link-visited:       #C3A5FF;
+  --clr-link-lightbg:       #335FD8;
+  --clr-link-lightbg-hover: #4D82FF;
+  --clr-accent:             #2A9FD6;
 
-  /* sizes */
-  --fs-body:            1rem;
-  --pad-x:              .5rem;
-  --pad-y:              .1rem;
-  --radius:             .25rem;
+  /* Sizes */
+  --fs-body:                1rem;
+  --pad-x:                  .5rem;
+  --pad-y:                  .1rem;
+  --radius:                 .25rem;
 
-  /* z-layers */
+  /* Z-layers */
   --z-dropdown:  999;
 }
 
@@ -304,6 +306,56 @@ form button[type="submit"]:hover {
 }
 
 /*───────────────────────────────────────────────────────────────
+  MODAL CITATION DIALOG
+────────────────────────────────────────────────────────────────*/
+
+#citationModal .modal-title {
+  color: var(--clr-bg-main);
+}
+
+#citationModal .modal-content {
+  background-color: var(--clr-bg-main);
+  color: var(--clr-text-light);
+}
+
+#citationModal .modal-body {
+  color: var(--clr-bg-main);
+}
+
+#citationModal .modal-body a {
+  color: var(--clr-link-lightbg);
+}
+
+#citationModal .modal-body a:hover{
+  color: var(--clr-link-lightbg-hover);
+}
+
+#citationModal .quarto-appendix-secondary-label{
+  color: var(--clr-bg-main);
+}
+
+#citationModal pre {
+  background-color: var(--clr-bg-main);
+  border: 1px solid var(--clr-border);
+  padding: .75rem 1rem;
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+#citationModal pre code {
+  color: var(--clr-text-light);
+}
+
+#citationModal .code-copy-button i {
+  color: var(--clr-text-light);
+}
+
+/* Hide Quarto’s auto-inserted appendix with the citation panel */
+#quarto-appendix {
+  display: none;
+}
+
+/*───────────────────────────────────────────────────────────────
   UTILITIES
 ────────────────────────────────────────────────────────────────*/
 
@@ -320,9 +372,4 @@ form button[type="submit"]:hover {
 /* Adjust font size of the "Cookie Preferences" link to match other footer text */
 #open_preferences_center {
   font-size: .8rem;
-}
-
-/* Hide Quarto’s auto-inserted appendix with the citation panel */
-#quarto-appendix {
-  display: none;
 }
