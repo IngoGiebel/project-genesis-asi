@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <div
   class="modal fade"
   id="citationModal"
@@ -46,14 +45,4 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.querySelector("a[href$='#citationModal']");
-    const modal = new bootstrap.Modal(document.getElementById("citationModal"));
-
-    btn?.addEventListener("click", ev => {
-      ev.preventDefault();
-      modal.show();
-    });
-  });
-</script>
+<script defer src="modal-handler.js"></script>
