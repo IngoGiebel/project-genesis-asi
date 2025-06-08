@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<div
+  class="modal fade"
+  id="citationModal"
+  tabindex="-1"
+  aria-labelledby="citationModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog  modal-dialog-centered modal-lg">
+    <div class="modal-content bg-dark text-light border border-secondary">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold" id="citationModalLabel">How to cite this website</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+        <div class="modal-body">
+          <pre class="mb-3">
+            <code class="text-light">
+              @online{
+                giebel2025,
+                author = {Giebel, Ingo},
+                title  = {Alpha {Auriga:} {The} Genesis of {Artificial} {Superintelligence} {(ASI)}},
+                date = {2025-06-10},
+                url    = {https://alpha-auriga.netlify.app}
+              }
+            </code>
+          </pre>
+          <p>Please attribute as:</p>
+          <p class="fst-italic">
+            Giebel, Ingo. 2025.
+            <q>Alpha Auriga: The Genesis of Artificial Superintelligence (ASI).</q>
+            June 10, 2025.
+            <a href="https://alpha-auriga.netlify.app">https://alpha-auriga.netlify.app</a>.
+          </p>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.querySelector("a[href$='#citationModal']");
+    const modal = new bootstrap.Modal(document.getElementById("citationModal"));
+
+    btn?.addEventListener("click", ev => {
+      ev.preventDefault();
+      modal.show();
+    });
+  });
+</script>

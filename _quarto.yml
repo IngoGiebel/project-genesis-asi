@@ -1,6 +1,11 @@
 project:
   type: website
 
+citation:
+  author: Ingo Giebel
+  title: "Alpha Auriga: The genesis of Artificial Superintelligence (ASI)"
+  url: "https://alpha-auriga.netlify.app"
+
 resources:
   - data/countries.min.json
   - images/*.webp
@@ -43,6 +48,10 @@ website:
       - text: "Bibliography"
         icon: book
         href: bibliography.qmd
+    right:
+      - text: "Cite"
+        icon: quote
+        href: "#citationModal"
   page-footer:
     left: "Content on this site is licensed under <a href='https://creativecommons.org/licenses/by/4.0/' target='_blank' rel='noopener noreferrer'>CC BY 4.0</a>."
 
@@ -56,6 +65,7 @@ format:
     code-overflow: wrap
     fig-responsive: true
     self-contained-math: true
+    include-after-body: _citation-modal.html
 
 execute:
   freeze: auto

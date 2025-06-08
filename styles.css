@@ -321,3 +321,8 @@ form button[type="submit"]:hover {
 #open_preferences_center {
   font-size: .8rem;
 }
+
+/* Hide Quarto’s auto-inserted appendix with the citation panel */
+#quarto-appendix {
+  display: none;
+}
