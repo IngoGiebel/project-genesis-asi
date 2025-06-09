@@ -1,27 +1,33 @@
-/*****************************************************************
+/*************************************************************************
  *  AI-Consciousness Survey — client-side logic
- *  --------------------------------------------------------------
+ *  ----------------------------------------------------------------------
  *  ▸ Loads Choices.js dynamically
- *  ▸ Builds the Nationality select
+ *  ▸ Builds the Nationality and Eduction select elements
  *  ▸ Handles form submission to Netlify Function
- *****************************************************************/
+ ************************************************************************/
 
 import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11.1.0/+esm";
 
-/*───── constants ───────────────────────────────────────────────*/
+/*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
   COUNTRIES  : "data/countries.min.json",
+  EDUCATION  : "data/education.min.json",
   SUBMIT     : ".netlify/functions/submit-survey"
 };
 
 const QS = {
   form       : "#ai-consciousness-survey",
   messages   : "#form-messages",
-  nationality: "#nationality"
+  nationality: "#nationality",
+  education  : "#education"
 };
 
-/*───── helpers ─────────────────────────────────────────────────*/
+// Declare choices instances in a higher scope to be accessible in handleSubmit
+let choicesNationality;
+let choicesEducation;
+
+/*───── Helpers ────────────────────────────────────────────────────────*/
 
 const STATUS_TEXT = {
   400: "Bad request – the data we sent was malformed.",
@@ -35,10 +41,10 @@ const $ = (sel, ctx = document) => ctx.querySelector(sel);
 
 const msg = (txt) => {$(QS.messages).textContent = txt;};
 
-async function fetchCountries () {
+async function fetchData (endpoint) {
   const ctrl = new AbortController();
   setTimeout(() => ctrl.abort(), 8000);
-  const r = await fetch(API.COUNTRIES, {signal: ctrl.signal});
+  const r = await fetch(endpoint, {signal: ctrl.signal});
   if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
   return r.json();
 }
@@ -50,60 +56,140 @@ function keepHighlightVisible (choices) {
   );
 }
 
-/* Get a brief error message */
+// Function to focus and select search input text
+function selectInputValue (choices) {
+  choices.passedElement.element.addEventListener(
+    "showDropdown", // Event for when the dropdown opens
+    function() {
+      // Use a short timeout to ensure all DOM elements are ready
+      setTimeout(() => {
+        const inputElement = choices.input.element;
+        const currentChoice = choices.getValue(); // Get the full selected choice object {value: 'XX', label: 'Country'}
+
+        if (!inputElement) return;
+
+        // 1. Pre-fill search input with the current selection's text
+        if (currentChoice && typeof currentChoice === 'object' && currentChoice.value) {
+          inputElement.value = currentChoice.label;
+        }
+
+        // 2. Always focus the input and select the text inside it
+        inputElement.focus();
+        inputElement.select();
+
+        // 3. Scroll the dropdown list to the selected item
+        if (currentChoice && currentChoice.value) {
+          // Find the choice element in the dropdown list by its data-value attribute
+          const choiceElementInList = choices.choiceList.element.querySelector(
+            `.choices__item[data-value="${currentChoice.value}"]`
+          );
+
+          if (choiceElementInList) {
+            // Use scrollIntoView to make it visible
+            choiceElementInList.scrollIntoView({
+              block: "nearest",
+              behavior: "auto" // 'auto' is instant, 'smooth' can feel slow
+            });
+            // Also add the highlight class for better visual feedback
+            const currentlyHighlighted = choices.choiceList.element.querySelector('.is-highlighted');
+            if (currentlyHighlighted) {
+              currentlyHighlighted.classList.remove('is-highlighted');
+            }
+            choiceElementInList.classList.add('is-highlighted');
+          }
+        }
+      }, 10); // 10ms delay to allow the dropdown to render
+    }
+  );
+}
+
+
+// Get a brief error message
 const err_msg_short = async (resp) => {
   const niceText = STATUS_TEXT[resp.status] ?? resp.statusText;
   const ct = resp.headers.get("content-type") ?? "";
 
-  /* If the server sent structured JSON, prefer its .error message */
+  // If the server sent structured JSON, prefer its .error message
   if (ct.includes("application/json")) {
     try {
       const {error} = await resp.json();
       return error ? `${niceText} (${error})` : niceText;
     }
     catch {
-      /* Ignore JSON parse errors */
+      // Ignore JSON parse errors
     }
   }
 
-  /* Add the failing path for context */
+  // Add the failing path for context
   const urlPath = new URL(resp.url).pathname;
   return `${niceText} — ${urlPath}`;
 };
 
-/*───── build Nationality select with Choices.js ────────────────*/
+/*───── Build Nationality select with Choices.js ───────────────────────*/
 
 async function initNationality () {
   const select = $(QS.nationality);
   if (!select) return;
 
   try {
-    const list = await fetchCountries();
+    const list = await fetchData(API.COUNTRIES);
 
-    // native <option> — accessibility & fallback
+    // Native <option> — accessibility & fallback
     select.innerHTML = "<option value='' disabled selected>--Please choose an option--</option>" +
     list.map(([code, name]) => `<option value="${code}">${name}</option>`).join("");
 
     // Choices instance
-    const choices = new Choices(select, {
-      searchEnabled: true,
-      searchPlaceholderValue: "Search for a country…",
-      itemSelectText: "",
-      allowHTML: false,
-      shouldSort: true,
-      position: "auto"
-    });
-
-    keepHighlightVisible(choices);
+    const choicesNationality = new Choices(
+      select,
+      {
+        searchEnabled: true,
+        searchPlaceholderValue: "Search for a country…",
+        itemSelectText: "",
+        shouldSort: false,
+      });
+    keepHighlightVisible(choicesNationality);
+    selectInputValue(choicesNationality);
   }
   catch (err) {
     console.error("[Countries] ", err);
     select.innerHTML = `<option>Error loading list: ${err.message}</option>`;
-    msg("Error loading country list. Please refresh.");
+    msg("Error loading country options. Please refresh.");
   }
 }
 
-/*───── submit handler ──────────────────────────────────────────*/
+/*───── Build Education select with Choices.js ─────────────────────────*/
+
+async function initEducation () {
+  const select = $(QS.education);
+  if (!select) return;
+
+  try {
+    const list = await fetchData(API.EDUCATION);
+
+    // Native <option> — accessibility & fallback
+    select.innerHTML = "<option value='' disabled selected>--Please choose an option--</option>" +
+    list.map(([code, name]) => `<option value="${code}">${name}</option>`).join("");
+
+    // Choices instance
+    const choicesEducation = new Choices(
+      select,
+      {
+        searchEnabled: true,
+        searchPlaceholderValue: "Search for education…",
+        itemSelectText: "",
+        shouldSort: false,
+      });
+    keepHighlightVisible(choicesEducation);
+    selectInputValue(choicesEducation);
+  }
+  catch (err) {
+    console.error("[Education] ", err);
+    select.innerHTML = `<option>Error loading list: ${err.message}</option>`;
+    msg("Error loading education options. Please refresh.");
+  }
+}
+
+/*───── Submit handler ─────────────────────────────────────────────────*/
 
 async function handleSubmit (evt) {
   evt.preventDefault();
@@ -120,8 +206,11 @@ async function handleSubmit (evt) {
 
     if (r.ok) {
       msg("Thank you! Your submission was successful.");
-      form.reset();
-      choicesNationality?.clearStore();
+      // Reset the form
+      evt.target.reset();
+      // Reset Choices.js fields to their placeholder
+      choicesNationality?.setChoiceByValue("");
+      choicesEducation?.setChoiceByValue("");
     }
     else {
       msg(await err_msg_short(r));
@@ -134,9 +223,10 @@ async function handleSubmit (evt) {
   }
 }
 
-/*───── bootstrap when DOM ready ────────────────────────────────*/
+/*───── Bootstrap when DOM ready ───────────────────────────────────────*/
 
 document.addEventListener("DOMContentLoaded", () => {
   initNationality();
+  initEducation();
   $(QS.form)?.addEventListener("submit", handleSubmit);
 });

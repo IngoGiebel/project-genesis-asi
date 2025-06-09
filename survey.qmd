@@ -51,16 +51,7 @@ Thank you for your contribution!
     <select id="nationality" name="nationality" required></select><br>
 
     <label for="education">Highest level of education completed:</label><br>
-    <select id="education" name="education" required>
-      <option value="">--Please choose an option--</option>
-      <option value="high_school">High school diploma or equivalent</option>
-      <option value="vocational_training">Vocational training</option>
-      <option value="bachelors_degree">Bachelor's degree (or equivalent)</option>
-      <option value="masters_degree">Master's degree (or equivalent)</option>
-      <option value="doctorate">Doctorate (PhD, etc.)</option>
-      <option value="other">Other</option>
-      <option value="prefer_not_to_say">Prefer not to say</option>
-    </select><br>
+    <select id="education" name="education" required></select><br>
 
     <label for="profession">Profession or primary field of study/work:</label><br>
     <input type="text" id="profession" name="profession" required><br>
