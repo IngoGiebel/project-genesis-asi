@@ -2,7 +2,7 @@
  *  AI-Consciousness Survey — client-side logic
  *  ----------------------------------------------------------------------
  *  ▸ Loads Choices.js dynamically
- *  ▸ Builds the Nationality and Eduction select elements
+ *  ▸ Builds the Nationality, Education, and Profession select elements
  *  ▸ Handles form submission to Netlify Function
  ************************************************************************/
 
@@ -13,6 +13,7 @@ import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11.1.0/+esm";
 const API = {
   COUNTRIES  : "data/countries.min.json",
   EDUCATION  : "data/education.min.json",
+  PROFESSION : "data/profession.min.json",
   SUBMIT     : ".netlify/functions/submit-survey"
 };
 
@@ -20,12 +21,14 @@ const QS = {
   form       : "#ai-consciousness-survey",
   messages   : "#form-messages",
   nationality: "#nationality",
-  education  : "#education"
+  education  : "#education",
+  profession : "#profession"
 };
 
 // Declare choices instances in a higher scope to be accessible in handleSubmit
 let choicesNationality;
 let choicesEducation;
+let choicesProfession;
 
 /*───── Helpers ────────────────────────────────────────────────────────*/
 
@@ -175,6 +178,38 @@ async function initEducation () {
   }
 }
 
+/*───── Build Profession select with Choices.js ────────────────────────*/
+
+async function initProfession () {
+  const select = $(QS.profession);
+  if (!select) return;
+
+  try {
+    const list = await fetchData(API.PROFESSION);
+
+    // Native <option> — accessibility & fallback
+    select.innerHTML = "<option value='' disabled selected>--Please choose an option--</option>" +
+    list.map(([code, name]) => `<option value="${code}">${name}</option>`).join("");
+
+    // Choices instance
+    choicesProfession = new Choices(
+      select,
+      {
+        searchEnabled: true,
+        searchPlaceholderValue: "Search for a field…",
+        itemSelectText: "",
+        shouldSort: false,
+      });
+    keepHighlightVisible(choicesProfession);
+    selectInputValue(choicesProfession);
+  }
+  catch (err) {
+    console.error("[Profession] ", err);
+    select.innerHTML = `<option>Error loading list: ${err.message}</option>`;
+    msg("Error loading profession options. Please refresh.");
+  }
+}
+
 /*───── Submit handler ─────────────────────────────────────────────────*/
 
 async function handleSubmit (evt) {
@@ -197,6 +232,7 @@ async function handleSubmit (evt) {
       // Reset Choices.js fields to their placeholder
       choicesNationality?.setChoiceByValue("");
       choicesEducation?.setChoiceByValue("");
+      choicesProfession?.setChoiceByValue("");
     }
     else {
       msg(await err_msg_short(r));
@@ -214,5 +250,6 @@ async function handleSubmit (evt) {
 document.addEventListener("DOMContentLoaded", () => {
   initNationality();
   initEducation();
+  initProfession();
   $(QS.form)?.addEventListener("submit", handleSubmit);
 });

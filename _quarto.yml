@@ -9,6 +9,7 @@ citation:
 resources:
   - data/countries.min.json
   - data/education.min.json
+  - data/profession.min.json
   - images/*.webp
 
 default-image-extension: webp

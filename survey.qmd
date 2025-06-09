@@ -54,7 +54,7 @@ Thank you for your contribution!
     <select id="education" name="education" required></select><br>
 
     <label for="profession">Profession or primary field of study/work:</label><br>
-    <input type="text" id="profession" name="profession" required><br>
+    <select id="profession" name="profession" required></select><br>
 
     <label>How familiar are you with AI concepts?</label><br>
     <label><input type="radio" name="ai_familiarity" value="1_not_at_all" required> 1 - Not at all familiar</label><br>
