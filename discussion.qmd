@@ -1,5 +1,8 @@
 ---
 title: "Discussion"
+include-after-body:
+  - text: |
+      <script type="module" src="discusson.js"></script>
 ---
 
 # Join the discussion
@@ -15,3 +18,21 @@ A few guidelines for your post:
 - We encourage respectful and constructive dialogue. Submissions will be moderated to maintain a welcoming environment.
 
 Your voice adds a vital qualitative dimension to this exploration. What do you think?
+
+```{=html}
+<form id="discussion-post">
+  <div class="form-group">
+    <label for="post-author">Your Name (as it will appear publicly):</label>
+    <input type="text" id="post-author" name="author" required maxlength="80">
+  </div>
+
+  <div class="form-group" style="margin-top: 1.5rem;">
+    <label for="post-content">Your Post:</label>
+    <textarea id="post-content" name="content"></textarea>
+  </div>
+  
+  <button type="submit">Submit post</button>
+</form>
+
+<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div>
+```
