@@ -59,26 +59,24 @@ function keepHighlightVisible (choices) {
 // Function to focus and select search input text
 function selectInputValue (choices) {
   choices.passedElement.element.addEventListener(
-    "showDropdown", // Event for when the dropdown opens
+    "showDropdown",
     function() {
       // Use a short timeout to ensure all DOM elements are ready
       setTimeout(() => {
         const inputElement = choices.input.element;
-        const currentChoice = choices.getValue(); // Get the full selected choice object {value: 'XX', label: 'Country'}
+        const currentChoice = choices.getValue();
 
-        if (!inputElement) return;
-
-        // 1. Pre-fill search input with the current selection's text
-        if (currentChoice && typeof currentChoice === 'object' && currentChoice.value) {
+        // Pre-fill search input with the current selection's text
+        if (currentChoice.value) {
           inputElement.value = currentChoice.label;
         }
 
-        // 2. Always focus the input and select the text inside it
+        // Always focus the input and select the text inside it
         inputElement.focus();
         inputElement.select();
 
-        // 3. Scroll the dropdown list to the selected item
-        if (currentChoice && currentChoice.value) {
+        // Scroll the dropdown list to the selected item
+        if (currentChoice.value) {
           // Find the choice element in the dropdown list by its data-value attribute
           const choiceElementInList = choices.choiceList.element.querySelector(
             `.choices__item[data-value="${currentChoice.value}"]`
@@ -88,21 +86,20 @@ function selectInputValue (choices) {
             // Use scrollIntoView to make it visible
             choiceElementInList.scrollIntoView({
               block: "nearest",
-              behavior: "auto" // 'auto' is instant, 'smooth' can feel slow
+              behavior: "auto"
             });
             // Also add the highlight class for better visual feedback
-            const currentlyHighlighted = choices.choiceList.element.querySelector('.is-highlighted');
+            const currentlyHighlighted = choices.choiceList.element.querySelector(".is-highlighted");
             if (currentlyHighlighted) {
-              currentlyHighlighted.classList.remove('is-highlighted');
+              currentlyHighlighted.classList.remove("is-highlighted");
             }
-            choiceElementInList.classList.add('is-highlighted');
+            choiceElementInList.classList.add("is-highlighted");
           }
         }
       }, 10); // 10ms delay to allow the dropdown to render
     }
   );
 }
-
 
 // Get a brief error message
 const err_msg_short = async (resp) => {
