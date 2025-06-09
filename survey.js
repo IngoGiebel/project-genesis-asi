@@ -60,43 +60,24 @@ function keepHighlightVisible (choices) {
 function selectInputValue (choices) {
   choices.passedElement.element.addEventListener(
     "showDropdown",
-    function() {
-      // Use a short timeout to ensure all DOM elements are ready
-      setTimeout(() => {
-        const inputElement = choices.input.element;
-        const currentChoice = choices.getValue();
+    () => {
+      requestAnimationFrame(() => {
+        const input  = choices.input.element;
+        const choice = choices.getValue();
 
-        // Pre-fill search input with the current selection's text
-        if (currentChoice.value) {
-          inputElement.value = currentChoice.label;
+        if (choice.value) {
+          input.value = choice.label;
         }
+        input.focus();
+        input.select();
 
-        // Always focus the input and select the text inside it
-        inputElement.focus();
-        inputElement.select();
-
-        // Scroll the dropdown list to the selected item
-        if (currentChoice.value) {
-          // Find the choice element in the dropdown list by its data-value attribute
-          const choiceElementInList = choices.choiceList.element.querySelector(
-            `.choices__item[data-value="${currentChoice.value}"]`
-          );
-
-          if (choiceElementInList) {
-            // Use scrollIntoView to make it visible
-            choiceElementInList.scrollIntoView({
-              block: "nearest",
-              behavior: "auto"
-            });
-            // Also add the highlight class for better visual feedback
-            const currentlyHighlighted = choices.choiceList.element.querySelector(".is-highlighted");
-            if (currentlyHighlighted) {
-              currentlyHighlighted.classList.remove("is-highlighted");
-            }
-            choiceElementInList.classList.add("is-highlighted");
-          }
+        const el = choices.choiceList.element.querySelector(`.choices__item[data-value="${choice.value}"]`);
+        if (el) {
+          el.scrollIntoView({block: "nearest"});
+          choices.choiceList.element.querySelector(".is-highlighted") ?.classList.remove("is-highlighted");
+          el.classList.add("is-highlighted");
         }
-      }, 10); // 10ms delay to allow the dropdown to render
+      });
     }
   );
 }
