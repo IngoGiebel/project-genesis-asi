@@ -2,6 +2,7 @@
 /.quarto/
 /_site/
 /_freeze/
+/site_libs/
 
 # RStudio specific
 .Rhistory
