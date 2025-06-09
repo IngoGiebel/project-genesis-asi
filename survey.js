@@ -49,10 +49,18 @@ async function fetchData (endpoint) {
   return r.json();
 }
 
-function keepHighlightVisible (choices) {
+// Keep the highlighted item visible when scrolling
+function keepHighlightVisible(choices) {
+  const list = choices.choiceList.element;
+
   choices.passedElement.element.addEventListener(
     "highlightChoice",
-    e => e?.detail?.el?.scrollIntoView({block: "nearest", behavior: "smooth"})
+    e => {
+      const el = e?.detail?.el;
+      if (!el) return;
+      // Jump instantly just enough to reveal the item
+      el.scrollIntoView({block: "nearest"});
+    }
   );
 }
 
@@ -73,7 +81,7 @@ function selectInputValue (choices) {
 
         const el = choices.choiceList.element.querySelector(`.choices__item[data-value="${choice.value}"]`);
         if (el) {
-          el.scrollIntoView({block: "nearest"});
+          el.scrollIntoView({block: "center"});
           choices.choiceList.element.querySelector(".is-highlighted") ?.classList.remove("is-highlighted");
           el.classList.add("is-highlighted");
         }
