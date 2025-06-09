@@ -1,3 +1,9 @@
 ---
-title: "Survey results"
+title: "Results"
 ---
+
+What shapes our belief in a machine's potential for consciousness? Here, we will share the evolving results of the Alpha Auriga survey.
+
+As responses come in, we will continuously analyze the data to uncover insights into how factors like age, education, and profession correlate with views on AI. This page will be updated with key statistical findings and data visualizations as soon as our dataset is robust enough for analysis.
+
+Check back soon to see what we've discovered, and if you haven't already, please consider [adding your perspective to our research](survey.qmd#question-consciousness).
