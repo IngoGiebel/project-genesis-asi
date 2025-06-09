@@ -44,6 +44,12 @@ website:
       - text: "Survey"
         icon: patch-question
         href: survey.qmd
+      - text: "Results"
+        icon: bar-chart-line
+        href: results.qmd
+      - text: "Discussion"
+        icon: chat-text
+        href: discussion.qmd
       - text: "About"
         icon: info-circle
         href: about.qmd
