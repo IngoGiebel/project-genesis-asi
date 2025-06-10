@@ -96,7 +96,7 @@ h2 {
   font-style: italic;
   color: #F07178;
   line-height: 1.5;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 4px rgba(0,0,0,.5);
 }
 
 /*────────────────────────────────────────────────────────────────────────
@@ -281,28 +281,41 @@ input[type="radio"]:focus-visible {
 .editor-toolbar {
   background-color: var(--clr-panel-solid);
   border: solid var(--clr-border);
-  opacity: 0.9;
+  border-bottom: none;
+  opacity: .9;
 }
 
 .editor-toolbar i {
   color: var(--clr-link-visited);
 }
 
-.editor-toolbar i.separator {
-  color: transparent;
-  border: 1px solid var(--clr-link-visited);
-  opacity: 0.5;
+.editor-toolbar .separator{
+  border-left: 1px solid var(--clr-link-visited);
+  opacity: .5;
 }
 
 .CodeMirror,
 .editor-preview {
   background-color: var(--clr-panel);
   color: var(--clr-text-main);
-  border: solid var(--clr-border);
+  border: solid var(--clr-border) !important;
+  border-radius: 0 0 var(--radius) var(--radius) !important;
+}
+
+.CodeMirror-cursor{
+  border-left: 3px solid var(--clr-text-main);
+}
+
+.CodeMirror .CodeMirror-selected,
+.CodeMirror-focused .CodeMirror-selected,
+.editor-preview ::selection {
+  background-color: rgba(138,180,248,.35) !important;
 }
 
 .editor-statusbar {
   color: var(--clr-link-visited);
+  font-size: .8rem;
+  font-weight: bold;
 }
 
 /*────────────────────────────────────────────────────────────────────────
