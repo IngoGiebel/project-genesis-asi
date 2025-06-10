@@ -291,8 +291,8 @@ form button[type="submit"] {
   /* Dark blueish color at 50% transparency */
   background-color: rgba(40,50,80,.5);
   /* Gold border, slightly more opaque for visibility */
-  border: 1px solid rgba(255,215,0,.45);
-  border-radius: .5rem;
+  border: solid rgba(255,215,0,.45);
+  border-radius: var(--radius);
   /* Adds a subtle shadow to text for depth */
   text-shadow: 0 0 5px rgba(0,0,0,.7);
   cursor: pointer;
