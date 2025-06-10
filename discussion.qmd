@@ -1,6 +1,5 @@
 ---
 title: "Discussion"
-# This section loads the EasyMDE library (CSS and JS) so it's available on the page
 include-in-header:
   - text: |
       <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">

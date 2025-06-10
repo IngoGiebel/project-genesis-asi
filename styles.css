@@ -274,8 +274,49 @@ input[type="radio"]:focus-visible {
 }
 
 /*────────────────────────────────────────────────────────────────────────
-  DISCUSSION PAGE & EASYMDE EDITOR
+  EASYMDE MARKDOWN EDITOR
 ─────────────────────────────────────────────────────────────────────────*/
+
+.editor-toolbar {
+  background-color: var(--clr-panel-solid);
+  border-color: var(--clr-border);
+  opacity: 0.9;
+}
+
+.editor-toolbar a {
+  color: var(--clr-text-main);
+}
+
+.editor-toolbar a.active,
+.editor-toolbar a:hover {
+  background-color: var(--clr-accent);
+  border-color: var(--clr-link);
+}
+
+.CodeMirror, .editor-preview {
+  background-color: var(--clr-panel);
+  color: var(--clr-text-main);
+  border-color: var(--clr-border);
+}
+
+/* Muted color for comments */
+.cm-s-easymde .cm-comment {
+  color: #888 !important;
+}
+
+/* Pinkish caption color for keywords */
+.cm-s-easymde .cm-keyword {
+  color: #F0DCE1;
+}
+
+.cm-s-easymde .cm-string {
+    color: var(--clr-link);
+}
+
+.editor-statusbar {
+  color: #999;
+  border-color: var(--clr-border);
+}
 
 /*────────────────────────────────────────────────────────────────────────
   SUBMIT BUTTON
