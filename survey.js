@@ -3,7 +3,7 @@
  *  ----------------------------------------------------------------------
  *  ▸ Loads Choices.js dynamically
  *  ▸ Builds the Nationality, Education, and Profession select elements
- *  ▸ Handles form submission to Netlify Function
+ *  ▸ Handles form submission to Netlify function
  ************************************************************************/
 
 import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11.1.0/+esm";
@@ -11,18 +11,18 @@ import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11.1.0/+esm";
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
-  COUNTRIES  : "data/countries.min.json",
-  EDUCATION  : "data/education.min.json",
-  PROFESSION : "data/profession.min.json",
-  SUBMIT     : ".netlify/functions/submit-survey"
+  COUNTRIES      : "data/countries.min.json",
+  EDUCATION      : "data/education.min.json",
+  PROFESSION     : "data/profession.min.json",
+  SUBMIT         : ".netlify/functions/submit-survey"
 };
 
 const QS = {
-  form       : "#ai-consciousness-survey",
-  messages   : "#form-messages",
-  nationality: "#nationality",
-  education  : "#education",
-  profession : "#profession"
+  form           : "#ai-consciousness-survey",
+  messages       : "#form-messages",
+  nationality    : "#nationality",
+  education      : "#education",
+  profession     : "#profession"
 };
 
 // Declare choices instances in a higher scope to be accessible in handleSubmit
@@ -219,11 +219,13 @@ async function handleSubmit (evt) {
   const body = Object.fromEntries(new FormData(evt.target));
 
   try {
-    const r = await fetch(API.SUBMIT, {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body : JSON.stringify(body)
-    });
+    const r = await fetch(
+      API.SUBMIT,
+      {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body : JSON.stringify(body)
+      });
 
     if (r.ok) {
       msg("Thank you! Your submission was successful.");
@@ -247,9 +249,11 @@ async function handleSubmit (evt) {
 
 /*───── Bootstrap when DOM ready ───────────────────────────────────────*/
 
-document.addEventListener("DOMContentLoaded", () => {
-  initNationality();
-  initEducation();
-  initProfession();
-  $(QS.form)?.addEventListener("submit", handleSubmit);
-});
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    initNationality();
+    initEducation();
+    initProfession();
+    $(QS.form)?.addEventListener("submit", handleSubmit);
+  });
