@@ -67,7 +67,6 @@ const err_msg_short = async (resp) => {
 /*───── Custom easyMDE validator ───────────────────────────────────────*/
 
 function validateEditor () {
-  console.log("validateEditor");
   const inputField = easyMDE.codemirror.getInputField();
   const empty = !easyMDE.value().trim();
   inputField.setCustomValidity(empty ? "Please enter a post." : "");
@@ -85,38 +84,26 @@ function wireValidation () {
 /*───── Initialize easyMDE ─────────────────────────────────────────────*/
 
 function initializeEditor() {
-  console.log("Initializing editor");
-  const editorElement = $(QS.editorTextarea);
-  // Check if EasyMDE library was loaded successfully and the element exists
-  if (editorElement && typeof EasyMDE !== 'undefined') {
-    easyMDE = new EasyMDE({
-      element: editorElement,
-      spellChecker: false,
-      sideBySideFullscreen: false,
-      toolbar: [
-          "bold", "italic", "strikethrough", "heading-1", "heading-2", "heading-3",
-          "|",
-          "code", "quote", "unordered-list", "ordered-list", "clean-block",
-          "|",
-          "link", "table",
-          "|",
-          "preview", "side-by-side",
-          "|",
-          "guide",
-          "|",
-          "undo", "redo"
-        ],
-      placeholder: "Enter your thoughts here... You can use Markdown for formatting."
+  easyMDE = new EasyMDE({
+    element: $(QS.editorTextarea),
+    spellChecker: false,
+    sideBySideFullscreen: false,
+    toolbar: [
+        "bold", "italic", "strikethrough", "heading-1", "heading-2", "heading-3",
+        "|",
+        "code", "quote", "unordered-list", "ordered-list", "clean-block",
+        "|",
+        "link", "table",
+        "|",
+        "preview", "side-by-side",
+        "|",
+        "guide",
+        "|",
+        "undo", "redo"
+      ],
+    placeholder: "Enter your thoughts here... You can use Markdown for formatting."
     });
-    validateEditor();
-    console.log("Editor initialized");
-  }
-  else if (!editorElement) {
-    console.error("Editor textarea element not found.");
-  }
-  else {
-    console.error("EasyMDE library not found. Check the script link in discussion.qmd.");
-  }
+  validateEditor();
 }
 
 /*───── Submit handler ─────────────────────────────────────────────────*/
