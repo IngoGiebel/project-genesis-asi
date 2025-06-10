@@ -6,8 +6,9 @@
  * ▸ (Future) Fetches and displays existing posts
  ************************************************************************/
 
-// Note: EasyMDE is loaded globally via the <script> tag in the QMD header,
-// so we can access it directly via the `EasyMDE` variable without an import.
+import EasyMDE from "https://cdn.jsdelivr.net/npm/easymde@2/dist/easymde.min.js/+esm";
+
+import {$, msgFactory, errMsgShort} from "./helpers.js";
 
 /*───── Constants ──────────────────────────────────────────────────────*/
 
@@ -30,8 +31,6 @@ const QS = {
 let easyMDE;
 
 /*───── Helpers ────────────────────────────────────────────────────────*/
-
-import {$, msgFactory, errMsgShort} from "./helpers.js";
 
 const msg = msgFactory(QS.messages);
 

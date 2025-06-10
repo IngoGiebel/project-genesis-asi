@@ -8,6 +8,8 @@
 
 import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11.1.0/+esm";
 
+import {$, msgFactory, errMsgShort} from "./helpers.js";
+
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
@@ -31,8 +33,6 @@ let choicesEducation;
 let choicesProfession;
 
 /*───── Helpers ────────────────────────────────────────────────────────*/
-
-import {$, msgFactory, errMsgShort} from "./helpers.js";
 
 const msg = msgFactory(QS.messages);
 
