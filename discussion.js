@@ -31,38 +31,9 @@ let easyMDE;
 
 /*───── Helpers ────────────────────────────────────────────────────────*/
 
-const STATUS_TEXT = {
-  400: "Bad request – the data we sent was malformed.",
-  401: "Unauthorised – please log in first.",
-  403: "Forbidden – you don’t have permission.",
-  404: "Endpoint not found on the server.",
-  500: "Server error – please try again later."
-};
+import {$, msgFactory, errMsgShort} from "./helpers.js";
 
-const $ = (sel, ctx = document) => ctx.querySelector(sel);
-
-const msg = (txt) => {$(QS.messages).textContent = txt;};
-
-// Get a brief error message
-const err_msg_short = async (resp) => {
-  const niceText = STATUS_TEXT[resp.status] ?? resp.statusText;
-  const ct = resp.headers.get("content-type") ?? "";
-
-  // If the server sent structured JSON, prefer its .error message
-  if (ct.includes("application/json")) {
-    try {
-      const {error} = await resp.json();
-      return error ? `${niceText} (${error})` : niceText;
-    }
-    catch {
-      // Ignore JSON parse errors
-    }
-  }
-
-  // Add the failing path for context
-  const urlPath = new URL(resp.url).pathname;
-  return `${niceText} — ${urlPath}`;
-};
+const msg = msgFactory(QS.messages);
 
 /*───── Custom easyMDE validator ───────────────────────────────────────*/
 
@@ -133,7 +104,7 @@ async function handleSubmit(evt) {
       easyMDE.value("");
     }
     else {
-      msg(await err_msg_short(r));
+      msg(await errMsgShort(r));
       console.error("Server response →", r);
     }
   }

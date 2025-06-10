@@ -7,6 +7,7 @@ citation:
   url: "https://alpha-auriga.netlify.app"
 
 resources:
+  - helpers.js
   - data/countries.min.json
   - data/education.min.json
   - data/profession.min.json
