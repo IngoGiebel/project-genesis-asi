@@ -29,7 +29,7 @@ Through a fictional but technically informed timeline and related concepts, this
 
 # Privacy notice
 
-Only the minimum personal data needed to operate and analyze the site are collected, in compliance with the EU GDPR.
+Only the minimum personal data needed to operate and analyze the site are collected, in compliance with the EU [General Data Protection Regulation (GDPR)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679).
 
 You may **review or change your preference** at any time via the “Cookie Preferences” link in the footer.
 

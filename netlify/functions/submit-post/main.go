@@ -1,112 +1,133 @@
-// Located at: netlify/functions/submit-post/main.go
+// netlify/functions/submit-post/main.go
 package main
 
 import (
 	"context"
 	"encoding/json"
+	"io"
 	"log"
+	"net/http"
 	"os"
+	"strconv"
+	"strings"
 	"time"
 
-	// Import the Firebase Admin SDK for Go
 	firebase "firebase.google.com/go/v4"
-	"google.golang.org/api/option"
-
-	// Import AWS Lambda types for Netlify compatibility
+	"cloud.google.com/go/firestore"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"google.golang.org/api/option"
 )
 
-// PostData defines the structure of the JSON we expect from the frontend.
-// The `json:"..."` tags tell the JSON decoder how to map the incoming JSON keys to the struct fields.
-type PostData struct {
-	Author      string    `json:"author"`
-	Content     string    `json:"content"`
-	SubmittedAt time.Time `json:"submittedAt,omitempty"`
+/*────────────────── Constants & helpers ────────────────────────────*/
+
+// 64 KiB soft limit for incoming JSON
+const maxBody = 64 << 10
+
+func jsonResp(code int, body string) events.APIGatewayProxyResponse {
+  return events.APIGatewayProxyResponse{
+    StatusCode: code,
+    Body: `{"error":` + strconv.Quote(body) + `}`,
+    Headers: map[string]string{
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+  }
 }
 
-// Global variable to hold the initialized Firebase app instance.
-// This is done to avoid re-initializing the app on every function invocation (hot start).
-var firebaseApp *firebase.App
+/*────────────────── Data model ─────────────────────────────────────*/
 
-// The init() function runs only once when the function instance starts up (cold start).
-// It's the perfect place to initialize the Firebase Admin SDK.
+type postIn struct {
+	Author  string `json:"author"`
+	Content string `json:"content"`
+}
+
+type postDoc struct {
+	Author  string    `firestore:"author"`
+	Content string    `firestore:"content"`
+	Date    time.Time `firestore:"date"`
+}
+
+/*────────────────── Firebase init (runs once) ──────────────────────*/
+
+var (
+	firebaseApp *firebase.App
+)
+
 func init() {
-  // Get the Firebase service account credentials from the Netlify environment variable.
-  // This is the secure way to handle credentials.
-  serviceAccountJSON := os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
-  if serviceAccountJSON == "" {
-    log.Fatal("FIREBASE_SERVICE_ACCOUNT_JSON environment variable not set.")
-  }
-
-  sa := option.WithCredentialsJSON([]byte(serviceAccountJSON))
-
-  app, err := firebase.NewApp(context.Background(), nil, sa)
-  if err != nil {
-    log.Fatalf("error initializing Firebase app: %v\n", err)
-  }
-  firebaseApp = app
+	creds := os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
+	if creds == "" {
+		log.Fatal("FIREBASE_SERVICE_ACCOUNT_JSON env var not set")
+	}
+	app, err := firebase.NewApp(context.Background(), nil, option.WithCredentialsJSON([]byte(creds)))
+	if err != nil {
+		log.Fatalf("firebase init: %v", err)
+	}
+	firebaseApp = app
 }
 
-// HandleRequest is the main handler function for the Netlify serverless function.
-// It conforms to the AWS Lambda Go function signature.
-func HandleRequest
-  (
-    ctx context.Context,
-    request events.APIGatewayProxyRequest
-  )
-  (
-    events.APIGatewayProxyResponse,
-    error
-  ) {
+/*────────────────── Handler ────────────────────────────────────────*/
 
-	// Only allow POST requests
-	if request.HTTPMethod != "POST" {
-		return events.APIGatewayProxyResponse{StatusCode: 405, Body: "Method Not Allowed"}, nil
-	}
+func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-	var data PostData
-	err := json.Unmarshal([]byte(request.Body), &data)
-
-	// Basic validation: check for JSON parsing errors and ensure author/content are not empty.
-	if err != nil || data.Author == "" || data.Content == "" {
-		log.Printf("Bad request: Invalid data received. Error: %v", err)
-		// Return a helpful JSON error message
+  /*──────────── CORS pre-flight ────────────────────────*/
+	if req.HTTPMethod == http.MethodOptions {
 		return events.APIGatewayProxyResponse{
-			StatusCode: 400,
-			Body:       `{"error":"Bad Request: Author and post content cannot be empty."}`,
-			Headers:    map[string]string{"Content-Type": "application/json"},
+			StatusCode: 204,
+			Headers: map[string]string{
+				"Access-Control-Allow-Origin":  "*",
+				"Access-Control-Allow-Methods": "POST,OPTIONS",
+				"Access-Control-Allow-Headers": "Content-Type",
+			},
 		}, nil
 	}
 
-	// Add a server-side timestamp for when the post was received.
-	data.SubmittedAt = time.Now()
+	if req.HTTPMethod != http.MethodPost {
+		return jsonResp(405, "method not allowed"), nil
+	}
 
-	// Get a Firestore client from our initialized app.
+	/*──────────── Decode + size guard ─────────────────────*/
+	var in postIn
+	rdr := io.LimitReader(strings.NewReader(req.Body), maxBody)
+	if err := json.NewDecoder(rdr).Decode(&in); err != nil {
+		return jsonResp(400, "invalid JSON"), nil
+	}
+
+	if len(in.Content) == 0 {
+		return jsonResp(400, "content required"), nil
+	}
+	if len(in.Content) > 10_000 {
+		return jsonResp(400, "content too long"), nil
+	}
+
+	/*──────────── Firestore write ─────────────────────────*/
 	client, err := firebaseApp.Firestore(ctx)
 	if err != nil {
-		log.Printf("Error getting Firestore client: %v", err)
-		return events.APIGatewayProxyResponse{StatusCode: 500, Body: "{\"error\":\"Internal Server Error\"}"}, nil
+		return jsonResp(500, "internal server error"), nil
 	}
 	defer client.Close()
 
-	// Add the post data as a new document to the "discussionPosts" collection.
-	// Firestore will automatically generate a unique ID for the document.
-	_, _, err = client.Collection("discussionPosts").Add(ctx, data)
-	if err != nil {
-		log.Printf("Error adding document to Firestore: %v", err)
-		return events.APIGatewayProxyResponse{StatusCode: 500, Body: "{\"error\":\"Error saving post\"}"}, nil
+	doc := postDoc{
+		Author:  in.Author,
+		Content: in.Content,
+		Date:    time.Now().UTC(),
 	}
 
-	// Return a successful response.
+	if _, _, err = client.Collection("discussionPosts").Add(ctx, doc); err != nil {
+		return jsonResp(500, "error saving post"), nil
+	}
+
+	/*──────────── Success ─────────────────────────────────*/
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200,
-		Body:       `{"message": "Post submitted successfully!"}`,
-		Headers:    map[string]string{"Content-Type": "application/json"},
+		Body:       `{"ok":true}`,
+		Headers:    map[string]string{
+			"Content-Type": "application/json",
+			"Access-Control-Allow-Origin": "*",
+		},
 	}, nil
 }
 
-// The main() function is the entry point for the Lambda function.
-func main() {
-	lambda.Start(HandleRequest)
-}
+/*────────────────── Main ───────────────────────────────────────────*/
+
+func main() { lambda.Start(HandleRequest) }
