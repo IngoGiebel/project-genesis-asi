@@ -2,38 +2,44 @@
 package main
 
 import (
-    "context"
-    "encoding/json"
-    "log"
-    "os"
-    "time"
+  "context"
+  "encoding/json"
+  "log"
+  "os"
+  "time"
 
-    firebase "firebase.google.com/go/v4"
-    "google.golang.org/api/option"
-    // For Netlify, you often use AWS Lambda Go types for handler
-    "github.com/aws/aws-lambda-go/events"
-    "github.com/aws/aws-lambda-go/lambda"
+  firebase "firebase.google.com/go/v4"
+  "google.golang.org/api/option"
+
+  "github.com/aws/aws-lambda-go/events"
+  "github.com/aws/aws-lambda-go/lambda"
 )
 
 type SurveyData struct {
-    // Define fields matching your form, e.g.:
-    AiCanBeConscious string `json:"ai_can_be_conscious"`
-    Age              int    `json:"age"`
-    // ... other fields
-    SubmittedAt time.Time `json:"submittedAt,omitempty"`
+  // Define fields matching your form, e.g.:
+  AiCanBeConscious string `json:"ai_can_be_conscious"`
+  Age              int    `json:"age"`
+  // TODO... other fields
+  SubmittedAt time.Time   `json:"submittedAt,omitempty"`
 }
 
 var firebaseApp *firebase.App
 
 func init() {
-    // Initialize Firebase Admin SDK
-    // Best to do this once.
-    sa := option.WithCredentialsJSON([]byte(os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")))
-    app, err := firebase.NewApp(context.Background(), nil, sa)
-    if err != nil {
-        log.Fatalf("error initializing Firebase app: %v\n", err)
-    }
-    firebaseApp = app
+  // Get the Firebase service account credentials from the Netlify environment variable.
+  // This is the secure way to handle credentials.
+  serviceAccountJSON := os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
+  if serviceAccountJSON == "" {
+    log.Fatal("FIREBASE_SERVICE_ACCOUNT_JSON environment variable not set.")
+  }
+
+  sa := option.WithCredentialsJSON([]byte(serviceAccountJSON))
+
+  app, err := firebase.NewApp(context.Background(), nil, sa)
+  if err != nil {
+    log.Fatalf("error initializing Firebase app: %v\n", err)
+  }
+  firebaseApp = app
 }
 
 func HandleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
@@ -71,5 +77,5 @@ func HandleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (
 }
 
 func main() {
-    lambda.Start(HandleRequest)
+  lambda.Start(HandleRequest)
 }

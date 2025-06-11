@@ -32,25 +32,34 @@ var firebaseApp *firebase.App
 // The init() function runs only once when the function instance starts up (cold start).
 // It's the perfect place to initialize the Firebase Admin SDK.
 func init() {
-	// Get the Firebase service account credentials from the Netlify environment variable.
-	// This is the secure way to handle credentials.
-	serviceAccountJSON := os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
-	if serviceAccountJSON == "" {
-		log.Fatal("FIREBASE_SERVICE_ACCOUNT_JSON environment variable not set.")
-	}
+  // Get the Firebase service account credentials from the Netlify environment variable.
+  // This is the secure way to handle credentials.
+  serviceAccountJSON := os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
+  if serviceAccountJSON == "" {
+    log.Fatal("FIREBASE_SERVICE_ACCOUNT_JSON environment variable not set.")
+  }
 
-	opt := option.WithCredentialsJSON([]byte(serviceAccountJSON))
+  sa := option.WithCredentialsJSON([]byte(serviceAccountJSON))
 
-	app, err := firebase.NewApp(context.Background(), nil, opt)
-	if err != nil {
-		log.Fatalf("error initializing Firebase app: %v\n", err)
-	}
-	firebaseApp = app
+  app, err := firebase.NewApp(context.Background(), nil, sa)
+  if err != nil {
+    log.Fatalf("error initializing Firebase app: %v\n", err)
+  }
+  firebaseApp = app
 }
 
 // HandleRequest is the main handler function for the Netlify serverless function.
 // It conforms to the AWS Lambda Go function signature.
-func HandleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func HandleRequest
+  (
+    ctx context.Context,
+    request events.APIGatewayProxyRequest
+  )
+  (
+    events.APIGatewayProxyResponse,
+    error
+  ) {
+
 	// Only allow POST requests
 	if request.HTTPMethod != "POST" {
 		return events.APIGatewayProxyResponse{StatusCode: 405, Body: "Method Not Allowed"}, nil
