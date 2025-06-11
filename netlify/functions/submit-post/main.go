@@ -22,7 +22,7 @@ import (
 type PostData struct {
 	Author      string    `json:"author"`
 	Content     string    `json:"content"`
-	SubmittedAt time.Time `json:"submittedAt,omitempty"` // omitempty means it won't be included if empty
+	SubmittedAt time.Time `json:"submittedAt,omitempty"`
 }
 
 // Global variable to hold the initialized Firebase app instance.

@@ -1,3 +1,4 @@
+// Located at: netlify/functions/submit-survey/main.go
 package main
 
 import (
