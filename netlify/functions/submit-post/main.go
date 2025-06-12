@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	firebase "firebase.google.com/go/v4"
 	"cloud.google.com/go/firestore"
+	firebase "firebase.google.com/go/v4"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"google.golang.org/api/option"
@@ -25,14 +25,14 @@ import (
 const maxBody = 64 << 10
 
 func jsonResp(code int, body string) events.APIGatewayProxyResponse {
-  return events.APIGatewayProxyResponse{
-    StatusCode: code,
-    Body: `{"error":` + strconv.Quote(body) + `}`,
-    Headers: map[string]string{
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
-  }
+	return events.APIGatewayProxyResponse{
+		StatusCode: code,
+		Body:       `{"error":` + strconv.Quote(body) + `}`,
+		Headers: map[string]string{
+			"Content-Type":                "application/json",
+			"Access-Control-Allow-Origin": "*",
+		},
+	}
 }
 
 /*────────────────── Data model ─────────────────────────────────────*/
@@ -70,7 +70,7 @@ func init() {
 
 func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-  /*──────────── CORS pre-flight ────────────────────────*/
+	/*──────────── CORS pre-flight ────────────────────────*/
 	if req.HTTPMethod == http.MethodOptions {
 		return events.APIGatewayProxyResponse{
 			StatusCode: 204,
@@ -121,8 +121,8 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200,
 		Body:       `{"ok":true}`,
-		Headers:    map[string]string{
-			"Content-Type": "application/json",
+		Headers: map[string]string{
+			"Content-Type":                "application/json",
 			"Access-Control-Allow-Origin": "*",
 		},
 	}, nil
