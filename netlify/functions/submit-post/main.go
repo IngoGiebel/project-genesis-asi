@@ -12,7 +12,6 @@ import (
 	"strings"
 	"time"
 
-	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go/v4"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -105,7 +104,11 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	if err != nil {
 		return jsonResp(500, "internal server error"), nil
 	}
-	defer client.Close()
+	defer func() {
+		if cerr := client.Close(); cerr != nil {
+			log.Printf("firestore close: %v", cerr)
+		}
+	}()
 
 	doc := postDoc{
 		Author:  in.Author,
