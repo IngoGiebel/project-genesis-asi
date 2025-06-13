@@ -27,7 +27,10 @@ const QS = {
   postsContainer : "#posts-container"
 };
 
-// To hold the editor instance
+/**
+ * To hold the editor instance.
+ * @type {EasyMDE}
+ */
 let easyMDE;
 
 /*───── Helpers ────────────────────────────────────────────────────────*/
@@ -116,12 +119,12 @@ async function handleSubmit(evt) {
 /*───── Fetch and display posts ────────────────────────────────────────*/
 
 async function fetchAndDisplayPosts() {
-  const container = $(QS.postsContainer);
-
   // TODO:
   // This is a placeholder for now: Fetch from the get-posts function here.
   // The placeholder text is now set directly in the HTML of discussion.qmd
   // In the future, this comment will be replaced with a fetch call.
+
+  // const container = $(QS.postsContainer);
 }
 
 /*───── Bootstrap when DOM ready ───────────────────────────────────────*/
