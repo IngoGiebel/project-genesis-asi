@@ -68,6 +68,7 @@ func newFirestore(ctx context.Context) (*firebase.App, error) {
 
 			return
 		}
+
 		firebaseApp, appErr = firebase.NewApp(
 			ctx,
 			nil,
@@ -105,7 +106,9 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 
 	/*──────────── Decode + size guard ─────────────────────*/
 	var in postIn
+
 	rdr := io.LimitReader(strings.NewReader(req.Body), maxBody)
+
 	if err := json.NewDecoder(rdr).Decode(&in); err != nil {
 		return jsonResp(400, "invalid JSON"), nil
 	}
@@ -122,10 +125,13 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	if err != nil {
 		return jsonResp(500, "internal server error"), nil
 	}
+
 	client, err := app.Firestore(ctx)
+
 	if err != nil {
 		return jsonResp(500, "internal server error"), nil
 	}
+
 	defer func() {
 		if cerr := client.Close(); cerr != nil {
 			log.Printf("firestore close: %v", cerr)
