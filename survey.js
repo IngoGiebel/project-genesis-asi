@@ -231,9 +231,19 @@ async function handleSubmit(evt) {
 
 document.addEventListener(
   "DOMContentLoaded",
-  () => {
-    initNationality()
-    initEducation()
-    initProfession()
+  async () => {
+    try {
+      // Initialize the three <select> widgets in parallel
+      await Promise.all([
+        initNationality(),
+        initEducation(),
+        initProfession(),
+      ])
+    } catch (err) {
+      // If any of the three failed you still log, but the page keeps working
+      console.error("[Select-init] ", err)
+    }
+
+    // Hook up the form after the selects are ready
     $(QS.form)?.addEventListener("submit", handleSubmit)
   })
