@@ -6,55 +6,55 @@
  * ▸ (Future) Fetches and displays existing posts
  ************************************************************************/
 
-import EasyMDE from "https://cdn.jsdelivr.net/npm/easymde@2/dist/easymde.min.js/+esm";
+import EasyMDE from "https://cdn.jsdelivr.net/npm/easymde@2/dist/easymde.min.js/+esm"
 
-import {$, msgFactory, errMsgShort} from "./helpers.js";
+import {$, errMsgShort, msgFactory} from "./helpers.js"
 
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
-  SUBMIT         : ".netlify/functions/submit-post"
+  SUBMIT: ".netlify/functions/submit-post",
   // TODO:
   // In the future, an endpoint to get posts will be added, e.g.:
   // GET_POSTS   : ".netlify/functions/get-posts"
-};
+}
 
 const QS = {
-  form           : "#discussion-post-form",
-  messages       : "#form-messages",
-  authorInput    : "#post-author",
-  editorTextarea : "#post-content",
-  postsContainer : "#posts-container"
-};
+  form: "#discussion-post-form",
+  messages: "#form-messages",
+  authorInput: "#post-author",
+  editorTextarea: "#post-content",
+  postsContainer: "#posts-container",
+}
 
 /**
  * To hold the editor instance.
  * @type {EasyMDE}
  */
-let easyMDE;
+let easyMDE
 
 /*───── Helpers ────────────────────────────────────────────────────────*/
 
-const msg = msgFactory(QS.messages);
+const msg = msgFactory(QS.messages)
 
 /*───── Custom easyMDE validator ───────────────────────────────────────*/
 
-function validateEditor () {
+function validateEditor() {
   // noinspection JSUnresolvedReference
-  const inputField = easyMDE.codemirror.getInputField();
+  const inputField = easyMDE.codemirror.getInputField()
   // noinspection JSUnresolvedReference
-  const empty = !easyMDE.value().trim();
-  inputField.setCustomValidity(empty ? "Please enter a post." : "");
-  return !empty;
+  const empty = !easyMDE.value().trim()
+  inputField.setCustomValidity(empty ? "Please enter a post." : "")
+  return !empty
 }
 
-function wireValidation () {
+function wireValidation() {
   // noinspection JSUnresolvedReference
   easyMDE.codemirror.on(
     "change",
     () => {
-      validateEditor();
-    });
+      validateEditor()
+    })
 }
 
 /*───── Initialize easyMDE ─────────────────────────────────────────────*/
@@ -65,33 +65,33 @@ function initializeEditor() {
     spellChecker: false,
     sideBySideFullscreen: false,
     toolbar: [
-        "bold", "italic", "strikethrough",
-        "|",
-        "heading-1", "heading-2", "heading-3",
-        "|",
-        "code", "quote", "link",
-        "|",
-        "unordered-list", "ordered-list",
-        "|",
-        "side-by-side", "guide",
-        "|",
-        "undo", "redo"
-      ],
-    placeholder: "Enter your thoughts here... You can use Markdown for formatting."
-    });
-  validateEditor();
+      "bold", "italic", "strikethrough",
+      "|",
+      "heading-1", "heading-2", "heading-3",
+      "|",
+      "code", "quote", "link",
+      "|",
+      "unordered-list", "ordered-list",
+      "|",
+      "side-by-side", "guide",
+      "|",
+      "undo", "redo",
+    ],
+    placeholder: "Enter your thoughts here... You can use Markdown for formatting.",
+  })
+  validateEditor()
 }
 
 /*───── Submit handler ─────────────────────────────────────────────────*/
 
 async function handleSubmit(evt) {
-  evt.preventDefault();
-  msg("Submitting…");
+  evt.preventDefault()
+  msg("Submitting…")
 
-  const author = $(QS.authorInput).value.trim();
+  const author = $(QS.authorInput).value.trim()
   // noinspection JSUnresolvedReference
-  const content = easyMDE.value().trim();
-  const body = {author, content};
+  const content = easyMDE.value().trim()
+  const body = {author, content}
 
   try {
     const r = await fetch(
@@ -99,25 +99,23 @@ async function handleSubmit(evt) {
       {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body : JSON.stringify(body)
-      });
+        body: JSON.stringify(body),
+      })
 
     if (r.ok) {
-      msg("Thank you! Your post has been submitted.");
+      msg("Thank you! Your post has been submitted.")
       // Reset the form
-      evt.target.reset();
+      evt.target.reset()
       // Clear the editor
       // noinspection JSUnresolvedReference
-      easyMDE.value("");
+      easyMDE.value("")
+    } else {
+      msg(await errMsgShort(r))
+      console.error("Server response →", r)
     }
-    else {
-      msg(await errMsgShort(r));
-      console.error("Server response →", r);
-    }
-  }
-  catch (err) {
-    console.error("[Submit] ", err);
-    msg("Network error. Please try again.");
+  } catch (err) {
+    console.error("[Submit] ", err)
+    msg("Network error. Please try again.")
   }
 }
 
@@ -138,14 +136,14 @@ async function fetchAndDisplayPosts() {
 document.addEventListener(
   "DOMContentLoaded",
   async () => {
-    initializeEditor();
-    wireValidation();
+    initializeEditor()
+    wireValidation()
     // wait for community posts to load, but don’t let a failure break the page
     try {
-      await fetchAndDisplayPosts();
+      await fetchAndDisplayPosts()
     } catch (err) {
-      console.error("[Posts] ", err);
+      console.error("[Posts] ", err)
     }
     // hook up the form after everything else is ready
-    $(QS.form)?.addEventListener("submit", handleSubmit);
-  });
+    $(QS.form)?.addEventListener("submit", handleSubmit)
+  })
