@@ -10,6 +10,14 @@ import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11.1.0/+esm"
 
 import {$, errMsgShort, msgFactory} from "./helpers.js"
 
+/*───── Declare Choices.js instances type ──────────────────────────────*/
+
+/** @typedef {import("choices.js").default} ChoicesJS */
+
+/** @type {ChoicesJS} */ let choicesNationality
+/** @type {ChoicesJS} */ let choicesEducation
+/** @type {ChoicesJS} */ let choicesProfession
+
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
@@ -27,11 +35,6 @@ const QS = {
   profession: "#profession",
 }
 
-// Declare choices instances in a higher scope to be accessible in handleSubmit
-let choicesNationality
-let choicesEducation
-let choicesProfession
-
 /*───── Helpers ────────────────────────────────────────────────────────*/
 
 const msg = msgFactory(QS.messages)
@@ -44,10 +47,12 @@ async function fetchData(endpoint) {
   return r.json()
 }
 
-// Keep the highlighted item visible when scrolling
+/**
+ * Keep the highlighted option in view while the user moves through the list
+ * @param {ChoicesJS} choices   A Choices.js instance
+ */
 function keepHighlightVisible(choices) {
-  const list = choices.choiceList.element
-
+  // noinspection JSUnresolvedVariable
   choices.passedElement.element.addEventListener(
     "highlightChoice",
     e => {
@@ -59,8 +64,12 @@ function keepHighlightVisible(choices) {
   )
 }
 
-// Function to focus and select search input text
+/**
+ * Focus and select search input text
+ * @param {ChoicesJS} choices   A Choices.js instance
+ */
 function selectInputValue(choices) {
+  // noinspection JSUnresolvedVariable
   choices.passedElement.element.addEventListener(
     "showDropdown",
     () => {
@@ -74,9 +83,11 @@ function selectInputValue(choices) {
         input.focus()
         input.select()
 
+        // noinspection JSUnresolvedVariable
         const el = choices.choiceList.element.querySelector(`.choices__item[data-value="${choice.value}"]`)
         if (el) {
           el.scrollIntoView({block: "center"})
+          // noinspection JSUnresolvedVariable
           choices.choiceList.element.querySelector(".is-highlighted")?.classList.remove("is-highlighted")
           el.classList.add("is-highlighted")
         }
@@ -99,7 +110,7 @@ async function initNationality() {
       list.map(([code, name]) => `<option value="${code}">${name}</option>`).join("")
 
     // Choices instance
-    const choicesNationality = new Choices(
+    choicesNationality = new Choices(
       select,
       {
         searchEnabled: true,
@@ -130,7 +141,7 @@ async function initEducation() {
       list.map(([code, name]) => `<option value="${code}">${name}</option>`).join("")
 
     // Choices instance
-    const choicesEducation = new Choices(
+    choicesEducation = new Choices(
       select,
       {
         searchEnabled: true,
@@ -200,8 +211,11 @@ async function handleSubmit(evt) {
       // Reset the form
       evt.target.reset()
       // Reset Choices.js fields to their placeholder
+      // noinspection JSUnresolvedVariable
       choicesNationality?.setChoiceByValue("")
+      // noinspection JSUnresolvedVariable
       choicesEducation?.setChoiceByValue("")
+      // noinspection JSUnresolvedVariable
       choicesProfession?.setChoiceByValue("")
     } else {
       msg(await errMsgShort(r))
