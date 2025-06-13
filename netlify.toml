@@ -1,5 +1,5 @@
 [functions]
-  directory = "netlify/functions"
+directory = "netlify/functions"
 
 [build.environment]
-  GO_VERSION = "1.24"
+GO_VERSION = "1.24"
