@@ -1,8 +1,11 @@
+/* global bootstrap */
+
 function setupCitationModal() {
   const citeButton = document.querySelector("a[href$='#citationModal']")
   const modalElement = document.getElementById("citationModal")
 
   if (citeButton && modalElement) {
+    // noinspection JSUnresolvedFunction
     const citationModal = new bootstrap.Modal(modalElement)
 
     citeButton.addEventListener(
