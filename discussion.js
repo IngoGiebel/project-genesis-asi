@@ -40,13 +40,16 @@ const msg = msgFactory(QS.messages);
 /*───── Custom easyMDE validator ───────────────────────────────────────*/
 
 function validateEditor () {
+  // noinspection JSUnresolvedReference
   const inputField = easyMDE.codemirror.getInputField();
+  // noinspection JSUnresolvedReference
   const empty = !easyMDE.value().trim();
   inputField.setCustomValidity(empty ? "Please enter a post." : "");
   return !empty;
 }
 
 function wireValidation () {
+  // noinspection JSUnresolvedReference
   easyMDE.codemirror.on(
     "change",
     () => {
@@ -86,6 +89,7 @@ async function handleSubmit(evt) {
   msg("Submitting…");
 
   const author = $(QS.authorInput).value.trim();
+  // noinspection JSUnresolvedReference
   const content = easyMDE.value().trim();
   const body = {author, content};
 
@@ -103,6 +107,7 @@ async function handleSubmit(evt) {
       // Reset the form
       evt.target.reset();
       // Clear the editor
+      // noinspection JSUnresolvedReference
       easyMDE.value("");
     }
     else {
@@ -129,11 +134,18 @@ async function fetchAndDisplayPosts() {
 
 /*───── Bootstrap when DOM ready ───────────────────────────────────────*/
 
+// ─── run once the DOM is fully parsed ────────────────────────────────
 document.addEventListener(
   "DOMContentLoaded",
-  () => {
+  async () => {
     initializeEditor();
     wireValidation();
-    fetchAndDisplayPosts();
+    // wait for community posts to load, but don’t let a failure break the page
+    try {
+      await fetchAndDisplayPosts();
+    } catch (err) {
+      console.error("[Posts] ", err);
+    }
+    // hook up the form after everything else is ready
     $(QS.form)?.addEventListener("submit", handleSubmit);
   });
