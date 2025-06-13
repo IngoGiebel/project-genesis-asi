@@ -4,12 +4,14 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	firebase "firebase.google.com/go/v4"
@@ -47,28 +49,44 @@ type postDoc struct {
 	Date    time.Time `firestore:"date"`
 }
 
-/*────────────────── Firebase init (runs once) ──────────────────────*/
+/*────────────────── Firebase bootstrap ─────────────────────────────*/
 
+// Lazy-initialised global; protected with sync.Once
 var (
+	appOnce     sync.Once
 	firebaseApp *firebase.App
+	appErr      error
 )
 
-func init() {
-	creds := os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
-	if creds == "" {
-		log.Fatal("FIREBASE_SERVICE_ACCOUNT_JSON env var not set")
-	}
-	app, err := firebase.NewApp(context.Background(), nil, option.WithCredentialsJSON([]byte(creds)))
-	if err != nil {
-		log.Fatalf("firebase init: %v", err)
-	}
-	firebaseApp = app
+// newFirestore returns a Firestore client, initializing the Firebase app
+// exactly once (cold start). Callers must Close() the client.
+func newFirestore(ctx context.Context) (*firebase.App, error) {
+	appOnce.Do(func() {
+		creds := os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
+		if creds == "" {
+			appErr = logError("FIREBASE_SERVICE_ACCOUNT_JSON env var not set")
+
+			return
+		}
+		firebaseApp, appErr = firebase.NewApp(
+			ctx,
+			nil,
+			option.WithCredentialsJSON([]byte(creds)),
+		)
+	})
+
+	return firebaseApp, appErr
+}
+
+func logError(msg string, args ...any) error {
+	log.Printf(msg, args...)
+
+	return fmt.Errorf(msg, args...)
 }
 
 /*────────────────── Handler ────────────────────────────────────────*/
 
 func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-
 	/*──────────── CORS pre-flight ────────────────────────*/
 	if req.HTTPMethod == http.MethodOptions {
 		return events.APIGatewayProxyResponse{
@@ -100,7 +118,11 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	}
 
 	/*──────────── Firestore write ─────────────────────────*/
-	client, err := firebaseApp.Firestore(ctx)
+	app, err := newFirestore(ctx)
+	if err != nil {
+		return jsonResp(500, "internal server error"), nil
+	}
+	client, err := app.Firestore(ctx)
 	if err != nil {
 		return jsonResp(500, "internal server error"), nil
 	}
@@ -115,7 +137,6 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 		Content: in.Content,
 		Date:    time.Now().UTC(),
 	}
-
 	if _, _, err = client.Collection("discussionPosts").Add(ctx, doc); err != nil {
 		return jsonResp(500, "error saving post"), nil
 	}
