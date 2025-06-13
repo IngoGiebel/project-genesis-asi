@@ -1,13 +1,14 @@
-// Located at: netlify/functions/shared/httpresp.go
 package shared
+
+// Located at: netlify/functions/shared/httpresp.go
 
 import (
 	"github.com/aws/aws-lambda-go/events"
 	"strconv"
 )
 
-// 64 KiB soft limit for JSON bodies – exported because both handlers use it.
-const MaxBody = 64 << 10 // lint-friendly: named constant, no “magic number”
+// MaxBody 64 KB soft limit for JSON bodies.
+const MaxBody = 65536
 
 // JSONError builds a CORS-enabled JSON error response.
 func JSONError(code int, msg string) events.APIGatewayProxyResponse {

@@ -1,5 +1,6 @@
-// Located at: netlify/functions/shared/firestore.go
 package shared
+
+// Located at: netlify/functions/shared/firestore.go
 
 import (
 	"context"
@@ -23,9 +24,12 @@ func FirestoreApp(ctx context.Context) (*firebase.App, error) {
 		creds := os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
 		if creds == "" {
 			appErr = LogError("FIREBASE_SERVICE_ACCOUNT_JSON env var not set")
+
 			return
 		}
+
 		app, appErr = firebase.NewApp(ctx, nil, option.WithCredentialsJSON([]byte(creds)))
 	})
+
 	return app, appErr
 }
