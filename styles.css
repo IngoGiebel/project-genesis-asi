@@ -40,8 +40,14 @@ html {
 
 body {
   color: var(--clr-text-main);
+  background:
+    linear-gradient(var(--clr-bg-overlay-top), var(--clr-bg-overlay-bot)),
+    url("images/inanna-background.webp");
+  background-color: var(--clr-bg-main);
   background-size: cover;
-  background: var(--clr-bg-main) linear-gradient(var(--clr-bg-overlay-top), var(--clr-bg-overlay-bot)) url("images/inanna-background.webp") no-repeat fixed center 2rem;
+  background-position: center 2rem;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 a {
