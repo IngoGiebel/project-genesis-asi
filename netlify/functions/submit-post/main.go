@@ -19,15 +19,9 @@ import (
 
 /*────────────────── Constants ─────────────────────────────────────────*/
 
-// maxBody 64 KiB soft limit for JSON bodies.
-const maxBody = 65536
-
-// maxContentLen limit for editor input.
-const maxContentLen = 10_000
-
 const (
 	// "prod" | "test"
-	envServerMode    = "SERVER_MODE"
+	envServerMode = "SERVER_MODE"
 	// git SHA or "v1.2.3"
 	envServerVersion = "SERVER_VERSION"
 )
@@ -39,9 +33,9 @@ type postIn struct {
 	Content string `json:"content"`
 	// optional – may be zero-value
 	Client struct {
-		Tag     string `json:"tag"`
-		Fid     string `json:"fid"`
-		Locale  string `json:"locale"`
+		Tag    string `json:"tag"`
+		Fid    string `json:"fid"`
+		Locale string `json:"locale"`
 	} `json:"client"`
 }
 
@@ -76,7 +70,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	/*──────────── Decode + size guard ─────────────────────*/
 	var in postIn
 
-	rdr := io.LimitReader(strings.NewReader(req.Body), maxBody)
+	rdr := io.LimitReader(strings.NewReader(req.Body), shared.MaxBody)
 
 	if err := json.NewDecoder(rdr).Decode(&in); err != nil {
 		return shared.JSONError(http.StatusBadRequest, "invalid JSON"), nil
@@ -86,7 +80,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 		return shared.JSONError(http.StatusBadRequest, "content required"), nil
 	}
 
-	if len(in.Content) > maxContentLen {
+	if len(in.Content) > shared.MaxContentLen {
 		return shared.JSONError(http.StatusBadRequest, "content too long"), nil
 	}
 
