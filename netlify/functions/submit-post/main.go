@@ -16,6 +16,14 @@ import (
 	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/shared"
 )
 
+/*────────────────── Constants ─────────────────────────────────────────*/
+
+// maxBody 64 KiB soft limit for JSON bodies.
+const maxBody = 65536
+
+// maxContentLen limit for editor input.
+const maxContentLen = 10_000
+
 /*────────────────── Data model ─────────────────────────────────────*/
 
 type postIn struct {
@@ -35,7 +43,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	/*──────────── CORS pre-flight ────────────────────────*/
 	if req.HTTPMethod == http.MethodOptions {
 		return events.APIGatewayProxyResponse{
-			StatusCode: 204,
+			StatusCode: http.StatusNoContent,
 			Headers: map[string]string{
 				"Access-Control-Allow-Origin":  "*",
 				"Access-Control-Allow-Methods": "POST,OPTIONS",
@@ -45,33 +53,38 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	}
 
 	if req.HTTPMethod != http.MethodPost {
-		return shared.JSONError(405, "method not allowed"), nil
+		return shared.JSONError(http.StatusMethodNotAllowed, "method not allowed"), nil
 	}
 
 	/*──────────── Decode + size guard ─────────────────────*/
 	var in postIn
-	rdr := io.LimitReader(strings.NewReader(req.Body), shared.MaxBody)
+
+	rdr := io.LimitReader(strings.NewReader(req.Body), maxBody)
 
 	if err := json.NewDecoder(rdr).Decode(&in); err != nil {
-		return shared.JSONError(400, "invalid JSON"), nil
+		return shared.JSONError(http.StatusBadRequest, "invalid JSON"), nil
 	}
 
 	if len(in.Content) == 0 {
-		return shared.JSONError(400, "content required"), nil
+		return shared.JSONError(http.StatusBadRequest, "content required"), nil
 	}
-	if len(in.Content) > 10_000 {
-		return shared.JSONError(400, "content too long"), nil
+
+	if len(in.Content) > maxContentLen {
+		return shared.JSONError(http.StatusBadRequest, "content too long"), nil
 	}
 
 	/*──────────── Firestore write ─────────────────────────*/
 	app, err := shared.FirestoreApp(ctx)
 	if err != nil {
-		return shared.JSONError(500, "internal server error"), nil
+		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
 	}
+
 	client, err := app.Firestore(ctx)
+
 	if err != nil {
-		return shared.JSONError(500, "internal server error"), nil
+		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
 	}
+
 	defer func() {
 		if cerr := client.Close(); cerr != nil {
 			log.Printf("firestore close: %v", cerr)
@@ -84,12 +97,12 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 		Date:    time.Now().UTC(),
 	}
 	if _, _, err = client.Collection("discussionPosts").Add(ctx, doc); err != nil {
-		return shared.JSONError(500, "error saving post"), nil
+		return shared.JSONError(http.StatusInternalServerError, "error saving post"), nil
 	}
 
 	/*──────────── Success ─────────────────────────────────*/
 	return events.APIGatewayProxyResponse{
-		StatusCode: 200,
+		StatusCode: http.StatusOK,
 		Body:       `{"ok":true}`,
 		Headers: map[string]string{
 			"Content-Type":                "application/json",
