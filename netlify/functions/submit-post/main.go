@@ -7,6 +7,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -24,17 +25,33 @@ const maxBody = 65536
 // maxContentLen limit for editor input.
 const maxContentLen = 10_000
 
+const (
+	// "prod" | "test"
+	envServerMode    = "SERVER_MODE"
+	// git SHA or "v1.2.3"
+	envServerVersion = "SERVER_VERSION"
+)
+
 /*────────────────── Data model ─────────────────────────────────────*/
 
 type postIn struct {
 	Author  string `json:"author"`
 	Content string `json:"content"`
+	// optional – may be zero-value
+	Client struct {
+		Tag     string `json:"tag"`
+		Fid     string `json:"fid"`
+		Locale  string `json:"locale"`
+	} `json:"client"`
 }
 
 type postDoc struct {
 	Author  string    `firestore:"author"`
 	Content string    `firestore:"content"`
 	Date    time.Time `firestore:"date"`
+
+	Server map[string]any `firestore:"server,omitempty"`
+	Client map[string]any `firestore:"client,omitempty"`
 }
 
 /*────────────────── Handler ────────────────────────────────────────*/
@@ -95,6 +112,15 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 		Author:  in.Author,
 		Content: in.Content,
 		Date:    time.Now().UTC(),
+		Server: map[string]any{
+			"mode":    os.Getenv(envServerMode),
+			"version": os.Getenv(envServerVersion),
+		},
+		Client: map[string]any{
+			"tag":    in.Client.Tag,
+			"fid":    in.Client.Fid,
+			"locale": in.Client.Locale,
+		},
 	}
 	if _, _, err = client.Collection("discussionPosts").Add(ctx, doc); err != nil {
 		return shared.JSONError(http.StatusInternalServerError, "error saving post"), nil

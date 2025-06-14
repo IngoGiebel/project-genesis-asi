@@ -19,7 +19,7 @@ website:
   description: "Project Alpha Auriga explores a speculative timeline for the emergence of Artificial Superintelligence (ASI), its potential forms, and societal implications."
   repo-url: https://github.com/IngoGiebel/project-genesis-asi
   repo-branch: trunk
-  repo-actions: [source, edit, issue]
+  repo-actions: [ source, edit, issue ]
   page-navigation: true
   open-graph: true
   reader-mode: false
@@ -74,6 +74,7 @@ format:
     code-overflow: wrap
     fig-responsive: true
     self-contained-math: true
+    include-in-header: tag-inject.html
     include-after-body: _citation-modal.html
 
 execute:

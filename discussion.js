@@ -19,6 +19,21 @@ const API = {
   // GET_POSTS   : ".netlify/functions/get-posts"
 }
 
+const TAG =
+  new URLSearchParams(location.search).get("tag")
+  || window.DISCUSSION_TAG
+  || ""
+
+const FINGERID = (() => {
+  const k = "aa-fid"
+  let v = localStorage.getItem(k)
+  if (!v) {
+    v = crypto.randomUUID()
+    localStorage.setItem(k, v)
+  }
+  return v
+})()
+
 const QS = {
   form: "#discussion-post-form",
   messages: "#form-messages",
@@ -91,7 +106,15 @@ async function handleSubmit(evt) {
   const author = $(QS.authorInput).value.trim()
   // noinspection JSUnresolvedReference
   const content = easyMDE.value().trim()
-  const body = {author, content}
+  const body = {
+    author,
+    content,
+    client: {
+      tag: TAG,
+      fid: FINGERID,
+      locale: navigator.language || "",
+    },
+  }
 
   try {
     const r = await fetch(
