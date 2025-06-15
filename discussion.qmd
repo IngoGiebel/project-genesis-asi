@@ -3,6 +3,7 @@ title: "Discussion"
 include-in-header:
   - text: |
       <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown-light.min.css">
 include-after-body:
   - text: |
       <script type="module" src="discussion.js"></script>
@@ -43,8 +44,5 @@ Your voice adds a vital qualitative dimension to this exploration. What do you t
 # Community discussion
 
 ```{=html}
-<!-- This section will be populated with posts from the database -->
-<div id="posts-container">
-  <p class="fst-italic">Community posts will be displayed here soon. The functionality to fetch and show submissions is currently under development.</p>
-</div>
+<div id="posts-container"></div>
 ```
