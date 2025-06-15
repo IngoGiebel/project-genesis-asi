@@ -86,7 +86,7 @@ function selectInputValue(choices) {
         // noinspection JSUnresolvedVariable
         const el = choices.choiceList.element.querySelector(`.choices__item[data-value="${choice.value}"]`)
         if (el) {
-          el.scrollIntoView({block: "center"})
+          el.scrollIntoView({block: "center", behavior: "auto"})
           // noinspection JSUnresolvedVariable
           choices.choiceList.element.querySelector(".is-highlighted")?.classList.remove("is-highlighted")
           el.classList.add("is-highlighted")
@@ -195,7 +195,10 @@ async function handleSubmit(evt) {
   evt.preventDefault()
   msg("Submitting…")
 
-  const body = Object.fromEntries(new FormData(evt.target))
+  const body = Object.fromEntries(
+    [...new FormData(evt.target).entries()]
+      .map(([k, v]) => k === "age" && v !== "" ? [k, Number(v)] : [k, v]),
+  )
 
   try {
     const r = await fetch(
