@@ -35,9 +35,11 @@ const (
 /*────────────────── Data model ─────────────────────────────────────*/
 
 type postIn struct {
+	// ─── Author + post (required) ─────────────────────────
 	Author  string `json:"author"`
 	Content string `json:"content"`
-	// optional – may be zero-value
+
+	// ─── Client metadata  ─────────────────────────────────
 	Client struct {
 		Tag    string `json:"tag"`
 		Fid    string `json:"fid"`
@@ -46,18 +48,23 @@ type postIn struct {
 }
 
 type postDoc struct {
+	// ─── Author + post (required) ─────────────────────────
 	Author  string    `firestore:"author"`
 	Content string    `firestore:"content"`
-	Date    time.Time `firestore:"date"`
 
+	// ─── Server / client metadata  ────────────────────────
+	// UTC timestamp
+	Date    time.Time `firestore:"date"`
+	// {mode, version}
 	Server map[string]any `firestore:"server,omitempty"`
+	// {tag, fid, locale}
 	Client map[string]any `firestore:"client,omitempty"`
 }
 
 /*────────────────── Handler ────────────────────────────────────────*/
 
 func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	/*──────────── CORS pre-flight ────────────────────────*/
+	// ── CORS pre-flight ───────────────────────────────────
 	if req.HTTPMethod == http.MethodOptions {
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusNoContent,
@@ -69,6 +76,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 		}, nil
 	}
 
+	// ── Runtime dispatch ──────────────────────────────────
 	switch req.HTTPMethod {
 	case http.MethodPost:
 		return handleCreate(ctx, req)
@@ -85,6 +93,7 @@ func handleCreate(
 	ctx context.Context,
 	req events.APIGatewayProxyRequest,
 ) (events.APIGatewayProxyResponse, error) {
+	// ─── Decode & trim text fields ────────────────────────
 	var in postIn
 
 	rdr := io.LimitReader(strings.NewReader(req.Body), shared.MaxBody)
@@ -95,6 +104,7 @@ func handleCreate(
 	in.Content = strings.TrimSpace(in.Content)
 	in.Author = strings.TrimSpace(in.Author)
 
+	// ─── Validation ───────────────────────────────────────
 	if len(in.Content) == 0 {
 		return shared.JSONError(http.StatusBadRequest, "content required"), nil
 	}
@@ -103,6 +113,7 @@ func handleCreate(
 		return shared.JSONError(http.StatusBadRequest, "content too long"), nil
 	}
 
+	// ─── Firestore bootstrap ──────────────────────────────
 	app, err := shared.FirestoreApp(ctx)
 	if err != nil {
 		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
@@ -119,9 +130,13 @@ func handleCreate(
 		}
 	}()
 
+	// ─── Build document to store ──────────────────────────
 	doc := postDoc{
+		// Author & content
 		Author:  in.Author,
 		Content: in.Content,
+
+		// Metadata
 		Date:    time.Now().UTC(),
 		Server: map[string]any{
 			"mode":    os.Getenv(envServerMode),
@@ -133,15 +148,13 @@ func handleCreate(
 			"locale": in.Client.Locale,
 		},
 	}
-	if _, _, err = client.Collection("discussionPosts").Add(ctx, doc); err != nil {
-		return shared.JSONError(http.StatusInternalServerError, "error saving post"), nil
-	}
-
+	// ─── Insert into discussionPosts ──────────────────────
 	ref, _, err := client.Collection("discussionPosts").Add(ctx, doc)
 	if err != nil {
 		return shared.JSONError(http.StatusInternalServerError, "error saving post"), nil
 	}
 
+	// ─── Return success with new document ID ──────────────
 	return events.APIGatewayProxyResponse{
 		StatusCode: http.StatusOK,
 		Body:       fmt.Sprintf(`{"ok":true,"id":"%s"}`, ref.ID),

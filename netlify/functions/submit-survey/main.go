@@ -4,78 +4,228 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/shared"
+	"io"
 	"log"
+	"net/http"
 	"os"
+	"strings"
 	"time"
-
-	firebase "firebase.google.com/go/v4"
-	"google.golang.org/api/option"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-type SurveyData struct {
-	// Define fields matching your form, e.g.:
-	AiCanBeConscious string `json:"ai_can_be_conscious"`
+/*────────────────── Constants ─────────────────────────────────────────*/
+
+const (
+	// "prod" | "test"
+	envServerMode = "SERVER_MODE"
+	// git SHA or "v1.2.3"
+	envServerVersion = "SERVER_VERSION"
+)
+
+/*────────────────── Data model ─────────────────────────────────────*/
+
+type postIn struct {
+	// ─── Answers (required) ───────────────────────────────
+	AICanBeConscious string `json:"ai_can_be_conscious"`
 	Age              int    `json:"age"`
-	// TODO... other fields
-	SubmittedAt time.Time `json:"submittedAt,omitempty"`
+	Sex              string `json:"sex"`
+	Nationality      string `json:"nationality"`
+	Education        string `json:"education"`
+	Profession       string `json:"profession"`
+	AIFamiliarity    string `json:"ai_familiarity"`
+	// ─── Optional reasoning fields ────────────────────────
+	Reasoning       string `json:"reasoning"`
+	MeasureConsc    string `json:"measure_consciousness"`
+	AIRights        string `json:"ai_rights"`
+	AIDeclareRights string `json:"ai_declare_rights"`
+	// ─── Client metadata  ─────────────────────────────────
+	Client struct {
+		Tag    string `json:"tag"`
+		Fid    string `json:"fid"`
+		Locale string `json:"locale"`
+	} `json:"client"`
 }
 
-var firebaseApp *firebase.App
-
-func init() {
-	// Get the Firebase service account credentials from the Netlify environment variable.
-	// This is the secure way to handle credentials.
-	serviceAccountJSON := os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
-	if serviceAccountJSON == "" {
-		log.Fatal("FIREBASE_SERVICE_ACCOUNT_JSON environment variable not set.")
-	}
-
-	sa := option.WithCredentialsJSON([]byte(serviceAccountJSON))
-
-	app, err := firebase.NewApp(context.Background(), nil, sa)
-	if err != nil {
-		log.Fatalf("error initializing Firebase app: %v\n", err)
-	}
-	firebaseApp = app
+type postDoc struct {
+	// ─── Answers (required) ───────────────────────────────
+	AICanBeConscious string `firestore:"aiCanBeConscious"`
+	Age              int    `firestore:"age"`
+	Sex              string `firestore:"sex"`
+	Nationality      string `firestore:"nationality"`
+	Education        string `firestore:"education"`
+	Profession       string `firestore:"profession"`
+	AIFamiliarity    string `firestore:"aiFamiliarity"`
+	// ─── Optional reasoning fields ────────────────────────
+	Reasoning       string `firestore:"reasoning,omitempty"`
+	MeasureConsc    string `firestore:"measureConsciousness,omitempty"`
+	AIRights        string `firestore:"aiRights,omitempty"`
+	AIDeclareRights string `firestore:"aiDeclareRights,omitempty"`
+	// ─── Server / client metadata  ────────────────────────
+	// UTC timestamp
+	Date time.Time `firestore:"date"`
+	// {mode, version}
+	Server map[string]any `firestore:"server,omitempty"`
+	// {tag, fid, locale}
+	Client map[string]any `firestore:"client,omitempty"`
 }
 
-func HandleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	if request.HTTPMethod != "POST" {
-		return events.APIGatewayProxyResponse{StatusCode: 405, Body: "Method Not Allowed"}, nil
+/*────────────────── Handler ────────────────────────────────────────*/
+
+func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	// ── CORS pre-flight ───────────────────────────────────
+	if req.HTTPMethod == http.MethodOptions {
+		return events.APIGatewayProxyResponse{
+			StatusCode: http.StatusNoContent,
+			Headers: map[string]string{
+				"Access-Control-Allow-Origin":  "*",
+				"Access-Control-Allow-Methods": "POST,OPTIONS",
+				"Access-Control-Allow-Headers": "Content-Type",
+			},
+		}, nil
 	}
 
-	var data SurveyData
-	err := json.Unmarshal([]byte(request.Body), &data)
+	// ── Runtime dispatch ──────────────────────────────────
+	if req.HTTPMethod == http.MethodPost {
+		return handleCreate(ctx, req)
+	}
+
+	// Any other verb is an error
+	return shared.JSONError(http.StatusMethodNotAllowed, "method not allowed"), nil
+}
+
+/*────────────────── POST  /submit-survey ───────────────────────────*/
+
+func handleCreate(
+	ctx context.Context,
+	req events.APIGatewayProxyRequest,
+) (events.APIGatewayProxyResponse, error) {
+	// ─── Decode & trim text fields ────────────────────────
+	var in postIn
+
+	rdr := io.LimitReader(strings.NewReader(req.Body), shared.MaxBody)
+	if err := json.NewDecoder(rdr).Decode(&in); err != nil {
+		return shared.JSONError(http.StatusBadRequest, "invalid JSON"), nil
+	}
+
+	in.AICanBeConscious = strings.TrimSpace(in.AICanBeConscious)
+	in.Sex = strings.TrimSpace(in.Sex)
+	in.Nationality = strings.TrimSpace(in.Nationality)
+	in.Education = strings.TrimSpace(in.Education)
+	in.Profession = strings.TrimSpace(in.Profession)
+	in.AIFamiliarity = strings.TrimSpace(in.AIFamiliarity)
+	in.Reasoning = strings.TrimSpace(in.Reasoning)
+	in.MeasureConsc = strings.TrimSpace(in.MeasureConsc)
+	in.AIRights = strings.TrimSpace(in.AIRights)
+	in.AIDeclareRights = strings.TrimSpace(in.AIDeclareRights)
+
+	// ─── Validation ───────────────────────────────────────
+
+	if in.AICanBeConscious == "" {
+		return shared.JSONError(http.StatusBadRequest, "field ‘ai_can_be_conscious’ is required"), nil
+	}
+
+	if in.Age <= 0 || in.Age > 120 {
+		return shared.JSONError(http.StatusBadRequest, "invalid age"), nil
+	}
+
+	if in.Sex == "" {
+		return shared.JSONError(http.StatusBadRequest, "field ‘sex’ is required"), nil
+	}
+
+	if in.Nationality == "" {
+		return shared.JSONError(http.StatusBadRequest, "field ‘nationality’ is required"), nil
+	}
+
+	if in.Education == "" {
+		return shared.JSONError(http.StatusBadRequest, "field ‘education’ is required"), nil
+	}
+
+	if in.Profession == "" {
+		return shared.JSONError(http.StatusBadRequest, "field ‘profession’ is required"), nil
+	}
+
+	if in.AIFamiliarity == "" {
+		return shared.JSONError(http.StatusBadRequest, "field ‘ai_familiarity’ is required"), nil
+	}
+
+	for name, v := range map[string]string{
+		"reasoning":             in.Reasoning,
+		"measure_consciousness": in.MeasureConsc,
+		"ai_rights":             in.AIRights,
+		"ai_declare_rights":     in.AIDeclareRights,
+	} {
+		if len(v) > shared.MaxContentLen {
+			return shared.JSONError(http.StatusBadRequest, fmt.Sprintf("field ‘%s’ too long", name)), nil
+		}
+	}
+
+	// ─── Firestore bootstrap ──────────────────────────────
+	app, err := shared.FirestoreApp(ctx)
 	if err != nil {
-		log.Printf("Error unmarshalling request: %v", err)
-		return events.APIGatewayProxyResponse{StatusCode: 400, Body: "Bad Request"}, nil
+		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
 	}
 
-	data.SubmittedAt = time.Now()
-
-	client, err := firebaseApp.Firestore(ctx)
+	client, err := app.Firestore(ctx)
 	if err != nil {
-		log.Printf("Error getting Firestore client: %v", err)
-		return events.APIGatewayProxyResponse{StatusCode: 500, Body: "Internal Server Error"}, nil
+		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
 	}
-	defer client.Close()
 
-	_, _, err = client.Collection("surveySubmissions").Add(ctx, data)
+	defer func() {
+		if cerr := client.Close(); cerr != nil {
+			log.Printf("firestore close: %v", cerr)
+		}
+	}()
+
+	// ─── Build document to store ──────────────────────────
+	doc := postDoc{
+		// Answers
+		AICanBeConscious: in.AICanBeConscious,
+		Age:              in.Age,
+		Sex:              in.Sex,
+		Nationality:      in.Nationality,
+		Education:        in.Education,
+		Profession:       in.Profession,
+		AIFamiliarity:    in.AIFamiliarity,
+
+		Reasoning:       in.Reasoning,
+		MeasureConsc:    in.MeasureConsc,
+		AIRights:        in.AIRights,
+		AIDeclareRights: in.AIDeclareRights,
+
+		// Metadata
+		Date: time.Now().UTC(),
+		Server: map[string]any{
+			"mode":    os.Getenv(envServerMode),
+			"version": os.Getenv(envServerVersion),
+		},
+		Client: map[string]any{
+			"tag":    in.Client.Tag,
+			"fid":    in.Client.Fid,
+			"locale": in.Client.Locale,
+		},
+	}
+
+	// ─── Insert into surveySubmissions ────────────────────
+	ref, _, err := client.Collection("surveySubmissions").Add(ctx, doc)
 	if err != nil {
-		log.Printf("Error adding document to Firestore: %v", err)
-		return events.APIGatewayProxyResponse{StatusCode: 500, Body: "Error saving submission"}, nil
+		return shared.JSONError(http.StatusInternalServerError, "error saving submission"), nil
 	}
 
+	// ─── Return success with new document ID ──────────────
 	return events.APIGatewayProxyResponse{
-		StatusCode: 200,
-		Body:       "{\"message\": \"Submission successful! (Go)\"}",
-		Headers:    map[string]string{"Content-Type": "application/json"},
+		StatusCode: http.StatusOK,
+		Body:       fmt.Sprintf(`{"ok":true,"id":"%s"}`, ref.ID),
+		Headers: map[string]string{
+			"Content-Type":                "application/json",
+			"Access-Control-Allow-Origin": "*",
+		},
 	}, nil
 }
 
-func main() {
-	lambda.Start(HandleRequest)
-}
+/*────────────────── Main ───────────────────────────────────────────*/
+
+func main() { lambda.Start(HandleRequest) }
