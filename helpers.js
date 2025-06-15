@@ -12,10 +12,23 @@ export const STATUS_TEXT = {
 
 export const $ = (sel, ctx = document) => ctx.querySelector(sel)
 
-export const msgFactory = (selector) =>
-  (txt) => {
-    document.querySelector(selector).textContent = txt
+/**
+ * Returns a tiny helper that writes STATUS messages into one DOM element.
+ *
+ * @param {string} selector – the element where messages should appear
+ * @returns {(txt:string, warn?:boolean)=>void}
+ *          txt  – message to display
+ *          warn – if truthy, add Bootstrap’s “text-warning” class
+ */
+export const msgFactory = (selector) => {
+  const el = document.querySelector(selector)
+
+  return (txt, warn = false) => {
+    if (!el) return
+    el.textContent = txt
+    el.classList.toggle("text-warning", Boolean(warn))
   }
+}
 
 // Short-form error message from a fetch Response
 export async function errMsgShort(resp) {

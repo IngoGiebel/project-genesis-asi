@@ -146,12 +146,12 @@ async function handleSubmit(evt) {
       // Refresh list after a successful submit
       await fetchAndDisplayPosts()
     } else {
-      msg(await errMsgShort(r))
+      msg(await errMsgShort(r), true)
       console.error("Server response →", r)
     }
   } catch (err) {
+    msg("Network error. Please try again.", true)
     console.error("[Submit] ", err)
-    msg("Network error. Please try again.")
   }
 }
 
@@ -181,7 +181,7 @@ async function fetchAndDisplayPosts() {
   } catch (err) {
     console.error("[Posts] ", err)
     container.innerHTML =
-      `<p class="text-danger">Error fetching posts. Please refresh.</p>`
+      `<p class="text-warning">Error fetching posts. Please refresh.</p>`
   }
 }
 
