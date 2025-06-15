@@ -21,17 +21,6 @@ import (
 	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/shared"
 )
 
-/*────────────────── Constants ─────────────────────────────────────────*/
-
-const (
-	// "prod" | "test"
-	envServerMode = "SERVER_MODE"
-	// git SHA or "v1.2.3"
-	envServerVersion = "SERVER_VERSION"
-	// Return at most 50 posts to the browser
-	maxPosts = 50
-)
-
 /*────────────────── Data model ─────────────────────────────────────*/
 
 type postIn struct {
@@ -49,12 +38,12 @@ type postIn struct {
 
 type postDoc struct {
 	// ─── Author + post (required) ─────────────────────────
-	Author  string    `firestore:"author"`
-	Content string    `firestore:"content"`
+	Author  string `firestore:"author"`
+	Content string `firestore:"content"`
 
 	// ─── Server / client metadata  ────────────────────────
 	// UTC timestamp
-	Date    time.Time `firestore:"date"`
+	Date time.Time `firestore:"date"`
 	// {mode, version}
 	Server map[string]any `firestore:"server,omitempty"`
 	// {tag, fid, locale}
@@ -137,10 +126,10 @@ func handleCreate(
 		Content: in.Content,
 
 		// Metadata
-		Date:    time.Now().UTC(),
+		Date: time.Now().UTC(),
 		Server: map[string]any{
-			"mode":    os.Getenv(envServerMode),
-			"version": os.Getenv(envServerVersion),
+			"mode":    os.Getenv(shared.EnvServerMode),
+			"version": os.Getenv(shared.EnvServerVersion),
 		},
 		Client: map[string]any{
 			"tag":    in.Client.Tag,
@@ -190,7 +179,7 @@ func handleList(
 	iter := client.
 		Collection("discussionPosts").
 		OrderBy("date", firestore.Desc).
-		Limit(maxPosts).
+		Limit(shared.MaxPosts).
 		Documents(ctx)
 
 	var out []postDoc

@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/shared"
 	"io"
 	"log"
 	"net/http"
@@ -15,15 +14,8 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-)
 
-/*────────────────── Constants ─────────────────────────────────────────*/
-
-const (
-	// "prod" | "test"
-	envServerMode = "SERVER_MODE"
-	// git SHA or "v1.2.3"
-	envServerVersion = "SERVER_VERSION"
+	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/shared"
 )
 
 /*────────────────── Data model ─────────────────────────────────────*/
@@ -199,8 +191,8 @@ func handleCreate(
 		// Metadata
 		Date: time.Now().UTC(),
 		Server: map[string]any{
-			"mode":    os.Getenv(envServerMode),
-			"version": os.Getenv(envServerVersion),
+			"mode":    os.Getenv(shared.EnvServerMode),
+			"version": os.Getenv(shared.EnvServerVersion),
 		},
 		Client: map[string]any{
 			"tag":    in.Client.Tag,
