@@ -7,6 +7,8 @@
  ************************************************************************/
 
 import EasyMDE from "https://cdn.jsdelivr.net/npm/easymde@2/dist/easymde.min.js/+esm"
+import {marked} from "https://cdn.jsdelivr.net/npm/marked@15/+esm"
+import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3/+esm"
 
 import {$, errMsgShort, msgFactory} from "./helpers.js"
 
@@ -14,9 +16,7 @@ import {$, errMsgShort, msgFactory} from "./helpers.js"
 
 const API = {
   SUBMIT: ".netlify/functions/submit-post",
-  // TODO:
-  // In the future, an endpoint to get posts will be added, e.g.:
-  // GET_POSTS   : ".netlify/functions/get-posts"
+  LIST: ".netlify/functions/submit-post",
 }
 
 const TAG =
@@ -51,6 +51,17 @@ let easyMDE
 /*───── Helpers ────────────────────────────────────────────────────────*/
 
 const msg = msgFactory(QS.messages)
+
+function renderPost({author, content, date}) {
+  const html = DOMPurify.sanitize(marked.parse(content))
+  const ts = date ? new Date(date).toLocaleString() : ""
+  return `
+    <article class="mb-4 border rounded p-3 bg-body-secondary">
+      <header class="mb-2 fw-bold">${author || "Anonymous"}</header>
+      <div class="markdown-body">${html}</div>
+      <footer class="mt-2 small text-secondary">${ts}</footer>
+    </article>`
+}
 
 /*───── Custom easyMDE validator ───────────────────────────────────────*/
 
@@ -132,6 +143,8 @@ async function handleSubmit(evt) {
       // Clear the editor
       // noinspection JSUnresolvedReference
       easyMDE.value("")
+      // Refresh list after a successful submit
+      await fetchAndDisplayPosts()
     } else {
       msg(await errMsgShort(r))
       console.error("Server response →", r)
@@ -145,28 +158,44 @@ async function handleSubmit(evt) {
 /*───── Fetch and display posts ────────────────────────────────────────*/
 
 async function fetchAndDisplayPosts() {
-  // TODO:
-  // This is a placeholder for now: Fetch from the get-posts function here.
-  // The placeholder text is now set directly in the HTML of discussion.qmd
-  // In the future, this comment will be replaced with a fetch call.
+  const container = $(QS.postsContainer)
+  if (!container) return
 
-  // const container = $(QS.postsContainer);
+  try {
+    const r = await fetch(API.LIST)
+    if (!r.ok) {
+      container.innerHTML =
+        `<p class="text-warning">Could not load posts (${r.status}).</p>`
+      return
+    }
+
+    // Get array of postDoc from Go
+    const posts = await r.json()
+    if (!posts.length) {
+      container.innerHTML =
+        `<p class="fst-italic">No posts yet – be the first to contribute!</p>`
+      return
+    }
+
+    container.innerHTML = posts.map(renderPost).join("")
+  } catch (err) {
+    console.error("[Posts] ", err)
+    container.innerHTML =
+      `<p class="text-danger">Error fetching posts. Please refresh.</p>`
+  }
 }
 
 /*───── Bootstrap when DOM ready ───────────────────────────────────────*/
 
-// ─── run once the DOM is fully parsed ────────────────────────────────
 document.addEventListener(
   "DOMContentLoaded",
   async () => {
     initializeEditor()
     wireValidation()
-    // wait for community posts to load, but don’t let a failure break the page
     try {
       await fetchAndDisplayPosts()
     } catch (err) {
-      console.error("[Posts] ", err)
+      // Already handled
     }
-    // hook up the form after everything else is ready
     $(QS.form)?.addEventListener("submit", handleSubmit)
   })
