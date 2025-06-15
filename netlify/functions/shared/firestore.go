@@ -4,9 +4,11 @@ package shared
 
 import (
 	"context"
+	"log"
 	"os"
 	"sync"
 
+	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go/v4"
 	"google.golang.org/api/option"
 )
@@ -32,4 +34,31 @@ func FirestoreApp(ctx context.Context) (*firebase.App, error) {
 	})
 
 	return app, appErr
+}
+
+// FirestoreClient returns an open *firestore.Client plus a cleanup
+// function you **must** call (typically `defer cleanup()`).
+//
+//   c, cleanup, err := shared.FirestoreClient(ctx)
+//   if err != nil { … }
+//   defer cleanup()
+//
+func FirestoreClient(ctx context.Context) (*firestore.Client, func(), error) {
+	app, err := FirestoreApp(ctx)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	cl, err := app.Firestore(ctx)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	cleanup := func() {
+		if err := cl.Close(); err != nil {
+			log.Printf("firestore close: %v", err)
+		}
+	}
+
+	return cl, cleanup, nil
 }

@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -122,21 +121,11 @@ func handleCreate(
 	}
 
 	// ─── Firestore bootstrap ──────────────────────────────
-	app, err := shared.FirestoreApp(ctx)
+	client, cleanup, err := shared.FirestoreClient(ctx)
 	if err != nil {
 		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
 	}
-
-	client, err := app.Firestore(ctx)
-	if err != nil {
-		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
-	}
-
-	defer func() {
-		if cerr := client.Close(); cerr != nil {
-			log.Printf("firestore close: %v", cerr)
-		}
-	}()
+	defer cleanup()
 
 	// ─── Build document to store ──────────────────────────
 	doc := postDoc{
@@ -194,7 +183,7 @@ func trimFields(ptrs ...*string) {
 }
 
 // validate returns an empty string on success.
-// On failure it returns a human-readable message to send back to the user.
+// On failure, it returns a human-readable message to send back to the user.
 func validate(p *postIn) string {
 	switch {
 	case p.AICanBeConscious == "":

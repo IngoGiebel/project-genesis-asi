@@ -103,21 +103,11 @@ func handleCreate(
 	}
 
 	// ─── Firestore bootstrap ──────────────────────────────
-	app, err := shared.FirestoreApp(ctx)
+	client, cleanup, err := shared.FirestoreClient(ctx)
 	if err != nil {
 		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
 	}
-
-	client, err := app.Firestore(ctx)
-	if err != nil {
-		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
-	}
-
-	defer func() {
-		if cerr := client.Close(); cerr != nil {
-			log.Printf("firestore close: %v", cerr)
-		}
-	}()
+	defer cleanup()
 
 	// ─── Build document to store ──────────────────────────
 	doc := postDoc{
