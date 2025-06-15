@@ -103,56 +103,22 @@ func handleCreate(
 		return shared.JSONError(http.StatusBadRequest, "invalid JSON"), nil
 	}
 
-	in.AICanBeConscious = strings.TrimSpace(in.AICanBeConscious)
-	in.Sex = strings.TrimSpace(in.Sex)
-	in.Nationality = strings.TrimSpace(in.Nationality)
-	in.Education = strings.TrimSpace(in.Education)
-	in.Profession = strings.TrimSpace(in.Profession)
-	in.AIFamiliarity = strings.TrimSpace(in.AIFamiliarity)
-	in.Reasoning = strings.TrimSpace(in.Reasoning)
-	in.MeasureConsc = strings.TrimSpace(in.MeasureConsc)
-	in.AIRights = strings.TrimSpace(in.AIRights)
-	in.AIDeclareRights = strings.TrimSpace(in.AIDeclareRights)
+	trimFields(
+		&in.AICanBeConscious,
+		&in.Sex,
+		&in.Nationality,
+		&in.Education,
+		&in.Profession,
+		&in.AIFamiliarity,
+		&in.Reasoning,
+		&in.MeasureConsc,
+		&in.AIRights,
+		&in.AIDeclareRights,
+	)
 
 	// ─── Validation ───────────────────────────────────────
-
-	if in.AICanBeConscious == "" {
-		return shared.JSONError(http.StatusBadRequest, "field ‘ai_can_be_conscious’ is required"), nil
-	}
-
-	if in.Age <= 0 || in.Age > 120 {
-		return shared.JSONError(http.StatusBadRequest, "invalid age"), nil
-	}
-
-	if in.Sex == "" {
-		return shared.JSONError(http.StatusBadRequest, "field ‘sex’ is required"), nil
-	}
-
-	if in.Nationality == "" {
-		return shared.JSONError(http.StatusBadRequest, "field ‘nationality’ is required"), nil
-	}
-
-	if in.Education == "" {
-		return shared.JSONError(http.StatusBadRequest, "field ‘education’ is required"), nil
-	}
-
-	if in.Profession == "" {
-		return shared.JSONError(http.StatusBadRequest, "field ‘profession’ is required"), nil
-	}
-
-	if in.AIFamiliarity == "" {
-		return shared.JSONError(http.StatusBadRequest, "field ‘ai_familiarity’ is required"), nil
-	}
-
-	for name, v := range map[string]string{
-		"reasoning":             in.Reasoning,
-		"measure_consciousness": in.MeasureConsc,
-		"ai_rights":             in.AIRights,
-		"ai_declare_rights":     in.AIDeclareRights,
-	} {
-		if len(v) > shared.MaxContentLen {
-			return shared.JSONError(http.StatusBadRequest, fmt.Sprintf("field ‘%s’ too long", name)), nil
-		}
+	if bad := validate(&in); bad != "" {
+		return shared.JSONError(http.StatusBadRequest, bad), nil
 	}
 
 	// ─── Firestore bootstrap ──────────────────────────────
@@ -216,6 +182,51 @@ func handleCreate(
 			"Access-Control-Allow-Origin": "*",
 		},
 	}, nil
+}
+
+// trimFields applies strings.TrimSpace to each *string passed in.
+func trimFields(ptrs ...*string) {
+	for _, p := range ptrs {
+		if p != nil {
+			*p = strings.TrimSpace(*p)
+		}
+	}
+}
+
+// validate returns an empty string on success.
+// On failure it returns a human-readable message to send back to the user.
+func validate(p *postIn) string {
+	switch {
+	case p.AICanBeConscious == "":
+		return "field ‘ai_can_be_conscious’ is required"
+	case p.Age <= 0 || p.Age > 120:
+		return "invalid age"
+	case p.Sex == "":
+		return "field ‘sex’ is required"
+	case p.Nationality == "":
+		return "field ‘nationality’ is required"
+	case p.Education == "":
+		return "field ‘education’ is required"
+	case p.Profession == "":
+		return "field ‘profession’ is required"
+	case p.AIFamiliarity == "":
+		return "field ‘ai_familiarity’ is required"
+	}
+
+	// Length-limited free-text boxes
+	for name, v := range map[string]string{
+		"reasoning":             p.Reasoning,
+		"measure_consciousness": p.MeasureConsc,
+		"ai_rights":             p.AIRights,
+		"ai_declare_rights":     p.AIDeclareRights,
+	} {
+		if len(v) > shared.MaxContentLen {
+			return fmt.Sprintf("field ‘%s’ too long", name)
+		}
+	}
+
+	// Everything OK
+	return ""
 }
 
 /*────────────────── Main ───────────────────────────────────────────*/
