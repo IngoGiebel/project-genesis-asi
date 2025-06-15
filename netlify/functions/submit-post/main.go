@@ -5,7 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"google.golang.org/api/iterator"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -16,6 +16,7 @@ import (
 	"cloud.google.com/go/firestore"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"google.golang.org/api/iterator"
 
 	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/shared"
 )
@@ -136,9 +137,14 @@ func handleCreate(
 		return shared.JSONError(http.StatusInternalServerError, "error saving post"), nil
 	}
 
+	ref, _, err := client.Collection("discussionPosts").Add(ctx, doc)
+	if err != nil {
+		return shared.JSONError(http.StatusInternalServerError, "error saving post"), nil
+	}
+
 	return events.APIGatewayProxyResponse{
 		StatusCode: http.StatusOK,
-		Body:       `{"ok":true}`,
+		Body:       fmt.Sprintf(`{"ok":true,"id":"%s"}`, ref.ID),
 		Headers: map[string]string{
 			"Content-Type":                "application/json",
 			"Access-Control-Allow-Origin": "*",
@@ -198,7 +204,10 @@ func handleList(
 		out[i], out[j] = out[j], out[i]
 	}
 
-	raw, _ := json.Marshal(out)
+	raw, err := json.Marshal(out)
+	if err != nil {
+		return shared.JSONError(http.StatusInternalServerError, "json encode"), nil
+	}
 
 	return events.APIGatewayProxyResponse{
 		StatusCode: http.StatusOK,
