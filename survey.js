@@ -59,7 +59,7 @@ function keepHighlightVisible(choices) {
       const el = e?.detail?.el
       if (!el) return
       // Jump instantly just enough to reveal the item
-      el.scrollIntoView({block: "nearest"})
+      el.scrollIntoView({block: "nearest", behavior: "auto"})
     },
   )
 }
@@ -123,7 +123,7 @@ async function initNationality() {
   } catch (err) {
     console.error("[Countries] ", err)
     select.innerHTML = `<option>Error loading list: ${err.message}</option>`
-    msg("Error loading country options. Please refresh.")
+    msg("Error loading country options. Please refresh.", true)
   }
 }
 
@@ -154,7 +154,7 @@ async function initEducation() {
   } catch (err) {
     console.error("[Education] ", err)
     select.innerHTML = `<option>Error loading list: ${err.message}</option>`
-    msg("Error loading education options. Please refresh.")
+    msg("Error loading education options. Please refresh.", true)
   }
 }
 
@@ -185,7 +185,7 @@ async function initProfession() {
   } catch (err) {
     console.error("[Profession] ", err)
     select.innerHTML = `<option>Error loading list: ${err.message}</option>`
-    msg("Error loading profession options. Please refresh.")
+    msg("Error loading profession options. Please refresh.", true)
   }
 }
 
@@ -218,12 +218,12 @@ async function handleSubmit(evt) {
       // noinspection JSUnresolvedVariable
       choicesProfession?.setChoiceByValue("")
     } else {
-      msg(await errMsgShort(r))
+      msg(await errMsgShort(r), true)
       console.error("Server response →", r)
     }
   } catch (err) {
     console.error("[Submit] ", err)
-    msg("Network error. Please try again.")
+    msg("Network error. Please try again.", true)
   }
 }
 
