@@ -6,7 +6,7 @@
  *  ▸ Handles form submission to Netlify function
  ************************************************************************/
 
-import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11.1.0/+esm"
+import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11/+esm"
 
 import {$, errMsgShort, msgFactory} from "./helpers.js"
 
