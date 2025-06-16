@@ -52,7 +52,7 @@ let easyMDE
 
 const msg = msgFactory(QS.messages)
 
-function renderPost({author, content, date}) {
+function renderPost({author, content = "", date}) {
   const html = DOMPurify.sanitize(marked.parse(content))
   const ts = date ? new Date(date).toLocaleString() : ""
   return `
@@ -171,7 +171,7 @@ async function fetchAndDisplayPosts() {
 
     // Get array of postDoc from Go
     const posts = await r.json()
-    if (!posts.length) {
+    if (!Array.isArray(posts) || !posts.length) {
       container.innerHTML =
         `<p class="fst-italic">No posts yet – be the first to contribute!</p>`
       return
