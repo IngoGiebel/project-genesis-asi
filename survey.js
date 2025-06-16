@@ -8,6 +8,7 @@
 
 import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11/+esm"
 
+import {keepHighlightVisible, selectInputValue} from "./choices-utils.js"
 import {$, errMsgShort, msgFactory} from "./helpers.js"
 
 /*───── Declare Choices.js instances type ──────────────────────────────*/
@@ -45,55 +46,6 @@ async function fetchData(endpoint) {
   const r = await fetch(endpoint, {signal: ctrl.signal})
   if (!r.ok) throw new Error(`${r.status} ${r.statusText}`)
   return r.json()
-}
-
-/**
- * Keep the highlighted option in view while the user moves through the list
- * @param {ChoicesJS} choices   A Choices.js instance
- */
-function keepHighlightVisible(choices) {
-  // noinspection JSUnresolvedVariable
-  choices.passedElement.element.addEventListener(
-    "highlightChoice",
-    e => {
-      const el = e?.detail?.el
-      if (!el) return
-      // Jump instantly just enough to reveal the item
-      el.scrollIntoView({block: "nearest", behavior: "auto"})
-    },
-  )
-}
-
-/**
- * Focus and select search input text
- * @param {ChoicesJS} choices   A Choices.js instance
- */
-function selectInputValue(choices) {
-  // noinspection JSUnresolvedVariable
-  choices.passedElement.element.addEventListener(
-    "showDropdown",
-    () => {
-      requestAnimationFrame(() => {
-        const input = choices.input.element
-        const choice = choices.getValue()
-
-        if (choice.value) {
-          input.value = choice.label
-        }
-        input.focus()
-        input.select()
-
-        // noinspection JSUnresolvedVariable
-        const el = choices.choiceList.element.querySelector(`.choices__item[data-value="${choice.value}"]`)
-        if (el) {
-          el.scrollIntoView({block: "center", behavior: "auto"})
-          // noinspection JSUnresolvedVariable
-          choices.choiceList.element.querySelector(".is-highlighted")?.classList.remove("is-highlighted")
-          el.classList.add("is-highlighted")
-        }
-      })
-    },
-  )
 }
 
 /*───── Build Nationality select with Choices.js ───────────────────────*/
