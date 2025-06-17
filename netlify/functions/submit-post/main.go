@@ -36,18 +36,18 @@ type postIn struct {
 	} `json:"client"`
 }
 
+//nolint:tagalign
 type postDoc struct {
 	// ─── Author + post (required) ─────────────────────────
-	Author  string `firestore:"author"`
-	Content string `firestore:"content"`
-
+	Author  string         `firestore:"author"           json:"author"`
+	Content string         `firestore:"content"          json:"content"`
 	// ─── Server / client metadata  ────────────────────────
 	// UTC timestamp
-	Date time.Time `firestore:"date"`
+	Date    time.Time      `firestore:"date"             json:"date"`
 	// {mode, version}
-	Server map[string]any `firestore:"server,omitempty"`
+	Server  map[string]any `firestore:"server,omitempty" json:"server,omitempty"`
 	// {tag, fid, locale}
-	Client map[string]any `firestore:"client,omitempty"`
+	Client  map[string]any `firestore:"client,omitempty" json:"client,omitempty"`
 }
 
 /*────────────────── Handler ────────────────────────────────────────*/

@@ -50,15 +50,17 @@ const msg = msgFactory(Q.msg)
 
 /*───── View helpers ───────────────────────────────────────────────────*/
 
-function renderPost({author, content="", date}) {
-  const html = content.trim() ? DOMPurify.sanitize(marked.parse(content)) : ""
-  const ts = date ? new Date(date).toLocaleString() : ""
+function renderPost ({author, content = "", date}) {
+  const html = content.trim() ? DOMPurify.sanitize(marked.parse(content)) : "";
+  const ts   = date ? new Date(date).toLocaleString() : "";
   return `
-    <article class="mb-4 border rounded p-3 bg-body-secondary">
-      <header class="mb-2 fw-bold">${author || "Anonymous"}</header>
-      <div class="markdown-body">${html}</div>
-      <footer class="mt-2 small text-secondary">${ts}</footer>
-    </article>`;
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h6 class="card-title fw-semibold mb-2">${author || "Anonymous"}</h6>
+        <div class="card-text markdown-body mb-2">${html}</div>
+        <div class="text-secondary small">${ts}</div>
+      </div>
+    </div>`
 }
 
 /*───── Editor ─────────────────────────────────────────────────────────*/
