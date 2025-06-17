@@ -25,8 +25,8 @@ import (
 
 type postIn struct {
 	// ─── Author + post (required) ─────────────────────────
-	Author  string `json:"author"`
-	Content string `json:"content"`
+	Author   string `json:"author"`
+	Content  string `json:"content"`
 
 	// ─── Client metadata  ─────────────────────────────────
 	Client struct {
@@ -43,7 +43,7 @@ type postDoc struct {
 	Content string         `firestore:"content"          json:"content"`
 	// ─── Server / client metadata  ────────────────────────
 	// UTC timestamp
-	Date    time.Time      `firestore:"date"             json:"date"`
+	Date    time.Time      `firestore:"date,omitempty"   json:"date,omitempty"`
 	// {mode, version}
 	Server  map[string]any `firestore:"server,omitempty" json:"server,omitempty"`
 	// {tag, fid, locale}
