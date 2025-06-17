@@ -32,7 +32,7 @@ Your voice adds a vital qualitative dimension to this exploration. What do you t
 
   <div class="form-group">
     <label for="post-content">Your post:</label><br>
-    <textarea id="post-content" name="content" rows="12" maxlength="10000" required></textarea>
+    <textarea id="post-content" name="content" rows="12" maxlength="10000"></textarea>
   </div>
   
   <button type="submit">Submit post</button>
