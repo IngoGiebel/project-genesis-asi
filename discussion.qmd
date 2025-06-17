@@ -18,7 +18,6 @@ We invite you to contribute your thoughts. Your post will be publicly visible to
 A few guidelines for your post:
 
 - The editor supports basic **Markdown** for formatting (e.g., `**bold**`, `*italics*`, lists).
-- Please aim to keep your contribution concise, up to roughly one page of text.
 - We encourage respectful and constructive dialogue. Submissions will be moderated to maintain a welcoming environment.
 
 Your voice adds a vital qualitative dimension to this exploration. What do you think?

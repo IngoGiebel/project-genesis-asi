@@ -4,29 +4,29 @@
 
 :root {
   /* Colours */
-  --clr-bg-main:            #1A1A1A;
-  --clr-bg-overlay-top:     rgba(0,0,0,.70);
-  --clr-bg-overlay-bot:     rgba(0,0,0,.50);
-  --clr-panel:              rgba(43,48,53,.50);
-  --clr-panel-solid:        #2B3035;
-  --clr-border:             rgba(85,85,85,.70);
-  --clr-text-main:          #DCE4EB;
-  --clr-text-light:         #E0E0E0;
-  --clr-link:               #8CB4FF;
-  --clr-link-visited:       #C3A5FF;
-  --clr-link-lightbg:       #335FD8;
+  --clr-bg-main: #1A1A1A;
+  --clr-bg-overlay-top: rgba(0, 0, 0, .70);
+  --clr-bg-overlay-bot: rgba(0, 0, 0, .50);
+  --clr-panel: rgba(43, 48, 53, .50);
+  --clr-panel-solid: #2B3035;
+  --clr-border: rgba(85, 85, 85, .70);
+  --clr-text-main: #DCE4EB;
+  --clr-text-light: #E0E0E0;
+  --clr-link: #8CB4FF;
+  --clr-link-visited: #C3A5FF;
+  --clr-link-lightbg: #335FD8;
   --clr-link-lightbg-hover: #4D82FF;
-  --clr-accent:             #2A9FD6;
+  --clr-accent: #2A9FD6;
 
   /* Sizes */
-  --fs-body:                1rem;
-  --pad-x:                  .5rem;
-  --pad-y:                  .1rem;
-  --radius:                 .25rem;
-  --choices-width:          24em;
+  --fs-body: 1rem;
+  --pad-x: .5rem;
+  --pad-y: .1rem;
+  --radius: .25rem;
+  --choices-width: 24em;
 
   /* Z-layers */
-  --z-dropdown:  999;
+  --z-dropdown: 999;
 }
 
 /*────────────────────────────────────────────────────────────────────────
@@ -40,9 +40,8 @@ html {
 
 body {
   color: var(--clr-text-main);
-  background:
-    linear-gradient(var(--clr-bg-overlay-top), var(--clr-bg-overlay-bot)),
-    url("images/inanna-background.webp");
+  background: linear-gradient(var(--clr-bg-overlay-top), var(--clr-bg-overlay-bot)),
+  url("images/inanna-background.webp");
   background-color: var(--clr-bg-main);
   background-size: cover;
   background-position: center 2rem;
@@ -84,7 +83,7 @@ h2 {
 .navbar-brand img {
   height: 4rem;
   max-height: none;
-  filter: drop-shadow(0 0 .2rem rgba(255,255,255,.5)) brightness(2);
+  filter: drop-shadow(0 0 .2rem rgba(255, 255, 255, .5)) brightness(2);
 }
 
 /*────────────────────────────────────────────────────────────────────────
@@ -96,7 +95,7 @@ h2 {
   font-style: italic;
   color: #F07178;
   line-height: 1.5;
-  text-shadow: 0 1px 4px rgba(0,0,0,.5);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
 }
 
 /*────────────────────────────────────────────────────────────────────────
@@ -187,7 +186,7 @@ textarea:focus,
 .choices.is-focused .choices__inner,
 .choices.is-open .choices__inner {
   border-color: var(--clr-link);
-  box-shadow: 0 0 0 .2rem rgba(42,159,214,.25);
+  box-shadow: 0 0 0 .2rem rgba(42, 159, 214, .25);
   outline: none;
 }
 
@@ -199,7 +198,7 @@ input[type="radio"] {
 /* Blue glow for focused radio button */
 input[type="radio"]:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 .15rem rgba(42,159,214,.65);
+  box-shadow: 0 0 0 .15rem rgba(42, 159, 214, .65);
   border-radius: 50%;
 }
 
@@ -289,7 +288,7 @@ input[type="radio"]:focus-visible {
   color: var(--clr-link-visited);
 }
 
-.editor-toolbar .separator{
+.editor-toolbar .separator {
   border-left: 1px solid var(--clr-link-visited);
   opacity: .5;
 }
@@ -302,14 +301,14 @@ input[type="radio"]:focus-visible {
   border-radius: 0 0 var(--radius) var(--radius) !important;
 }
 
-.CodeMirror-cursor{
+.CodeMirror-cursor {
   border-left: 3px solid var(--clr-text-main);
 }
 
 .CodeMirror .CodeMirror-selected,
 .CodeMirror-focused .CodeMirror-selected,
 .editor-preview ::selection {
-  background-color: rgba(138,180,248,.35) !important;
+  background-color: rgba(138, 180, 248, .35) !important;
 }
 
 .editor-statusbar {
@@ -319,10 +318,39 @@ input[type="radio"]:focus-visible {
 }
 
 /*────────────────────────────────────────────────────────────────────────
-  POSTS
+  COMMUNITY POST CARDS
 ─────────────────────────────────────────────────────────────────────────*/
 
-.card-text { word-break: break-word; }
+.post-card {
+  font-size: .8rem;
+  padding: var(--pad-y) var(--pad-x);
+  border: solid var(--clr-border);
+  border-radius: var(--radius);
+  margin-bottom: .5rem;
+}
+
+#posts-container,
+.post-card,
+.post-card header,
+.post-card .timestamp,
+.post-card .body {
+  background-color: var(--clr-panel);
+}
+
+.post-card header,
+.post-card .timestamp {
+  color: var(--clr-link-visited);
+}
+
+.post-card .body {
+  color: var(--clr-text-main);
+  word-break: break-word;
+  margin-top: .5rem;
+}
+
+.post-card ::selection     {
+  background-color: rgba(138,180,248,.35);
+}
 
 /*────────────────────────────────────────────────────────────────────────
   SUBMIT BUTTON
@@ -336,27 +364,27 @@ form button[type="submit"] {
   font-weight: bold;
   color: var(--clr-text-light);
   /* Dark blueish color at 50% transparency */
-  background-color: rgba(40,50,80,.5);
+  background-color: rgba(40, 50, 80, .5);
   /* Gold border, slightly more opaque for visibility */
-  border: solid rgba(255,215,0,.45);
+  border: solid rgba(255, 215, 0, .45);
   border-radius: var(--radius);
   /* Adds a subtle shadow to text for depth */
-  text-shadow: 0 0 5px rgba(0,0,0,.7);
+  text-shadow: 0 0 5px rgba(0, 0, 0, .7);
   cursor: pointer;
   /* Golden Glow Effect */
-  box-shadow: 0 0 10px 2px rgba(255,215,0,.35), inset 0 0 6px rgba(255,215,0,.15);
+  box-shadow: 0 0 10px 2px rgba(255, 215, 0, .35), inset 0 0 6px rgba(255, 215, 0, .15);
   transition: background .3s, box-shadow .3s, color .3s, border-color .3s;
 }
 
 form button[type="submit"]:hover {
   /* Slightly lighter/more opaque blue on hover */
-  background-color: rgba(55,70,100,.65);
+  background-color: rgba(55, 70, 100, .65);
   /* Brighter text on hover */
   color: #FFF;
   /* Brighter gold border on hover */
-  border-color: rgba(255,215,0,.7);
+  border-color: rgba(255, 215, 0, .7);
   /* Intensified gold glow */
-  box-shadow: 0 0 15px 4px rgba(255,215,0,.55), inset 0 0 10px rgba(255,215,0,.25);
+  box-shadow: 0 0 15px 4px rgba(255, 215, 0, .55), inset 0 0 10px rgba(255, 215, 0, .25);
 }
 
 /*────────────────────────────────────────────────────────────────────────
@@ -380,11 +408,11 @@ form button[type="submit"]:hover {
   color: var(--clr-link-lightbg);
 }
 
-#citationModal .modal-body a:hover{
+#citationModal .modal-body a:hover {
   color: var(--clr-link-lightbg-hover);
 }
 
-#citationModal .quarto-appendix-secondary-label{
+#citationModal .quarto-appendix-secondary-label {
   color: var(--clr-bg-main);
 }
 

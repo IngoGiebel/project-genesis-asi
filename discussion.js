@@ -24,23 +24,23 @@ const json = async (u, o) => {
 
 const fid = localStorage.aaFid ?? crypto.randomUUID()
 
-localStorage.aaFid ??= fid;
+localStorage.aaFid ??= fid
 
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
   SUBMIT: ".netlify/functions/submit-post",
-  LIST  : ".netlify/functions/submit-post",
+  LIST: ".netlify/functions/submit-post",
 }
 
 const TAG = new URLSearchParams(location.search).get("tag") ?? window.DISCUSSION_TAG ?? ""
 
 const Q = {
-  form  : "#discussion-post-form",
-  msg   : "#form-messages",
-  who   : "#post-author",
-  text  : "#post-content",
-  list  : "#posts-container"
+  form: "#discussion-post-form",
+  msg: "#form-messages",
+  who: "#post-author",
+  text: "#post-content",
+  list: "#posts-container",
 }
 
 /*───── State ──────────────────────────────────────────────────────────*/
@@ -50,24 +50,22 @@ const msg = msgFactory(Q.msg)
 
 /*───── View helpers ───────────────────────────────────────────────────*/
 
-function renderPost ({author, content = "", date}) {
-  const html = content.trim() ? DOMPurify.sanitize(marked.parse(content)) : "";
-  const ts   = date ? new Date(date).toLocaleString() : "";
+function renderPost({author, content = "", date}) {
+  const html = content.trim() ? DOMPurify.sanitize(marked.parse(content)) : ""
+  const ts = date ? new Date(date).toLocaleString() : ""
   return `
-    <div class="card shadow-sm mb-4">
-      <div class="card-body">
-        <h6 class="card-title fw-semibold mb-2">${author || "Anonymous"}</h6>
-        <div class="card-text markdown-body mb-2">${html}</div>
-        <div class="text-secondary small">${ts}</div>
-      </div>
-    </div>`
+    <article class="post-card">
+      <header>${author || "Anonymous"}</header>
+      <footer class="timestamp">${ts}</footer>
+      <div class="body markdown-body">${html}</div>
+    </article>`
 }
 
 /*───── Editor ─────────────────────────────────────────────────────────*/
 
 function validateEditor() {
   // noinspection JSUnresolvedReference
-  const empty = !easyMDE.value().trim();
+  const empty = !easyMDE.value().trim()
   // noinspection JSUnresolvedReference
   easyMDE.codemirror.getInputField().setCustomValidity(empty ? "Please enter a post." : "")
   return !empty
@@ -131,7 +129,7 @@ async function handleSubmit(e) {
     // noinspection JSUnresolvedReference
     easyMDE.value("")
     // Refresh list after a successful submit
-    await fetchAndDisplayPosts();
+    await fetchAndDisplayPosts()
   } catch (err) {
     msg(String(err), true)
     console.error(err)
@@ -147,7 +145,7 @@ async function fetchAndDisplayPosts() {
       ? posts.map(renderPost).join("")
       : `<p class="fst-italic">No posts yet – be the first to contribute!</p>`
   } catch (err) {
-    console.error("[Posts]", err);
+    console.error("[Posts]", err)
     c.innerHTML = `<p class="text-warning">Error fetching posts. Please refresh.</p>`
   }
 }
@@ -155,11 +153,11 @@ async function fetchAndDisplayPosts() {
 /*───── Bootstrap when DOM ready ───────────────────────────────────────*/
 
 document.addEventListener("DOMContentLoaded", async () => {
-  initializeEditor();
+  initializeEditor()
   try {
-    await fetchAndDisplayPosts();
+    await fetchAndDisplayPosts()
   } catch {
     // Already handled
   }
-  $(Q.form).addEventListener("submit", handleSubmit);
+  $(Q.form).addEventListener("submit", handleSubmit)
 })
