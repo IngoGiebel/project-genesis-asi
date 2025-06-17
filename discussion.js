@@ -3,91 +3,77 @@
  * ----------------------------------------------------------------------
  * ▸ Initializes EasyMDE markdown editor
  * ▸ Handles post submission to Netlify function
- * ▸ (Future) Fetches and displays existing posts
+ * ▸ Fetches and displays existing posts
  ************************************************************************/
 
 import EasyMDE from "https://cdn.jsdelivr.net/npm/easymde@2/dist/easymde.min.js/+esm"
 import {marked} from "https://cdn.jsdelivr.net/npm/marked@15/+esm"
 import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3/+esm"
 
-import {$, errMsgShort, msgFactory} from "./helpers.js"
+import {errMsgShort, msgFactory} from "./helpers.js"
+
+/*───── Tiny helpers ───────────────────────────────────────────────────*/
+
+const $ = (s, r = document) => r.querySelector(s)
+
+const json = async (u, o) => {
+  const r = await fetch(u, o)
+  if (!r.ok) throw new Error(`${r.status} ${r.statusText}`)
+  return r.json()
+}
+
+const fid = localStorage.aaFid ?? crypto.randomUUID()
+
+localStorage.aaFid ??= fid;
 
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
   SUBMIT: ".netlify/functions/submit-post",
-  LIST: ".netlify/functions/submit-post",
+  LIST  : ".netlify/functions/submit-post",
 }
 
-const TAG =
-  new URLSearchParams(location.search).get("tag")
-  || window.DISCUSSION_TAG
-  || ""
+const TAG = new URLSearchParams(location.search).get("tag") ?? window.DISCUSSION_TAG ?? ""
 
-const FINGERID = (() => {
-  const k = "aa-fid"
-  let v = localStorage.getItem(k)
-  if (!v) {
-    v = crypto.randomUUID()
-    localStorage.setItem(k, v)
-  }
-  return v
-})()
-
-const QS = {
-  form: "#discussion-post-form",
-  messages: "#form-messages",
-  authorInput: "#post-author",
-  editorTextarea: "#post-content",
-  postsContainer: "#posts-container",
+const Q = {
+  form  : "#discussion-post-form",
+  msg   : "#form-messages",
+  who   : "#post-author",
+  text  : "#post-content",
+  list  : "#posts-container"
 }
 
-/**
- * To hold the editor instance.
- * @type {EasyMDE}
- */
+/*───── State ──────────────────────────────────────────────────────────*/
+
 let easyMDE
+const msg = msgFactory(Q.msg)
 
-/*───── Helpers ────────────────────────────────────────────────────────*/
+/*───── View helpers ───────────────────────────────────────────────────*/
 
-const msg = msgFactory(QS.messages)
-
-function renderPost({author, content = "", date}) {
-  const html = DOMPurify.sanitize(marked.parse(content))
+function renderPost({author, content="", date}) {
+  const html = content.trim() ? DOMPurify.sanitize(marked.parse(content)) : ""
   const ts = date ? new Date(date).toLocaleString() : ""
   return `
     <article class="mb-4 border rounded p-3 bg-body-secondary">
       <header class="mb-2 fw-bold">${author || "Anonymous"}</header>
       <div class="markdown-body">${html}</div>
       <footer class="mt-2 small text-secondary">${ts}</footer>
-    </article>`
+    </article>`;
 }
 
-/*───── Custom easyMDE validator ───────────────────────────────────────*/
+/*───── Editor ─────────────────────────────────────────────────────────*/
 
 function validateEditor() {
   // noinspection JSUnresolvedReference
-  const inputField = easyMDE.codemirror.getInputField()
+  const empty = !easyMDE.value().trim();
   // noinspection JSUnresolvedReference
-  const empty = !easyMDE.value().trim()
-  inputField.setCustomValidity(empty ? "Please enter a post." : "")
+  easyMDE.codemirror.getInputField().setCustomValidity(empty ? "Please enter a post." : "")
   return !empty
 }
 
-function wireValidation() {
-  // noinspection JSUnresolvedReference
-  easyMDE.codemirror.on(
-    "change",
-    () => {
-      validateEditor()
-    })
-}
-
-/*───── Initialize easyMDE ─────────────────────────────────────────────*/
-
 function initializeEditor() {
   easyMDE = new EasyMDE({
-    element: $(QS.editorTextarea),
+    element: $(Q.text),
     spellChecker: false,
     sideBySideFullscreen: false,
     toolbar: [
@@ -105,24 +91,24 @@ function initializeEditor() {
     ],
     placeholder: "Enter your thoughts here... You can use Markdown for formatting.",
   })
+  // noinspection JSUnresolvedReference
+  easyMDE.codemirror.on("change", validateEditor)
   validateEditor()
 }
 
-/*───── Submit handler ─────────────────────────────────────────────────*/
+/*───── Network ────────────────────────────────────────────────────────*/
 
-async function handleSubmit(evt) {
-  evt.preventDefault()
+async function handleSubmit(e) {
+  e.preventDefault()
   msg("Submitting…")
 
-  const author = $(QS.authorInput).value.trim()
   // noinspection JSUnresolvedReference
-  const content = easyMDE.value().trim()
   const body = {
-    author,
-    content,
+    author: $(Q.who).value.trim(),
+    content: easyMDE.value().trim(),
     client: {
       tag: TAG,
-      fid: FINGERID,
+      fid,
       locale: navigator.language || "",
     },
   }
@@ -136,66 +122,42 @@ async function handleSubmit(evt) {
         body: JSON.stringify(body),
       })
 
-    if (r.ok) {
-      msg("Thank you! Your post has been submitted.")
-      // Reset the form
-      evt.target.reset()
-      // Clear the editor
-      // noinspection JSUnresolvedReference
-      easyMDE.value("")
-      // Refresh list after a successful submit
-      await fetchAndDisplayPosts()
-    } else {
-      msg(await errMsgShort(r), true)
-      console.error("Server response →", r)
-    }
+    if (!r.ok) throw new Error(await errMsgShort(r))
+    msg("Thank you! Your post has been submitted.")
+
+    e.target.reset()
+    // noinspection JSUnresolvedReference
+    easyMDE.value("")
+    // Refresh list after a successful submit
+    await fetchAndDisplayPosts();
   } catch (err) {
-    msg("Network error. Please try again.", true)
-    console.error("[Submit] ", err)
+    msg(String(err), true)
+    console.error(err)
   }
 }
 
-/*───── Fetch and display posts ────────────────────────────────────────*/
-
 async function fetchAndDisplayPosts() {
-  const container = $(QS.postsContainer)
-  if (!container) return
-
+  const c = $(Q.list)
+  if (!c) return
   try {
-    const r = await fetch(API.LIST)
-    if (!r.ok) {
-      container.innerHTML =
-        `<p class="text-warning">Could not load posts (${r.status}).</p>`
-      return
-    }
-
-    // Get array of postDoc from Go
-    const posts = await r.json()
-    if (!Array.isArray(posts) || !posts.length) {
-      container.innerHTML =
-        `<p class="fst-italic">No posts yet – be the first to contribute!</p>`
-      return
-    }
-
-    container.innerHTML = posts.map(renderPost).join("")
+    const posts = await json(API.LIST)
+    c.innerHTML = posts.length
+      ? posts.map(renderPost).join("")
+      : `<p class="fst-italic">No posts yet – be the first to contribute!</p>`
   } catch (err) {
-    console.error("[Posts] ", err)
-    container.innerHTML =
-      `<p class="text-warning">Error fetching posts. Please refresh.</p>`
+    console.error("[Posts]", err);
+    c.innerHTML = `<p class="text-warning">Error fetching posts. Please refresh.</p>`
   }
 }
 
 /*───── Bootstrap when DOM ready ───────────────────────────────────────*/
 
-document.addEventListener(
-  "DOMContentLoaded",
-  async () => {
-    initializeEditor()
-    wireValidation()
-    try {
-      await fetchAndDisplayPosts()
-    } catch (err) {
-      // Already handled
-    }
-    $(QS.form)?.addEventListener("submit", handleSubmit)
-  })
+document.addEventListener("DOMContentLoaded", async () => {
+  initializeEditor();
+  try {
+    await fetchAndDisplayPosts();
+  } catch {
+    // Already handled
+  }
+  $(Q.form).addEventListener("submit", handleSubmit);
+})
