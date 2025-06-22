@@ -7,3 +7,9 @@ directory = "netlify/functions"
 
 [build.environment]
 GO_VERSION = "1.24"
+
+[context.dev.environment]
+SERVER_MODE = "dev"
+
+[context.production.environment]
+SERVER_MODE = "prod"

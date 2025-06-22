@@ -4,8 +4,8 @@ package shared
 
 // Environment-variable names that may be read by serverless functions.
 const (
-	// EnvServerMode = "prod" | "test"
-	EnvServerMode    = "SERVER_MODE"
+	// EnvServerMode = "prod" | "test | dev"
+	EnvServerMode = "SERVER_MODE"
 )
 
 // MaxPosts generic limit / paging constant.
