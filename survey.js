@@ -28,7 +28,7 @@ const API = {
   SUBMIT: ".netlify/functions/submit-survey",
 }
 
-const QS = {
+const Q = {
   form: "#ai-consciousness-survey",
   messages: "#form-messages",
   nationality: "#nationality",
@@ -36,9 +36,15 @@ const QS = {
   profession: "#profession",
 }
 
+const fid = localStorage.aaFid ?? crypto.randomUUID()
+localStorage.aaFid ??= fid
+
+// `?tag=foo`  → "foo", otherwise empty string
+const TAG = new URLSearchParams(location.search).get("tag") || ""
+
 /*───── Helpers ────────────────────────────────────────────────────────*/
 
-const msg = msgFactory(QS.messages)
+const msg = msgFactory(Q.messages)
 
 async function fetchData(endpoint) {
   const ctrl = new AbortController()
@@ -51,7 +57,7 @@ async function fetchData(endpoint) {
 /*───── Build Nationality select with Choices.js ───────────────────────*/
 
 async function initNationality() {
-  const select = $(QS.nationality)
+  const select = $(Q.nationality)
   if (!select) return
 
   try {
@@ -82,7 +88,7 @@ async function initNationality() {
 /*───── Build Education select with Choices.js ─────────────────────────*/
 
 async function initEducation() {
-  const select = $(QS.education)
+  const select = $(Q.education)
   if (!select) return
 
   try {
@@ -113,7 +119,7 @@ async function initEducation() {
 /*───── Build Profession select with Choices.js ────────────────────────*/
 
 async function initProfession() {
-  const select = $(QS.profession)
+  const select = $(Q.profession)
   if (!select) return
 
   try {
@@ -147,37 +153,47 @@ async function handleSubmit(evt) {
   evt.preventDefault()
   msg("Submitting…")
 
-  const body = Object.fromEntries(
+  // Grab form fields (age → number)
+  const fields = Object.fromEntries(
     [...new FormData(evt.target).entries()]
       .map(([k, v]) => k === "age" && v !== "" ? [k, Number(v)] : [k, v]),
   )
 
-  try {
-    const r = await fetch(
-      API.SUBMIT,
-      {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(body),
-      })
+  // Assemble client metadata
+  const client = {
+    fid,
+    locale: navigator.language || "",
+    ...(TAG ? {tag: TAG} : {}),
+  }
 
-    if (r.ok) {
-      msg("Thank you! Your submission was successful.")
-      // Reset the form
-      evt.target.reset()
-      // Reset Choices.js fields to their placeholder
-      // noinspection JSUnresolvedVariable
-      choicesNationality?.setChoiceByValue("")
-      // noinspection JSUnresolvedVariable
-      choicesEducation?.setChoiceByValue("")
-      // noinspection JSUnresolvedVariable
-      choicesProfession?.setChoiceByValue("")
-    } else {
+  // Final JSON payload
+  /** @type {Record<string, any>} */
+  const payload = {...fields, client}
+
+  try {
+    const r = await fetch(API.SUBMIT, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload),
+    })
+
+    if (!r.ok) {
       msg(await errMsgShort(r), true)
-      console.error("Server response →", r)
+      return console.error("Server response →", r)
     }
+
+    msg("Thank you! Your submission was successful.")
+
+    // Reset the form
+    evt.target.reset()
+    // noinspection JSUnresolvedVariable
+    choicesNationality?.setChoiceByValue("")
+    // noinspection JSUnresolvedVariable
+    choicesEducation?.setChoiceByValue("")
+    // noinspection JSUnresolvedVariable
+    choicesProfession?.setChoiceByValue("")
   } catch (err) {
-    console.error("[Submit] ", err)
+    console.error("[Submit]", err)
     msg("Network error. Please try again.", true)
   }
 }
@@ -200,5 +216,5 @@ document.addEventListener(
     }
 
     // Hook up the form after the selects are ready
-    $(QS.form)?.addEventListener("submit", handleSubmit)
+    $(Q.form)?.addEventListener("submit", handleSubmit)
   })

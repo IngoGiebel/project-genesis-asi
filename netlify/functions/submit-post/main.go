@@ -26,8 +26,8 @@ import (
 
 type postIn struct {
 	// ─── Author + post (required) ─────────────────────────
-	Author   string `json:"author"`
-	Content  string `json:"content"`
+	Author  string `json:"author"`
+	Content string `json:"content"`
 
 	// ─── Client metadata  ─────────────────────────────────
 	Client struct {
@@ -40,15 +40,15 @@ type postIn struct {
 //nolint:tagalign
 type postDoc struct {
 	// ─── Author + post (required) ─────────────────────────
-	Author  string         `firestore:"author"           json:"author"`
-	Content string         `firestore:"content"          json:"content"`
+	Author  string `firestore:"author"           json:"author"`
+	Content string `firestore:"content"          json:"content"`
 	// ─── Server / client metadata  ────────────────────────
 	// UTC timestamp
-	Date    time.Time      `firestore:"date,omitempty"   json:"date,omitempty"`
+	Date time.Time `firestore:"date,omitempty"   json:"date,omitempty"`
 	// {mode, version}
-	Server  map[string]any `firestore:"server,omitempty" json:"server,omitempty"`
+	Server map[string]any `firestore:"server,omitempty" json:"server,omitempty"`
 	// {tag, fid, locale}
-	Client  map[string]any `firestore:"client,omitempty" json:"client,omitempty"`
+	Client map[string]any `firestore:"client,omitempty" json:"client,omitempty"`
 }
 
 /*────────────────── Handler ────────────────────────────────────────*/
@@ -111,6 +111,14 @@ func handleCreate(
 	defer cleanup()
 
 	// ─── Build document to store ──────────────────────────
+	clientData := map[string]any{
+		"fid":    in.Client.Fid,
+		"locale": in.Client.Locale,
+	}
+	if in.Client.Tag != "" {
+		clientData["tag"] = in.Client.Tag
+	}
+
 	doc := postDoc{
 		// Author & content
 		Author:  in.Author,
@@ -122,12 +130,9 @@ func handleCreate(
 			"mode":    os.Getenv(shared.EnvServerMode),
 			"version": version.Version,
 		},
-		Client: map[string]any{
-			"tag":    in.Client.Tag,
-			"fid":    in.Client.Fid,
-			"locale": in.Client.Locale,
-		},
+		Client: clientData,
 	}
+
 	// ─── Insert into discussionPosts ──────────────────────
 	ref, _, err := client.Collection("discussionPosts").Add(ctx, doc)
 	if err != nil {

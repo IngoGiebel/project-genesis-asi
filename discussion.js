@@ -22,18 +22,12 @@ const json = async (u, o) => {
   return r.json()
 }
 
-const fid = localStorage.aaFid ?? crypto.randomUUID()
-
-localStorage.aaFid ??= fid
-
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
   SUBMIT: ".netlify/functions/submit-post",
   LIST: ".netlify/functions/submit-post",
 }
-
-const TAG = new URLSearchParams(location.search).get("tag") ?? window.DISCUSSION_TAG ?? ""
 
 const Q = {
   form: "#discussion-post-form",
@@ -42,6 +36,12 @@ const Q = {
   text: "#post-content",
   list: "#posts-container",
 }
+
+const fid = localStorage.aaFid ?? crypto.randomUUID()
+localStorage.aaFid ??= fid
+
+// `?tag=foo`  → "foo", otherwise empty string
+const TAG = new URLSearchParams(location.search).get("tag") || ""
 
 /*───── State ──────────────────────────────────────────────────────────*/
 
@@ -107,11 +107,11 @@ async function handleSubmit(e) {
     author: $(Q.who).value.trim(),
     content: easyMDE.value().trim(),
     client: {
-      tag: TAG,
       fid,
       locale: navigator.language || "",
     },
   }
+  if (TAG) body.client.tag = TAG
 
   try {
     const r = await fetch(

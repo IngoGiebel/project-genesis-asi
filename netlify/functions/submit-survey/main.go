@@ -22,13 +22,13 @@ import (
 
 type postIn struct {
 	// ─── Answers (required) ───────────────────────────────
-	AICanBeConscious     string `json:"ai_can_be_conscious"`
-	Age                  int    `json:"age"`
-	Sex                  string `json:"sex"`
-	Nationality          string `json:"nationality"`
-	Education            string `json:"education"`
-	Profession           string `json:"profession"`
-	AIFamiliarity        string `json:"ai_familiarity"`
+	AICanBeConscious string `json:"ai_can_be_conscious"`
+	Age              int    `json:"age"`
+	Sex              string `json:"sex"`
+	Nationality      string `json:"nationality"`
+	Education        string `json:"education"`
+	Profession       string `json:"profession"`
+	AIFamiliarity    string `json:"ai_familiarity"`
 	// ─── Optional reasoning fields ────────────────────────
 	Reasoning            string `json:"reasoning"`
 	MeasureConsciousness string `json:"measure_consciousness"`
@@ -36,34 +36,34 @@ type postIn struct {
 	AIDeclareRights      string `json:"ai_declare_rights"`
 	// ─── Client metadata  ─────────────────────────────────
 	Client struct {
-		Tag                string `json:"tag"`
-		Fid                string `json:"fid"`
-		Locale             string `json:"locale"`
+		Tag    string `json:"tag"`
+		Fid    string `json:"fid"`
+		Locale string `json:"locale"`
 	} `json:"client"`
 }
 
-//nolint:tagalign, lll
+//nolint:tagalign
 type postDoc struct {
 	// ─── Answers (required) ───────────────────────────────
-	AICanBeConscious     string          `firestore:"aiCanBeConscious"               json:"ai_can_be_conscious"`
-	Age                  int             `firestore:"age"                            json:"age"`
-	Sex                  string          `firestore:"sex"                            json:"sex"`
-	Nationality          string          `firestore:"nationality"                    json:"nationality"`
-	Education            string          `firestore:"education"                      json:"education"`
-	Profession           string          `firestore:"profession"                     json:"profession"`
-	AIFamiliarity        string          `firestore:"aiFamiliarity"                  json:"ai_familiarity"`
+	AICanBeConscious string `firestore:"aiCanBeConscious"               json:"ai_can_be_conscious"`
+	Age              int    `firestore:"age"                            json:"age"`
+	Sex              string `firestore:"sex"                            json:"sex"`
+	Nationality      string `firestore:"nationality"                    json:"nationality"`
+	Education        string `firestore:"education"                      json:"education"`
+	Profession       string `firestore:"profession"                     json:"profession"`
+	AIFamiliarity    string `firestore:"aiFamiliarity"                  json:"ai_familiarity"`
 	// ─── Optional reasoning fields ────────────────────────
-	Reasoning            string          `firestore:"reasoning,omitempty"            json:"reasoning,omitempty"`
-	MeasureConsciousness string          `firestore:"measureConsciousness,omitempty" json:"measure_consciousness,omitempty"`
-	AIRights             string          `firestore:"aiRights,omitempty"             json:"ai_rights,omitempty"`
-	AIDeclareRights      string          `firestore:"aiDeclareRights,omitempty"      json:"ai_declare_rights,omitempty"`
+	Reasoning            string `firestore:"reasoning,omitempty"            json:"reasoning,omitempty"`
+	MeasureConsciousness string `firestore:"measureConsciousness,omitempty" json:"measure_consciousness,omitempty"`
+	AIRights             string `firestore:"aiRights,omitempty"             json:"ai_rights,omitempty"`
+	AIDeclareRights      string `firestore:"aiDeclareRights,omitempty"      json:"ai_declare_rights,omitempty"`
 	// ─── Server / client metadata  ────────────────────────
 	// UTC timestamp
-	Date                 time.Time       `firestore:"date,omitempty"                 json:"date,omitempty"`
+	Date time.Time `firestore:"date,omitempty"                 json:"date,omitempty"`
 	// {mode, version}
-	Server               map[string]any `firestore:"server,omitempty"               json:"server,omitempty"`
+	Server map[string]any `firestore:"server,omitempty"               json:"server,omitempty"`
 	// {tag, fid, locale}
-	Client               map[string]any `firestore:"client,omitempty"               json:"client,omitempty"`
+	Client map[string]any `firestore:"client,omitempty"               json:"client,omitempty"`
 }
 
 /*────────────────── Handler ────────────────────────────────────────*/
@@ -130,6 +130,14 @@ func handleCreate(
 	defer cleanup()
 
 	// ─── Build document to store ──────────────────────────
+	clientData := map[string]any{
+		"fid":    in.Client.Fid,
+		"locale": in.Client.Locale,
+	}
+	if in.Client.Tag != "" {
+		clientData["tag"] = in.Client.Tag
+	}
+
 	doc := postDoc{
 		// Answers
 		AICanBeConscious:     in.AICanBeConscious,
@@ -147,14 +155,10 @@ func handleCreate(
 		// Metadata
 		Date: time.Now().UTC(),
 		Server: map[string]any{
-			"mode":             os.Getenv(shared.EnvServerMode),
-			"version":          version.Version,
+			"mode":    os.Getenv(shared.EnvServerMode),
+			"version": version.Version,
 		},
-		Client: map[string]any{
-			"tag":              in.Client.Tag,
-			"fid":              in.Client.Fid,
-			"locale":           in.Client.Locale,
-		},
+		Client: clientData,
 	}
 
 	// ─── Insert into surveySubmissions ────────────────────
