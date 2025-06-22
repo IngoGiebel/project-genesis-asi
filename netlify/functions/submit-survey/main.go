@@ -15,6 +15,7 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 
 	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/shared"
+	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/version"
 )
 
 /*────────────────── Data model ─────────────────────────────────────*/
@@ -147,7 +148,7 @@ func handleCreate(
 		Date: time.Now().UTC(),
 		Server: map[string]any{
 			"mode":             os.Getenv(shared.EnvServerMode),
-			"version":          os.Getenv(shared.EnvServerVersion),
+			"version":          version.Version,
 		},
 		Client: map[string]any{
 			"tag":              in.Client.Tag,

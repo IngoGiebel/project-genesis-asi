@@ -6,8 +6,6 @@ package shared
 const (
 	// EnvServerMode = "prod" | "test"
 	EnvServerMode    = "SERVER_MODE"
-	// EnvServerVersion = git SHA or "v1.2.3"
-	EnvServerVersion = "SERVER_VERSION"
 )
 
 // MaxPosts generic limit / paging constant.

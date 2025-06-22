@@ -19,6 +19,7 @@ import (
 	"google.golang.org/api/iterator"
 
 	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/shared"
+	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/version"
 )
 
 /*────────────────── Data model ─────────────────────────────────────*/
@@ -119,7 +120,7 @@ func handleCreate(
 		Date: time.Now().UTC(),
 		Server: map[string]any{
 			"mode":    os.Getenv(shared.EnvServerMode),
-			"version": os.Getenv(shared.EnvServerVersion),
+			"version": version.Version,
 		},
 		Client: map[string]any{
 			"tag":    in.Client.Tag,
