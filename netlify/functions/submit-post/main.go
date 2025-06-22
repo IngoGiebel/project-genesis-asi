@@ -1,7 +1,8 @@
-// netlify/functions/submit-post/main.go
+// Located at: netlify/functions/submit-post/main.go
 package main
 
 import (
+	"cloud.google.com/go/firestore"
 	"context"
 	"encoding/json"
 	"errors"
@@ -9,17 +10,13 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"os"
 	"strings"
-	"time"
 
-	"cloud.google.com/go/firestore"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"google.golang.org/api/iterator"
 
 	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/shared"
-	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/version"
 )
 
 /*────────────────── Data model ─────────────────────────────────────*/
@@ -28,7 +25,6 @@ type postIn struct {
 	// ─── Author + post (required) ─────────────────────────
 	Author  string `json:"author"`
 	Content string `json:"content"`
-
 	// ─── Client metadata  ─────────────────────────────────
 	Client struct {
 		Tag    string `json:"tag"`
@@ -43,10 +39,8 @@ type postDoc struct {
 	Author  string `firestore:"author"           json:"author"`
 	Content string `firestore:"content"          json:"content"`
 	// ─── Server / client metadata  ────────────────────────
-	// UTC timestamp
-	Date time.Time `firestore:"date,omitempty"   json:"date,omitempty"`
-	// {mode, version}
-	Server map[string]any `firestore:"server,omitempty" json:"server,omitempty"`
+	// {date, mode, version}
+	Server map[string]any `firestore:"server" json:"server"`
 	// {tag, fid, locale}
 	Client map[string]any `firestore:"client,omitempty" json:"client,omitempty"`
 }
@@ -81,8 +75,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 
 func handleCreate(
 	ctx context.Context,
-	req events.APIGatewayProxyRequest,
-) (events.APIGatewayProxyResponse, error) {
+	req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	// ─── Decode & trim text fields ────────────────────────
 	var in postIn
 
@@ -111,26 +104,17 @@ func handleCreate(
 	defer cleanup()
 
 	// ─── Build document to store ──────────────────────────
-	clientData := map[string]any{
-		"fid":    in.Client.Fid,
-		"locale": in.Client.Locale,
-	}
-	if in.Client.Tag != "" {
-		clientData["tag"] = in.Client.Tag
-	}
-
 	doc := postDoc{
 		// Author & content
 		Author:  in.Author,
 		Content: in.Content,
-
 		// Metadata
-		Date: time.Now().UTC(),
-		Server: map[string]any{
-			"mode":    os.Getenv(shared.EnvServerMode),
-			"version": version.Version,
-		},
-		Client: clientData,
+		Server: shared.BuildServerMeta(),
+		Client: shared.BuildClientMeta(shared.ClientIn{
+			Tag:    in.Client.Tag,
+			Fid:    in.Client.Fid,
+			Locale: in.Client.Locale,
+		}),
 	}
 
 	// ─── Insert into discussionPosts ──────────────────────
@@ -154,8 +138,7 @@ func handleCreate(
 
 func handleList(
 	ctx context.Context,
-	_ events.APIGatewayProxyRequest,
-) (events.APIGatewayProxyResponse, error) {
+	_ events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	app, err := shared.FirestoreApp(ctx)
 	if err != nil {
 		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
@@ -174,7 +157,7 @@ func handleList(
 
 	iter := client.
 		Collection("discussionPosts").
-		OrderBy("date", firestore.Desc).
+		OrderBy("server.date", firestore.Desc).
 		Limit(shared.MaxPosts).
 		Documents(ctx)
 

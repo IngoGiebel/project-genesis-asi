@@ -50,9 +50,9 @@ const msg = msgFactory(Q.msg)
 
 /*───── View helpers ───────────────────────────────────────────────────*/
 
-function renderPost({author, content = "", date}) {
+function renderPost({author, content = "", server = {}}) {
+  const ts = new Date(server.date).toLocaleString()
   const html = content.trim() ? DOMPurify.sanitize(marked.parse(content)) : ""
-  const ts = date ? new Date(date).toLocaleString() : ""
   return `
     <article class="post-card">
       <header>${author || "Anonymous"}</header>

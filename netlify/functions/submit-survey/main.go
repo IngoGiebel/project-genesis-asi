@@ -7,15 +7,12 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 	"strings"
-	"time"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 
 	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/shared"
-	"github.com/IngoGiebel/project-genesis-asi/netlify/functions/version"
 )
 
 /*────────────────── Data model ─────────────────────────────────────*/
@@ -45,25 +42,23 @@ type postIn struct {
 //nolint:tagalign
 type postDoc struct {
 	// ─── Answers (required) ───────────────────────────────
-	AICanBeConscious string `firestore:"aiCanBeConscious"               json:"ai_can_be_conscious"`
-	Age              int    `firestore:"age"                            json:"age"`
-	Sex              string `firestore:"sex"                            json:"sex"`
-	Nationality      string `firestore:"nationality"                    json:"nationality"`
-	Education        string `firestore:"education"                      json:"education"`
-	Profession       string `firestore:"profession"                     json:"profession"`
-	AIFamiliarity    string `firestore:"aiFamiliarity"                  json:"ai_familiarity"`
+	AICanBeConscious string `firestore:"aiCanBeConscious"                   json:"ai_can_be_conscious"`
+	Age              int    `firestore:"age"                                json:"age"`
+	Sex              string `firestore:"sex"                                json:"sex"`
+	Nationality      string `firestore:"nationality"                        json:"nationality"`
+	Education        string `firestore:"education"                          json:"education"`
+	Profession       string `firestore:"profession"                         json:"profession"`
+	AIFamiliarity    string `firestore:"aiFamiliarity"                      json:"ai_familiarity"`
 	// ─── Optional reasoning fields ────────────────────────
 	Reasoning            string `firestore:"reasoning,omitempty"            json:"reasoning,omitempty"`
 	MeasureConsciousness string `firestore:"measureConsciousness,omitempty" json:"measure_consciousness,omitempty"`
 	AIRights             string `firestore:"aiRights,omitempty"             json:"ai_rights,omitempty"`
 	AIDeclareRights      string `firestore:"aiDeclareRights,omitempty"      json:"ai_declare_rights,omitempty"`
 	// ─── Server / client metadata  ────────────────────────
-	// UTC timestamp
-	Date time.Time `firestore:"date,omitempty"                 json:"date,omitempty"`
-	// {mode, version}
-	Server map[string]any `firestore:"server,omitempty"               json:"server,omitempty"`
+	// {date, mode, version}
+	Server map[string]any `firestore:"server"                               json:"server"`
 	// {tag, fid, locale}
-	Client map[string]any `firestore:"client,omitempty"               json:"client,omitempty"`
+	Client map[string]any `firestore:"client,omitempty"                     json:"client,omitempty"`
 }
 
 /*────────────────── Handler ────────────────────────────────────────*/
@@ -94,8 +89,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 
 func handleCreate(
 	ctx context.Context,
-	req events.APIGatewayProxyRequest,
-) (events.APIGatewayProxyResponse, error) {
+	req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	// ─── Decode & trim text fields ────────────────────────
 	var in postIn
 
@@ -130,14 +124,6 @@ func handleCreate(
 	defer cleanup()
 
 	// ─── Build document to store ──────────────────────────
-	clientData := map[string]any{
-		"fid":    in.Client.Fid,
-		"locale": in.Client.Locale,
-	}
-	if in.Client.Tag != "" {
-		clientData["tag"] = in.Client.Tag
-	}
-
 	doc := postDoc{
 		// Answers
 		AICanBeConscious:     in.AICanBeConscious,
@@ -151,14 +137,13 @@ func handleCreate(
 		MeasureConsciousness: in.MeasureConsciousness,
 		AIRights:             in.AIRights,
 		AIDeclareRights:      in.AIDeclareRights,
-
 		// Metadata
-		Date: time.Now().UTC(),
-		Server: map[string]any{
-			"mode":    os.Getenv(shared.EnvServerMode),
-			"version": version.Version,
-		},
-		Client: clientData,
+		Server: shared.BuildServerMeta(),
+		Client: shared.BuildClientMeta(shared.ClientIn{
+			Tag:    in.Client.Tag,
+			Fid:    in.Client.Fid,
+			Locale: in.Client.Locale,
+		}),
 	}
 
 	// ─── Insert into surveySubmissions ────────────────────
