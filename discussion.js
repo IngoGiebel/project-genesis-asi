@@ -140,7 +140,7 @@ async function fetchAndDisplayPosts() {
   const c = $(Q.list)
   if (!c) return
   try {
-    const posts = await json(API.LIST)
+    const posts = (await json(API.LIST)) ?? []
     c.innerHTML = posts.length
       ? posts.map(renderPost).join("")
       : `<p class="fst-italic">No posts yet – be the first to contribute!</p>`
