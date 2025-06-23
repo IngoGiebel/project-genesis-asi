@@ -86,6 +86,14 @@ function initializeEditor() {
     ],
     placeholder: "Enter your thoughts here... You can use Markdown for formatting.",
   })
+
+  // noinspection JSUnresolvedReference
+  const src = easyMDE.codemirror.getInputField()
+  // Duck-type native validation API
+  if (!src.setCustomValidity) src.setCustomValidity = () => {
+  }
+  if (!src.reportValidity) src.reportValidity = () => true
+
   // noinspection JSUnresolvedReference
   easyMDE.codemirror.on("change", validateEditor)
   validateEditor()
@@ -93,14 +101,25 @@ function initializeEditor() {
 
 /*───── Network ────────────────────────────────────────────────────────*/
 
-async function handleSubmit(e) {
-  e.preventDefault()
+async function handleSubmit(evt) {
+  evt.preventDefault()
   msg("Submitting…")
+
+  // Trim & validate
+  const author = $(Q.who).value.trim()
+  const content = easyMDE.value().trim()
+
+  if (!content) {
+    msg("Please enter a post.", true)
+    // noinspection JSUnresolvedReference
+    easyMDE.codemirror.focus()
+    return
+  }
 
   // noinspection JSUnresolvedReference
   const body = {
-    author: $(Q.who).value.trim(),
-    content: easyMDE.value().trim(),
+    author,
+    content,
     client: buildClientMeta(),
   }
 
@@ -116,7 +135,7 @@ async function handleSubmit(e) {
     if (!r.ok) throw new Error(await errMsgShort(r))
     msg("Thank you! Your post has been submitted.")
 
-    e.target.reset()
+    evt.target.reset()
     // noinspection JSUnresolvedReference
     easyMDE.value("")
     // Refresh list after a successful submit

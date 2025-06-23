@@ -348,8 +348,8 @@ input[type="radio"]:focus-visible {
   margin-top: .5rem;
 }
 
-.post-card ::selection     {
-  background-color: rgba(138,180,248,.35);
+.post-card ::selection {
+  background-color: rgba(138, 180, 248, .35);
 }
 
 /*────────────────────────────────────────────────────────────────────────
