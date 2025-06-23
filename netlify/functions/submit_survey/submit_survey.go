@@ -1,4 +1,4 @@
-// Located at: netlify/functions/submit-survey/main.go
+// Located at: netlify/functions/submit_survey/submit_survey.go
 package main
 
 import (
@@ -85,7 +85,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	return shared.JSONError(http.StatusMethodNotAllowed, "method not allowed"), nil
 }
 
-/*────────────────── POST  /submit-survey ───────────────────────────*/
+/*────────────────── POST  /submit_survey ───────────────────────────*/
 
 func handleCreate(
 	ctx context.Context,

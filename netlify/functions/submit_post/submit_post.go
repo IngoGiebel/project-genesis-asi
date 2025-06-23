@@ -1,4 +1,4 @@
-// Located at: netlify/functions/submit-post/main.go
+// Located at: netlify/functions/submit_post/submit_post.go
 package main
 
 import (
@@ -71,7 +71,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	}
 }
 
-/*────────────────── POST  /submit-post ─────────────────────────────*/
+/*────────────────── POST  /submit_post ─────────────────────────────*/
 
 func handleCreate(
 	ctx context.Context,
@@ -134,7 +134,7 @@ func handleCreate(
 	}, nil
 }
 
-/*────────────────── GET  /submit-post ───────────────────────────────*/
+/*────────────────── GET  /submit_post ───────────────────────────────*/
 
 func handleList(
 	ctx context.Context,

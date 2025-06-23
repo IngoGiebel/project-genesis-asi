@@ -26,8 +26,8 @@ const json = async (u, o) => {
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
-  SUBMIT: ".netlify/functions/submit-post",
-  LIST: ".netlify/functions/submit-post",
+  SUBMIT: ".netlify/functions/submit_post",
+  LIST: ".netlify/functions/submit_post",
 }
 
 const Q = {

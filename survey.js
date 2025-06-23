@@ -26,7 +26,7 @@ const API = {
   COUNTRIES: "data/countries.min.json",
   EDUCATION: "data/education.min.json",
   PROFESSION: "data/profession.min.json",
-  SUBMIT: ".netlify/functions/submit-survey",
+  SUBMIT: ".netlify/functions/submit_survey",
 }
 
 const Q = {
