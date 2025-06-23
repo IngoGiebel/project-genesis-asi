@@ -49,19 +49,13 @@ export function keepHighlightVisible(choices) {
  */
 export function selectInputValue(choices) {
   // noinspection JSUnresolvedVariable
-  choices.passedElement.element.addEventListener(
-    "showDropdown",
-    () => {
-      requestAnimationFrame(() => {
-        const input = choices.input.element
-        const choice = choices.getValue()
+  choices.passedElement.element.addEventListener("showDropdown", () => {
+    requestAnimationFrame(() => {
+      const input = choices.input.element
+      const choice = choices.getValue()
 
-        if (choice.value) {
-          input.value = choice.label
-        }
-        input.focus()
-        input.select()
-
+      if (choice && typeof choice === "object") {
+        input.value = choice.label
         // noinspection JSUnresolvedVariable
         const el = choices.choiceList.element.querySelector(`.choices__item[data-value="${choice.value}"]`)
         if (el) {
@@ -70,7 +64,9 @@ export function selectInputValue(choices) {
           choices.choiceList.element.querySelector(".is-highlighted")?.classList.remove("is-highlighted")
           el.classList.add("is-highlighted")
         }
-      })
-    },
-  )
+      }
+      input.focus()
+      input.select()
+    })
+  })
 }
