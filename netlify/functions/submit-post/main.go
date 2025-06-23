@@ -10,6 +10,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -155,8 +156,10 @@ func handleList(
 		}
 	}()
 
+	mode := os.Getenv(shared.EnvServerMode)
 	iter := client.
 		Collection("discussionPosts").
+		Where("server.mode", "==", mode).
 		OrderBy("server.date", firestore.Desc).
 		Limit(shared.MaxPosts).
 		Documents(ctx)
