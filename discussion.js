@@ -11,6 +11,7 @@ import {marked} from "https://cdn.jsdelivr.net/npm/marked@15/+esm"
 import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3/+esm"
 
 import {errMsgShort, msgFactory} from "./helpers.js"
+import {buildClientMeta} from "./meta.js"
 
 /*───── Tiny helpers ───────────────────────────────────────────────────*/
 
@@ -36,12 +37,6 @@ const Q = {
   text: "#post-content",
   list: "#posts-container",
 }
-
-const fid = localStorage.aaFid ?? crypto.randomUUID()
-localStorage.aaFid ??= fid
-
-// `?tag=foo`  → "foo", otherwise empty string
-const TAG = new URLSearchParams(location.search).get("tag") || ""
 
 /*───── State ──────────────────────────────────────────────────────────*/
 
@@ -106,12 +101,8 @@ async function handleSubmit(e) {
   const body = {
     author: $(Q.who).value.trim(),
     content: easyMDE.value().trim(),
-    client: {
-      fid,
-      locale: navigator.language || "",
-    },
+    client: buildClientMeta(),
   }
-  if (TAG) body.client.tag = TAG
 
   try {
     const r = await fetch(

@@ -9,6 +9,7 @@ citation:
 resources:
   - choices-utils.js
   - helpers.js
+  - meta.js
   - data/countries.min.json
   - data/education.min.json
   - data/profession.min.json

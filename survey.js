@@ -10,6 +10,7 @@ import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11/+esm"
 
 import {keepHighlightVisible, selectInputValue} from "./choices-utils.js"
 import {$, errMsgShort, msgFactory} from "./helpers.js"
+import {buildClientMeta} from "./meta.js"
 
 /*───── Declare Choices.js instances type ──────────────────────────────*/
 
@@ -35,12 +36,6 @@ const Q = {
   education: "#education",
   profession: "#profession",
 }
-
-const fid = localStorage.aaFid ?? crypto.randomUUID()
-localStorage.aaFid ??= fid
-
-// `?tag=foo`  → "foo", otherwise empty string
-const TAG = new URLSearchParams(location.search).get("tag") || ""
 
 /*───── Helpers ────────────────────────────────────────────────────────*/
 
@@ -159,16 +154,11 @@ async function handleSubmit(evt) {
       .map(([k, v]) => k === "age" && v !== "" ? [k, Number(v)] : [k, v]),
   )
 
-  // Assemble client metadata
-  const client = {
-    fid,
-    locale: navigator.language || "",
-    ...(TAG ? {tag: TAG} : {}),
-  }
-
   // Final JSON payload
-  /** @type {Record<string, any>} */
-  const payload = {...fields, client}
+  const payload = {
+    ...fields,
+    client: buildClientMeta(),
+  }
 
   try {
     const r = await fetch(API.SUBMIT, {
