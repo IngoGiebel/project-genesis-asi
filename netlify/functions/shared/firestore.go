@@ -4,7 +4,6 @@ package shared
 
 import (
 	"context"
-	"log"
 	"os"
 	"sync"
 
@@ -56,7 +55,7 @@ func FirestoreClient(ctx context.Context) (*firestore.Client, func(), error) {
 
 	cleanup := func() {
 		if err := cl.Close(); err != nil {
-			log.Printf("firestore close: %v", err)
+			Logger.Error("firestore close", "err", err)
 		}
 	}
 

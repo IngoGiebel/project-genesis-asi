@@ -8,7 +8,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -140,21 +139,12 @@ func handleCreate(
 func handleList(
 	ctx context.Context,
 	_ events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	app, err := shared.FirestoreApp(ctx)
+	// ─── Firestore bootstrap ──────────────────────────────
+	client, cleanup, err := shared.FirestoreClient(ctx)
 	if err != nil {
 		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
 	}
-
-	client, err := app.Firestore(ctx)
-	if err != nil {
-		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
-	}
-
-	defer func() {
-		if cerr := client.Close(); cerr != nil {
-			log.Printf("firestore close: %v", cerr)
-		}
-	}()
+	defer cleanup()
 
 	mode := os.Getenv(shared.EnvServerMode)
 	iter := client.
