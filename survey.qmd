@@ -48,13 +48,13 @@ Thank you for your contribution!
     <label><input type="radio" name="sex" value="prefer_not_to_say"> Prefer not to say</label><br>
     
     <label for="nationality">Nationality:</label><br>
-    <select id="nationality" name="nationality" required></select><br>
+    <select id="nationality" name="nationality"></select><br>
 
     <label for="education">Highest level of education completed:</label><br>
-    <select id="education" name="education" required></select><br>
+    <select id="education" name="education"></select><br>
 
     <label for="profession">Profession or primary field of study/work:</label><br>
-    <select id="profession" name="profession" required></select><br>
+    <select id="profession" name="profession"></select><br>
 
     <label>How familiar are you with AI concepts?</label><br>
     <label><input type="radio" name="ai_familiarity" value="1_not_at_all" required> 1 - Not at all familiar</label><br>

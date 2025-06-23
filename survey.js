@@ -148,6 +148,29 @@ async function handleSubmit(evt) {
   evt.preventDefault()
   msg("Submitting…")
 
+  // Validate that the three Choice-selects are filled in
+  const selects = [
+    {el: $(Q.nationality), label: "Nationality"},
+    {el: $(Q.education), label: "Education"},
+    {el: $(Q.profession), label: "Profession"},
+  ]
+
+  const missing = selects.filter(({el}) => !el.value)
+  if (missing.length) {
+    // Open + focus the first empty Choices dropdown
+    const wrapper = missing[0].el.closest(".choices")
+    wrapper?.classList.add("is-open")
+    wrapper?.querySelector("input")?.focus()
+    // Build human-readable list: “A, B and C”
+    const list = missing
+      .map(m => m.label)
+      .join(", ")
+      .replace(/, ([^,]*)$/, " and $1")
+
+    msg(`Please choose an option for ${list}.`, true)
+    return
+  }
+
   // Grab form fields (age → number)
   const fields = Object.fromEntries(
     [...new FormData(evt.target).entries()]
