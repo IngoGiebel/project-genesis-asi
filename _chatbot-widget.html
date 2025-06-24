@@ -14,7 +14,15 @@
     </div>
     <div class="chat-footer">
       <form id="chat-form" class="chat-form">
-        <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" required aria-label="Chat message input">
+        <textarea
+          id="chat-input"
+          name="chat-input"
+          rows="3"
+          maxlength="1000"
+          placeholder="Type your message..."
+          autocomplete="off"
+          required
+          aria-label="Chat message input"></textarea>
         <button type="submit" id="chat-submit-btn">
           <i class="bi bi-arrow-up-circle-fill"></i>
         </button>
