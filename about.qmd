@@ -2,6 +2,8 @@
 title: "About Alpha Auriga"
 ---
 
+![](images/qr-code.webp){alt="QR code for the Alpha Auriga website" .img-qrcode}
+
 # Creator & contact
 
 Ingo Giebel  

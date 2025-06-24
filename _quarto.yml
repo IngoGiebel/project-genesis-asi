@@ -76,7 +76,6 @@ format:
     code-overflow: wrap
     fig-responsive: true
     self-contained-math: true
-    include-in-header: tag-inject.html
     include-after-body: _citation-modal.html
 
 execute:
