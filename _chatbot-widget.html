@@ -1,0 +1,31 @@
+<div id="chatbot-container">
+  <!-- The main chat window, hidden by default -->
+  <div id="chat-window" class="chat-window">
+    <div class="chat-header">
+      <span class="chat-title">Alpha Auriga assistant</span>
+      <button id="close-chat-btn" class="close-chat-btn">&times;</button>
+    </div>
+    <div id="chat-body" class="chat-body">
+      <!-- Chat messages will be added here by JavaScript -->
+      <div class="chat-message ai-message">
+        <p>Hello! I am the Alpha Auriga project assistant, powered by Gemini. Ask me about AI, consciousness, or the
+          project's timeline.</p>
+      </div>
+    </div>
+    <div class="chat-footer">
+      <form id="chat-form" class="chat-form">
+        <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" required aria-label="Chat message input">
+        <button type="submit" id="chat-submit-btn">
+          <i class="bi bi-arrow-up-circle-fill"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- The floating button that opens the chat -->
+  <button id="open-chat-btn" class="open-chat-btn">
+    <i class="bi bi-chat-quote-fill"></i>
+  </button>
+</div>
+
+<script defer src="chatbot.js"></script>

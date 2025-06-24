@@ -27,6 +27,7 @@
 
   /* Z-layers */
   --z-dropdown: 999;
+  --z-chatbot: 999;
 }
 
 /*────────────────────────────────────────────────────────────────────────
@@ -444,6 +445,165 @@ form button[type="submit"]:hover {
 /* Hide Quarto’s auto-inserted appendix with the citation panel */
 #quarto-appendix {
   display: none;
+}
+
+/*────────────────────────────────────────────────────────────────────────
+  CHATBOT WIDGET
+─────────────────────────────────────────────────────────────────────────*/
+
+#chatbot-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: var(--z-chatbot);
+}
+
+/* The floating button to open the chat */
+.open-chat-btn {
+  background-color: var(--clr-accent);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+}
+
+.open-chat-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* The main chat window */
+.chat-window {
+  width: 370px;
+  max-width: 90vw;
+  height: 70vh;
+  max-height: 600px;
+  background-color: var(--clr-panel-solid);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Start hidden and scale down for animation */
+  transform: scale(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* Class to make the window visible */
+.chat-window.is-open {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Chat Header */
+.chat-header {
+  padding: 0.75rem 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--clr-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--clr-text-light);
+  font-weight: bold;
+}
+
+.close-chat-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Chat Body (where messages appear) */
+.chat-body {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.chat-message {
+  padding: 0.6rem 1rem;
+  border-radius: 1rem;
+  max-width: 80%;
+  line-height: 1.5;
+}
+
+.chat-message p {
+  margin: 0;
+}
+
+.user-message {
+  background-color: var(--clr-accent);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 0.2rem;
+}
+
+.ai-message {
+  background-color: var(--clr-panel);
+  color: var(--clr-text-main);
+  align-self: flex-start;
+  border-bottom-left-radius: 0.2rem;
+}
+
+/* Chat Footer (input area) */
+.chat-footer {
+  padding: 0.5rem;
+  border-top: 1px solid var(--clr-border);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.chat-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#chat-input {
+  flex-grow: 1;
+  background-color: var(--clr-panel);
+  color: var(--clr-text-main);
+  border: 1px solid var(--clr-border);
+  border-radius: 50px; /* Pill shape */
+  padding: 0.5rem 1rem;
+  outline: none;
+}
+
+#chat-input:focus {
+  border-color: var(--clr-link);
+  box-shadow: 0 0 0 .2rem rgba(42, 159, 214, .25);
+}
+
+#chat-submit-btn {
+  background: none;
+  border: none;
+  color: var(--clr-accent);
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  transition: color 0.2s ease;
+}
+
+#chat-submit-btn:hover {
+  color: #fff;
 }
 
 /*────────────────────────────────────────────────────────────────────────

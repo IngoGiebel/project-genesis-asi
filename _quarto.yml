@@ -76,7 +76,9 @@ format:
     code-overflow: wrap
     fig-responsive: true
     self-contained-math: true
-    include-after-body: _citation-modal.html
+    include-after-body:
+      - _chatbot-widget.html
+      - _citation-modal.html
 
 execute:
   freeze: auto

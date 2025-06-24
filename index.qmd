@@ -1,6 +1,6 @@
 ---
 title: "Can a machine become conscious?"
-date: 2025-06-15
+date: 2025-06-25
 date-modified: last-modified
 keywords:
   - "Alpha Auriga"
