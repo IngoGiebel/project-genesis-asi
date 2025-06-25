@@ -35,13 +35,11 @@ func FirestoreApp(ctx context.Context) (*firebase.App, error) {
 	return app, appErr
 }
 
-// FirestoreClient returns an open *firestore.Client plus a cleanup
-// function you **must** call (typically `defer cleanup()`).
-//
+// FirestoreClient returns an open *firestore.Client plus a cleanup function you **must** call
+// (typically `defer cleanup()`):
 //   c, cleanup, err := shared.FirestoreClient(ctx)
 //   if err != nil { … }
 //   defer cleanup()
-//
 func FirestoreClient(ctx context.Context) (*firestore.Client, func(), error) {
 	app, err := FirestoreApp(ctx)
 	if err != nil {

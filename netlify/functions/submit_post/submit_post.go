@@ -73,9 +73,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 
 /*────────────────── POST  /submit_post ─────────────────────────────*/
 
-func handleCreate(
-	ctx context.Context,
-	req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func handleCreate(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	// ─── Decode & trim text fields ────────────────────────
 	var in postIn
 
