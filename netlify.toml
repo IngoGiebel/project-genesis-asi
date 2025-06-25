@@ -1,5 +1,5 @@
 [build]
-command = "quarto render"
+command = "quarto render && bash tools/make-site-dump.sh"
 publish = "_site"
 
 [functions]
@@ -8,6 +8,12 @@ directory = "netlify/functions"
 [build.environment]
 GO_VERSION = "1.24"
 SERVER_MODE = "prod"
+
+[context.dev]
+command = """
+    quarto render &&
+    bash tools/make-site-dump.sh
+  """
 
 [context.dev.environment]
 SERVER_MODE = "dev"

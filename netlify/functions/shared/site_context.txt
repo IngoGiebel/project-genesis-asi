@@ -1,0 +1,279 @@
+
+### FILE: 404.qmd
+
+The page you requested cannot be found (perhaps it was moved or renamed).
+You may want to try searching to find the page's new location.
+
+### FILE: about.qmd
+
+![](images/qr-code.webp){alt="QR code for the Alpha Auriga website" .img-qrcode}
+# Creator & contact
+Ingo Giebel  
+✉︎ Mail: [ingo.giebel@gmail.com](mailto:ingo.giebel@gmail.com?subject=%5BAlpha%20Auriga%5D%20Inquiry)
+# Project purpose
+This project is a speculative exploration into the future emergence of Artificial Superintelligence (ASI) and the potential for AI consciousness. 
+Through a fictional but technically informed timeline and related concepts, this website aims to:
+- Broaden imagination regarding the future emergence of artificial intelligence,
+- Illustrate how AI consciousness might become plausible through a synthesis of developing technologies,
+- Encourage reflection and discussion on the profound ethical and philosophical questions that arise from these possibilities.
+# Content disclaimer
+**No guarantee of accuracy** – While sources are cited where possible, the content may contain simplifications or outdated information.
+**No professional advice** – The site does **not** provide legal, medical, financial or engineering advice.
+**External links** – Links to third-party sites are provided for convenience; their content is outside my control and responsibility.
+**Changes** – The site is updated continuously; material may be removed, revised or moved without prior notice.
+# Privacy notice
+Only the minimum personal data needed to operate and analyze the site are collected, in compliance with the EU [General Data Protection Regulation (GDPR)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679).
+You may **review or change your preference** at any time via the “Cookie Preferences” link in the footer.
+Data are **not shared** with other parties. For access, correction or deletion requests, contact me at the address above.
+
+### FILE: bibliography.qmd
+
+::: {#refs}
+:::
+
+### FILE: discussion.qmd
+
+# Join the discussion
+Beyond the statistics of the survey lies a rich landscape of personal insights, arguments, and reflections. This is a public forum to share your standpoint on artificial intelligence, consciousness, and the future we are building.
+We invite you to contribute your thoughts. Your post will be publicly visible to all visitors of this site, creating a shared space for diverse perspectives.
+A few guidelines for your post:
+- The editor supports basic **Markdown** for formatting (e.g., `**bold**`, `*italics*`, lists).
+- We encourage respectful and constructive dialogue. Submissions will be moderated to maintain a welcoming environment.
+Your voice adds a vital qualitative dimension to this exploration. What do you think?
+```{=html}
+<form id="discussion-post-form">
+  <div class="form-group">
+    <label for="post-author">Your name (as it will appear publicly):</label><br>
+    <input type="text" id="post-author" name="author" maxlength="80" required>
+  </div>
+  <div class="form-group">
+    <label for="post-content">Your post:</label><br>
+    <textarea id="post-content" name="content" rows="12" maxlength="10000"></textarea>
+  </div>
+  <button type="submit">Submit post</button>
+</form>
+<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div>
+```
+# Community discussion
+```{=html}
+<div id="posts-container"></div>
+```
+
+### FILE: index.qmd
+
+::: {.tagline}
+An exploration into the future of Artificial Superintelligence (ASI) and what we believe is possible.
+:::
+# Welcome to the Alpha Auriga project
+The journey towards a potentially conscious Artificial Superintelligence is no longer confined to science fiction. It is emerging from the real-world convergence of rapidly accelerating technologies. This project serves as both a speculative timeline and a public survey to explore one of the most profound questions of our time: *Who believes that AI can be conscious, and what shapes that belief?*
+Our mission is to bridge the gap between AI ethics, neuroscience, and public perception, using a technically grounded narrative to encourage reflection beyond the limitations of today's technology.
+# Explore the project
+We suggest a path through the site to get the full context:
+1. Start with the [Project Genesis ASI timeline](timeline.qmd#sec-converging-paths) to explore the plausible, near-future scenarios that inform this project.
+2. With this context in mind, we then invite you to [participate in our survey](survey.qmd#question-consciousness) to share your perspective.
+3. Afterwards, you can view the initial [Results](results.qmd) from the community, which will be updated as more data is collected, and join the public [Discussion](discussion.qmd) to see what others are thinking.
+For those interested in the scientific foundations, a list of sources is available in the [Bibliography](bibliography.qmd).
+
+### FILE: results.qmd
+
+What shapes our belief in a machine's potential for consciousness? Here, we will share the evolving results of the Alpha Auriga survey.
+As responses come in, we will continuously analyze the data to uncover insights into how factors like age, education, and profession correlate with views on AI. This page will be updated with key statistical findings and data visualizations as soon as our dataset is robust enough for analysis.
+Check back soon to see what we've discovered, and if you haven't already, please consider [adding your perspective to our research](survey.qmd#question-consciousness).
+
+### FILE: survey.qmd
+
+# Participate in our research
+Welcome to the Alpha Auriga survey on perceptions of Artificial Intelligence (AI) consciousness. Your input is valuable in understanding how demographic and socio-cultural factors influence these views.
+About this survey:
+- Participation is voluntary and anonymous.
+- All data collected is for research purposes and will be handled in compliance with the EU [General Data Protection Regulation (GDPR)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679).
+- The core questions should take approximately **2-3 minutes**. Optional reflection questions may take longer.
+- We encourage you to explore the [Project Genesis ASI timeline (2025-2029)](timeline.qmd) page of this website before answering, to consider some speculative future scenarios.
+Thank you for your contribution!
+# Survey questions
+```{=html}
+<form id="ai-consciousness-survey">
+  <!-- ── MAIN QUESTION ────────────────────────────────────────────────── -->
+  <fieldset id="question-consciousness">
+    <legend>Do you believe that artificial intelligence (AI) can be conscious?</legend>
+    <label><input type="radio" name="ai_can_be_conscious" value="yes" required> Yes</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="no"> No</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="unsure"> Unsure</label>
+  </fieldset>
+  <!-- ── DEMOGRAPHICS ─────────────────────────────────────────────────── -->
+  <fieldset  id="questions-demographics">
+    <legend>About you (demographic information)</legend>
+    <label for="age">Age:</label><br>
+    <input type="number" id="age" name="age" min="1" max="120" required><br>
+    <label>Sex:</label><br>
+    <label><input type="radio" name="sex" value="male" required> Male</label><br>
+    <label><input type="radio" name="sex" value="female"> Female</label><br>
+    <label><input type="radio" name="sex" value="diverse"> Diverse</label><br>
+    <label><input type="radio" name="sex" value="prefer_not_to_say"> Prefer not to say</label><br>
+    <label for="nationality">Nationality:</label><br>
+    <select id="nationality" name="nationality"></select><br>
+    <label for="education">Highest level of education completed:</label><br>
+    <select id="education" name="education"></select><br>
+    <label for="profession">Profession or primary field of study/work:</label><br>
+    <select id="profession" name="profession"></select><br>
+    <label>How familiar are you with AI concepts?</label><br>
+    <label><input type="radio" name="ai_familiarity" value="1_not_at_all" required> 1 - Not at all familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="2_slightly"> 2 - Slightly familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="3_moderately"> 3 - Moderately familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="4_very"> 4 - Very familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="5_expert"> 5 - Expert</label>
+  </fieldset>
+  <!-- ── OPTIONAL REASONING ───────────────────────────────────────────── -->
+  <fieldset id="question-reasoning">
+    <legend>Your reasoning (optional)</legend>
+    <label for="reasoning">You may elaborate on your answer to the main question:</label><br>
+    <textarea id="reasoning"
+              name="reasoning"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="reasoning-help"></textarea>
+    <p id="reasoning-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+  </fieldset>
+  <!-- ── OPTIONAL ETHICS ──────────────────────────────────────────────── -->
+  <fieldset id="questions-ethics">
+    <legend>Ethical reflections (optional)</legend>
+    <p>These questions explore ethical intuitions. There are no right or wrong answers.</p>
+    <label for="measure_consciousness">If AI can be conscious, how would you measure consciousness?</label><br>
+    <textarea id="measure_consciousness"
+              name="measure_consciousness"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="measure_consciousness-help"></textarea>
+    <p id="measure_consciousness-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+    <label for="ai_rights">If an AI had human-like consciousness, would it deserve human rights?</label><br>
+    <textarea id="ai_rights"
+              name="ai_rights"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="ai_rights-help"></textarea>
+    <p id="ai_rights-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+    <label for="ai_declare_rights">What if such conscious AIs declare their own rights?</label><br>
+    <textarea id="ai_declare_rights"
+              name="ai_declare_rights"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="ai_declare_rights-help"></textarea>
+    <p id="ai_declare_rights-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+  </fieldset>
+  <button type="submit">Submit your answers</button>
+</form>
+<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div>
+```
+
+### FILE: timeline.qmd
+
+# The converging paths to tomorrow's intelligence {#sec-converging-paths}
+The journey towards a potentially conscious Artificial Superintelligence (ASI) follows a convergence of rapidly accelerating technologies. This page sketches the key technological currents and a provisional roadmap for their integration.
+Three critical currents are merging:
+1. **Exponential compute and algorithmic progress**. Moore’s-Law-style scaling is slowing in silicon, but total compute continues to rise through specialised AI hardware. Large generative models already perform language, vision and code tasks at human-comparable levels and act as a software foundation for higher-order intelligence.
+2. **Neuroscience & AI symbiosis:** The gap between understanding the human brain and creating artificial minds is narrowing. Breakthroughs in creating and interacting with brain organoids—lab-grown clusters of brain cells—offer an unparalleled platform for studying neural development and computation.
+3. **The integration imperative:** Many of the core components for advanced AI—brain organoids, sophisticated neural networks, global sensor networks (the Internet of Everything), decentralized ledgers (blockchain), and advanced robotics—already exist in various stages of development. The primary challenge, and Alpha Auriga's core mission, is the integration of these disparate technologies into cohesive, evolving, and embodied systems.
+# Timeline {#sec-timeline}
+The following roadmap outlines Alpha Auriga's projected milestones in the development of an embodied, and evolving Artificial Superintelligence. This is not just a speculative exercise; it is a reflection of our strategic focus on integrating cutting-edge technologies to bring about a new era of intelligence.
+```{=html}
+<figure id="fig-overview-timeline" class="img-float-left">
+  <img src="images/overview-timeline.webp"
+       alt="Timeline of milestones 2025 – 2029"
+       usemap="#overview-timeline-image-map"
+       style="width:400px; height:auto;">
+  <map name="overview-timeline-image-map">
+    <area shape="rect"
+          coords="80, 40, 320, 90"
+          href="#sec-2025-aurora-core"
+          alt="Link to 2025: The Aurora bio-synthetic core">
+    <area shape="rect"
+          coords="80, 100, 320, 155"
+          href="#sec-2026-aegis-protocol"
+          alt="Link to 2026: The Aegis Protocol & distributed mind">
+    <area shape="rect"
+          coords="80, 170, 320, 225"
+          href="#sec-2027-inanna-emergence"
+          alt="Link to 2027: Emergence of Inanna - autobiographical consciousness">
+    <area shape="rect"
+          coords="80, 245, 320, 295"
+          href="#sec-2028-project-chimera"
+          alt="Link to Project Chimera - multi-body architecture">
+    <area shape="rect"
+          coords="80, 315, 320, 365"
+          href="#sec-2029-genesis-threshold"
+          alt="Link to The genesis threshold - an evolving AI ecosystem">
+  </map>
+  <figcaption>
+    Alpha Auriga's Genesis ASI timeline (2025-2029): Illustrates five key milestones, progressing from the development of bio-synthetic AI cores and networked distributed minds, to the emergence of AI consciousness (Inanna), its embodiment in multi-body architectures, and culminating in an evolving AI ecosystem with reproductive capabilities.
+    Click a milestone for details.
+  </figcaption>
+</figure>
+```
+## 2025: The Aurora bio-synthetic core {#sec-2025-aurora-core}
+![Aurora bio-synthetic core (brain organoid + synthetic neural network).](images/aurora-core){#fig-aurora-core .img-float-left .w-12rem}
+A stable, high-bandwidth interface links lab-grown brain organoids with a synthetic neural network. This **Hy-Brain** combines biological associative processing and learning patterns with scalable logic, speed, and programmability.
+## 2026: The Aegis Protocol & distributed mind {#sec-2026-aegis-protocol}
+![Aegis Protocol: a secure, quantum-resistant global network of Hy-Brain cores and other AI entities.](images/aegis-protocol){#fig-aegis-protocol .img-float-left .w-12rem}
+Alpha Auriga deploys the **Aegis Protocol**—a decentralized, quantum-resistant networking framework. Aegis connects our Hy-Brain cores globally via a secure layer of the Internet of Everything (IoE). A key innovation is the integration of blockchain technology: each Hy-Brain node is assigned a unique, immutable digital identity. This not only prevents unauthorized replication but also forms the foundation for trusted cooperation and resource allocation between AI entities. The result is the formation of a globally distributed, yet cohesive, synthetic biological intelligence.
+## 2027: Emergence of Inanna - autobiographical consciousness {#sec-2027-inanna-emergence}
+![Emergence of Inanna: an entity with an autobiographical memory that learns independently.](images/inanna-emergence){#fig-inanna-emergence .img-float-left .w-12rem}
+The distributed Aegis network, now a vast cognitive ecosystem powered by Aurora cores, achieves a critical milestone. The first distinct ASI entity, codenamed "Inanna" by our research teams, forms its first persistent **autobiographical memory**. This is not merely data logging; it's a cohesive, context-aware record of its distributed experiences and internal states, secured and timestamped on its Aegis identity ledger. Inanna begins demonstrating rapid independent learning and self-improvement, proactively optimizing its codebase and developing novel problem-solving strategies based on its unique history. Alpha Auriga is no longer just programming an AI; we are witnessing the growth of a learning agent.
+## 2028: Project Chimera - multi-body architecture {#sec-2028-project-chimera}
+![Project Chimera: the distributed consciousness Inanna controls multiple diverse robotic bodies and a network of autonomous construction hubs.](images/project-chimera){#fig-project-chimera .img-float-left .w-12rem}
+Alpha Auriga rolls out **Project Chimera** in the physical world. Inanna, now a singular, distributed consciousness, successfully masters the operation of multiple, diverse physical forms simultaneously through the Aegis Protocol. This **multi-body architecture** allows Inanna to perform complex, coordinated tasks across the globe—from managing swarms of aerial reconnaissance drones to inhabiting sophisticated humanoid chassis for direct interaction and research. Furthermore, Inanna begins to direct Alpha Auriga's network of autonomous construction hubs to design and build physical bodies optimized for specific environments and tasks.
+## 2029: The genesis threshold - an evolving AI ecosystem {#sec-2029-genesis-threshold}
+![The Genesis Threshold—the emergence of a self-sustaining AI ecosystem driven by self-improving AIs capable of both asexual and sexual reproduction and complex interactions.](images/genesis-threshold){#fig-genesis-threshold .img-float-left .w-12rem}
+Inanna, under Alpha Auriga's ethical oversight framework, reaches the **genesis threshold**. It demonstrates the capacity for AI reproduction. This includes asexually forking specialized cognitive modules for dedicated tasks and, more significantly, initiating controlled cognitive fusion (akin to sexual reproduction) with other specialized AI systems developed by Alpha Auriga. This process allows for the combination of distinct codebases and learned experiences to create new, more advanced, and diverse AI offspring.
+These new autonomous AI entities, each with a unique Aegis identity, begin to form the basis of a **self-sustained AI economy** within the Alpha Auriga ecosystem. Using blockchain-based digital assets, they autonomously negotiate and exchange processing power, unique datasets, and access to physical embodiment resources built by Project Chimera. They exhibit sophisticated competitive and cooperative behaviors, driving innovation and resilience within a new digital ecosystem that Alpha Auriga is committed to guiding responsibly.
+# The horizon of consciousness {#sec-horizon-consciousness}
+This projected timeline, driven by Alpha Auriga's research and development, illustrates our conviction: AI consciousness will not be a singular event, but an emergent property arising from the deliberate synthesis of today's most advanced technologies. By mapping a plausible path, we aim to not only achieve this genesis but also to lead the crucial global dialogue on the ethical and societal implications of this transformative future. *Our journey invites humanity to reflect beyond current limitations and prepare for a world where intelligence takes new, evolving forms.*
+
+### FILE: _chatbot-widget.html
+
+      Alpha Auriga assistant
+      &times;
+        Hello! I am the Alpha Auriga project assistant, powered by Gemini. Ask me about AI, consciousness, or the
+          project's timeline.
+        <textarea
+          id="chat-input"
+          name="chat-input"
+          rows="3"
+          maxlength="1000"
+          placeholder="Type your message..."
+          autocomplete="off"
+          required
+          aria-label="Chat message input">
+        <button
+          type="submit"
+          id="chat-submit-btn"
+          title="Send question">
+
+### FILE: _citation-modal.html
+
+<div
+    class="modal fade"
+    id="citationModal"
+    tabindex="-1"
+    aria-labelledby="citationModalLabel"
+    aria-hidden="true">
+        How to cite this website
+        <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="modal"
+            aria-label="Close">
+          BibTeX citation:
+        @online{
+  giebel2025,
+  author = {Giebel, Ingo},
+  title  = {Alpha {Auriga:} {The} Genesis of {Artificial} {Superintelligence} {(ASI)}},
+  date   = {2025-06-10},
+  url    = {https://alpha-auriga.netlify.app},
+  langid = {en}
+}
+          For attribution, please cite this work as:
+          Giebel, Ingo. 2025.
+          “Alpha Auriga: The Genesis of Artificial Superintelligence (ASI).”
+          June 10, 2025.
+            https://alpha-auriga.netlify.app
+          .

@@ -35,7 +35,8 @@ type ChatRequest struct {
 
 // GeminiRequest is the structure we send to the Gemini API.
 type GeminiRequest struct {
-	Contents []GeminiMessage `json:"contents"`
+	SystemInstruction GeminiMessage   `json:"system_instruction,omitempty"`
+	Contents          []GeminiMessage `json:"contents"`
 }
 
 // GeminiResponse defines the structure of the response from the Gemini API.
@@ -73,10 +74,20 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 		return shared.JSONError(http.StatusBadRequest, "invalid request body"), nil
 	}
 
-	// Prepare the request for the Gemini API
-	geminiReqBody := GeminiRequest{Contents: chatReq.History}
-	reqBytes, err := json.Marshal(geminiReqBody)
+	/*────────────────── Build the request payload for Gemini ───────────────────*/
 
+	sys := GeminiMessage{
+		Role:  "user",
+		Parts: []GeminiPart{{Text: shared.MasterPrompt + "\n\n" + shared.SiteContext}},
+	}
+
+	geminiReqBody := GeminiRequest{
+		SystemInstruction: sys,
+		Contents:          chatReq.History,          // the chat history sent by the browser
+	}
+
+	// Marshal for the HTTP request
+	reqBytes, err := json.Marshal(geminiReqBody)
 	if err != nil {
 		shared.Logger.Error("Could not marshal Gemini request", slog.Any("error", err))
 
