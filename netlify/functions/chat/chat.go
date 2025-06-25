@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
+	"log/slog"
 	"net/http"
 	"os"
 
@@ -55,35 +55,33 @@ type GeminiResponse struct {
 func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	// Only allow POST requests for this function
 	if req.HTTPMethod != http.MethodPost {
-		return jsonError(http.StatusMethodNotAllowed, "Method not allowed")
+		return jsonError(http.StatusMethodNotAllowed, "method not allowed")
 	}
 
 	// Get the Gemini API Key from Netlify environment variables.
-	geminiAPIKey := os.Getenv(shared.EnvGeminiAPIKey)
+	geminiAPIKey := os.Getenv("GEMINI_API_KEY")
 	if geminiAPIKey == "" {
-		log.Println("ERROR: GEMINI_API_KEY environment variable not set.")
+		shared.Logger.Error("GEMINI_API_KEY environment variable not set.")
 
-		return jsonError(http.StatusInternalServerError, "Server configuration error")
+		return jsonError(http.StatusInternalServerError, "server configuration error")
 	}
 
 	// Decode the incoming request body from the frontend
 	var chatReq ChatRequest
 	if err := json.Unmarshal([]byte(req.Body), &chatReq); err != nil {
-		log.Printf("ERROR: Bad request - could not unmarshal JSON: %v", err)
+		shared.Logger.Error("Bad request - could not unmarshal JSON", slog.Any("error", err))
 
 		return jsonError(http.StatusBadRequest, "Invalid request body")
 	}
 
 	// Prepare the request for the Gemini API
-	geminiReqBody := GeminiRequest{
-		Contents: chatReq.History,
-	}
+	geminiReqBody := GeminiRequest{Contents: chatReq.History}
 	reqBytes, err := json.Marshal(geminiReqBody)
 
 	if err != nil {
-		log.Printf("ERROR: Could not marshal Gemini request: %v", err)
+		shared.Logger.Error("Could not marshal Gemini request", slog.Any("error", err))
 
-		return jsonError(http.StatusInternalServerError, "Internal server error")
+		return jsonError(http.StatusInternalServerError, "internal server error")
 	}
 
 	// Construct the Gemini API request
@@ -94,7 +92,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, geminiURL, bytes.NewBuffer(reqBytes))
 
 	if err != nil {
-		log.Printf("ERROR: Could not create Gemini HTTP request: %v", err)
+		shared.Logger.Error("Could not create Gemini HTTP request", slog.Any("error", err))
 
 		return jsonError(http.StatusInternalServerError, "Internal server error")
 	}
@@ -106,24 +104,33 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	httpResp, err := client.Do(httpReq)
 
 	if err != nil {
-		log.Printf("ERROR: Failed to call Gemini API: %v", err)
+		shared.Logger.Error("Failed to call Gemini API", slog.Any("error", err))
 
-		return jsonError(http.StatusServiceUnavailable, "AI service is currently unavailable")
+		return jsonError(http.StatusServiceUnavailable, "AI service currently unavailable")
 	}
 
-	defer httpResp.Body.Close()
+	// Defer closing the response body and handle any potential error
+	defer func() {
+		err := httpResp.Body.Close()
+		if err != nil {
+			shared.Logger.Error("Failed to close response body", slog.Any("error", err))
+		}
+	}()
 
 	// Read the response from Gemini
 	respBody, err := io.ReadAll(httpResp.Body)
 	if err != nil {
-		log.Printf("ERROR: Could not read Gemini response body: %v", err)
+		shared.Logger.Error("Could not read Gemini response body", slog.Any("error", err))
 
 		return jsonError(http.StatusInternalServerError, "Error processing AI response")
 	}
 
 	// Check if the API call was successful
 	if httpResp.StatusCode != http.StatusOK {
-		log.Printf("ERROR: Gemini API returned non-OK status: %d. Body: %s", httpResp.StatusCode, string(respBody))
+		shared.Logger.Error("Gemini API returned non-OK status",
+			slog.Int("status_code", httpResp.StatusCode),
+			slog.String("response_body", string(respBody)),
+		)
 
 		return jsonError(http.StatusInternalServerError, "AI service returned an error")
 	}
@@ -131,9 +138,12 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	// Unmarshal the Gemini response to get the content
 	var geminiResp GeminiResponse
 	if err := json.Unmarshal(respBody, &geminiResp); err != nil {
-		log.Printf("ERROR: Could not unmarshal Gemini response: %v", err)
+		shared.Logger.Error("Could not unmarshal Gemini response",
+			slog.Any("error", err),
+			slog.String("response_body", string(respBody)),
+		)
 
-		return jsonError(http.StatusInternalServerError, "Error processing AI response format")
+		return jsonError(http.StatusInternalServerError, "error processing AI response format")
 	}
 
 	// Extract the text from the first candidate
@@ -141,7 +151,9 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	if len(geminiResp.Candidates) > 0 && len(geminiResp.Candidates[0].Content.Parts) > 0 {
 		aiTextResponse = geminiResp.Candidates[0].Content.Parts[0].Text
 	} else {
-		log.Println("WARNING: Gemini response had no candidates or content parts.")
+		shared.Logger.Warn("Gemini response had no candidates or content parts",
+			slog.String("response_body", string(respBody)),
+		)
 
 		aiTextResponse = "I'm sorry, I could not generate a response."
 	}
@@ -152,7 +164,10 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 
 // --- Helper Functions for JSON Responses ---
 
+/*────────────────── Helper functions for JSON responses ────────────*/
+
 // jsonError creates a structured JSON error response.
+// TODO -> httpresp.go
 func jsonError(statusCode int, message string) (events.APIGatewayProxyResponse, error) {
 	body, _ := json.Marshal(map[string]string{"error": message})
 
@@ -164,10 +179,13 @@ func jsonError(statusCode int, message string) (events.APIGatewayProxyResponse, 
 }
 
 // jsonSuccess creates a structured JSON success response.
+// TODO -> httpresp.go
 func jsonSuccess(data interface{}) (events.APIGatewayProxyResponse, error) {
 	body, err := json.Marshal(data)
 	if err != nil {
-		return jsonError(http.StatusInternalServerError, "Failed to encode response")
+		shared.LogError("Failed to encode success response: %v", err)
+
+		return jsonError(http.StatusInternalServerError, "failed to encode response")
 	}
 
 	return events.APIGatewayProxyResponse{

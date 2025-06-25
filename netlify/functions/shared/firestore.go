@@ -24,7 +24,7 @@ func FirestoreApp(ctx context.Context) (*firebase.App, error) {
 	appOnce.Do(func() {
 		creds := os.Getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
 		if creds == "" {
-			appErr = LogError("FIREBASE_SERVICE_ACCOUNT_JSON env var not set")
+			appErr = LogError("FIREBASE_SERVICE_ACCOUNT_JSON environment variable not set")
 
 			return
 		}
