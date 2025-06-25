@@ -5,7 +5,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"fmt"
 	"io"
 	"log/slog"
 	"net/http"
@@ -55,7 +54,7 @@ type GeminiResponse struct {
 func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	// Only allow POST requests for this function
 	if req.HTTPMethod != http.MethodPost {
-		return jsonError(http.StatusMethodNotAllowed, "method not allowed")
+		return shared.JSONError(http.StatusMethodNotAllowed, "method not allowed"), nil
 	}
 
 	// Get the Gemini API Key from Netlify environment variables.
@@ -63,7 +62,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	if geminiAPIKey == "" {
 		shared.Logger.Error("GEMINI_API_KEY environment variable not set.")
 
-		return jsonError(http.StatusInternalServerError, "server configuration error")
+		return shared.JSONError(http.StatusInternalServerError, "server configuration error"), nil
 	}
 
 	// Decode the incoming request body from the frontend
@@ -71,7 +70,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	if err := json.Unmarshal([]byte(req.Body), &chatReq); err != nil {
 		shared.Logger.Error("Bad request - could not unmarshal JSON", slog.Any("error", err))
 
-		return jsonError(http.StatusBadRequest, "Invalid request body")
+		return shared.JSONError(http.StatusBadRequest, "invalid request body"), nil
 	}
 
 	// Prepare the request for the Gemini API
@@ -81,20 +80,17 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	if err != nil {
 		shared.Logger.Error("Could not marshal Gemini request", slog.Any("error", err))
 
-		return jsonError(http.StatusInternalServerError, "internal server error")
+		return shared.JSONError(http.StatusInternalServerError, "internal server error"), nil
 	}
 
 	// Construct the Gemini API request
-	geminiURL := fmt.Sprintf(
-		"https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent?key=%s",
-		shared.GeminiModel,
-		geminiAPIKey)
+	geminiURL := shared.GeminiURL(geminiAPIKey)
 	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, geminiURL, bytes.NewBuffer(reqBytes))
 
 	if err != nil {
 		shared.Logger.Error("Could not create Gemini HTTP request", slog.Any("error", err))
 
-		return jsonError(http.StatusInternalServerError, "Internal server error")
+		return shared.JSONError(http.StatusInternalServerError, "Internal server error"), nil
 	}
 
 	httpReq.Header.Set("Content-Type", "application/json")
@@ -106,7 +102,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	if err != nil {
 		shared.Logger.Error("Failed to call Gemini API", slog.Any("error", err))
 
-		return jsonError(http.StatusServiceUnavailable, "AI service currently unavailable")
+		return shared.JSONError(http.StatusServiceUnavailable, "AI service currently unavailable"), nil
 	}
 
 	// Defer closing the response body and handle any potential error
@@ -122,7 +118,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	if err != nil {
 		shared.Logger.Error("Could not read Gemini response body", slog.Any("error", err))
 
-		return jsonError(http.StatusInternalServerError, "Error processing AI response")
+		return shared.JSONError(http.StatusInternalServerError, "Error processing AI response"), nil
 	}
 
 	// Check if the API call was successful
@@ -132,7 +128,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 			slog.String("response_body", string(respBody)),
 		)
 
-		return jsonError(http.StatusInternalServerError, "AI service returned an error")
+		return shared.JSONError(http.StatusInternalServerError, "AI service returned an error"), nil
 	}
 
 	// Unmarshal the Gemini response to get the content
@@ -143,7 +139,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 			slog.String("response_body", string(respBody)),
 		)
 
-		return jsonError(http.StatusInternalServerError, "error processing AI response format")
+		return shared.JSONError(http.StatusInternalServerError, "error processing AI response format"), nil
 	}
 
 	// Extract the text from the first candidate
@@ -159,40 +155,7 @@ func HandleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (even
 	}
 
 	// Send the successful response back to the frontend
-	return jsonSuccess(map[string]string{"response": aiTextResponse})
-}
-
-// --- Helper Functions for JSON Responses ---
-
-/*────────────────── Helper functions for JSON responses ────────────*/
-
-// jsonError creates a structured JSON error response.
-// TODO -> httpresp.go
-func jsonError(statusCode int, message string) (events.APIGatewayProxyResponse, error) {
-	body, _ := json.Marshal(map[string]string{"error": message})
-
-	return events.APIGatewayProxyResponse{
-		StatusCode: statusCode,
-		Body:       string(body),
-		Headers:    map[string]string{"Content-Type": "application/json"},
-	}, nil
-}
-
-// jsonSuccess creates a structured JSON success response.
-// TODO -> httpresp.go
-func jsonSuccess(data interface{}) (events.APIGatewayProxyResponse, error) {
-	body, err := json.Marshal(data)
-	if err != nil {
-		shared.LogError("Failed to encode success response: %v", err)
-
-		return jsonError(http.StatusInternalServerError, "failed to encode response")
-	}
-
-	return events.APIGatewayProxyResponse{
-		StatusCode: http.StatusOK,
-		Body:       string(body),
-		Headers:    map[string]string{"Content-Type": "application/json"},
-	}, nil
+	return shared.JSONSuccess(map[string]string{"response": aiTextResponse})
 }
 
 /*────────────────── Main ───────────────────────────────────────────*/
