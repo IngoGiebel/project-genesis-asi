@@ -450,6 +450,7 @@ form button[type="submit"]:hover {
 ─────────────────────────────────────────────────────────────────────────*/
 
 #chatbot-container {
+  pointer-events:none;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
@@ -458,6 +459,7 @@ form button[type="submit"]:hover {
 
 /* The floating button to open the chat */
 .open-chat-btn {
+  pointer-events:auto;
   background-color: rgba(42, 159, 214, .70);
   color: white;
   border: none;
@@ -481,6 +483,7 @@ form button[type="submit"]:hover {
 
 /* The main chat window */
 .chat-window {
+  pointer-events:none;
   width: 370px;
   max-width: 90vw;
   height: 70vh;
@@ -503,6 +506,7 @@ form button[type="submit"]:hover {
 
 /* Class to make the window visible */
 .chat-window.is-open {
+  pointer-events:auto;
   transform: scale(1);
   opacity: 1;
 }
