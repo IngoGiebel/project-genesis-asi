@@ -5,6 +5,4 @@ package shared
 const (
 	// EnvServerMode is the environment variable for the server mode ("prod" | "test | dev").
 	EnvServerMode = "SERVER_MODE"
-	// EnvGeminiAPIKey is the environment variable for the Gemini API key.
-	EnvGeminiAPIKey = "GEMINI_API_KEY"
 )
