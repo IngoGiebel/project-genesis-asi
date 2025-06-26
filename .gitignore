@@ -1,7 +1,8 @@
 # Quarto specific
 /.quarto/
-/_site/
 /_freeze/
+/_site/
+/fonts/
 /site_libs/
 
 # RStudio specific
