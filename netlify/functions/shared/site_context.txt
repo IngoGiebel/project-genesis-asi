@@ -326,8 +326,6 @@ This projected timeline, driven by Alpha Auriga's research and development, illu
 
       Alpha Auriga assistant
       &times;
-        Hello! I am the Alpha Auriga project assistant, powered by Gemini. Ask me about AI, consciousness, or the
-          project's timeline.
         <textarea
           id="chat-input"
           name="chat-input"
