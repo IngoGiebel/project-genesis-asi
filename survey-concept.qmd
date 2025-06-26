@@ -1,0 +1,216 @@
+---
+title: "Project concept: Who believes that artificial intelligence can be conscious?"
+subtitle: |
+  Scientific outreach project for QBio405 – Science Ethics and Communication
+author:
+  - name: Ingo Giebel
+    email: Ingo.Giebel@hhu.de
+    affiliations:
+      - name: Heinrich-Heine-Universität Düsseldorf
+keywords:
+  - artificial intelligence
+  - project concept
+  - scientific outreach project
+license: CC BY
+date: today
+date-format: full
+lang: en-US
+eol: lf
+resource-path:
+  - .
+  - data
+bibliography: bibliography.bib
+bibliographystyle: american-psychological-association
+nocite: |
+  @*
+toc: true
+toc-depth: 3
+number-sections: false
+number-depth: 3
+fig-format: retina
+fig-align: left
+format:
+  bookup-html:
+    embed-resources: true
+    self-contained-math: true
+    html-math-method: mathjax
+    include-in-header:
+      - text: |
+          <script>
+            MathJax = {
+              tex: {
+                  tags: 'ams',
+                  packages: {'[+]': ['physics']}
+              }
+            };
+          </script>
+    grid:
+      sidebar-width: 500px
+      body-width: 1500px
+      margin-width: 10px
+    smooth-scroll: true
+    title-block-banner: true
+    toc-location: left
+    toc-expand: 3
+    code-tools: true
+    code-link: true
+    code-fold: show
+    code-overflow: wrap
+    fig-responsive: true
+    lightbox: true
+    callout-appearance: minimal
+filters:
+  - nameref
+  - black-formatter
+execute: 
+  echo: true
+  warning: false
+  cache: true
+  freeze: auto
+editor:
+  visual: false
+---
+
+# Background and motivation
+
+Artificial intelligence (AI), particularly generative models like ChatGPT, has increasingly shaped public discourse. As these systems demonstrate human-like capabilities in communication and decision-making, questions arise regarding their nature and limitations — especially the possibility of consciousness.
+
+This project investigates who believes that AI can be conscious. Understanding how demographic and socio-cultural factors influence perceptions of AI is relevant for both ethical debates and the communication of scientific understanding in AI and neuroscience.
+
+The project builds upon current discussions in philosophy of mind, computer science, and cognitive science. It also explores how well the public distinguishes between simulated and actual consciousness.
+
+
+# Research question
+
+Who believes that artificial intelligence can be conscious — and what determines this belief? We aim to quantify belief in AI consciousness across different demographic and educational groups and identify significant predictors using statistical modeling.
+
+
+# Project design
+
+## Survey platform
+
+A bilingual website (English and German) will be developed where visitors can:
+
+- Answer the central question (yes / no / unsure),
+- Provide key demographic data (e.g., age, sex, nationality, education, profession, field of study),
+- Optionally elaborate on their reasoning,
+- Engage with a built-in AI chatbot for guidance and background information.
+
+The website will ensure:
+
+- GDPR-compliant, anonymous data collection,
+- Accessibility from various devices,
+- A short and engaging questionnaire (2–3 minutes).
+
+The website will also include:
+
+- A brief, illustrated background section explaining the exponential growth in compute power, the development of generative AI, and the convergence of neuroscience and AI,
+- A speculative but technically grounded timeline projecting developments in embodied AI from now until 2029, encouraging participants to consider realistic future scenarios before answering,
+- A futuristic yet professional visual style with a corporate design to frame the questions in a serious and credible manner.
+
+## Speculative AI timeline and background section
+
+To broaden participants’ imagination and counteract common cognitive limitations when thinking about AI, the website will present a fictional but technically informed timeline extending to the year 2029. It will describe the potential emergence of an embodied, distributed, evolving AI, including:
+
+- A human-like biological brain grown from brain organoids connected to a synthetic neural network
+- A connection to a distributed in-silico “brain” via the Internet of Everything,
+- Multi-body architecture, allowing one AI mind to operate in many physical forms,
+- Blockchain-based decentralization for identity and cooperation,
+- Autobiographical memory, independent learning, and self-improvement,
+- Asexual and sexual reproduction by combining with other AIs,
+- Autonomous construction of physical bodies,
+- Competitive and cooperative behavior in a self-sustained AI economy, using blockchain-based currencies.
+
+This timeline serves to illustrate that AI consciousness might become plausible through technological synthesis — urging participants to reflect beyond current limitations.
+
+## Ethical reflection questions
+
+In addition to the core survey, participants will be invited to answer a set of open-ended reflection questions. These are designed to explore ethical intuitions and conceptual thinking related to AI consciousness. The questions are:
+
+- *If AI can be conscious, how would you measure consciousness?*
+- *In case of a human-like consciousness, do such AIs deserve some kind of human rights?*
+- *What if such conscious AIs declare their own rights?*
+
+These questions will provide qualitative data that complements the quantitative analysis. They aim to stimulate thoughtful engagement and deepen the ethical dimension of the project. Answers will be thematically analyzed to identify common viewpoints, dilemmas, and reasoning patterns.
+
+
+## Promotion and outreach
+
+To maximize outreach and ensure a broad range of responses, the survey will be distributed through multiple channels and networks. The following groups will be specifically invited to participate:
+
+- QBio students and professors at Heinrich Heine University Düsseldorf,
+- Members of the “Junge GI” (youth section of the German Informatics Society),
+- Members of political parties,
+- People with an interest in AI, education, and learning,
+- Family members and personal contacts of the project participants,
+- General public, reached via social media platforms.
+
+Participation will be voluntary, anonymous, and open to anyone interested, regardless of background or prior knowledge of AI. The goal is to obtain a diverse and balanced sample for meaningful statistical analysis.
+
+
+# Data collection and analysis
+
+## Variables collected
+
+- Belief in AI consciousness (yes / no / unsure),
+- Age (numerical),
+- Sex (male / female /diverse),
+- Nationality (predefined list),
+- Education level (high school / undergraduate / postgraduate / other),
+- Profession or field of study (grouped categories),
+- Familiarity with AI (Likert scale),
+- Optional: open-ended reasoning (qualitative).
+
+## Statistical methods
+
+Data analysis will be carried out in R or Python, using:
+
+- Descriptive statistics (proportions, distributions),
+- Visualization (bar plots, mosaic plots, stacked histograms),
+- Inferential statistics:
+  - Chi-square tests for categorical predictors,
+  - Logistic regression to model probability of belief as a function of predictors,
+  - Multinomial regression if "unsure" is modeled as a third category,
+  - PCA / clustering to explore subgroups.
+
+Emphasis will be placed on interpretable models that highlight key influencing factors.
+
+
+# Expected outcomes
+
+- Quantitative insights into public belief regarding AI consciousness.
+- Identification of key predictors (e.g., age group, profession, education).
+- Visual and statistical documentation of the spread and patterns of beliefs.
+- Reflections on how AI is perceived across disciplines and generations.
+
+
+# Ethical considerations
+
+- Informed consent will be obtained digitally before participation.
+- All data will be anonymous and stored securely.
+- The project will avoid suggestive or leading questions to ensure neutrality.
+
+
+# Timeline
+
+| Week | Task |
+|------|------|
+| 1–2  | Website development |
+| 3–4  | Data collection |
+| 5    | Preliminary data analysis and presentation of first results |
+| 6+   | Ongoing data collection and refinement of analysis |
+
+
+# Contribution to scientific communication
+
+This project bridges AI, ethics, and public perception. By combining outreach with quantitative analysis, it fosters:
+
+- Public engagement with abstract scientific and ethical topics,
+- Scientific literacy about the distinction between intelligence and consciousness,
+- Critical thinking on the societal implications of advanced AI.
+
+
+# Bibliography {.unnumbered}
+
+::: {#refs}
+:::
