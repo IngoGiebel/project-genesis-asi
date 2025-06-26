@@ -23,8 +23,8 @@ const Q = {
 
 const STORAGE_KEY = "aaChatHistory_v1"
 const GREETING_TEXT =
-  "Hello! I am the **Alpha Auriga** project assistant, powered by *Gemini*. " +
-  "Ask me about **AI**, consciousness, or the project's timeline."
+  "Hello! I am the **Alpha Auriga** project assistant, powered by Gemini. " +
+  "Ask me about AI, consciousness, or the project's timeline."
 
 /*───── Types ──────────────────────────────────────────────────────────*/
 
