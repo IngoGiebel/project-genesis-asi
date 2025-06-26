@@ -9,7 +9,7 @@
 
 set -euo pipefail
 
-# --- where to write -------------------------------------------------
+# --- Where to write -------------------------------------------------
 repo_root="$(git rev-parse --show-toplevel)"
 out="$repo_root/netlify/functions/shared/site_context.txt"
 mkdir -p "$(dirname "$out")"
@@ -34,6 +34,15 @@ for f in "$repo_root"/*.html; do
     sed -e 's/<[^>]*>//g' \
         -e 's/&nbsp;/ /g' \
         -e '/^[[:space:]]*$/d'  "$f"
+  } >>"$out"
+done
+
+# --- 3.  Bibliography *.bib files in project root -------------------
+for f in "$repo_root"/*.bib; do
+  [[ -e "$f" ]] || continue
+  {
+    printf '\n### FILE: %s\n\n' "$(basename "$f")"
+    cat "$f"
   } >>"$out"
 done
 
