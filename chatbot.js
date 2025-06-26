@@ -1,9 +1,5 @@
 /*************************************************************************
  * Chatbot Widget — client-side logic
- * ----------------------------------------------------------------------
- * ▸ Handles chat window visibility
- * ▸ Sends user messages to a Netlify function
- * ▸ Renders user and AI messages to the chat UI
  ************************************************************************/
 
 /*───── Constants ──────────────────────────────────────────────────────*/
@@ -21,23 +17,60 @@ const Q = {
   chatInput: "#chat-input",
 }
 
-/*───── State Management ───────────────────────────────────────────────*/
+const STORAGE_KEY = "aaChatHistory_v1"
+const GREETING_TEXT =
+  "Hello! I am the Alpha Auriga project assistant, powered by Gemini. " +
+  "Ask me about AI, consciousness, or the project's timeline."
 
-// Simple history of the conversation to send to the Gemini API for context.
-// The AI message is the initial greeting.
-let chatHistory = [
-  {
-    role: "model",
-    parts: [{text: "Hello! I am the Alpha Auriga project assistant, powered by Gemini. Ask me about AI, consciousness, or the project's timeline."}],
-  },
-]
+
+/*───── State ──────────────────────────────────────────────────────────*/
+
+/** @typedef {{role:"user"|"model", parts:[{text:string}]}} ChatTurn */
+let chatHistory = loadHistory()
+
+/*───── Cookie-consent helper ──────────────────────────────────────────*/
+
+function hasCookieConsent() {
+  const c = document.cookie.split("; ").find(c => c.startsWith("quarto-cookie-consent="))
+  if (!c) return false
+  try {
+    /** @type {{functional?: boolean, analytics?: boolean}} */
+    const prefs = JSON.parse(decodeURIComponent(c.split("=")[1]))
+    return Boolean(prefs.functional || prefs.analytics)
+  } catch {
+    return false
+  }
+}
+
+/*───── History load / save ────────────────────────────────────────────*/
+
+function loadHistory() {
+  if (!hasCookieConsent()) return []
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    return raw ? JSON.parse(raw) : []
+  } catch {
+    return []
+  }
+}
+
+function saveHistory(history) {
+  if (!hasCookieConsent()) return
+  try {
+    // Crude size guard (~200 KB)
+    const trimmed = history.length > 25 ? history.slice(-25) : history
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed))
+  } catch {
+    // Silent
+  }
+}
 
 /*───── DOM Helpers ─────────────────────────────────────────────────────*/
 
 const $ = (sel) => document.querySelector(sel)
 
 /**
- * Add a message to the chat body.
+ * Render a message bubble.
  * @param {string} text - The message text.
  * @param {("user"|"ai"|"thinking")} type - The type of message.
  */
@@ -45,25 +78,20 @@ function addMessage(text, type) {
   const chatBody = $(Q.chatBody)
   if (!chatBody) return
 
-  const messageDiv = document.createElement("div")
-  messageDiv.className = `chat-message ${type}-message`
+  const wrap = document.createElement("div")
+  wrap.className = `chat-message ${type}-message`
 
-  // Create a <p> tag for the text content to ensure proper styling
   const p = document.createElement("p")
   p.textContent = text
-  messageDiv.appendChild(p)
+  wrap.appendChild(p)
 
-  // If this is a "thinking" message, give it an ID so we can remove it later
-  if (type === "thinking") {
-    messageDiv.id = "thinking-indicator"
-  }
+  if (type === "thinking") wrap.id = "thinking-indicator"
 
-  chatBody.appendChild(messageDiv)
-  // Scroll to the bottom of the chat body to show the new message
+  chatBody.appendChild(wrap)
   chatBody.scrollTop = chatBody.scrollHeight
 }
 
-/*───── Main logic ─────────────────────────────────────────────────────*/
+/*───── Main submit logic ──────────────────────────────────────────────*/
 
 async function handleChatSubmit(event) {
   event.preventDefault()
@@ -75,6 +103,7 @@ async function handleChatSubmit(event) {
   // Add user message to UI and history
   addMessage(userMessage, "user")
   chatHistory.push({role: "user", parts: [{text: userMessage}]})
+  saveHistory(chatHistory)
 
   // Clear input and show "thinking" indicator
   input.value = ""
@@ -83,38 +112,51 @@ async function handleChatSubmit(event) {
 
   try {
     // Send the entire chat history to the Netlify function
-    const response = await fetch(API.CHAT, {
+    const r = await fetch(API.CHAT, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({history: chatHistory}),
     })
 
-    if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.error || "The server responded with an error.")
+    if (!r.ok) {
+      const err = await r.json()
+      throw new Error(err.error || "The server responded with an error.")
     }
 
-    const data = await response.json()
-    const aiResponse = data.response
+    const {response: aiText = ""} = await r.json()
 
     // Remove "thinking" indicator
-    const thinkingIndicator = document.getElementById("thinking-indicator")
-    if (thinkingIndicator) thinkingIndicator.remove()
+    document.getElementById("thinking-indicator")?.remove()
 
     // Add AI response to UI and history
-    if (aiResponse) {
-      addMessage(aiResponse, "ai")
-      chatHistory.push({role: "model", parts: [{text: aiResponse}]})
+    if (aiText) {
+      addMessage(aiText, "ai")
+      chatHistory.push({role: "model", parts: [{text: aiText}]})
+      saveHistory(chatHistory)
     } else {
       addMessage("I'm sorry, I couldn't generate a response. Please try again.", "ai")
     }
-
-  } catch (error) {
-    console.error("Chat Error:", error)
-    const thinkingIndicator = document.getElementById("thinking-indicator")
-    if (thinkingIndicator) thinkingIndicator.remove()
-    addMessage(`Error: ${error.message}`, "ai")
+  } catch (err) {
+    console.error("Chat Error:", err)
+    document.getElementById("thinking-indicator")?.remove()
+    addMessage(`Error: ${err.message}`, "ai")
   }
+}
+
+/*───── UI bootstrap ───────────────────────────────────────────────────*/
+
+function renderInitialHistory() {
+  if (!chatHistory.length) {
+    // First visit – seed with greeting
+    chatHistory = [
+      {role: "model", parts: [{text: GREETING_TEXT}]},
+    ]
+    saveHistory(chatHistory)
+  }
+  // Render previous turns
+  /** @type {ChatTurn[]} */ (chatHistory).forEach(t => {
+    addMessage(t.parts[0].text, t.role === "user" ? "user" : "ai")
+  })
 }
 
 function setupChatUI() {
@@ -124,35 +166,35 @@ function setupChatUI() {
   const chatForm = $(Q.chatForm)
   const chatInput = $(Q.chatInput)
 
-  if (openBtn && closeBtn && chatWindow && chatForm && chatInput) {
-    openBtn.addEventListener("click", () => {
-      chatWindow.classList.toggle("is-open")
-      // If the window is now open, focus the input field.
-      if (chatWindow.classList.contains("is-open")) {
-        // Use a short timeout to ensure the element is focusable after the CSS transition.
-        // 100ms is usually enough time for the element to become visible.
-        setTimeout(() => {
-          chatInput.focus()
-        }, 100)
-      }
-    })
-    closeBtn.addEventListener("click", () => chatWindow.classList.remove("is-open"))
-    chatForm.addEventListener("submit", handleChatSubmit)
+  if (!openBtn || !closeBtn || !chatWindow || !chatForm || !chatInput) return
 
-    // Logic for auto-growing textarea and Enter/Shift+Enter key presses
-    chatInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault()
-        chatForm.requestSubmit()
-      }
-    })
-    chatInput.addEventListener("input", () => {
-      // Auto-grow textarea based on content
-      chatInput.style.height = "auto"
-      chatInput.style.height = (chatInput.scrollHeight + 5) + "px"
-    })
-  }
+  openBtn.addEventListener("click", () => {
+    chatWindow.classList.toggle("is-open")
+    // If the window is now open, focus the input field.
+    if (chatWindow.classList.contains("is-open")) {
+      // Use a short timeout to ensure the element is focusable after the CSS transition.
+      // 100ms is usually enough time for the element to become visible.
+      setTimeout(() => chatInput.focus(), 100)
+    }
+  })
+  closeBtn.addEventListener("click", () => chatWindow.classList.remove("is-open"))
+  chatForm.addEventListener("submit", handleChatSubmit)
+
+  // Logic for auto-growing textarea and Enter/Shift+Enter key presses
+  chatInput.addEventListener("keydown", e => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault()
+      chatForm.requestSubmit()
+    }
+  })
+  chatInput.addEventListener("input", () => {
+    // Auto-grow textarea based on content
+    chatInput.style.height = "auto"
+    chatInput.style.height = (chatInput.scrollHeight + 5) + "px"
+  })
+
+  // Restore previous conversation
+  renderInitialHistory()
 }
 
-/*───── Bootstrap when DOM ready ───────────────────────────────────────*/
 document.addEventListener("DOMContentLoaded", setupChatUI)
