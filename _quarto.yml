@@ -20,6 +20,7 @@ default-image-extension: webp
 
 website:
   description: "Project Alpha Auriga explores a speculative timeline for the emergence of Artificial Superintelligence (ASI), its potential forms, and societal implications."
+  favicon: images/logo.webp
   repo-url: https://github.com/IngoGiebel/project-genesis-asi
   repo-branch: trunk
   repo-actions: [ source, edit, issue ]
