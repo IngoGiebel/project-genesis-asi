@@ -8,6 +8,7 @@ citation:
 
 resources:
   - choices-utils.js
+  - cookie-consent.js
   - helpers.js
   - meta.js
   - data/countries.min.json

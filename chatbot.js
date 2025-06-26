@@ -2,6 +2,8 @@
  * Chatbot Widget — client-side logic
  ************************************************************************/
 
+import {hasCookieConsent, CONSENT} from "./cookie-consent.js"
+
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
@@ -22,42 +24,15 @@ const GREETING_TEXT =
   "Hello! I am the Alpha Auriga project assistant, powered by Gemini. " +
   "Ask me about AI, consciousness, or the project's timeline."
 
-
 /*───── State ──────────────────────────────────────────────────────────*/
 
 /** @typedef {{role:"user"|"model", parts:[{text:string}]}} ChatTurn */
 let chatHistory = loadHistory()
 
-/*───── Cookie-consent helper ──────────────────────────────────────────*/
-
-/**
- * Did the user give us permission to store functional / tracking data?
- * Works with Quarto’s “express” cookie-consent banner.
- *
- * @returns {boolean}
- */
-function hasCookieConsent () {
-  // Find the cookie
-  const c = document.cookie.split("; ").find(c => c.startsWith("cookie_consent_level="))
-
-  if (!c) return false
-
-  try {
-    // Parse the JSON payload
-    /** @type {{functionality?: boolean, analytics?: boolean}} */
-    const prefs = JSON.parse(decodeURIComponent(c.split("=")[1]));
-    // Consider consent granted if the user allowed at least the “functionality” category
-    return Boolean(prefs.functionality)
-  } catch {
-    // Malformed cookie → treat as no consent
-    return false
-  }
-}
-
 /*───── History load / save ────────────────────────────────────────────*/
 
 function loadHistory() {
-  if (!hasCookieConsent()) return []
+  if (!hasCookieConsent(CONSENT.FUNCTIONALITY)) return []
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     return raw ? JSON.parse(raw) : []
@@ -67,7 +42,7 @@ function loadHistory() {
 }
 
 function saveHistory(history) {
-  if (!hasCookieConsent()) return
+  if (!hasCookieConsent(CONSENT.FUNCTIONALITY)) return
   try {
     // Crude size guard (~200 KB)
     const trimmed = history.length > 25 ? history.slice(-25) : history
