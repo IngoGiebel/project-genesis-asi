@@ -6,10 +6,9 @@
  * ▸ Fetches and displays existing posts
  ************************************************************************/
 
+import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3/+esm"
 import EasyMDE from "https://cdn.jsdelivr.net/npm/easymde@2/dist/easymde.min.js/+esm"
 import {marked} from "https://cdn.jsdelivr.net/npm/marked@15/+esm"
-import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3/+esm"
-
 import {errMsgShort, msgFactory} from "./helpers.js"
 import {buildClientMeta} from "./meta.js"
 

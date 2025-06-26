@@ -2,6 +2,8 @@
  * Chatbot Widget — client-side logic
  ************************************************************************/
 
+import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3/+esm"
+import {marked} from "https://cdn.jsdelivr.net/npm/marked@15/+esm"
 import {hasCookieConsent, CONSENT} from "./cookie-consent.js"
 
 /*───── Constants ──────────────────────────────────────────────────────*/
@@ -21,15 +23,16 @@ const Q = {
 
 const STORAGE_KEY = "aaChatHistory_v1"
 const GREETING_TEXT =
-  "Hello! I am the Alpha Auriga project assistant, powered by Gemini. " +
-  "Ask me about AI, consciousness, or the project's timeline."
+  "Hello! I am the **Alpha Auriga** project assistant, powered by *Gemini*. " +
+  "Ask me about **AI**, consciousness, or the project's timeline."
 
-/*───── State ──────────────────────────────────────────────────────────*/
+/*───── Types ──────────────────────────────────────────────────────────*/
 
 /** @typedef {{role:"user"|"model", parts:[{text:string}]}} ChatTurn */
-let chatHistory = loadHistory()
 
 /*───── History load / save ────────────────────────────────────────────*/
+
+let chatHistory = loadHistory()
 
 function loadHistory() {
   if (!hasCookieConsent(CONSENT.FUNCTIONALITY)) return []
@@ -68,20 +71,26 @@ function addMessage(text, type) {
   const wrap = document.createElement("div")
   wrap.className = `chat-message ${type}-message`
 
-  const p = document.createElement("p")
-  p.textContent = text
-  wrap.appendChild(p)
+  const body = document.createElement("div")
+  body.className = "msg-inner"
 
-  if (type === "thinking") wrap.id = "thinking-indicator"
+  if (type === "thinking") {
+    body.textContent = text
+    wrap.id = "thinking-indicator"
+  } else {
+    // Parse → sanitize → render
+    body.innerHTML = DOMPurify.sanitize(marked.parse(text))
+  }
 
+  wrap.appendChild(body)
   chatBody.appendChild(wrap)
   chatBody.scrollTop = chatBody.scrollHeight
 }
 
-/*───── Main submit logic ──────────────────────────────────────────────*/
+/*───── Submit logic ─────────────────────────────────────────────────────*/
 
-async function handleChatSubmit(event) {
-  event.preventDefault()
+async function handleChatSubmit(evt) {
+  evt.preventDefault()
 
   const input = $(Q.chatInput)
   const userMessage = input.value.trim()
