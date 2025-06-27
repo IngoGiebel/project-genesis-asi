@@ -17,3 +17,6 @@
 
 # Local Netlify folder
 .netlify
+
+# Private promotion campaign data
+/_promotion-campaign/
