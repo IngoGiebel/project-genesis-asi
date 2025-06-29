@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: ../_site
+  output-dir: ../_site/de
   resources:
     - data/countries.min.json
     - data/education.min.json
@@ -13,17 +13,17 @@ project:
 
 citation:
   author: Ingo Giebel
-  title: "Alpha Auriga: The genesis of Artificial Superintelligence (ASI)"
-  url: "https://alpha-auriga.netlify.app/"
+  title: "Alpha Auriga: Genesis der künstlichen Superintelligenz (KSI)"
+  url: "https://alpha-auriga.netlify.app/de/"
 
 default-image-extension: webp
 
 website:
-  description: "Project Alpha Auriga explores a speculative timeline for the emergence of Artificial Superintelligence (ASI), its potential forms, and societal implications."
+  description: "Projekt Alpha Auriga untersucht eine spekulative Zeitlinie für die Entstehung von künstlicher Superintelligenz (KSI), ihre potenziellen Formen und gesellschaftlichen Auswirkungen."
   favicon: images/logo.webp
-  site-url: https://alpha-auriga.netlify.app/
+  site-url: https://alpha-auriga.netlify.app/de/
   repo-url: https://github.com/IngoGiebel/project-genesis-asi
-  repo-subdir: en
+  repo-subdir: de
   repo-branch: trunk
   repo-actions: [ source, edit, issue ]
   page-navigation: true
@@ -32,7 +32,7 @@ website:
   cookie-consent:
     type: express
     style: headline
-    prefs-text: "Cookie preferences"
+    prefs-text: "Cookie Einstellungen"
   search:
     location: navbar
     type: overlay
@@ -40,34 +40,34 @@ website:
   navbar:
     pinned: true
     logo: images/logo.webp
-    logo-alt: "Alpha Auriga company logo"
+    logo-alt: "Alpha Auriga Logo"
     left:
       - text: "Home"
         icon: house-door
         href: index.qmd
-      - text: "Timeline"
+      - text: "Zeitleiste"
         icon: clock
         href: timeline.qmd
-      - text: "Survey"
+      - text: "Umfrage"
         icon: patch-question
         href: survey.qmd
-      - text: "Results"
+      - text: "Ergebnisse"
         icon: bar-chart-line
         href: results.qmd
-      - text: "Discussion"
+      - text: "Diskussion"
         icon: chat-text
         href: discussion.qmd
-      - text: "About"
+      - text: "Über"
         icon: info-circle
         href: about.qmd
-      - text: "Bibliography"
+      - text: "Bibliographie"
         icon: book
         href: bibliography.qmd
     right:
-      - text: "Cite"
+      - text: "Zitieren"
         icon: quote
         href: "#citationModal"
-      - text: "Language"
+      - text: "Sprache"
         icon: globe
         menu:
           - text: English
@@ -75,11 +75,11 @@ website:
           - text: Deutsch
             href: /de/
   page-footer:
-    left: "Content on this site is licensed under <a href='https://creativecommons.org/licenses/by/4.0/' target='_blank' rel='noopener noreferrer'>CC BY 4.0</a>."
+    left: "Die Inhalte dieser Seite sind unter <a href='https://creativecommons.org/licenses/by/4.0/deed.de' target='_blank' rel='noopener noreferrer'> CC BY 4.0</a> lizenziert."
 
 format:
   html:
-    lang: en
+    lang: de
     theme: cyborg
     css: styles.css
     toc: true
