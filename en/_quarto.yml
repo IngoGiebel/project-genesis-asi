@@ -1,27 +1,29 @@
 project:
   type: website
+  output-dir: ../_site
+  resources:
+    - data/countries.min.json
+    - data/education.min.json
+    - data/profession.min.json
+    - images/*.webp
+    - choices-utils.js
+    - cookie-consent.js
+    - helpers.js
+    - meta.js
 
 citation:
   author: Ingo Giebel
   title: "Alpha Auriga: The genesis of Artificial Superintelligence (ASI)"
   url: "https://alpha-auriga.netlify.app"
 
-resources:
-  - choices-utils.js
-  - cookie-consent.js
-  - helpers.js
-  - meta.js
-  - data/countries.min.json
-  - data/education.min.json
-  - data/profession.min.json
-  - images/*.webp
-
 default-image-extension: webp
 
 website:
   description: "Project Alpha Auriga explores a speculative timeline for the emergence of Artificial Superintelligence (ASI), its potential forms, and societal implications."
-  favicon: images/logo.webp
+  favicon: ../images/logo.webp
+  site-url: https://alpha-auriga.netlify.app/
   repo-url: https://github.com/IngoGiebel/project-genesis-asi
+  repo-subdir: en
   repo-branch: trunk
   repo-actions: [ source, edit, issue ]
   page-navigation: true
@@ -37,7 +39,7 @@ website:
     show-item-context: true
   navbar:
     pinned: true
-    logo: images/logo.webp
+    logo: ../images/logo.webp
     logo-alt: "Alpha Auriga company logo"
     left:
       - text: "Home"
@@ -65,11 +67,18 @@ website:
       - text: "Cite"
         icon: quote
         href: "#citationModal"
+      - icon: globe
+        menu:
+          - text: English
+            href: /
+          - text: Deutsch
+            href: /de/
   page-footer:
     left: "Content on this site is licensed under <a href='https://creativecommons.org/licenses/by/4.0/' target='_blank' rel='noopener noreferrer'>CC BY 4.0</a>."
 
 format:
   html:
+    lang: en
     theme: cyborg
     css: styles.css
     toc: true
@@ -80,9 +89,3 @@ format:
     include-after-body:
       - _chatbot-widget.html
       - _citation-modal.html
-
-execute:
-  freeze: auto
-
-editor:
-  visual: false
