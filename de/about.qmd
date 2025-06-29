@@ -11,11 +11,11 @@ Ingo Giebel
 
 # Wozu dieses Projekt
 
-Dieses Projekt ist ein spekulativer Ausblick hinsichtlich einer möglichen zukünftigen künstlichen Superintelligenz (KSI) und des Potenzials für KI-Bewusstsein.
+Dieses Projekt ist ein spekulativer Ausblick hinsichtlich der Entstehung einer zukünftigen künstlichen Superintelligenz (KSI) und des Potenzials für KI-Bewusstsein.
 
-Mittels einer fiktionalen, aber technisch fundierten Zeitlinie soll
+Die fiktionale, aber technisch fundierte Zeitlinie soll
 
-- die Vorstellungskraft hinsichtlich einer zukünftigen Entwicklung von künstlicher Intelligenz erweitern,
+- die Vorstellungskraft hinsichtlich der Entwicklung künstlicher Intelligenz erweitern,
 - veranschaulichen, wie sich ein KI-Bewusstsein durch die Synthese verschiedener Technologien entwickeln könnte, und
 - zum Nachdenken und Diskutieren über die tiefgreifenden ethischen und philosophischen Fragen anregen, die sich aus diesen Möglichkeiten ergeben.
 
