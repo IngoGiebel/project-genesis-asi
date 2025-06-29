@@ -1,0 +1,7 @@
+---
+title: "Ergebnisse der Umfrage"
+---
+
+Glauben wir, dass eine Maschine ein Bewusstsein entwickeln kann? Auf dieser Seite analysieren wir die eingehenden Umfrageergebnisse. Wir möchten herausfinden, ob und wie Faktoren wie Alter, Bildung und Beruf die Ansichten zur KI beeinflussen. Unsere Erkenntnisse werden hier präsentiert, sobald hierfür eine aussagekräftige Datenbasis vorliegt.
+
+Schauen Sie bald wieder vorbei, um über die aktuellen Entwicklungen hinsichtlich der Wahrnehmung von KI informiert zu bleiben. Falls Sie noch nicht teilgenommen haben, würden wir uns freuen, wenn Sie Ihre Perspektive in unserer [Umfrage](survey.qmd#question-consciousness) teilen.
