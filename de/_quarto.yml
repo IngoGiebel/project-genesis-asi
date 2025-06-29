@@ -32,7 +32,7 @@ website:
   cookie-consent:
     type: express
     style: headline
-    prefs-text: "Cookie Einstellungen"
+    prefs-text: "Cookie-Einstellungen"
   search:
     location: navbar
     type: overlay
