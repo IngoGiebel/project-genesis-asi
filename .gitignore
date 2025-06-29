@@ -11,6 +11,9 @@
 # GoLand specific
 /.idea/
 
+# Gemini specific
+/.gemini/
+
 # R packages and environments
 .Rproj.user
 .RData
