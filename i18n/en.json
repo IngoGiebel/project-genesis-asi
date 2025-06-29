@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "home": "Home",
+    "timeline": "Timeline",
+    "survey": "Survey",
+    "results": "Results",
+    "discussion": "Discussion",
+    "about": "About",
+    "bibliography": "Bibliography",
+    "cite": "Cite"
+  },
+  "footer": {
+    "license": "Content on this site is licensed under <a href='https://creativecommons.org/licenses/by/4.0/' target='_blank' rel='noopener noreferrer'>CC&nbsp;BY&nbsp;4.0</a>."
+  },
+  "choose_option": "--Please choose an option--",
+  "search_country": "Search for a country…",
+  "error_loading_list": "Error loading list: ",
+  "error_loading_countries": "Error loading country options. Please refresh.",
+  "search_education": "Search for education…",
+  "error_loading_education": "Error loading education options. Please refresh.",
+  "search_profession": "Search for a field…",
+  "error_loading_professions": "Error loading profession options. Please refresh.",
+  "submitting": "Submitting…",
+  "nationality": "Nationality",
+  "education": "Education",
+  "profession": "Profession",
+  "choose_option_for": "Please choose an option for ",
+  "and": " and ",
+  "submission_successful": "Thank you! Your submission was successful.",
+  "network_error": "Network error. Please try again.",
+  "anonymous": "Anonymous",
+  "enter_post": "Please enter a post.",
+  "editor_placeholder": "Enter your thoughts here... You can use Markdown for formatting.",
+  "post_submission_successful": "Thank you! Your post has been submitted.",
+  "no_posts": "No posts yet – be the first to contribute!",
+  "error_fetching_posts": "Error fetching posts. Please refresh."
+}
