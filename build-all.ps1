@@ -3,8 +3,7 @@
 $ErrorActionPreference = "Stop"
 
 # -------------------------------------------------------------------
-# $Langs       = @('en','de')
-$Langs       = @('en')
+$Langs       = @('en','de')
 $RepoRoot    = $PSScriptRoot
 $SrcExt      = Join-Path $RepoRoot '_extensions'
 $SrcData     = Join-Path $RepoRoot 'data'

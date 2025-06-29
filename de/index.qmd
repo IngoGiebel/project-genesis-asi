@@ -1,0 +1,39 @@
+---
+title: "Kann eine Maschine Bewusstsein erlangen?"
+date: 2025-06-26
+date-modified: last-modified
+keywords:
+  - "Alpha Auriga"
+  - "künstliche Superintelligenz (KSI)"
+  - "KI-Bewusstsein"
+  - "verkörperte KI"
+  - "Gehirn-Organoide"
+---
+
+::: {.tagline}
+Eine Erkundung der Zukunft künstlicher Superintelligenz (KSI) – und was wir für möglich halten.
+:::
+
+# Willkommen beim Projekt Alpha Auriga
+
+Die Entwicklung hin zu einer potenziell bewussten künstlichen Superintelligenz ist nicht länger auf Science-Fiction beschränkt. Sie entsteht aus der realen Konvergenz von sich schnell beschleunigenden Technologien. Dieses Projekt dient sowohl als spekulative Zeitlinie als auch als öffentliche Umfrage, um eine der tiefgreifendsten Fragen unserer Zeit zu erforschen: *Wer glaubt, dass KI ein Bewusstsein haben kann, und was formt diesen Glauben?*
+
+Unsere Mission ist es, die Lücke zwischen KI-Ethik, Neurowissenschaften und öffentlicher Wahrnehmung zu schließen. Dazu präsentieren wir ein technisch fundiertes Narrativ, das anregen soll, über die Grenzen heutiger Technologie hinaus nachzudenken.
+
+# Erkunden Sie das Projekt
+
+Für einen idealen Überblick empfehlen wir folgende Schritte:
+
+1. Beginnen Sie mit der [Zeitlinie KSI-Genesis](timeline.qmd#sec-converging-paths), um plausible Zukunftsszenarien zu erkunden, die den Kontext für unsere Umfrage schaffen.
+
+2. Anschließend laden wir Sie ein, Ihre Perspektive in unserer [Umfrage](survey.qmd#question-consciousness) zu teilen.
+
+3. Sehen Sie sich die [Ergebnisse](results.qmd) der Umfrage an, die laufend aktualisiert werden, und nehmen Sie an der öffentlichen [Diskussion](discussion.qmd) teil, um Ihre Standpunkte zu teilen und die Standpunkte anderer kennenzulernen.
+
+Unser [Literaturverzeichnis](bibliography.qmd) bietet eine Auswahl aktueller wissenschaftlicher Publikationen zu den Themen dieses Projekts.
+
+# Warum das von Bedeutung ist
+
+Die Entwicklung von künstlicher Superintelligenz ist kein ferner Traum, sondern eine sich abzeichnende Realität. Das Verständnis der öffentlichen Wahrnehmung ist entscheidend für die Gestaltung einer Zukunft, in der Menschen und KIs sicher und auf einer ethischen bewussten Grundlage koexistieren können. Ihre Teilnahme hilft zu verstehen, wie unsere Gesellschaft das Potenzial für KI-Bewusstsein sieht und welche Faktoren diese Überzeugungen beeinflussen.
+
+Vielen Dank, dass Sie diese wichtige Diskussion mitgestalten.
