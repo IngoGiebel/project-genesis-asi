@@ -41,6 +41,8 @@ foreach ($Lang in $Langs) {
     }
 
     Write-Host "→ Render $Lang"
+    # Touch index.qmd so Quarto updates the Modified date
+    (Get-Item (Join-Path $LangDir 'index.qmd')).LastWriteTime = Get-Date
     Push-Location $LangDir
     quarto render
     Pop-Location

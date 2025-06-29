@@ -35,6 +35,8 @@ for LANG in "${LANGS[@]}"; do
   cp    "${COMMON_FILES[@]/#/$ROOT/}" "$LANG_DIR/"
 
   echo "→ Render $LANG"
+  # Touch index.qmd so Quarto updates the Modified date
+  touch "$LANG_DIR/index.qmd"
   ( cd "$LANG_DIR" && quarto render )
 done
 
