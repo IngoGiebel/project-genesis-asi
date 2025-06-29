@@ -1,9 +1,9 @@
 # Quarto specific
-/.quarto/
-/_freeze/
+**/.quarto/
+**/fonts/
+**/_freeze/
+**/site_libs/
 /_site/
-/fonts/
-/site_libs/
 
 # RStudio specific
 .Rhistory
@@ -26,3 +26,7 @@
 
 # Private promotion campaign data
 /_promotion-campaign/
+
+# Ignore language-local extension copies
+/en/_extensions/
+/de/_extensions/
