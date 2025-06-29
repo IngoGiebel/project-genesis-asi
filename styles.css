@@ -20,6 +20,7 @@
 
   /* Sizes */
   --fs-body: 1rem;
+  --fs-navbar: .9rem;
   --pad-x: .5rem;
   --pad-y: .1rem;
   --radius: .25rem;
@@ -73,7 +74,7 @@ h2 {
 .navbar {
   background: transparent;
   backdrop-filter: blur(.5rem) brightness(.70);
-  font-size: var(--fs-body);
+  font-size: var(--fs-navbar);
 }
 
 /* Dim inactive navbar links more to highlight the active link */

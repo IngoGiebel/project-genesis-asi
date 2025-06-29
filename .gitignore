@@ -1,32 +1,59 @@
-# Quarto specific
+###############################################################################
+# 1. START WITH “ignore everything” …
+###############################################################################
+*
+!*/
+
+###############################################################################
+# 2. KEEP canonical source files and root-level assets
+###############################################################################
+!*.qmd
+!*.html
+!*.yml
+!*.yaml
+!*.sh
+!*.ps1
+
+# root-level canonical asset folders
+!/js/**
+!/images/**
+!/data/**
+!/styles.css
+!/apa.csl
+!/bibliography.bib
+
+###############################################################################
+# 3. IGNORE Quarto build artefacts (any depth)
+###############################################################################
 **/.quarto/
-**/fonts/
 **/_freeze/
+**/fonts/
 **/site_libs/
-/_site/
+_site/
 
-# RStudio specific
+###############################################################################
+# 4. IGNORE editor / tooling folders
+###############################################################################
 .Rhistory
-
-# GoLand specific
-/.idea/
-
-# Gemini specific
-/.gemini/
-
-# Unused local files (kept for reference)
-/.unused/
-
-# R packages and environments
 .Rproj.user
 .RData
-
-# Local Netlify folder
-.netlify
-
-# Private promotion campaign data
+/.idea/
+/.gemini/
+/.netlify
+/.unused/
 /_promotion-campaign/
 
-# Ignore language-local extension copies
+###############################################################################
+# 5. IGNORE language-local copies created by build scripts
+###############################################################################
 /en/_extensions/
 /de/_extensions/
+
+/en/*.js
+/de/*.js
+
+/en/images/
+/de/images/
+
+/en/data/
+/de/data/
