@@ -1,5 +1,5 @@
 ---
-title: "Project Genesis ASI timeline (2025-2029)"
+title: "Timeline Project Genesis ASI (2025-2029)"
 ---
 
 # The converging paths to tomorrow's intelligence {#sec-converging-paths}
@@ -43,16 +43,15 @@ The following roadmap outlines Alpha Auriga's projected milestones in the develo
     <area shape="rect"
           coords="80, 245, 320, 295"
           href="#sec-2028-project-chimera"
-          alt="Link to Project Chimera - multi-body architecture">
+          alt="Link to 2028: Project Chimera - multi-body architecture">
     <area shape="rect"
           coords="80, 315, 320, 365"
           href="#sec-2029-genesis-threshold"
-          alt="Link to The genesis threshold - an evolving AI ecosystem">
+          alt="Link to 2029: The genesis threshold - an evolving AI ecosystem">
   </map>
 
   <figcaption>
-    Alpha Auriga's Genesis ASI timeline (2025-2029): Illustrates five key milestones, progressing from the development of bio-synthetic AI cores and networked distributed minds, to the emergence of AI consciousness (Inanna), its embodiment in multi-body architectures, and culminating in an evolving AI ecosystem with reproductive capabilities.
-    Click a milestone for details.
+    Timeline Genesis ASI (2025-2029): Illustrates five key milestones, progressing from the development of bio-synthetic AI cores and networked distributed minds, to the emergence of AI consciousness (Inanna), its embodiment in multi-body architectures, and culminating in an evolving AI ecosystem with reproductive capabilities. Click a milestone for details.
   </figcaption>
 </figure>
 ```
