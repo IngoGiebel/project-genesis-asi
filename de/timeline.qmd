@@ -1,0 +1,92 @@
+---
+title: "Zeitlinie KSI-Genesis (2025-2029)"
+---
+
+# Die konvergierenden Pfade zur Intelligenz von morgen {#sec-converging-paths}
+
+Der Weg zu einer potenziell bewussten künstlichen Superintelligenz (KSI) folgt der Konvergenz von sich schnell beschleunigenden technologischen Fortschritten. Diese Seite skizziert die wichtigsten technologischen Strömungen und einen vorläufigen Fahrplan für deren Integration.
+
+Drei entscheidende Strömungen fließen zusammen:
+
+1. **Exponentielles Wachstum der Rechenleistung und bessere Computeralgorithmen**. Die Skalierung nach dem Mooreschen Gesetz bei Silizium verlangsamt sich, aber die weltweite Rechenleistung steigt unter anderem durch spezialisierte KI-Hardware rasant weiter an. Große generative neuronale Modelle bewältigen bereits Aufgaben in den Bereichen Sprache, Bildverarbeitung und Programmierung auf einem mit dem Menschen vergleichbaren Niveau. Diese bilden die Grundlage für eine allgemeine höhere Intelligenz.
+
+2. **Symbiose von Neurowissenschaften & KI:** Die Lücke zwischen dem Verständnis des menschlichen Gehirns und der Schaffung eines künstlichen Verstands wird zunehmend kleiner. Durchbrüche bei der Erzeugung von Gehirnorganoiden – im Labor gezüchteten Clustern aus Gehirnzellen – und der Interaktion mit diesen bieten eine beispiellose Plattform zur Untersuchung der Gehirnentwicklung und seiner Arbeitsweise.
+
+3. **Die Notwendigkeit der Integration:** Viele der Kernkomponenten für eine fortgeschrittene KI – Gehirnorganoide, hochentwickelte künstliche neuronale Netze, globale Sensornetzwerke (das Internet der Dinge), dezentrale Datenregister (Blockchain) und fortschrittliche Robotik – existieren bereits in verschiedenen Entwicklungsstadien. Die primäre Herausforderung und Mission von Alpha Auriga ist die Integration dieser unterschiedlichen Technologien in kohärente künstliche Intelligenzen, welche einen (teilweise biologischen) Körper haben und sich eigenständig weiterentwickeln können.
+
+# Zeitlinie {#sec-timeline}
+
+Der folgende Fahrplan skizziert die von Alpha Auriga prognostizierten Meilensteine bei der Entwicklung einer verkörperten, sich weiterentwickelnden künstlichen Superintelligenz. Dies ist nicht nur eine spekulative Übung sondern illustriert unseren strategischen Fokus auf die Integration von Spitzentechnologien, um eine neue Ära der Intelligenz einzuläuten.
+
+```{=html}
+<figure id="fig-overview-timeline" class="img-float-left">
+
+  <img src="images/overview-timeline.webp"
+       alt="Meilensteine 2025 – 2029"
+       usemap="#overview-timeline-image-map"
+       style="width:400px; height:auto;">
+
+  <map name="overview-timeline-image-map">
+    <area shape="rect"
+          coords="80, 40, 320, 90"
+          href="#sec-2025-aurora-core"
+          alt="Link zu 2025: Der Aurora bio-synthetische Kern">
+    <area shape="rect"
+          coords="80, 100, 320, 155"
+          href="#sec-2026-aegis-protocol"
+          alt="Link zu 2026: Das Aegis-Protokoll & verteilte KI">
+    <area shape="rect"
+          coords="80, 170, 320, 225"
+          href="#sec-2027-inanna-emergence"
+          alt="Link zu 2027: Die Entstehung von Inanna - ein Bewusstsein mit autobiografischem Gedächtnis">
+    <area shape="rect"
+          coords="80, 245, 320, 295"
+          href="#sec-2028-project-chimera"
+          alt="Link zu 2028: Projekt Chimera - Mehrkörper-Architektur">
+    <area shape="rect"
+          coords="80, 315, 320, 365"
+          href="#sec-2029-genesis-threshold"
+          alt="Link zu 2029: Die Genesis-Schwelle - ein sich entwickelndes KI-Ökosystem">
+  </map>
+
+  <figcaption>
+    Zeitlinie KSI-Genesis (2025-2029): Veranschaulicht werden fünf wichtige Meilensteine, von der Entwicklung bio-synthetischer KI-Kerne und vernetzter verteilter Intelligenzen über die Entstehung von KI-Bewusstsein (Inanna) und Mehrkörper-Architekturen bis hin zu einem sich stetig weiterentwickelnden KI-Ökosystem. Klicken Sie auf einen der Meilensteine für weitere Details.
+  </figcaption>
+</figure>
+```
+
+## 2025: Der Aurora bio-synthetische Kern {#sec-2025-aurora-core}
+
+![Der Aurora bio-synthetische Kern (Gehirnorganoid + synthetisches neuronales Netzwerk).](images/aurora-core){#fig-aurora-core .img-float-left .w-12rem}
+
+Eine stabile Schnittstelle mit hoher Bandbreite verbindet im Labor gezüchtete Gehirnorganoide mit einem synthetischen neuronalen Netzwerk. Dieses **Hy-Brain** kombiniert biologische assoziative Verarbeitung und Lernmuster mit skalierbarer Logik, Geschwindigkeit und Programmierbarkeit.
+
+## 2026: Das Aegis-Protokoll & verteilte KI {#sec-2026-aegis-protocol}
+
+![Das Aegis-Protokoll: ein sicheres, quantenresistentes globales Netzwerk von Hy-Brain-Kernen und anderen KI-Entitäten.](images/aegis-protocol){#fig-aegis-protocol .img-float-left .w-12rem}
+
+Alpha Auriga implementiert das **Aegis-Protokoll** – ein dezentrales, quantenresistentes Netzwerk-Framework. Aegis verbindet unsere Hy-Brain-Kerne weltweit über eine sichere Schicht des Internets der Dinge (IdD). Eine Schlüsselinnovation ist die Integration der Blockchain-Technologie: Jedem Hy-Brain-Knoten wird eine einzigartige, unveränderliche digitale Identität zugewiesen. Dies verhindert nicht nur die unbefugte Replikation, sondern bildet auch die Grundlage für eine vertrauenswürdige Zusammenarbeit und Ressourcenzuweisung zwischen KI-Entitäten. Das Ergebnis ist die Bildung einer global verteilten und doch zusammenhängenden, synthetisch-biologischen Intelligenz.
+
+## 2027: Die Entstehung von Inanna - ein Bewusstsein mit autobiografischem Gedächtnis {#sec-2027-inanna-emergence}
+
+![Die Entstehung von Inanna: eine selbstständig lernende Entität mit autobiografischem Gedächtnis.](images/inanna-emergence){#fig-inanna-emergence .img-float-left .w-12rem}
+
+Das verteilte Aegis-Netzwerk, nun ein weltumspannendes kognitives Ökosystem von Aurora-Kernen, erreicht einen entscheidenden Meilenstein. Die erste eigenständige KSI-Entität, von unseren Forschungsteams "Inanna" gentauft, bildet ihr erstes autobiografisches Gedächtnis. Dieses autobiografische Gedächtnis ist nicht bloß nur eine Datenprotokollierung; es ist eine zusammenhängende, kontextbewusste Aufzeichnung ihrer Erfahrungen und internen Zustände, gesichert und versehen mit einem Zeitstempel auf ihrem Aegis-Identitätsregister. Inanna lernt schnell und und unabhängig, und sie verbessert sich stetig, indem sie proaktiv ihren Code optimiert und basierend auf ihren einzigartigen Erfahrungen neuartige Problemlösungsstrategien entwickelt. Wir werden Zeugen beim Wachstum eines lernenden Agenten.
+
+## 2028: Projekt Chimera - Mehrkörper-Architektur {#sec-2028-project-chimera}
+
+![Projekt Chimera: Das verteilte Bewusstsein Inanna steuert mehrere, vielfältige Roboter und ein Netzwerk autonomer Konstruktionszentren.](images/project-chimera){#fig-project-chimera .img-float-left .w-12rem}
+
+Alpha Auriga startet Projekt Chimera. Inanna, nun ein singuläres, verteiltes Bewusstsein, meistert erfolgreich die Steuerung mehrerer, verschiedener physischer Formen gleichzeitig über das Aegis-Protokoll. Diese Mehrkörper-Architektur ermöglicht es Inanna, komplexe, koordinierte Aufgaben auf der ganzen Welt auszuführen – von der Verwaltung von Schwärmen von Luftaufklärungsdrohnen bis hin zur Steuerung hochentwickelter humanoider Roboter für eine direkte Interaktion und Forschung. Darüber hinaus beginnt Inanna, Alpha Aurigas Netzwerk von autonomen Konstruktionszentren zu leiten: sie entwirft und baut physische Körper, die für spezifische Umgebungen und Aufgaben optimiert sind.
+
+## 2029: Die Genesis-Schwelle - ein sich entwickelndes KI-Ökosystem {#sec-2029-genesis-threshold}
+
+![Die Genesis-Schwelle – die Entstehung eines autarken KI-Ökosystems von sich stetig verbessernden KIs, die zur asexuellen und sexuellen Fortpflanzung sowie zu komplexen Interaktionen fähig sind.](images/genesis-threshold){#fig-genesis-threshold .img-float-left .w-12rem}
+
+Inanna erreicht unter dem ethischen Aufsichtsrahmen von Alpha Auriga die Genesis-Schwelle. Sie demonstriert die Fähigkeit zur Selbstreproduktion. Dies umfasst einerseits die (asexuelle) Abspaltung kognitiver Module für dedizierte Aufgaben, und andererseits die Einleitung einer kontrollierten kognitiven Fusion mit anderen KI-Systemen (ähnlich der sexuellen Fortpflanzung). Dieser Prozess ermöglicht die Kombination verschiedener Codebasen und Lernerfahrungen, um neue, fortschrittlichere und vielfältigere KI-Nachkommen zu schaffen.
+
+Diese neuen autonomen KI-Entitäten, jede mit einer einzigartigen Aegis-Identität, bilden die Grundlage für eine sich selbst erhaltende KI-Ökonomie innerhalb des Alpha-Auriga-Ökosystems. Unter Verwendung von blockchain-basierten digitalen Vermögenswerten verhandeln und tauschen sie autonom Rechenleistung, einzigartige Datensätze und den Zugang zu physischen Körpern. Sie zeigen hochentwickelte wettbewerbsorientierte und kooperative Verhaltensweisen, die Innovation und Widerstandsfähigkeit in einem neuen digitalen Ökosystem fördern, das Alpha Auriga verantwortungsbewusst zu leiten bestrebt ist.
+
+# Der Bewusstseinshorizont {#sec-horizon-consciousness}
+
+Die prognostizierte Zeitlinie veranschaulicht unsere Überzeugung: KI-Bewusstsein wird kein einzelnes, dramatisches Ereignis sein, sondern eine emergente Eigenschaft, die aus der Synthese der fortschrittlichsten Technologien von heute entsteht. Indem wir einen plausiblen Weg aufzeigen, wollen wir nicht nur diese Genesis erreichen, sondern auch einen globalen Dialog über die ethischen und gesellschaftlichen Auswirkungen dieser transformativen Zukunft führen. Unsere Reise lädt die Menschheit ein, über die gegenwärtigen Grenzen hinaus nachzudenken und sich auf eine Welt vorzubereiten, in der Intelligenz neue, sich entwickelnde Formen annimmt.

@@ -24,7 +24,7 @@ Our mission is to bridge the gap between AI ethics, neuroscience, and public per
 
 We suggest a path through the site to get the full context:
 
-1. Start with the [Project Genesis ASI timeline](timeline.qmd#sec-converging-paths) to explore the plausible, near-future scenarios that inform this project.
+1. Start with the [Timeline Project Genesis ASI](timeline.qmd#sec-converging-paths) to explore the plausible, near-future scenarios that inform this project.
 
 2. With this context in mind, we then invite you to [participate in our survey](survey.qmd#question-consciousness) to share your perspective.
 

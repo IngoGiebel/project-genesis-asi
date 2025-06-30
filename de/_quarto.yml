@@ -45,7 +45,7 @@ website:
       - text: "Home"
         icon: house-door
         href: index.qmd
-      - text: "Zeitleiste"
+      - text: "Zeitlinie"
         icon: clock
         href: timeline.qmd
       - text: "Umfrage"
