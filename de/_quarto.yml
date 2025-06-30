@@ -82,6 +82,7 @@ format:
     lang: de
     theme: cyborg
     css: styles.css
+    respect-user-color-scheme: false
     toc: true
     code-link: true
     code-overflow: wrap
