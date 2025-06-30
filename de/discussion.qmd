@@ -1,0 +1,47 @@
+---
+title: "Diskussion"
+include-in-header:
+  - text: |
+      <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown-light.min.css">
+include-after-body:
+  - text: |
+      <script type="module" src="discussion.js"></script>
+---
+
+# Diskutieren Sie!
+
+Jenseits der Umfrage-Statistiken liegt eine reiche Vielfalt persönlicher Einblicke, Argumente und Meinungen. Dies ist ein öffentliches Forum, wo Sie Ihren Standpunkt mit anderen teilen können. Zu Themen der künstlichen Intelligenz, Bewusstsein und unseren Möglichkeiten, die Zukunft zu gestalten.
+
+Wir laden Sie ein, Ihre Gedanken und Ideen beizutragen. Ihr Beitrag wird für alle Besucher dieser Seite öffentlich sichtbar sein.
+
+Einige Richtlinien für Ihren Beitrag:
+
+- Der Editor unterstützt grundlegendes **Markdown** zur Formatierung (z. B. `**fett**`, `*kursiv*`, Listen).
+- Wir ermutigen zu einem respektvollen und konstruktiven Dialog. Beiträge werden moderiert, um eine einladende Umgebung zu gewährleisten.
+
+Ihre Stimme verleiht dieser Umfrage eine wichtige qualitative Dimension. Was denken Sie?
+
+```{=html}
+<form id="discussion-post-form">
+  <div class="form-group">
+    <label for="post-author">Ihr Name (wird öffentlich angezeigt):</label><br>
+    <input type="text" id="post-author" name="author" maxlength="80" required>
+  </div>
+
+  <div class="form-group">
+    <label for="post-content">Ihr Beitrag:</label><br>
+    <textarea id="post-content" name="content" rows="12" maxlength="10000"></textarea>
+  </div>
+  
+  <button type="submit">Beitrag abschicken</button>
+</form>
+
+<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div>
+```
+
+# Diskussionsbeiträge
+
+```{=html}
+<div id="posts-container"></div>
+```
