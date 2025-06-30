@@ -35,7 +35,7 @@ Thank you for your contribution!
   
   <!-- ── DEMOGRAPHICS ─────────────────────────────────────────────────── -->
 
-  <fieldset  id="questions-demographics">
+  <fieldset id="questions-demographics">
     <legend>About you (demographic information)</legend>
 
     <label for="age">Age:</label><br>

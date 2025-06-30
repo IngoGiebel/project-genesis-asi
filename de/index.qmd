@@ -26,7 +26,7 @@ Für einen idealen Überblick empfehlen wir folgende Schritte:
 
 1. Beginnen Sie mit der [Zeitlinie KSI-Genesis](timeline.qmd#sec-converging-paths), um plausible Zukunftsszenarien zu erkunden, die den Kontext für unsere Umfrage schaffen.
 
-2. Anschließend laden wir Sie ein, Ihre Perspektive in unserer [Umfrage](survey.qmd#question-consciousness) zu teilen.
+2. Anschließend laden wir Sie ein, Ihre Perspektive in unserer [Umfrage zum KI-Bewusstsein](survey.qmd#question-consciousness) zu teilen.
 
 3. Sehen Sie sich die [Ergebnisse](results.qmd) der Umfrage an, die laufend aktualisiert werden, und nehmen Sie an der öffentlichen [Diskussion](discussion.qmd) teil, um Ihre Standpunkte zu teilen und die Standpunkte anderer kennenzulernen.
 

@@ -1,0 +1,117 @@
+---
+title: "Umfrage zum KI-Bewusstsein"
+include-after-body:
+  - text: |
+      <script type="module" src="survey.js"></script>
+---
+
+# Nehmen Sie an unserer Forschung teil
+
+Willkommen zu unserer Umfrage über Bewusstsein bei künstlicher Intelligenz (KI). Ihr Beitrag hilft uns zu verstehen, wie demografische und soziokulturelle Faktoren die Einschätzungen zu der Möglichkeit bewusster KIs beeinflussen.
+
+Über diese Umfrage:
+
+- Die Teilnahme ist freiwillig und anonym.
+- Alle erhobenen Daten dienen ausschließlich Forschungszwecken und werden gemäß der [EU-Datenschutz-Grundverordnung (DSGVO)](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32016R0679) behandelt.
+- Die Beantwortung der Kernfragen dauert ungefähr **2-3 Minuten**. Die Beantwortung der optionalen, offenen Fragen kann etwas mehr Zeit in Anspruch nehmen.
+- Erkunden Sie vor Beantwortung der Fragen die Seite [Zeitlinie KSI-Genesis](timeline.qmd#sec-converging-paths). Die dort präsentierten spekulativen Zukunftsszenarien könnten Ihre Einschätzung zu den Fragen dieser Umfrage beeinflussen!
+
+Vielen Dank für Ihren Beitrag!
+
+# Umfragefragen
+
+```{=html}
+<form id="ai-consciousness-survey">
+
+  <!-- ── MAIN QUESTION ────────────────────────────────────────────────── -->
+
+  <fieldset id="question-consciousness">
+    <legend>Glauben Sie, dass eine künstliche Intelligenz (KI) Bewusstsein erlangen kann?</legend>
+
+    <label><input type="radio" name="ai_can_be_conscious" value="yes" required> Ja</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="no"> Nein</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="unsure"> Bin mir unsicher</label>
+  </fieldset>
+  
+  <!-- ── DEMOGRAPHICS ─────────────────────────────────────────────────── -->
+
+  <fieldset id="questions-demographics">
+    <legend>Über Sie (demografische Informationen)</legend>
+
+    <label for="age">Alter:</label><br>
+    <input type="number" id="age" name="age" min="1" max="120" required><br>
+
+    <label>Geschlecht:</label><br>
+    <label><input type="radio" name="sex" value="male" required> Männlich</label><br>
+    <label><input type="radio" name="sex" value="female"> Weiblich</label><br>
+    <label><input type="radio" name="sex" value="diverse"> Divers</label><br>
+    <label><input type="radio" name="sex" value="prefer_not_to_say"> Keine Angabe</label><br>
+    
+    <label for="nationality">Nationalität:</label><br>
+    <select id="nationality" name="nationality"></select><br>
+
+    <label for="education">Höchster erreichter Bildungsgrad:</label><br>
+    <select id="education" name="education"></select><br>
+
+    <label for="profession">Beruf oder primäres Studien-/Arbeitsfeld:</label><br>
+    <select id="profession" name="profession"></select><br>
+
+    <label>Wie vertraut sind Sie mit KI-Konzepten?</label><br>
+    <label><input type="radio" name="ai_familiarity" value="1_not_at_all" required> 1 - Überhaupt nicht vertraut</label><br>
+    <label><input type="radio" name="ai_familiarity" value="2_slightly"> 2 - Wenig vertraut</label><br>
+    <label><input type="radio" name="ai_familiarity" value="3_moderately"> 3 - Mäßig vertraut</label><br>
+    <label><input type="radio" name="ai_familiarity" value="4_very"> 4 - Sehr vertraut</label><br>
+    <label><input type="radio" name="ai_familiarity" value="5_expert"> 5 - Experte/Expertin</label>
+  </fieldset>
+
+  <!-- ── OPTIONAL REASONING ───────────────────────────────────────────── -->
+
+  <fieldset id="question-reasoning">
+    <legend>Ihre Argumentation (optional)</legend>
+
+    <label for="reasoning">Sie können Ihre Antwort auf die Hauptfrage hier näher erläutern:</label><br>
+    <textarea id="reasoning"
+              name="reasoning"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="reasoning-help"></textarea>
+    <p id="reasoning-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+  </fieldset>
+
+  <!-- ── OPTIONAL ETHICS ──────────────────────────────────────────────── -->
+
+  <fieldset id="questions-ethics">
+    <legend>Ethische Überlegungen (optional)</legend>
+
+    <p>Diese Fragen zielen auf Ihr persönliches ethisches Empfinden ab. Es gibt keine richtigen oder falschen Antworten.</p>
+
+    <label for="measure_consciousness">Wenn KI Bewusstsein erlangen kann, anhand welcher Kriterien würden Sie das feststellen?</label><br>
+    <textarea id="measure_consciousness"
+              name="measure_consciousness"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="measure_consciousness-help"></textarea>
+    <p id="measure_consciousness-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+  
+    <label for="ai_rights">Wenn eine KI ein menschenähnliches Bewusstsein hätte, würde sie dann Menschenrechte verdienen?</label><br>
+    <textarea id="ai_rights"
+              name="ai_rights"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="ai_rights-help"></textarea>
+    <p id="ai_rights-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+
+    <label for="ai_declare_rights">Was wäre, wenn solche bewussten KIs ihre eigenen Rechte einfordern?</label><br>
+    <textarea id="ai_declare_rights"
+              name="ai_declare_rights"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="ai_declare_rights-help"></textarea>
+    <p id="ai_declare_rights-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+  </fieldset>
+
+  <button type="submit">Antworten abschicken</button>
+</form>
+
+<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div>
+```
