@@ -1,5 +1,6 @@
 /*************************************************************************
  * Chatbot Widget — client-side logic
+ * -----------------------------------------------------------------------
  * ▸ Dynamically loads internationalization strings
  * ▸ Handles chat window visibility and auto-growing textarea
  * ▸ Sends user messages to a Netlify function
