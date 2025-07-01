@@ -1,14 +1,17 @@
 /*************************************************************************
  * Small utilities shared by survey.js, discussion.js, etc.
+ * ▸ Loads localised status texts on first import
  ************************************************************************/
 
-export const STATUS_TEXT = {
-  400: "Bad request – the data we sent was malformed.",
-  401: "Unauthorised – please log in first.",
-  403: "Forbidden – you don’t have permission.",
-  404: "Endpoint not found on the server.",
-  500: "Server error – please try again later.",
-}
+import {t} from "./i18n.js"
+
+const STATUS_CODES = [400, 401, 403, 404, 500]
+
+export const STATUS_TEXT = Object.fromEntries(
+  await Promise.all(
+    STATUS_CODES.map(async (code) => [code, await t(`status.${code}`)])
+  )
+)
 
 export const $ = (sel, ctx = document) => ctx.querySelector(sel)
 

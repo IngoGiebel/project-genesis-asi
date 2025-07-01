@@ -1,10 +1,20 @@
 {
   "en": {
     "chatbot.initialGreeting": "Hello! I am the Alpha Auriga project assistant, powered by Gemini. Ask me about AI, consciousness, or the project's timeline.",
-    "chatbot.noResponse": "I'm sorry, I couldn't generate a response. Please try again."
+    "chatbot.noResponse": "I'm sorry, I couldn't generate a response. Please try again.",
+    "status.400": "Bad request – the data we sent was malformed.",
+    "status.401": "Unauthorized – please log in first.",
+    "status.403": "Forbidden – you don’t have permission.",
+    "status.404": "Endpoint not found on the server.",
+    "status.500": "Server error – please try again later."
   },
   "de": {
-    "chatbot.initialGreeting": "Hallo! Ich bin der Assistent des Alpha-Auriga-Projekts, basierend auf Gemini. Sie können mich nach KI, Bewusstsein oder unserem Zukunftsszenario befragen.",
-    "chatbot.noResponse": "Entschuldigung, ich konnte keine Antwort generieren. Bitte versuchen Sie es erneut."
+    "chatbot.initialGreeting": "Hallo! Ich bin der Assistent des Alpha-Auriga-Projekts, basierend auf Gemini. Sie können mir Fragen stellen zu KI, Bewusstsein oder zum hier skizzierten Zukunftsszenario.",
+    "chatbot.noResponse": "Entschuldigung, ich konnte keine Antwort generieren. Bitte versuchen Sie es erneut.",
+    "status.400": "Fehlerhafte Anfrage – die gesendeten Daten sind ungültig.",
+    "status.401": "Nicht autorisiert – bitte zuerst anmelden.",
+    "status.403": "Verboten – keine Berechtigung.",
+    "status.404": "Endpunkt auf dem Server nicht gefunden.",
+    "status.500": "Serverfehler – bitte später erneut versuchen."
   }
 }
