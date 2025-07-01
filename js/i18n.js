@@ -1,6 +1,6 @@
 /*************************************************************************
  * Simple i18n loader / cache
- * ----------------------------------------------------------------------
+ * -----------------------------------------------------------------------
  * ▸ Detects lang from URL (/de/ → "de"; fallback "en")
  * ▸ Fetches /data/i18n.json once, caches per language
  * ▸ t(key) returns string or key itself if missing

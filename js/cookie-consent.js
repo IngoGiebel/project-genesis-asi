@@ -1,8 +1,8 @@
 /*************************************************************************
  * Cookie-consent utils
  * ----------------------------------------------------------------------
- * Works with Quarto’s “express” banner (cookie name: `cookie_consent_level`).
- *************************************************************************/
+ * ▸ Works with Quarto’s “express” banner (cookie name: `cookie_consent_level`).
+ ************************************************************************/
 
 /** Named levels exactly as Quarto stores them in the JSON payload */
 export const CONSENT = {

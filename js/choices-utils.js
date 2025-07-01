@@ -24,7 +24,7 @@
  * without additional dependencies.
  *
  * @typedef {import("choices.js").default} ChoicesJS
- *************************************************************************/
+ ************************************************************************/
 
 /**
  * Keep the highlighted option in view while the user moves through the list

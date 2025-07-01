@@ -1,6 +1,7 @@
 /*************************************************************************
  * Small utilities shared by survey.js, discussion.js, etc.
- * ▸ Loads localised status texts on first import
+ * -----------------------------------------------------------------------
+ * ▸ Loads localized status texts on first import
  ************************************************************************/
 
 import {t} from "./i18n.js"

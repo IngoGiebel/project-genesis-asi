@@ -1,6 +1,6 @@
 /*************************************************************************
  * Discussion Page — client-side logic
- * ----------------------------------------------------------------------
+ * -----------------------------------------------------------------------
  * ▸ Initializes EasyMDE markdown editor
  * ▸ Handles post submission to Netlify function
  * ▸ Fetches and displays existing posts

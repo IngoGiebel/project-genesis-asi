@@ -1,9 +1,9 @@
 /*************************************************************************
  * Build the client-metadata blob that every POST payload needs
- * ----------------------------------------------------------------------
- * • Generates (or re-uses) the visitor’s fingerprint-ID
- * • Adds navigator.language
- * • Adds ?tag=… when the URL (or Quarto variable) provides it
+ * -----------------------------------------------------------------------
+ * ▸ Generates (or re-uses) the visitor’s fingerprint-ID
+ * ▸ Adds navigator.language
+ * ▸ Adds ?tag=… when the URL (or Quarto variable) provides it
  ************************************************************************/
 
 // keep one anonymous, stable ID per browser
