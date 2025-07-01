@@ -30,38 +30,5 @@
     "survey.search_profession": "Search for a profession…",
     "survey.submitting": "Submitting…",
     "survey.thank_you": "Thank you! Your submission was successful."
-  },
-
-  "de": {
-    "chatbot.initialGreeting": "Hallo! Ich bin der Assistent des Alpha-Auriga-Projekts, basierend auf Gemini. Sie können mir Fragen stellen zu KI, Bewusstsein oder zum hier skizzierten Zukunftsszenario.",
-    "chatbot.noResponse": "Entschuldigung, ich konnte keine Antwort generieren. Bitte versuchen Sie es erneut.",
-
-    "citation.copied": "Kopiert!",
-    "citation.copyToClipboard": "In die Zwischenablage",
-
-    "discussion.enter_post": "Bitte geben Sie einen Beitrag ein.",
-    "discussion.error_fetching_posts": "Fehler beim Abrufen der Beiträge. Bitte aktualisieren Sie die Seite.",
-    "discussion.no_posts": "Noch keine Beiträge – seien Sie der Erste, der einen Beitrag leistet!",
-    "discussion.placeholder": "Geben Sie hier Ihre Gedanken ein... Sie können Markdown zur Formatierung verwenden.",
-    "discussion.submitting": "Wird übermittelt…",
-    "discussion.thank_you": "Vielen Dank! Ihr Beitrag wurde übermittelt.",
-
-    "status.400": "Fehlerhafte Anfrage – die gesendeten Daten sind ungültig.",
-    "status.401": "Nicht autorisiert – bitte zuerst anmelden.",
-    "status.403": "Verboten – keine Berechtigung.",
-    "status.404": "Endpunkt auf dem Server nicht gefunden.",
-    "status.500": "Serverfehler – bitte später erneut versuchen.",
-
-    "survey.error_load_country": "Fehler beim Laden der Länderoptionen. Bitte aktualisieren Sie die Seite.",
-    "survey.error_load_education": "Fehler beim Laden der Ausbildungsoptionen. Bitte aktualisieren Sie die Seite.",
-    "survey.error_load_profession": "Fehler beim Laden der Berufsoptionen. Bitte aktualisieren Sie die Seite.",
-    "survey.network_error": "Netzwerkfehler. Bitte versuchen Sie es erneut.",
-    "survey.no_option_chosen": "Bitte wählen Sie eine Option für ",
-    "survey.placeholder": "--Bitte wählen Sie eine Option--",
-    "survey.search_country": "Suche nach einem Land…",
-    "survey.search_education": "Suche nach Ausbildung…",
-    "survey.search_profession": "Suche nach einem Beruf…",
-    "survey.submitting": "Wird übermittelt…",
-    "survey.thank_you": "Vielen Dank! Ihre Einreichung war erfolgreich."
   }
 }
