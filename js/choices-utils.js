@@ -32,10 +32,8 @@
  */
 export function keepHighlightVisible(choices) {
   // noinspection JSUnresolvedVariable
-  choices.passedElement.element.addEventListener(
-    "highlightChoice",
-    e => {
-      const el = e?.detail?.el
+  choices.passedElement.element.addEventListener("highlightChoice", evt => {
+      const el = evt?.detail?.el
       if (!el) return
       // Jump instantly just enough to reveal the item
       el.scrollIntoView({block: "nearest", behavior: "auto"})
