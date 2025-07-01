@@ -213,21 +213,21 @@ async function handleSubmit(evt) {
 
 /*───── Bootstrap when DOM ready ───────────────────────────────────────*/
 
-document.addEventListener(
-  "DOMContentLoaded",
-  async () => {
-    try {
-      // Initialize the three <select> widgets in parallel
-      await Promise.all([
-        initNationality(),
-        initEducation(),
-        initProfession(),
-      ])
-    } catch (err) {
-      // If any of the three failed you still log, but the page keeps working
-      console.error("[Select-init] ", err)
-    }
+async function bootstrap() {
+  try {
+    await Promise.all([
+      initNationality(),
+      initEducation(),
+      initProfession(),
+    ])
+  } catch (err) {
+    console.error("[Select-init] ", err)
+  }
+  $(Q.form)?.addEventListener("submit", handleSubmit)
+}
 
-    // Hook up the form after the selects are ready
-    $(Q.form)?.addEventListener("submit", handleSubmit)
-  })
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bootstrap)
+} else {
+  bootstrap().catch(console.error)
+}
