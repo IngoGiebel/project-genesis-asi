@@ -10,6 +10,7 @@ import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11/+esm"
 
 import {keepHighlightVisible, selectInputValue} from "./choices-utils.js"
 import {$, errMsgShort, msgFactory} from "./helpers.js"
+import {t} from "./i18n.js"
 import {buildClientMeta} from "./meta.js"
 
 /*───── Declare Choices.js instances type ──────────────────────────────*/
@@ -37,9 +38,26 @@ const Q = {
   profession: "#profession",
 }
 
-/*───── Helpers ────────────────────────────────────────────────────────*/
+/*───── State ──────────────────────────────────────────────────────────*/
 
 const msg = msgFactory(Q.messages)
+
+// Localized UI strings (loaded once at module import)
+const STR = {
+  errorLoadCountry: await t("survey.error_load_country"),
+  errorLoadEducation: await t("survey.error_load_education"),
+  errorLoadProfession: await t("survey.error_load_profession"),
+  networkError: await t("survey.network_error"),
+  noOptionChosen: await t("survey.no_option_chosen"),
+  placeholder: await t("survey.placeholder"),
+  searchCountry: await t("survey.search_country"),
+  searchEducation: await t("survey.search_education"),
+  searchProfession: await t("survey.search_profession"),
+  submitting: await t("survey.submitting"),
+  thankYou: await t("survey.thank_you"),
+}
+
+/*───── Helpers ────────────────────────────────────────────────────────*/
 
 async function fetchData(endpoint) {
   const ctrl = new AbortController()
@@ -59,7 +77,7 @@ async function initNationality() {
     const list = await fetchData(API.COUNTRIES)
 
     // Native <option> — accessibility & fallback
-    select.innerHTML = "<option value='' disabled selected>--Please choose an option--</option>" +
+    select.innerHTML = `<option value='' disabled selected>${STR.placeholder}</option>` +
       list.map(([code, name]) => `<option value="${code}">${name}</option>`).join("")
 
     // Choices instance
@@ -67,7 +85,7 @@ async function initNationality() {
       select,
       {
         searchEnabled: true,
-        searchPlaceholderValue: "Search for a country…",
+        searchPlaceholderValue: STR.searchCountry,
         itemSelectText: "",
         shouldSort: false,
       })
@@ -76,7 +94,7 @@ async function initNationality() {
   } catch (err) {
     console.error("[Countries] ", err)
     select.innerHTML = `<option>Error loading list: ${err.message}</option>`
-    msg("Error loading country options. Please refresh.", true)
+    msg(STR.errorLoadCountry, true)
   }
 }
 
@@ -90,7 +108,7 @@ async function initEducation() {
     const list = await fetchData(API.EDUCATION)
 
     // Native <option> — accessibility & fallback
-    select.innerHTML = "<option value='' disabled selected>--Please choose an option--</option>" +
+    select.innerHTML = `<option value='' disabled selected>${STR.placeholder}</option>` +
       list.map(([code, name]) => `<option value="${code}">${name}</option>`).join("")
 
     // Choices instance
@@ -98,7 +116,7 @@ async function initEducation() {
       select,
       {
         searchEnabled: true,
-        searchPlaceholderValue: "Search for education…",
+        searchPlaceholderValue: STR.searchEducation,
         itemSelectText: "",
         shouldSort: false,
       })
@@ -107,7 +125,7 @@ async function initEducation() {
   } catch (err) {
     console.error("[Education] ", err)
     select.innerHTML = `<option>Error loading list: ${err.message}</option>`
-    msg("Error loading education options. Please refresh.", true)
+    msg(STR.errorLoadEducation, true)
   }
 }
 
@@ -121,7 +139,7 @@ async function initProfession() {
     const list = await fetchData(API.PROFESSION)
 
     // Native <option> — accessibility & fallback
-    select.innerHTML = "<option value='' disabled selected>--Please choose an option--</option>" +
+    select.innerHTML = `<option value='' disabled selected>${STR.placeholder}</option>` +
       list.map(([code, name]) => `<option value="${code}">${name}</option>`).join("")
 
     // Choices instance
@@ -129,7 +147,7 @@ async function initProfession() {
       select,
       {
         searchEnabled: true,
-        searchPlaceholderValue: "Search for a field…",
+        searchPlaceholderValue: STR.searchProfession,
         itemSelectText: "",
         shouldSort: false,
       })
@@ -138,7 +156,7 @@ async function initProfession() {
   } catch (err) {
     console.error("[Profession] ", err)
     select.innerHTML = `<option>Error loading list: ${err.message}</option>`
-    msg("Error loading profession options. Please refresh.", true)
+    msg(STR.errorLoadProfession, true)
   }
 }
 
@@ -146,7 +164,7 @@ async function initProfession() {
 
 async function handleSubmit(evt) {
   evt.preventDefault()
-  msg("Submitting…")
+  msg(STR.submitting)
 
   // Validate that the three Choice-selects are filled in
   const selects = [
@@ -167,7 +185,7 @@ async function handleSubmit(evt) {
       .join(", ")
       .replace(/, ([^,]*)$/, " and $1")
 
-    msg(`Please choose an option for ${list}.`, true)
+    msg(`${STR.noOptionChosen}${list}.`, true)
     return
   }
 
@@ -195,7 +213,7 @@ async function handleSubmit(evt) {
       return console.error("Server response →", r)
     }
 
-    msg("Thank you! Your submission was successful.")
+    msg(STR.thankYou)
 
     // Reset the form
     evt.target.reset()
@@ -207,7 +225,7 @@ async function handleSubmit(evt) {
     choicesProfession?.setChoiceByValue("")
   } catch (err) {
     console.error("[Submit]", err)
-    msg("Network error. Please try again.", true)
+    msg(STR.networkError, true)
   }
 }
 
