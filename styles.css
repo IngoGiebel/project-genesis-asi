@@ -24,7 +24,7 @@
   --pad-x: .5rem;
   --pad-y: .1rem;
   --radius: .25rem;
-  --choices-width: 24em;
+  --choices-width: 28rem;
 
   /* Z-layers */
   --z-dropdown: 999;
@@ -258,7 +258,7 @@ input[type="radio"]:focus-visible {
   display: none;
   position: absolute;
   z-index: var(--z-dropdown);
-  width: 24em;
+  width: var(--choices-width);
   max-height: 15.8em;
   overflow-y: auto;
   background-color: var(--clr-panel-solid);

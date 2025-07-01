@@ -5,7 +5,7 @@ project:
     - data/i18n.json
     - data/countries.json
     - data/education.json
-    - data/profession.json
+    - data/profession.de.json
     - images/*.webp
     - choices-utils.js
     - cookie-consent.js

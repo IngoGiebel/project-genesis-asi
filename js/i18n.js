@@ -7,7 +7,7 @@
  * ▸ rootPath(url) strips "/de" (or other langs) so you can call backend
  ************************************************************************/
 
-const DETECTED_LANG = (() => {
+export const DETECTED_LANG = (() => {
   const m = location.pathname.match(/^\/([a-z]{2})(?:\/|$)/i)
   return m ? m[1] : "en"
 })()
