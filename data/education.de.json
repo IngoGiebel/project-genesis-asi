@@ -1,0 +1,9 @@
+[
+  ["high_school","Abitur oder gleichwertiger Abschluss"],
+  ["vocational_training","Berufsausbildung"],
+  ["bachelors_degree","Bachelor-Abschluss (oder gleichwertig)"],
+  ["masters_degree","Master-Abschluss (oder gleichwertig)"],
+  ["doctorate","Promotion (Doktorgrad)"],
+  ["other","Sonstige"],
+  ["prefer_not_to_say","Keine Angabe"]
+]
