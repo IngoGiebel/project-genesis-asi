@@ -2,6 +2,10 @@
   "en": {
     "chatbot.initialGreeting": "Hello! I am the Alpha Auriga project assistant, powered by Gemini. Ask me about AI, consciousness, or the project's timeline.",
     "chatbot.noResponse": "I'm sorry, I couldn't generate a response. Please try again.",
+
+    "citation.copied": "Copied!",
+    "citation.copyToClipboard": "Copy to clipboard",
+
     "status.400": "Bad request – the data we sent was malformed.",
     "status.401": "Unauthorized – please log in first.",
     "status.403": "Forbidden – you don’t have permission.",
@@ -11,6 +15,10 @@
   "de": {
     "chatbot.initialGreeting": "Hallo! Ich bin der Assistent des Alpha-Auriga-Projekts, basierend auf Gemini. Sie können mir Fragen stellen zu KI, Bewusstsein oder zum hier skizzierten Zukunftsszenario.",
     "chatbot.noResponse": "Entschuldigung, ich konnte keine Antwort generieren. Bitte versuchen Sie es erneut.",
+
+    "citation.copied": "Kopiert!",
+    "citation.copyToClipboard": "In die Zwischenablage",
+
     "status.400": "Fehlerhafte Anfrage – die gesendeten Daten sind ungültig.",
     "status.401": "Nicht autorisiert – bitte zuerst anmelden.",
     "status.403": "Verboten – keine Berechtigung.",

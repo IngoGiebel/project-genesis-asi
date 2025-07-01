@@ -1,49 +1,55 @@
-function setupCitationModal() {
+/*************************************************************************
+ * Handles the “Copy BibTeX” button inside the citation modal
+ ************************************************************************/
+
+import {t} from "./i18n.js"
+
+async function setupCitationModal() {
   const citeButton = document.querySelector("a[href$='#citationModal']")
   const modalElement = document.getElementById("citationModal")
+  if (!citeButton || !modalElement) return
 
-  if (citeButton && modalElement) {
-    // noinspection JSUnresolvedFunction
-    const citationModal = new bootstrap.Modal(modalElement)
+  const copiedStr = await t("citation.copied")
+  const copyStr = await t("citation.copyToClipboard")
 
-    citeButton.addEventListener(
-      "click",
-      event => {
-        event.preventDefault()
-        citationModal.show()
+  // noinspection JSUnresolvedFunction
+  const citationModal = new bootstrap.Modal(modalElement)
+
+  citeButton.addEventListener("click", event => {
+    event.preventDefault()
+    citationModal.show()
+  })
+
+  const copyButton = modalElement.querySelector(".code-copy-button")
+  const codeBlock = modalElement.querySelector("pre.sourceCode code")
+  if (!copyButton || !codeBlock) return
+
+  copyButton.title = copyStr
+
+  copyButton.addEventListener("click", () => {
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        const originalIcon = copyButton.innerHTML
+        copyButton.innerHTML = "<i class='bi bi-check2'></i>"
+        copyButton.title = copiedStr
+        // Revert after 2 seconds
+        setTimeout(
+          () => {
+            copyButton.innerHTML = originalIcon
+            copyButton.title = copyStr
+          },
+          2000)
+      }).catch(err => {
+        console.error("Failed to copy text using navigator.clipboard: ", err)
       })
-
-    const copyButton = modalElement.querySelector(".code-copy-button")
-    const codeBlock = modalElement.querySelector("pre.sourceCode code")
-
-    if (copyButton && codeBlock) {
-      copyButton.addEventListener(
-        "click",
-        () => {
-          const textToCopy = codeBlock.innerText
-          navigator.clipboard.writeText(textToCopy).then(() => {
-            const originalIcon = copyButton.innerHTML
-            copyButton.innerHTML = "<i class='bi bi-check2'></i>"
-            copyButton.title = "Copied!"
-            // Revert after 2 seconds
-            setTimeout(
-              () => {
-                copyButton.innerHTML = originalIcon
-                copyButton.title = "Copy to clipboard"
-              },
-              2000)
-          }).catch(err => {
-            console.error("Failed to copy text using navigator.clipboard: ", err)
-          })
-        },
-      )
-    }
-  }
+    },
+  )
 }
 
-// Ensure DOM is ready before setting up the modal
+// Ensure DOM is ready before setting up the modal citation window
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", setupCitationModal)
+  document.addEventListener("DOMContentLoaded", () => {
+    setupCitationModal().catch(console.error)
+  })
 } else {
-  setupCitationModal()
+  void setupCitationModal()
 }
