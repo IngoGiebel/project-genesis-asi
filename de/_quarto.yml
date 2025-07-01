@@ -2,9 +2,9 @@ project:
   type: website
   output-dir: ../_site/de
   resources:
-    - data/i18n.json
-    - data/countries.json
-    - data/education.json
+    - data/i18n.de.json
+    - data/countries.de.json
+    - data/education.de.json
     - data/profession.de.json
     - images/*.webp
     - choices-utils.js

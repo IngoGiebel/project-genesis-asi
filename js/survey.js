@@ -24,8 +24,8 @@ import {buildClientMeta} from "./meta.js"
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
-  COUNTRIES: "data/countries.json",
-  EDUCATION: "data/education.json",
+  COUNTRIES: DETECTED_LANG === "de" ? "data/countries.de.json" : "data/countries.json",
+  EDUCATION: DETECTED_LANG === "de" ? "data/education.de.json" : "data/education.json",
   PROFESSION: DETECTED_LANG === "de" ? "data/profession.de.json" : "data/profession.json",
   SUBMIT: "/.netlify/functions/submit_survey",
 }
