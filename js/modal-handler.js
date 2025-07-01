@@ -1,5 +1,3 @@
-/* global bootstrap */
-
 function setupCitationModal() {
   const citeButton = document.querySelector("a[href$='#citationModal']")
   const modalElement = document.getElementById("citationModal")
@@ -36,7 +34,6 @@ function setupCitationModal() {
               2000)
           }).catch(err => {
             console.error("Failed to copy text using navigator.clipboard: ", err)
-            // You could add user feedback here, e.g., changing button text to "Error"
           })
         },
       )
