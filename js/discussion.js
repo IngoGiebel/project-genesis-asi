@@ -9,8 +9,10 @@
 import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3/+esm"
 import EasyMDE from "https://cdn.jsdelivr.net/npm/easymde@2/dist/easymde.min.js/+esm"
 import {marked} from "https://cdn.jsdelivr.net/npm/marked@15/+esm"
-import {errMsgShort, msgFactory} from "./helpers.js"
+
 import {buildClientMeta} from "./meta.js"
+import {errMsgShort, msgFactory} from "./helpers.js"
+import {rootPath, t} from "./i18n.js"
 
 /*───── Tiny helpers ───────────────────────────────────────────────────*/
 
@@ -25,8 +27,8 @@ const json = async (u, o) => {
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
-  SUBMIT: ".netlify/functions/submit_post",
-  LIST: ".netlify/functions/submit_post",
+  SUBMIT: "/.netlify/functions/submit_post",
+  LIST: "/.netlify/functions/submit_post",
 }
 
 const Q = {
@@ -40,7 +42,18 @@ const Q = {
 /*───── State ──────────────────────────────────────────────────────────*/
 
 let easyMDE
+
 const msg = msgFactory(Q.msg)
+
+// Localized UI strings (loaded once at module import)
+const STR = {
+  enterPost: await t("discussion.enter_post"),
+  errorFetchingPosts: await t("discussion.error_fetching_posts"),
+  noPosts: await t("discussion.no_posts"),
+  placeholder: await t("discussion.placeholder"),
+  submitting: await t("discussion.submitting"),
+  thankYou: await t("discussion.thank_you"),
+}
 
 /*───── View helpers ───────────────────────────────────────────────────*/
 
@@ -61,7 +74,7 @@ function validateEditor() {
   // noinspection JSUnresolvedReference
   const empty = !easyMDE.value().trim()
   // noinspection JSUnresolvedReference
-  easyMDE.codemirror.getInputField().setCustomValidity(empty ? "Please enter a post." : "")
+  easyMDE.codemirror.getInputField().setCustomValidity(empty ? STR.enterPost : "")
   return !empty
 }
 
@@ -83,7 +96,7 @@ function initializeEditor() {
       "|",
       "undo", "redo",
     ],
-    placeholder: "Enter your thoughts here... You can use Markdown for formatting.",
+    placeholder: STR.placeholder,
   })
 
   // noinspection JSUnresolvedReference
@@ -102,14 +115,14 @@ function initializeEditor() {
 
 async function handleSubmit(evt) {
   evt.preventDefault()
-  msg("Submitting…")
+  msg(STR.submitting)
 
   // Trim & validate
   const author = $(Q.who).value.trim()
   const content = easyMDE.value().trim()
 
   if (!content) {
-    msg("Please enter a post.", true)
+    msg(STR.enterPost, true)
     // noinspection JSUnresolvedReference
     easyMDE.codemirror.focus()
     return
@@ -124,15 +137,14 @@ async function handleSubmit(evt) {
 
   try {
     const r = await fetch(
-      API.SUBMIT,
-      {
+      rootPath(API.SUBMIT), {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(body),
       })
 
     if (!r.ok) throw new Error(await errMsgShort(r))
-    msg("Thank you! Your post has been submitted.")
+    msg(STR.thankYou)
 
     evt.target.reset()
     // noinspection JSUnresolvedReference
@@ -149,24 +161,31 @@ async function fetchAndDisplayPosts() {
   const c = $(Q.list)
   if (!c) return
   try {
-    const posts = (await json(API.LIST)) ?? []
+    const posts = (await json(rootPath(API.LIST))) ?? []
+    console.log(await t("discussion.no_posts"))
     c.innerHTML = posts.length
       ? posts.map(renderPost).join("")
-      : `<p class="fst-italic">No posts yet – be the first to contribute!</p>`
+      : `<p class="fst-italic">${await t("discussion.no_posts")}</p>`
   } catch (err) {
     console.error("[Posts]", err)
-    c.innerHTML = `<p class="text-warning">Error fetching posts. Please refresh.</p>`
+    c.innerHTML = `<p class="text-warning">${await t("discussion.error_fetching_posts")}</p>`
   }
 }
 
 /*───── Bootstrap when DOM ready ───────────────────────────────────────*/
 
-document.addEventListener("DOMContentLoaded", async () => {
+async function bootstrap() {
   initializeEditor()
   try {
     await fetchAndDisplayPosts()
   } catch {
     // Already handled
   }
-  $(Q.form).addEventListener("submit", handleSubmit)
-})
+  $(Q.form)?.addEventListener("submit", handleSubmit)
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bootstrap)
+} else {
+  bootstrap().catch(console.error)
+}

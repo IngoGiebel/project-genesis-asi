@@ -6,6 +6,13 @@
     "citation.copied": "Copied!",
     "citation.copyToClipboard": "Copy to clipboard",
 
+    "discussion.enter_post": "Please enter a post.",
+    "discussion.error_fetching_posts": "Error fetching posts. Please refresh.",
+    "discussion.no_posts": "No posts yet – be the first to contribute!",
+    "discussion.placeholder": "Enter your thoughts here... You can use Markdown for formatting.",
+    "discussion.submitting": "Submitting…",
+    "discussion.thank_you": "Thank you! Your post has been submitted.",
+
     "status.400": "Bad request – the data we sent was malformed.",
     "status.401": "Unauthorized – please log in first.",
     "status.403": "Forbidden – you don’t have permission.",
@@ -18,6 +25,13 @@
 
     "citation.copied": "Kopiert!",
     "citation.copyToClipboard": "In die Zwischenablage",
+
+    "discussion.enter_post": "Bitte geben Sie einen Beitrag ein.",
+    "discussion.error_fetching_posts": "Fehler beim Abrufen der Beiträge. Bitte aktualisieren Sie die Seite.",
+    "discussion.no_posts": "Noch keine Beiträge – seien Sie der Erste, der einen Beitrag leistet!",
+    "discussion.placeholder": "Geben Sie hier Ihre Gedanken ein... Sie können Markdown zur Formatierung verwenden.",
+    "discussion.submitting": "Wird übermittelt…",
+    "discussion.thank_you": "Vielen Dank! Ihr Beitrag wurde übermittelt.",
 
     "status.400": "Fehlerhafte Anfrage – die gesendeten Daten sind ungültig.",
     "status.401": "Nicht autorisiert – bitte zuerst anmelden.",
