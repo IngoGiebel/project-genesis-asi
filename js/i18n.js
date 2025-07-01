@@ -32,13 +32,3 @@ export async function t(key) {
   const dict = await loadDict(DETECTED_LANG)
   return dict[key] ?? (await loadDict("en"))[key] ?? key
 }
-
-/**
- * Strip leading "/xx" language prefix so backend URLs are always root-relative
- * @param {string} url  e.g. "/.netlify/functions/chat"
- */
-export function rootPath(url) {
-  // Replace “/de/xxx” → “/xxx”; for English nothing matches, so the
-  // original url is returned unchanged and we don’t add an extra slash
-  return url.replace(/^\/[a-z]{2}\//, "/")
-}

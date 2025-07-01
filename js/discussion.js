@@ -12,7 +12,7 @@ import {marked} from "https://cdn.jsdelivr.net/npm/marked@15/+esm"
 
 import {buildClientMeta} from "./meta.js"
 import {errMsgShort, msgFactory} from "./helpers.js"
-import {rootPath, t} from "./i18n.js"
+import {t} from "./i18n.js"
 
 /*───── Tiny helpers ───────────────────────────────────────────────────*/
 
@@ -136,12 +136,11 @@ async function handleSubmit(evt) {
   }
 
   try {
-    const r = await fetch(
-      rootPath(API.SUBMIT), {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(body),
-      })
+    const r = await fetch(API.SUBMIT, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(body),
+    })
 
     if (!r.ok) throw new Error(await errMsgShort(r))
     msg(STR.thankYou)
@@ -161,7 +160,7 @@ async function fetchAndDisplayPosts() {
   const c = $(Q.list)
   if (!c) return
   try {
-    const posts = (await json(rootPath(API.LIST))) ?? []
+    const posts = (await json(API.LIST)) ?? []
     console.log(await t("discussion.no_posts"))
     c.innerHTML = posts.length
       ? posts.map(renderPost).join("")

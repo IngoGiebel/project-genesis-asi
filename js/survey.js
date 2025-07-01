@@ -10,7 +10,7 @@ import Choices from "https://cdn.jsdelivr.net/npm/choices.js@11/+esm"
 
 import {keepHighlightVisible, selectInputValue} from "./choices-utils.js"
 import {$, errMsgShort, msgFactory} from "./helpers.js"
-import {DETECTED_LANG, rootPath, t} from "./i18n.js"
+import {DETECTED_LANG, t} from "./i18n.js"
 import {buildClientMeta} from "./meta.js"
 
 /*───── Declare Choices.js instances type ──────────────────────────────*/
