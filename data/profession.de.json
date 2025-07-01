@@ -1,0 +1,14 @@
+[
+  ["00", "Generische Berufsfelder"],
+  ["01", "Erziehung und Ausbildung"],
+  ["02", "Kunst und Geisteswissenschaften"],
+  ["03", "Sozialwissenschaften, Journalismus und Informationswissenschaften"],
+  ["04", "Betriebswirtschaftslehre (BWL) und Rechtswissenschaften"],
+  ["05", "Naturwissenschaften, Mathematik und Statistik"],
+  ["06", "Informations- und Kommunikationstechnologie (IKT)"],
+  ["07", "Ingenieurwesen, Fertigung und Bauwesen"],
+  ["08", "Agrar-, Forst-, Fischerei- und Veterinärwissenschaften"],
+  ["09", "Gesundheit und soziale Dienste"],
+  ["10", "Service"],
+  ["99", "Unbestimmtes Berufsfeld"]
+]
