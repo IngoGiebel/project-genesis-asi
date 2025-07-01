@@ -24,9 +24,9 @@ import {buildClientMeta} from "./meta.js"
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
-  COUNTRIES: "data/countries.min.json",
-  EDUCATION: "data/education.min.json",
-  PROFESSION: "data/profession.min.json",
+  COUNTRIES: "data/countries.json",
+  EDUCATION: "data/education.json",
+  PROFESSION: "data/profession.json",
   SUBMIT: "/.netlify/functions/submit_survey",
 }
 

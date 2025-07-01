@@ -3,9 +3,9 @@ project:
   output-dir: ../_site
   resources:
     - data/i18n.json
-    - data/countries.min.json
-    - data/education.min.json
-    - data/profession.min.json
+    - data/countries.json
+    - data/education.json
+    - data/profession.json
     - images/*.webp
     - choices-utils.js
     - cookie-consent.js
