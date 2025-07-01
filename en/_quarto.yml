@@ -2,6 +2,7 @@ project:
   type: website
   output-dir: ../_site
   resources:
+    - data/i18n.json
     - data/countries.min.json
     - data/education.min.json
     - data/profession.min.json
@@ -9,6 +10,7 @@ project:
     - choices-utils.js
     - cookie-consent.js
     - helpers.js
+    - i18n.js
     - meta.js
 
 citation:

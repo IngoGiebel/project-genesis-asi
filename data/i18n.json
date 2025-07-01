@@ -1,0 +1,10 @@
+{
+  "en": {
+    "chatbot.initialGreeting": "Hello! I am the Alpha Auriga project assistant, powered by Gemini. Ask me about AI, consciousness, or the project's timeline.",
+    "chatbot.noResponse": "I'm sorry, I couldn't generate a response. Please try again."
+  },
+  "de": {
+    "chatbot.initialGreeting": "Hallo! Ich bin der Assistent des Alpha-Auriga-Projekts, basierend auf Gemini. Sie können mich nach KI, Bewusstsein oder unserem Zukunftsszenario befragen.",
+    "chatbot.noResponse": "Entschuldigung, ich konnte keine Antwort generieren. Bitte versuchen Sie es erneut."
+  }
+}

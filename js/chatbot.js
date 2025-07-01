@@ -1,14 +1,20 @@
 /*************************************************************************
  * Chatbot Widget — client-side logic
+ * ▸ Dynamically loads internationalization strings
+ * ▸ Handles chat window visibility and auto-growing textarea
+ * ▸ Sends user messages to a Netlify function
+ * ▸ Renders user and AI messages to the chat UI
  ************************************************************************/
 
 import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3/+esm"
 import {marked} from "https://cdn.jsdelivr.net/npm/marked@15/+esm"
-import {hasCookieConsent, CONSENT} from "./cookie-consent.js"
+import {CONSENT, hasCookieConsent} from "./cookie-consent.js"
+import {rootPath, t} from "./i18n.js"
 
 /*───── Constants ──────────────────────────────────────────────────────*/
 
 const API = {
+  I18N: "/data/i18n.json",
   CHAT: "/.netlify/functions/chat",
 }
 
@@ -22,9 +28,9 @@ const Q = {
 }
 
 const STORAGE_KEY = "aaChatHistory_v1"
-const GREETING_TEXT =
-  "Hello! I am the **Alpha Auriga** project assistant, powered by Gemini. " +
-  "Ask me about AI, consciousness, or the project's timeline."
+
+let GREETING_TEXT = ""
+let NO_RESPONSE_TEXT = ""
 
 /*───── Types ──────────────────────────────────────────────────────────*/
 
@@ -108,7 +114,7 @@ async function handleChatSubmit(evt) {
 
   try {
     // Send the entire chat history to the Netlify function
-    const r = await fetch(API.CHAT, {
+    const r = await fetch(rootPath(API.CHAT), {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({history: chatHistory}),
@@ -130,7 +136,7 @@ async function handleChatSubmit(evt) {
       chatHistory.push({role: "model", parts: [{text: aiText}]})
       saveHistory(chatHistory)
     } else {
-      addMessage("I'm sorry, I couldn't generate a response. Please try again.", "ai")
+      addMessage(NO_RESPONSE_TEXT, "ai")
     }
   } catch (err) {
     console.error("Chat Error:", err)
@@ -155,7 +161,11 @@ function renderInitialHistory() {
   })
 }
 
-function setupChatUI() {
+async function setupChatUI() {
+  // Load i18n first
+  GREETING_TEXT = await t("chatbot.initialGreeting")
+  NO_RESPONSE_TEXT = await t("chatbot.noResponse")
+
   const openBtn = $(Q.openBtn)
   const closeBtn = $(Q.closeBtn)
   const chatWindow = $(Q.chatWindow)
