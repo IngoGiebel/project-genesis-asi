@@ -10,7 +10,7 @@
 import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3/+esm"
 import {marked} from "https://cdn.jsdelivr.net/npm/marked@15/+esm"
 import {CONSENT, hasCookieConsent} from "./cookie-consent.js"
-import {rootPath, t} from "./i18n.js"
+import {t} from "./i18n.js"
 
 /*───── Constants ──────────────────────────────────────────────────────*/
 
@@ -115,7 +115,7 @@ async function handleChatSubmit(evt) {
 
   try {
     // Send the entire chat history to the Netlify function
-    const r = await fetch(rootPath(API.CHAT), {
+    const r = await fetch(API.CHAT, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({history: chatHistory}),
