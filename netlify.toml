@@ -5,9 +5,5 @@ publish = "_site"
 [functions]
 directory = "netlify/functions"
 
-[environment]
+[build.environment]
 GO_VERSION = "1.24"
-SERVER_MODE = "prod"
-
-[context.dev.environment]
-SERVER_MODE = "dev"
