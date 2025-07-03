@@ -8,6 +8,9 @@ keywords:
   - "AI consciousness"
   - "embodied AI"
   - "brain organoids"
+include-in-header:
+  - text: |
+      <script src="auto-lang-redirect.js"></script>
 ---
 
 ::: {.tagline}

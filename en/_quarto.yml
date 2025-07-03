@@ -7,6 +7,7 @@ project:
     - data/education.json
     - data/profession.json
     - images/*.webp
+    - auto-lang-redirect.js
     - choices-utils.js
     - cookie-consent.js
     - helpers.js

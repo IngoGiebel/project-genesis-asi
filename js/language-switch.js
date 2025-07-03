@@ -29,6 +29,10 @@ function handleLangSel(anchor) {
 
   if (!lang || lang === DETECTED_LANG) return
 
+  // Persist the visitor’s deliberate language choice (“en” or “de”)
+  // so a later hit on “/” can honour it without asking again.
+  localStorage.setItem("aaLangPref", lang)
+
   const prefix = lang === "en" ? "" : `/${lang}`
   location.href = join(prefix, barePath())
 }
