@@ -13,6 +13,7 @@
 !*.yaml
 !*.sh
 !*.ps1
+!/netlify/**
 
 # root-level canonical asset folders
 !/js/**
