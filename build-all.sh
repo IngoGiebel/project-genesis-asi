@@ -6,7 +6,9 @@ set -euo pipefail
 
 # -------------------------------------------------------------------
 LANGS=(en de)
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel)"
+
+
 SRC_EXT="$ROOT/_extensions"
 SRC_DATA="$ROOT/data"
 SRC_IMG="$ROOT/images"
@@ -27,8 +29,8 @@ for LANG in "${LANGS[@]}"; do
       "${COMMON_FILES[@]/#/$LANG_DIR/}" 2>/dev/null || true
 
   echo "→ Copy assets"
-  cp -R "$SRC_EXT"         "$LANG_DIR/_extensions"
-  cp -R "$SRC_DATA"        "$LANG_DIR/data"
+  cp -R "$SRC_EXT/"         "$LANG_DIR/_extensions"
+  cp -R "$SRC_DATA/"        "$LANG_DIR/data"
   mkdir -p "$LANG_DIR/images"
   cp    "$SRC_IMG"/*.webp  "$LANG_DIR/images/"
   cp    "$SRC_JS"/*.js     "$LANG_DIR/"
@@ -37,7 +39,7 @@ for LANG in "${LANGS[@]}"; do
   echo "→ Render $LANG"
   # Touch index.qmd so Quarto updates the Modified date
   touch "$LANG_DIR/index.qmd"
-  ( cd "$LANG_DIR" && quarto render )
+  ( cd "$LANG_DIR" && quarto.exe render )
 done
 
 echo "✓ All languages built"
