@@ -11,6 +11,7 @@ project:
     - cookie-consent.js
     - helpers.js
     - i18n.js
+    - language-switch.js
     - meta.js
 
 citation:
@@ -69,13 +70,11 @@ website:
       - text: "Zitieren"
         icon: quote
         href: "#citationModal"
-      - text: "Sprache"
+      - text: "Deutsch"
         icon: globe
         menu:
           - text: English
-            href: /
-          - text: Deutsch
-            href: /de/
+            href: /en/
   page-footer:
     left: "Die Inhalte dieser Seite sind unter <a href='https://creativecommons.org/licenses/by/4.0/deed.de' target='_blank' rel='noopener noreferrer'> CC BY 4.0</a> lizenziert."
 
@@ -91,5 +90,6 @@ format:
     fig-responsive: true
     self-contained-math: true
     include-after-body:
+      - _language-switch.html
       - _chatbot-widget.html
       - _citation-modal.html

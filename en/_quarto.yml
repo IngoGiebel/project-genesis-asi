@@ -11,6 +11,7 @@ project:
     - cookie-consent.js
     - helpers.js
     - i18n.js
+    - language-switch.js
     - meta.js
 
 citation:
@@ -69,11 +70,9 @@ website:
       - text: "Cite"
         icon: quote
         href: "#citationModal"
-      - text: "Language"
+      - text: "English"
         icon: globe
         menu:
-          - text: English
-            href: /
           - text: Deutsch
             href: /de/
   page-footer:
@@ -91,5 +90,6 @@ format:
     fig-responsive: true
     self-contained-math: true
     include-after-body:
+      - _language-switch.html
       - _chatbot-widget.html
       - _citation-modal.html
