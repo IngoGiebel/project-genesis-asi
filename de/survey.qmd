@@ -28,9 +28,16 @@ Vielen Dank für Ihren Beitrag!
   <fieldset id="question-consciousness">
     <legend>Glauben Sie, dass eine künstliche Intelligenz (KI) Bewusstsein erlangen kann?</legend>
 
-    <label><input type="radio" name="ai_can_be_conscious" value="yes" required> Ja</label><br>
-    <label><input type="radio" name="ai_can_be_conscious" value="no"> Nein</label><br>
-    <label><input type="radio" name="ai_can_be_conscious" value="unsure"> Bin mir unsicher</label>
+    <label><input type="radio" name="ai_can_be_conscious" value="yes_future" required>
+      Ja, grundsätzlich, aber nicht mit heutiger&nbsp;Technologie.</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="yes_already">
+      Ja, und sie könnte bereits in den fortschrittlichsten&nbsp;Systemen existieren.</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="only_bio">
+      Nur wenn sie auf biologischen Prinzipien basiert (z.&nbsp;B.&nbsp;Organoiden).</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="no">
+      Nein, Bewusstsein bleibt biologischen&nbsp;Organismen vorbehalten.</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="unsure">
+      Unsicher / Es ist unmöglich, das zu wissen.</label>
   </fieldset>
   
   <!-- ── DEMOGRAPHICS ─────────────────────────────────────────────────── -->

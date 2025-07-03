@@ -26,11 +26,18 @@ Thank you for your contribution!
   <!-- ── MAIN QUESTION ────────────────────────────────────────────────── -->
 
   <fieldset id="question-consciousness">
-    <legend>Do you believe that artificial intelligence (AI) can be conscious?</legend>
+    <legend>Do you believe artificial intelligence (AI) can be conscious?</legend>
 
-    <label><input type="radio" name="ai_can_be_conscious" value="yes" required> Yes</label><br>
-    <label><input type="radio" name="ai_can_be_conscious" value="no"> No</label><br>
-    <label><input type="radio" name="ai_can_be_conscious" value="unsure"> Unsure</label>
+    <label><input type="radio" name="ai_can_be_conscious" value="yes_future" required>
+      Yes, in principle, but not with current technology.</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="yes_already">
+      Yes, and it may already exist in the most advanced systems.</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="only_bio">
+      Only if it is based on biological principles (e.g.&nbsp;organoids).</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="no">
+      No, consciousness is exclusive to biological organisms.</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="unsure">
+      Unsure / It’s impossible to know.</label>
   </fieldset>
   
   <!-- ── DEMOGRAPHICS ─────────────────────────────────────────────────── -->
