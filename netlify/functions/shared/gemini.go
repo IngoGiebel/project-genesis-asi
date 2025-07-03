@@ -23,8 +23,8 @@ func GeminiURL(apiKey string) string {
 
 /*────────────────── System-level messages ──────────────────────────────*/
 
-//go:embed master_prompt.txt
+//go:embed ai_master_prompt.txt
 var MasterPrompt string
 
-//go:embed site_context.txt
+//go:embed ai_site_context.txt
 var SiteContext string

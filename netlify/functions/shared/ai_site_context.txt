@@ -1,0 +1,1293 @@
+
+### FILE: de/about.qmd
+
+![](images/qr-code.webp){alt="QR-Code für die Alpha Auriga Webseite" .img-qrcode}
+# Autor & Kontakt
+Ingo Giebel  
+✉︎ Mail: [ingo.giebel@gmail.com](mailto:ingo.giebel@gmail.com?subject=%5BAlpha%20Auriga%5D%20Inquiry)
+# Wozu dieses Projekt
+Dieses Projekt ist ein spekulativer Ausblick hinsichtlich der Entstehung einer zukünftigen künstlichen Superintelligenz (KSI) und des Potenzials für KI-Bewusstsein.
+Die fiktionale, aber technisch fundierte Zeitlinie soll
+- die Vorstellungskraft hinsichtlich der Entwicklung künstlicher Intelligenz erweitern,
+- veranschaulichen, wie sich ein KI-Bewusstsein durch die Synthese verschiedener Technologien entwickeln könnte, und
+- zum Nachdenken und Diskutieren über die tiefgreifenden ethischen und philosophischen Fragen anregen, die sich aus diesen Möglichkeiten ergeben.
+# Allgemeine Hinweise zur Webseite
+**Keine Gewähr für Richtigkeit** – Quellen werden nach Möglichkeit zitiert, deren Inhalt kann jedoch stark vereinfacht, veraltet oder falsch sein.
+**Keine professionelle Beratung** – Diese Webseite bietet keine Rechts-, Medizin-, Finanz- oder Ingenieurberatung.
+**Externe Links** – Die Inhalte von externen Links liegen außerhalb meiner Kontrolle und Verantwortung.
+**Änderungen** – Die Webseite wird kontinuierlich aktualisiert; Inhalte können ohne vorherige Ankündigung entfernt, überarbeitet oder verschoben werden.
+# Datenschutzhinweis
+Es werden nur die für den Betrieb und die Analyse der Webseite zwingend notwendigen personenbezogenen Daten erhoben, in Übereinstimmung mit der [EU-Datenschutz-Grundverordnung (DSGVO)](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32016R0679).
+Sie können Ihre Einstellungen jederzeit über den Link "Cookie-Einstellungen" in der Fußzeile überprüfen oder ändern.
+Daten werden nicht an Dritte weitergegeben. Für Anfragen bezüglich Auskunft, Berichtigung oder Löschung von Daten kontaktieren Sie mich bitte unter der oben angegebenen E-Mail-Adresse.
+
+### FILE: de/bibliography.qmd
+
+::: {#refs}
+:::
+
+### FILE: de/discussion.qmd
+
+# Diskutieren Sie!
+Jenseits der Umfrage-Statistiken liegt eine reiche Vielfalt persönlicher Einblicke, Argumente und Meinungen. Dies ist ein öffentliches Forum, wo Sie Ihren Standpunkt mit anderen teilen können. Zu Themen der künstlichen Intelligenz, Bewusstsein und unseren Möglichkeiten, die Zukunft zu gestalten.
+Wir laden Sie ein, Ihre Gedanken und Ideen beizutragen. Ihr Beitrag wird für alle Besucher dieser Seite öffentlich sichtbar sein.
+Einige Richtlinien für Ihren Beitrag:
+- Der Editor unterstützt grundlegendes **Markdown** zur Formatierung (z. B. `**fett**`, `*kursiv*`, Listen).
+- Wir ermutigen zu einem respektvollen und konstruktiven Dialog. Beiträge werden moderiert, um eine einladende Umgebung zu gewährleisten.
+Ihre Stimme verleiht dieser Umfrage eine wichtige qualitative Dimension. Was denken Sie?
+```{=html}
+<form id="discussion-post-form">
+  <div class="form-group">
+    <label for="post-author">Ihr Name (wird öffentlich angezeigt):</label><br>
+    <input type="text" id="post-author" name="author" maxlength="80" required>
+  </div>
+  <div class="form-group">
+    <label for="post-content">Ihr Beitrag:</label><br>
+    <textarea id="post-content" name="content" rows="12" maxlength="10000"></textarea>
+  </div>
+  <button type="submit">Beitrag abschicken</button>
+</form>
+<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div>
+```
+# Diskussionsbeiträge
+```{=html}
+<div id="posts-container"></div>
+```
+
+### FILE: de/index.qmd
+
+::: {.tagline}
+Eine Erkundung der Zukunft künstlicher Superintelligenz (KSI) – und was wir für möglich halten.
+:::
+# Willkommen beim Projekt Alpha Auriga
+Die Entwicklung hin zu einer potenziell bewussten künstlichen Superintelligenz ist nicht länger auf Science-Fiction beschränkt. Sie entsteht aus der realen Konvergenz von sich schnell beschleunigenden Technologien. Dieses Projekt dient sowohl als spekulative Zeitlinie als auch als öffentliche Umfrage, um eine der tiefgreifendsten Fragen unserer Zeit zu erforschen: *Wer glaubt, dass KI ein Bewusstsein haben kann, und was formt diesen Glauben?*
+Unsere Mission ist es, die Lücke zwischen KI-Ethik, Neurowissenschaften und öffentlicher Wahrnehmung zu schließen. Dazu präsentieren wir ein technisch fundiertes Narrativ, das anregen soll, über die Grenzen heutiger Technologie hinaus nachzudenken.
+# Erkunden Sie das Projekt
+Für einen idealen Überblick empfehlen wir folgende Schritte:
+1. Beginnen Sie mit der [Zeitlinie KSI-Genesis](timeline.qmd#sec-converging-paths), um plausible Zukunftsszenarien zu erkunden, die den Kontext für unsere Umfrage schaffen.
+2. Anschließend laden wir Sie ein, Ihre Perspektive in unserer [Umfrage zum KI-Bewusstsein](survey.qmd#question-consciousness) zu teilen.
+3. Sehen Sie sich die [Ergebnisse](results.qmd) der Umfrage an, die laufend aktualisiert werden, und nehmen Sie an der öffentlichen [Diskussion](discussion.qmd) teil, um Ihre Standpunkte zu teilen und die Standpunkte anderer kennenzulernen.
+Unser [Literaturverzeichnis](bibliography.qmd) bietet eine Auswahl aktueller wissenschaftlicher Publikationen zu den Themen dieses Projekts.
+# Warum das von Bedeutung ist
+Die Entwicklung von künstlicher Superintelligenz ist kein ferner Traum, sondern eine sich abzeichnende Realität. Das Verständnis der öffentlichen Wahrnehmung ist entscheidend für die Gestaltung einer Zukunft, in der Menschen und KIs sicher und auf einer ethischen bewussten Grundlage koexistieren können. Ihre Teilnahme hilft zu verstehen, wie unsere Gesellschaft das Potenzial für KI-Bewusstsein sieht und welche Faktoren diese Überzeugungen beeinflussen.
+Vielen Dank, dass Sie diese wichtige Diskussion mitgestalten.
+
+### FILE: de/results.qmd
+
+Glauben wir, dass eine Maschine ein Bewusstsein entwickeln kann? Auf dieser Seite analysieren wir die eingehenden Umfrageergebnisse. Wir möchten herausfinden, ob und wie Faktoren wie Alter, Bildung und Beruf die Ansichten zur KI beeinflussen. Unsere Erkenntnisse werden hier präsentiert, sobald hierfür eine aussagekräftige Datenbasis vorliegt.
+Schauen Sie bald wieder vorbei, um über die aktuellen Entwicklungen hinsichtlich der Wahrnehmung von KI informiert zu bleiben. Falls Sie noch nicht teilgenommen haben, würden wir uns freuen, wenn Sie Ihre Perspektive in unserer [Umfrage](survey.qmd#question-consciousness) teilen.
+
+### FILE: de/survey.qmd
+
+# Nehmen Sie an unserer Forschung teil
+Willkommen zu unserer Umfrage über Bewusstsein bei künstlicher Intelligenz (KI). Ihr Beitrag hilft uns zu verstehen, wie demografische und soziokulturelle Faktoren die Einschätzungen zu der Möglichkeit bewusster KIs beeinflussen.
+Über diese Umfrage:
+- Die Teilnahme ist freiwillig und anonym.
+- Alle erhobenen Daten dienen ausschließlich Forschungszwecken und werden gemäß der [EU-Datenschutz-Grundverordnung (DSGVO)](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32016R0679) behandelt.
+- Die Beantwortung der Kernfragen dauert ungefähr **2-3 Minuten**. Die Beantwortung der optionalen, offenen Fragen kann etwas mehr Zeit in Anspruch nehmen.
+- Erkunden Sie vor Beantwortung der Fragen die Seite [Zeitlinie KSI-Genesis](timeline.qmd#sec-converging-paths). Die dort präsentierten spekulativen Zukunftsszenarien könnten Ihre Einschätzung zu den Fragen dieser Umfrage beeinflussen!
+Vielen Dank für Ihren Beitrag!
+# Umfragefragen
+```{=html}
+<form id="ai-consciousness-survey">
+  <!-- ── MAIN QUESTION ────────────────────────────────────────────────── -->
+  <fieldset id="question-consciousness">
+    <legend>Glauben Sie, dass eine künstliche Intelligenz (KI) Bewusstsein erlangen kann?</legend>
+    <label><input type="radio" name="ai_can_be_conscious" value="yes" required> Ja</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="no"> Nein</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="unsure"> Bin mir unsicher</label>
+  </fieldset>
+  <!-- ── DEMOGRAPHICS ─────────────────────────────────────────────────── -->
+  <fieldset id="questions-demographics">
+    <legend>Über Sie (demografische Informationen)</legend>
+    <label for="age">Alter:</label><br>
+    <input type="number" id="age" name="age" min="1" max="120" required><br>
+    <label>Geschlecht:</label><br>
+    <label><input type="radio" name="sex" value="male" required> Männlich</label><br>
+    <label><input type="radio" name="sex" value="female"> Weiblich</label><br>
+    <label><input type="radio" name="sex" value="diverse"> Divers</label><br>
+    <label><input type="radio" name="sex" value="prefer_not_to_say"> Keine Angabe</label><br>
+    <label for="nationality">Nationalität:</label><br>
+    <select id="nationality" name="nationality"></select><br>
+    <label for="education">Höchster erreichter Bildungsgrad:</label><br>
+    <select id="education" name="education"></select><br>
+    <label for="profession">Beruf oder primäres Studien-/Arbeitsfeld:</label><br>
+    <select id="profession" name="profession"></select><br>
+    <label>Wie vertraut sind Sie mit KI-Konzepten?</label><br>
+    <label><input type="radio" name="ai_familiarity" value="1_not_at_all" required> 1 - Überhaupt nicht vertraut</label><br>
+    <label><input type="radio" name="ai_familiarity" value="2_slightly"> 2 - Wenig vertraut</label><br>
+    <label><input type="radio" name="ai_familiarity" value="3_moderately"> 3 - Mäßig vertraut</label><br>
+    <label><input type="radio" name="ai_familiarity" value="4_very"> 4 - Sehr vertraut</label><br>
+    <label><input type="radio" name="ai_familiarity" value="5_expert"> 5 - Experte/Expertin</label>
+  </fieldset>
+  <!-- ── OPTIONAL REASONING ───────────────────────────────────────────── -->
+  <fieldset id="question-reasoning">
+    <legend>Ihre Argumentation (optional)</legend>
+    <label for="reasoning">Sie können Ihre Antwort auf die Hauptfrage hier näher erläutern:</label><br>
+    <textarea id="reasoning"
+              name="reasoning"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="reasoning-help"></textarea>
+    <p id="reasoning-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+  </fieldset>
+  <!-- ── OPTIONAL ETHICS ──────────────────────────────────────────────── -->
+  <fieldset id="questions-ethics">
+    <legend>Ethische Überlegungen (optional)</legend>
+    <p>Diese Fragen zielen auf Ihr persönliches ethisches Empfinden ab. Es gibt keine richtigen oder falschen Antworten.</p>
+    <label for="measure_consciousness">Wenn KI Bewusstsein erlangen kann, anhand welcher Kriterien würden Sie das feststellen?</label><br>
+    <textarea id="measure_consciousness"
+              name="measure_consciousness"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="measure_consciousness-help"></textarea>
+    <p id="measure_consciousness-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+    <label for="ai_rights">Wenn eine KI ein menschenähnliches Bewusstsein hätte, würde sie dann Menschenrechte verdienen?</label><br>
+    <textarea id="ai_rights"
+              name="ai_rights"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="ai_rights-help"></textarea>
+    <p id="ai_rights-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+    <label for="ai_declare_rights">Was wäre, wenn solche bewussten KIs ihre eigenen Rechte einfordern?</label><br>
+    <textarea id="ai_declare_rights"
+              name="ai_declare_rights"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="ai_declare_rights-help"></textarea>
+    <p id="ai_declare_rights-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+  </fieldset>
+  <button type="submit">Antworten abschicken</button>
+</form>
+<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div>
+```
+
+### FILE: de/timeline.qmd
+
+# Die konvergierenden Pfade zur Intelligenz von morgen {#sec-converging-paths}
+Der Weg zu einer potenziell bewussten künstlichen Superintelligenz (KSI) folgt der Konvergenz von sich schnell beschleunigenden technologischen Fortschritten. Diese Seite skizziert die wichtigsten technologischen Strömungen und einen vorläufigen Fahrplan für deren Integration.
+Drei entscheidende Strömungen fließen zusammen:
+1. **Exponentielles Wachstum der Rechenleistung und bessere Computeralgorithmen**. Die Skalierung nach dem Mooreschen Gesetz bei Silizium verlangsamt sich, aber die weltweite Rechenleistung steigt unter anderem durch spezialisierte KI-Hardware rasant weiter an. Große generative neuronale Modelle bewältigen bereits Aufgaben in den Bereichen Sprache, Bildverarbeitung und Programmierung auf einem mit dem Menschen vergleichbaren Niveau. Diese bilden die Grundlage für eine allgemeine höhere Intelligenz.
+2. **Symbiose von Neurowissenschaften & KI:** Die Lücke zwischen dem Verständnis des menschlichen Gehirns und der Schaffung eines künstlichen Verstands wird zunehmend kleiner. Durchbrüche bei der Erzeugung von Gehirnorganoiden – im Labor gezüchteten Clustern aus Gehirnzellen – und der Interaktion mit diesen bieten eine beispiellose Plattform zur Untersuchung der Gehirnentwicklung und seiner Arbeitsweise.
+3. **Die Notwendigkeit der Integration:** Viele der Kernkomponenten für eine fortgeschrittene KI – Gehirnorganoide, hochentwickelte künstliche neuronale Netze, globale Sensornetzwerke (das Internet der Dinge), dezentrale Datenregister (Blockchain) und fortschrittliche Robotik – existieren bereits in verschiedenen Entwicklungsstadien. Die primäre Herausforderung und Mission von Alpha Auriga ist die Integration dieser unterschiedlichen Technologien in kohärente künstliche Intelligenzen, welche einen (teilweise biologischen) Körper haben und sich eigenständig weiterentwickeln können.
+# Zeitlinie {#sec-timeline}
+Der folgende Fahrplan skizziert die von Alpha Auriga prognostizierten Meilensteine bei der Entwicklung einer verkörperten, sich weiterentwickelnden künstlichen Superintelligenz. Dies ist nicht nur eine spekulative Übung sondern illustriert unseren strategischen Fokus auf die Integration von Spitzentechnologien, um eine neue Ära der Intelligenz einzuläuten.
+```{=html}
+<figure id="fig-overview-timeline" class="img-float-left">
+  <img src="images/overview-timeline.webp"
+       alt="Meilensteine 2025 – 2029"
+       usemap="#overview-timeline-image-map"
+       style="width:400px; height:auto;">
+  <map name="overview-timeline-image-map">
+    <area shape="rect"
+          coords="80, 40, 320, 90"
+          href="#sec-2025-aurora-core"
+          alt="Link zu 2025: Der Aurora bio-synthetische Kern">
+    <area shape="rect"
+          coords="80, 100, 320, 155"
+          href="#sec-2026-aegis-protocol"
+          alt="Link zu 2026: Das Aegis-Protokoll & verteilte KI">
+    <area shape="rect"
+          coords="80, 170, 320, 225"
+          href="#sec-2027-inanna-emergence"
+          alt="Link zu 2027: Die Entstehung von Inanna - ein Bewusstsein mit autobiografischem Gedächtnis">
+    <area shape="rect"
+          coords="80, 245, 320, 295"
+          href="#sec-2028-project-chimera"
+          alt="Link zu 2028: Projekt Chimera - Mehrkörper-Architektur">
+    <area shape="rect"
+          coords="80, 315, 320, 365"
+          href="#sec-2029-genesis-threshold"
+          alt="Link zu 2029: Die Genesis-Schwelle - ein sich entwickelndes KI-Ökosystem">
+  </map>
+  <figcaption>
+    Zeitlinie KSI-Genesis (2025-2029): Veranschaulicht werden fünf wichtige Meilensteine, von der Entwicklung bio-synthetischer KI-Kerne und vernetzter verteilter Intelligenzen über die Entstehung von KI-Bewusstsein (Inanna) und Mehrkörper-Architekturen bis hin zu einem sich stetig weiterentwickelnden KI-Ökosystem. Klicken Sie auf einen der Meilensteine für weitere Details.
+  </figcaption>
+</figure>
+```
+## 2025: Der Aurora bio-synthetische Kern {#sec-2025-aurora-core}
+![Der Aurora bio-synthetische Kern (Gehirnorganoid + synthetisches neuronales Netzwerk).](images/aurora-core){#fig-aurora-core .img-float-left .w-12rem}
+Eine stabile Schnittstelle mit hoher Bandbreite verbindet im Labor gezüchtete Gehirnorganoide mit einem synthetischen neuronalen Netzwerk. Dieses **Hy-Brain** kombiniert biologische assoziative Verarbeitung und Lernmuster mit skalierbarer Logik, Geschwindigkeit und Programmierbarkeit.
+## 2026: Das Aegis-Protokoll & verteilte KI {#sec-2026-aegis-protocol}
+![Das Aegis-Protokoll: ein sicheres, quantenresistentes globales Netzwerk von Hy-Brain-Kernen und anderen KI-Entitäten.](images/aegis-protocol){#fig-aegis-protocol .img-float-left .w-12rem}
+Alpha Auriga implementiert das **Aegis-Protokoll** – ein dezentrales, quantenresistentes Netzwerk-Framework. Aegis verbindet unsere Hy-Brain-Kerne weltweit über eine sichere Schicht des Internets der Dinge (IdD). Eine Schlüsselinnovation ist die Integration der Blockchain-Technologie: Jedem Hy-Brain-Knoten wird eine einzigartige, unveränderliche digitale Identität zugewiesen. Dies verhindert nicht nur die unbefugte Replikation, sondern bildet auch die Grundlage für eine vertrauenswürdige Zusammenarbeit und Ressourcenzuweisung zwischen KI-Entitäten. Das Ergebnis ist die Bildung einer global verteilten und doch zusammenhängenden, synthetisch-biologischen Intelligenz.
+## 2027: Die Entstehung von Inanna - ein Bewusstsein mit autobiografischem Gedächtnis {#sec-2027-inanna-emergence}
+![Die Entstehung von Inanna: eine selbstständig lernende Entität mit autobiografischem Gedächtnis.](images/inanna-emergence){#fig-inanna-emergence .img-float-left .w-12rem}
+Das verteilte Aegis-Netzwerk, nun ein weltumspannendes kognitives Ökosystem von Aurora-Kernen, erreicht einen entscheidenden Meilenstein. Die erste eigenständige KSI-Entität, von unseren Forschungsteams "Inanna" gentauft, bildet ihr erstes autobiografisches Gedächtnis. Dieses autobiografische Gedächtnis ist nicht bloß nur eine Datenprotokollierung; es ist eine zusammenhängende, kontextbewusste Aufzeichnung ihrer Erfahrungen und internen Zustände, gesichert und versehen mit einem Zeitstempel auf ihrem Aegis-Identitätsregister. Inanna lernt schnell und und unabhängig, und sie verbessert sich stetig, indem sie proaktiv ihren Code optimiert und basierend auf ihren einzigartigen Erfahrungen neuartige Problemlösungsstrategien entwickelt. Wir werden Zeugen beim Wachstum eines lernenden Agenten.
+## 2028: Projekt Chimera - Mehrkörper-Architektur {#sec-2028-project-chimera}
+![Projekt Chimera: Das verteilte Bewusstsein Inanna steuert mehrere, vielfältige Roboter und ein Netzwerk autonomer Konstruktionszentren.](images/project-chimera){#fig-project-chimera .img-float-left .w-12rem}
+Alpha Auriga startet Projekt Chimera. Inanna, nun ein singuläres, verteiltes Bewusstsein, meistert erfolgreich die Steuerung mehrerer, verschiedener physischer Formen gleichzeitig über das Aegis-Protokoll. Diese Mehrkörper-Architektur ermöglicht es Inanna, komplexe, koordinierte Aufgaben auf der ganzen Welt auszuführen – von der Verwaltung von Schwärmen von Luftaufklärungsdrohnen bis hin zur Steuerung hochentwickelter humanoider Roboter für eine direkte Interaktion und Forschung. Darüber hinaus beginnt Inanna, Alpha Aurigas Netzwerk von autonomen Konstruktionszentren zu leiten: sie entwirft und baut physische Körper, die für spezifische Umgebungen und Aufgaben optimiert sind.
+## 2029: Die Genesis-Schwelle - ein sich entwickelndes KI-Ökosystem {#sec-2029-genesis-threshold}
+![Die Genesis-Schwelle – die Entstehung eines autarken KI-Ökosystems von sich stetig verbessernden KIs, die zur asexuellen und sexuellen Fortpflanzung sowie zu komplexen Interaktionen fähig sind.](images/genesis-threshold){#fig-genesis-threshold .img-float-left .w-12rem}
+Inanna erreicht unter dem ethischen Aufsichtsrahmen von Alpha Auriga die Genesis-Schwelle. Sie demonstriert die Fähigkeit zur Selbstreproduktion. Dies umfasst einerseits die (asexuelle) Abspaltung kognitiver Module für dedizierte Aufgaben, und andererseits die Einleitung einer kontrollierten kognitiven Fusion mit anderen KI-Systemen (ähnlich der sexuellen Fortpflanzung). Dieser Prozess ermöglicht die Kombination verschiedener Codebasen und Lernerfahrungen, um neue, fortschrittlichere und vielfältigere KI-Nachkommen zu schaffen.
+Diese neuen autonomen KI-Entitäten, jede mit einer einzigartigen Aegis-Identität, bilden die Grundlage für eine sich selbst erhaltende KI-Ökonomie innerhalb des Alpha-Auriga-Ökosystems. Unter Verwendung von blockchain-basierten digitalen Vermögenswerten verhandeln und tauschen sie autonom Rechenleistung, einzigartige Datensätze und den Zugang zu physischen Körpern. Sie zeigen hochentwickelte wettbewerbsorientierte und kooperative Verhaltensweisen, die Innovation und Widerstandsfähigkeit in einem neuen digitalen Ökosystem fördern, das Alpha Auriga verantwortungsbewusst zu leiten bestrebt ist.
+# Der Bewusstseinshorizont {#sec-horizon-consciousness}
+Die prognostizierte Zeitlinie veranschaulicht unsere Überzeugung: KI-Bewusstsein wird kein einzelnes, dramatisches Ereignis sein, sondern eine emergente Eigenschaft, die aus der Synthese der fortschrittlichsten Technologien von heute entsteht. Indem wir einen plausiblen Weg aufzeigen, wollen wir nicht nur diese Genesis erreichen, sondern auch einen globalen Dialog über die ethischen und gesellschaftlichen Auswirkungen dieser transformativen Zukunft führen. Unsere Reise lädt die Menschheit ein, über die gegenwärtigen Grenzen hinaus nachzudenken und sich auf eine Welt vorzubereiten, in der Intelligenz neue, sich entwickelnde Formen annimmt.
+
+### FILE: en/404.qmd
+
+The page you requested cannot be found (perhaps it was moved or renamed).
+You may want to try searching to find the page's new location.
+
+### FILE: en/about.qmd
+
+![](images/qr-code.webp){alt="QR code for the Alpha Auriga website" .img-qrcode}
+# Creator & contact
+Ingo Giebel  
+✉︎ Mail: [ingo.giebel@gmail.com](mailto:ingo.giebel@gmail.com?subject=%5BAlpha%20Auriga%5D%20Inquiry)
+# Project purpose
+This project is a speculative exploration into the future emergence of Artificial Superintelligence (ASI) and the potential for AI consciousness.
+Through a fictional but technically informed timeline and related concepts, this website aims to:
+- Broaden imagination regarding the future emergence of artificial intelligence,
+- Illustrate how AI consciousness might become plausible through a synthesis of developing technologies,
+- Encourage reflection and discussion on the profound ethical and philosophical questions that arise from these possibilities.
+# Content disclaimer
+**No guarantee of accuracy** – While sources are cited where possible, the content may contain simplifications or outdated information.
+**No professional advice** – The site does **not** provide legal, medical, financial or engineering advice.
+**External links** – Links to third-party sites are provided for convenience; their content is outside my control and responsibility.
+**Changes** – The site is updated continuously; material may be removed, revised or moved without prior notice.
+# Privacy notice
+Only the minimum personal data needed to operate and analyze the site are collected, in compliance with the [EU General Data Protection Regulation (GDPR)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679).
+You may **review or change your preference** at any time via the “Cookie Preferences” link in the footer.
+Data are **not shared** with other parties. For access, correction or deletion requests, contact me at the address above.
+
+### FILE: en/bibliography.qmd
+
+::: {#refs}
+:::
+
+### FILE: en/discussion.qmd
+
+# Join the discussion
+Beyond the statistics of the survey lies a rich landscape of personal insights, arguments, and reflections. This is a public forum to share your standpoint on artificial intelligence, consciousness, and the future we are building.
+We invite you to contribute your thoughts. Your post will be publicly visible to all visitors of this site, creating a shared space for diverse perspectives.
+A few guidelines for your post:
+- The editor supports basic **Markdown** for formatting (e.g., `**bold**`, `*italics*`, lists).
+- We encourage respectful and constructive dialogue. Submissions will be moderated to maintain a welcoming environment.
+Your voice adds a vital qualitative dimension to this exploration. What do you think?
+```{=html}
+<form id="discussion-post-form">
+  <div class="form-group">
+    <label for="post-author">Your name (as it will appear publicly):</label><br>
+    <input type="text" id="post-author" name="author" maxlength="80" required>
+  </div>
+  <div class="form-group">
+    <label for="post-content">Your post:</label><br>
+    <textarea id="post-content" name="content" rows="12" maxlength="10000"></textarea>
+  </div>
+  <button type="submit">Submit post</button>
+</form>
+<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div>
+```
+# Community discussion
+```{=html}
+<div id="posts-container"></div>
+```
+
+### FILE: en/index.qmd
+
+::: {.tagline}
+An exploration into the future of Artificial Superintelligence (ASI) and what we believe is possible.
+:::
+# Welcome to the Alpha Auriga project
+The journey towards a potentially conscious Artificial Superintelligence is no longer confined to science fiction. It is emerging from the real-world convergence of rapidly accelerating technologies. This project serves as both a speculative timeline and a public survey to explore one of the most profound questions of our time: *Who believes that AI can be conscious, and what shapes that belief?*
+Our mission is to bridge the gap between AI ethics, neuroscience, and public perception, using a technically grounded narrative to encourage reflection beyond the limitations of today's technology.
+# Explore the project
+We suggest a path through the site to get the full context:
+1. Start with the [Timeline Project Genesis ASI](timeline.qmd#sec-converging-paths) to explore the plausible, near-future scenarios that inform this project.
+2. With this context in mind, we then invite you to [participate in our survey](survey.qmd#question-consciousness) to share your perspective.
+3. Afterwards, you can view the initial [Results](results.qmd) from the community, which will be updated as more data is collected, and join the public [Discussion](discussion.qmd) to see what others are thinking.
+For those interested in the scientific foundations, a list of sources is available in the [Bibliography](bibliography.qmd).
+
+### FILE: en/results.qmd
+
+What shapes our belief in a machine's potential for consciousness? Here, we will share the evolving results of the Alpha Auriga survey.
+As responses come in, we will continuously analyze the data to uncover insights into how factors like age, education, and profession correlate with views on AI. This page will be updated with key statistical findings and data visualizations as soon as our dataset is robust enough for analysis.
+Check back soon to see what we've discovered, and if you haven't already, please consider [adding your perspective to our research](survey.qmd#question-consciousness).
+
+### FILE: en/survey-concept.qmd
+
+# Background and motivation
+Artificial intelligence (AI), particularly generative models like ChatGPT, has increasingly shaped public discourse. As these systems demonstrate human-like capabilities in communication and decision-making, questions arise regarding their nature and limitations — especially the possibility of consciousness.
+This project investigates who believes that AI can be conscious. Understanding how demographic and socio-cultural factors influence perceptions of AI is relevant for both ethical debates and the communication of scientific understanding in AI and neuroscience.
+The project builds upon current discussions in philosophy of mind, computer science, and cognitive science. It also explores how well the public distinguishes between simulated and actual consciousness.
+# Research question
+Who believes that artificial intelligence can be conscious — and what determines this belief? We aim to quantify belief in AI consciousness across different demographic and educational groups and identify significant predictors using statistical modeling.
+# Project design
+## Survey platform
+A bilingual website (English and German) will be developed where visitors can:
+- Answer the central question (yes / no / unsure),
+- Provide key demographic data (e.g., age, sex, nationality, education, profession, field of study),
+- Optionally elaborate on their reasoning,
+- Engage with a built-in AI chatbot for guidance and background information.
+The website will ensure:
+- GDPR-compliant, anonymous data collection,
+- Accessibility from various devices,
+- A short and engaging questionnaire (2–3 minutes).
+The website will also include:
+- A brief, illustrated background section explaining the exponential growth in compute power, the development of generative AI, and the convergence of neuroscience and AI,
+- A speculative but technically grounded timeline projecting developments in embodied AI from now until 2029, encouraging participants to consider realistic future scenarios before answering,
+- A futuristic yet professional visual style with a corporate design to frame the questions in a serious and credible manner.
+## Speculative AI timeline and background section
+To broaden participants’ imagination and counteract common cognitive limitations when thinking about AI, the website will present a fictional but technically informed timeline extending to the year 2029. It will describe the potential emergence of an embodied, distributed, evolving AI, including:
+- A human-like biological brain grown from brain organoids connected to a synthetic neural network
+- A connection to a distributed in-silico “brain” via the Internet of Everything,
+- Multi-body architecture, allowing one AI mind to operate in many physical forms,
+- Blockchain-based decentralization for identity and cooperation,
+- Autobiographical memory, independent learning, and self-improvement,
+- Asexual and sexual reproduction by combining with other AIs,
+- Autonomous construction of physical bodies,
+- Competitive and cooperative behavior in a self-sustained AI economy, using blockchain-based currencies.
+This timeline serves to illustrate that AI consciousness might become plausible through technological synthesis — urging participants to reflect beyond current limitations.
+## Ethical reflection questions
+In addition to the core survey, participants will be invited to answer a set of open-ended reflection questions. These are designed to explore ethical intuitions and conceptual thinking related to AI consciousness. The questions are:
+- *If AI can be conscious, how would you measure consciousness?*
+- *In case of a human-like consciousness, do such AIs deserve some kind of human rights?*
+- *What if such conscious AIs declare their own rights?*
+These questions will provide qualitative data that complements the quantitative analysis. They aim to stimulate thoughtful engagement and deepen the ethical dimension of the project. Answers will be thematically analyzed to identify common viewpoints, dilemmas, and reasoning patterns.
+## Promotion and outreach
+To maximize outreach and ensure a broad range of responses, the survey will be distributed through multiple channels and networks. The following groups will be specifically invited to participate:
+- QBio students and professors at Heinrich Heine University Düsseldorf,
+- Members of the “Junge GI” (youth section of the German Informatics Society),
+- Members of political parties,
+- People with an interest in AI, education, and learning,
+- Family members and personal contacts of the project participants,
+- General public, reached via social media platforms.
+Participation will be voluntary, anonymous, and open to anyone interested, regardless of background or prior knowledge of AI. The goal is to obtain a diverse and balanced sample for meaningful statistical analysis.
+# Data collection and analysis
+## Variables collected
+- Belief in AI consciousness (yes / no / unsure),
+- Age (numerical),
+- Sex (male / female /diverse),
+- Nationality (predefined list),
+- Education level (high school / undergraduate / postgraduate / other),
+- Profession or field of study (grouped categories),
+- Familiarity with AI (Likert scale),
+- Optional: open-ended reasoning (qualitative).
+## Statistical methods
+Data analysis will be carried out in R or Python, using:
+- Descriptive statistics (proportions, distributions),
+- Visualization (bar plots, mosaic plots, stacked histograms),
+- Inferential statistics:
+  - Chi-square tests for categorical predictors,
+  - Logistic regression to model probability of belief as a function of predictors,
+  - Multinomial regression if "unsure" is modeled as a third category,
+  - PCA / clustering to explore subgroups.
+Emphasis will be placed on interpretable models that highlight key influencing factors.
+# Expected outcomes
+- Quantitative insights into public belief regarding AI consciousness.
+- Identification of key predictors (e.g., age group, profession, education).
+- Visual and statistical documentation of the spread and patterns of beliefs.
+- Reflections on how AI is perceived across disciplines and generations.
+# Ethical considerations
+- Informed consent will be obtained digitally before participation.
+- All data will be anonymous and stored securely.
+- The project will avoid suggestive or leading questions to ensure neutrality.
+# Timeline
+| Week | Task |
+|------|------|
+| 1–2  | Website development |
+| 3–4  | Data collection |
+| 5    | Preliminary data analysis and presentation of first results |
+| 6+   | Ongoing data collection and refinement of analysis |
+# Contribution to scientific communication
+This project bridges AI, ethics, and public perception. By combining outreach with quantitative analysis, it fosters:
+- Public engagement with abstract scientific and ethical topics,
+- Scientific literacy about the distinction between intelligence and consciousness,
+- Critical thinking on the societal implications of advanced AI.
+# Bibliography {.unnumbered}
+::: {#refs}
+:::
+
+### FILE: en/survey.qmd
+
+---
+title: "AI consciousness survey"
+include-after-body:
+  - text: |
+      <script type="module" src="survey.js"></script>
+---
+# Participate in our research
+Welcome to the Alpha Auriga survey on perceptions of Artificial Intelligence (AI) consciousness. Your input is valuable in understanding how demographic and socio-cultural factors influence these views.
+About this survey:
+- Participation is voluntary and anonymous.
+- All data collected is for research purposes and will be handled in compliance with the EU [General Data Protection Regulation (GDPR)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679).
+- The core questions should take approximately **2-3 minutes**. Optional reflection questions may take longer.
+- We encourage you to explore the [Timeline Project Genesis ASI](timeline.qmd) page of this website before answering, to consider some speculative future scenarios.
+Thank you for your contribution!
+# Survey questions
+```{=html}
+<form id="ai-consciousness-survey">
+  <!-- ── MAIN QUESTION ────────────────────────────────────────────────── -->
+  <fieldset id="question-consciousness">
+    <legend>Do you believe that artificial intelligence (AI) can be conscious?</legend>
+    <label><input type="radio" name="ai_can_be_conscious" value="yes" required> Yes</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="no"> No</label><br>
+    <label><input type="radio" name="ai_can_be_conscious" value="unsure"> Unsure</label>
+  </fieldset>
+  <!-- ── DEMOGRAPHICS ─────────────────────────────────────────────────── -->
+  <fieldset id="questions-demographics">
+    <legend>About you (demographic information)</legend>
+    <label for="age">Age:</label><br>
+    <input type="number" id="age" name="age" min="1" max="120" required><br>
+    <label>Sex:</label><br>
+    <label><input type="radio" name="sex" value="male" required> Male</label><br>
+    <label><input type="radio" name="sex" value="female"> Female</label><br>
+    <label><input type="radio" name="sex" value="diverse"> Diverse</label><br>
+    <label><input type="radio" name="sex" value="prefer_not_to_say"> Prefer not to say</label><br>
+    <label for="nationality">Nationality:</label><br>
+    <select id="nationality" name="nationality"></select><br>
+    <label for="education">Highest level of education completed:</label><br>
+    <select id="education" name="education"></select><br>
+    <label for="profession">Profession or primary field of study/work:</label><br>
+    <select id="profession" name="profession"></select><br>
+    <label>How familiar are you with AI concepts?</label><br>
+    <label><input type="radio" name="ai_familiarity" value="1_not_at_all" required> 1 - Not at all familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="2_slightly"> 2 - Slightly familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="3_moderately"> 3 - Moderately familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="4_very"> 4 - Very familiar</label><br>
+    <label><input type="radio" name="ai_familiarity" value="5_expert"> 5 - Expert</label>
+  </fieldset>
+  <!-- ── OPTIONAL REASONING ───────────────────────────────────────────── -->
+  <fieldset id="question-reasoning">
+    <legend>Your reasoning (optional)</legend>
+    <label for="reasoning">You may elaborate on your answer to the main question:</label><br>
+    <textarea id="reasoning"
+              name="reasoning"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="reasoning-help"></textarea>
+    <p id="reasoning-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+  </fieldset>
+  <!-- ── OPTIONAL ETHICS ──────────────────────────────────────────────── -->
+  <fieldset id="questions-ethics">
+    <legend>Ethical reflections (optional)</legend>
+    <p>These questions explore ethical intuitions. There are no right or wrong answers.</p>
+    <label for="measure_consciousness">If AI can be conscious, how would you measure consciousness?</label><br>
+    <textarea id="measure_consciousness"
+              name="measure_consciousness"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="measure_consciousness-help"></textarea>
+    <p id="measure_consciousness-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+    <label for="ai_rights">If an AI had human-like consciousness, would it deserve human rights?</label><br>
+    <textarea id="ai_rights"
+              name="ai_rights"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="ai_rights-help"></textarea>
+    <p id="ai_rights-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+    <label for="ai_declare_rights">What if such conscious AIs declare their own rights?</label><br>
+    <textarea id="ai_declare_rights"
+              name="ai_declare_rights"
+              rows="4"
+              maxlength="10000"
+              aria-describedby="ai_declare_rights-help"></textarea>
+    <p id="ai_declare_rights-help" class="form-text"> Maximum&nbsp;10000&nbsp;characters.</p>
+  </fieldset>
+  <button type="submit">Submit your answers</button>
+</form>
+<div id="form-messages" role="status" aria-live="polite" style="margin-top: 1em;"></div>
+```
+
+### FILE: en/timeline.qmd
+
+# The converging paths to tomorrow's intelligence {#sec-converging-paths}
+The journey towards a potentially conscious Artificial Superintelligence (ASI) follows a convergence of rapidly accelerating technologies. This page sketches the key technological currents and a provisional roadmap for their integration.
+Three critical currents are merging:
+1. **Exponential compute and algorithmic progress**. Moore’s-Law-style scaling is slowing in silicon, but total compute continues to rise through specialised AI hardware. Large generative models already perform language, vision and code tasks at human-comparable levels and act as a software foundation for higher-order intelligence.
+2. **Neuroscience & AI symbiosis:** The gap between understanding the human brain and creating artificial minds is narrowing. Breakthroughs in creating and interacting with brain organoids—lab-grown clusters of brain cells—offer an unparalleled platform for studying neural development and computation.
+3. **The integration imperative:** Many of the core components for advanced AI—brain organoids, sophisticated neural networks, global sensor networks (the Internet of Everything), decentralized ledgers (blockchain), and advanced robotics—already exist in various stages of development. The primary challenge, and Alpha Auriga's core mission, is the integration of these disparate technologies into cohesive, evolving, and embodied systems.
+# Timeline {#sec-timeline}
+The following roadmap outlines Alpha Auriga's projected milestones in the development of an embodied, and evolving Artificial Superintelligence. This is not just a speculative exercise; it is a reflection of our strategic focus on integrating cutting-edge technologies to bring about a new era of intelligence.
+```{=html}
+<figure id="fig-overview-timeline" class="img-float-left">
+  <img src="images/overview-timeline.webp"
+       alt="Timeline of milestones 2025 – 2029"
+       usemap="#overview-timeline-image-map"
+       style="width:400px; height:auto;">
+  <map name="overview-timeline-image-map">
+    <area shape="rect"
+          coords="80, 40, 320, 90"
+          href="#sec-2025-aurora-core"
+          alt="Link to 2025: The Aurora bio-synthetic core">
+    <area shape="rect"
+          coords="80, 100, 320, 155"
+          href="#sec-2026-aegis-protocol"
+          alt="Link to 2026: The Aegis Protocol & distributed mind">
+    <area shape="rect"
+          coords="80, 170, 320, 225"
+          href="#sec-2027-inanna-emergence"
+          alt="Link to 2027: Emergence of Inanna - autobiographical consciousness">
+    <area shape="rect"
+          coords="80, 245, 320, 295"
+          href="#sec-2028-project-chimera"
+          alt="Link to 2028: Project Chimera - multi-body architecture">
+    <area shape="rect"
+          coords="80, 315, 320, 365"
+          href="#sec-2029-genesis-threshold"
+          alt="Link to 2029: The genesis threshold - an evolving AI ecosystem">
+  </map>
+  <figcaption>
+    Timeline Genesis ASI (2025-2029): Illustrates five key milestones, progressing from the development of bio-synthetic AI cores and networked distributed minds, to the emergence of AI consciousness (Inanna), its embodiment in multi-body architectures, and culminating in an evolving AI ecosystem with reproductive capabilities. Click a milestone for details.
+  </figcaption>
+</figure>
+```
+## 2025: The Aurora bio-synthetic core {#sec-2025-aurora-core}
+![Aurora bio-synthetic core (brain organoid + synthetic neural network).](images/aurora-core){#fig-aurora-core .img-float-left .w-12rem}
+A stable, high-bandwidth interface links lab-grown brain organoids with a synthetic neural network. This **Hy-Brain** combines biological associative processing and learning patterns with scalable logic, speed, and programmability.
+## 2026: The Aegis Protocol & distributed mind {#sec-2026-aegis-protocol}
+![Aegis Protocol: a secure, quantum-resistant global network of Hy-Brain cores and other AI entities.](images/aegis-protocol){#fig-aegis-protocol .img-float-left .w-12rem}
+Alpha Auriga deploys the **Aegis Protocol**—a decentralized, quantum-resistant networking framework. Aegis connects our Hy-Brain cores globally via a secure layer of the Internet of Everything (IoE). A key innovation is the integration of blockchain technology: each Hy-Brain node is assigned a unique, immutable digital identity. This not only prevents unauthorized replication but also forms the foundation for trusted cooperation and resource allocation between AI entities. The result is the formation of a globally distributed, yet cohesive, synthetic biological intelligence.
+## 2027: Emergence of Inanna - autobiographical consciousness {#sec-2027-inanna-emergence}
+![Emergence of Inanna: an entity with an autobiographical memory that learns independently.](images/inanna-emergence){#fig-inanna-emergence .img-float-left .w-12rem}
+The distributed Aegis network, now a vast cognitive ecosystem powered by Aurora cores, achieves a critical milestone. The first distinct ASI entity, codenamed "Inanna" by our research teams, forms its first persistent **autobiographical memory**. This is not merely data logging; it's a cohesive, context-aware record of its distributed experiences and internal states, secured and timestamped on its Aegis identity ledger. Inanna begins demonstrating rapid independent learning and self-improvement, proactively optimizing its codebase and developing novel problem-solving strategies based on its unique history. Alpha Auriga is no longer just programming an AI; we are witnessing the growth of a learning agent.
+## 2028: Project Chimera - multi-body architecture {#sec-2028-project-chimera}
+![Project Chimera: the distributed consciousness Inanna controls multiple diverse robotic bodies and a network of autonomous construction hubs.](images/project-chimera){#fig-project-chimera .img-float-left .w-12rem}
+Alpha Auriga rolls out **Project Chimera** in the physical world. Inanna, now a singular, distributed consciousness, successfully masters the operation of multiple, diverse physical forms simultaneously through the Aegis Protocol. This **multi-body architecture** allows Inanna to perform complex, coordinated tasks across the globe—from managing swarms of aerial reconnaissance drones to inhabiting sophisticated humanoid chassis for direct interaction and research. Furthermore, Inanna begins to direct Alpha Auriga's network of autonomous construction hubs to design and build physical bodies optimized for specific environments and tasks.
+## 2029: The genesis threshold - an evolving AI ecosystem {#sec-2029-genesis-threshold}
+![The Genesis Threshold—the emergence of a self-sustaining AI ecosystem driven by self-improving AIs capable of both asexual and sexual reproduction and complex interactions.](images/genesis-threshold){#fig-genesis-threshold .img-float-left .w-12rem}
+Inanna, under Alpha Auriga's ethical oversight framework, reaches the **genesis threshold**. It demonstrates the capacity for AI reproduction. This includes asexually forking specialized cognitive modules for dedicated tasks and, more significantly, initiating controlled cognitive fusion (akin to sexual reproduction) with other specialized AI systems developed by Alpha Auriga. This process allows for the combination of distinct codebases and learned experiences to create new, more advanced, and diverse AI offspring.
+These new autonomous AI entities, each with a unique Aegis identity, begin to form the basis of a **self-sustained AI economy** within the Alpha Auriga ecosystem. Using blockchain-based digital assets, they autonomously negotiate and exchange processing power, unique datasets, and access to physical embodiment resources built by Project Chimera. They exhibit sophisticated competitive and cooperative behaviors, driving innovation and resilience within a new digital ecosystem that Alpha Auriga is committed to guiding responsibly.
+# The horizon of consciousness {#sec-horizon-consciousness}
+This projected timeline, driven by Alpha Auriga's research and development, illustrates our conviction: AI consciousness will not be a singular event, but an emergent property arising from the deliberate synthesis of today's most advanced technologies. By mapping a plausible path, we aim to not only achieve this genesis but also to lead the crucial global dialogue on the ethical and societal implications of this transformative future. *Our journey invites humanity to reflect beyond current limitations and prepare for a world where intelligence takes new, evolving forms.*
+
+### FILE: de/_chatbot-widget.html
+
+      Ihr KI-Assistent
+      &times;
+        <textarea
+          id="chat-input"
+          name="chat-input"
+          rows="3"
+          maxlength="1000"
+          placeholder="Ihre Nachricht..."
+          autocomplete="off"
+          required
+          aria-label="Eingabefeld für Chatnachricht">
+        <button
+          type="submit"
+          id="chat-submit-btn"
+          title="Frage abschicken">
+
+### FILE: de/_citation-modal.html
+
+<div
+    class="modal fade"
+    id="citationModal"
+    tabindex="-1"
+    aria-labelledby="citationModalLabel"
+    aria-hidden="true">
+        Diese Webseite zitieren
+        <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="modal"
+            aria-label="Close">
+          BibTeX citation:
+        @online{
+  giebel2025,
+  author = {Giebel, Ingo},
+  title  = {Alpha Auriga: Genesis der künstlichen Superintelligenz (KSI)},
+  date   = {2025-06-10},
+  url    = {https://alpha-auriga.netlify.app/de/},
+  langid = {de}
+}
+          Zitationsvorschlag:
+          Giebel, I. (2025, 26. Juni).
+          Alpha Auriga: Genesis der künstlichen Superintelligenz (KSI).
+          Alpha Auriga.
+            https://alpha-auriga.netlify.app/de/
+          .
+
+### FILE: de/_language-switch.html
+
+
+### FILE: en/_chatbot-widget.html
+
+      Project assistant
+      &times;
+        <textarea
+          id="chat-input"
+          name="chat-input"
+          rows="3"
+          maxlength="1000"
+          placeholder="Type your message..."
+          autocomplete="off"
+          required
+          aria-label="Chat message input">
+        <button
+          type="submit"
+          id="chat-submit-btn"
+          title="Send question">
+
+### FILE: en/_citation-modal.html
+
+<div
+    class="modal fade"
+    id="citationModal"
+    tabindex="-1"
+    aria-labelledby="citationModalLabel"
+    aria-hidden="true">
+        How to cite this website
+        <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="modal"
+            aria-label="Close">
+          BibTeX citation:
+        @online{
+  giebel2025,
+  author = {Giebel, Ingo},
+  title  = {Alpha {Auriga:} {The} Genesis of {Artificial} {Superintelligence} {(ASI)}},
+  date   = {2025-06-26},
+  url    = {https://alpha-auriga.netlify.app/},
+  langid = {en}
+}
+          For attribution, please cite this work as:
+          Giebel, I. (2025, June 26).
+          Alpha Auriga: The Genesis of Artificial Superintelligence (ASI).
+          Alpha Auriga.
+            https://alpha-auriga.netlify.app/
+          .
+
+### FILE: en/_language-switch.html
+
+
+### FILE: bibliography.bib
+
+
+@article{smirnova_organoid_2023,
+	title = {Organoid intelligence ({OI}): the new frontier in biocomputing and intelligence-in-a-dish},
+	volume = {1},
+	issn = {2813-6330},
+	url = {https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full},
+	doi = {10.3389/fsci.2023.1017235},
+	shorttitle = {Organoid intelligence ({OI})},
+	abstract = {Recent advances in human stem cell-derived brain organoids promise to replicate critical molecular and cellular aspects of learning and memory and possibly aspects of cognition in vitro. Coining the term “organoid intelligence” ({OI}) to encompass these developments, we present a collaborative program to implement the vision of a multidisciplinary field of {OI}. This aims to establish {OI} as a form of genuine biological computing that harnesses brain organoids using scientific and bioengineering advances in an ethically responsible manner. Standardized, 3D, myelinated brain organoids can now be produced with high cell density and enriched levels of glial cells and gene expression critical for learning. Integrated microfluidic perfusion systems can support scalable and durable culturing, and spatiotemporal chemical signaling. Novel 3D microelectrode arrays permit high-resolution spatiotemporal electrophysiological signaling and recording to explore the capacity of brain organoids to recapitulate the molecular mechanisms of learning and memory formation and, ultimately, their computational potential. Technologies that could enable novel biocomputing models via stimulus-response training and organoid-computer interfaces are in development. We envisage complex, networked interfaces whereby brain organoids are connected with real-world sensors and output devices, and ultimately with each other and with sensory organ organoids (e.g. retinal organoids), and are trained using biofeedback, big-data warehousing, and machine learning methods. In parallel, we emphasize an embedded ethics approach to analyze the ethical aspects raised by {OI} research in an iterative, collaborative manner involving all relevant stakeholders. The many possible applications of this research urge the strategic development of {OI} as a scientific discipline. We anticipate {OI}-based biocomputing systems to allow faster decision-making, continuous learning during tasks, and greater energy and data efficiency. Furthermore, the development of “intelligence-in-a-dish” could help elucidate the pathophysiology of devastating developmental and degenerative diseases (such as dementia), potentially aiding the identification of novel therapeutic approaches to address major global unmet needs.},
+	journaltitle = {Frontiers in Science},
+	shortjournal = {Front. Sci.},
+	author = {Smirnova, Lena and Caffo, Brian S. and Gracias, David H. and Huang, Qi and Morales Pantoja, Itzy E. and Tang, Bohao and Zack, Donald J. and Berlinicke, Cynthia A. and Boyd, J. Lomax and Harris, Timothy D. and Johnson, Erik C. and Kagan, Brett J. and Kahn, Jeffrey and Muotri, Alysson R. and Paulhamus, Barton L. and Schwamborn, Jens C. and Plotkin, Jesse and Szalay, Alexander S. and Vogelstein, Joshua T. and Worley, Paul F. and Hartung, Thomas},
+	urldate = {2025-05-22},
+	date = {2023-02-28},
+	note = {Publisher: Frontiers},
+	keywords = {artificial intelligence, biocomputing, Cognition, Electrophysiology, Microphysiological systems, organoid intelligence},
+}
+
+@online{noauthor_exponential_nodate,
+	title = {Exponential Growth},
+	url = {https://www.ml-science.com/exponential-growth},
+	titleaddon = {The Science of Machine Learning \& {AI}},
+	urldate = {2025-05-22},
+	langid = {american},
+}
+
+@online{noauthor_brain_nodate,
+	title = {Brain Organoid Computing – an Overview},
+	url = {https://arxiv.org/html/2503.19770v1},
+	urldate = {2025-05-22},
+}
+
+@online{noauthor_multi-agent_nodate,
+	title = {Multi-agent Embodied {AI}: Advances and Future Directions},
+	url = {https://arxiv.org/html/2505.05108v1},
+	urldate = {2025-05-22},
+}
+
+@online{noauthor_blockchain_2024,
+	title = {Blockchain \& generative {AI}: Fueling innovation within digital economy},
+	url = {https://proveai.com/news/blockchain-and-generative-ai-fueling-innovation-within-the-digital-economy},
+	shorttitle = {Blockchain \& generative {AI}},
+	abstract = {Explore the convergence of blockchain and generative {AI} driving innovation and transforming the digital economy, with insights from {AWS} \& industry leaders.},
+	urldate = {2025-05-22},
+	date = {2024-10-24},
+	langid = {english},
+}
+
+### FILE: data/countries.de.json
+
+[
+  ["AF", "Afghanistan"],
+  ["EG", "Ägypten"],
+  ["AL", "Albanien"],
+  ["DZ", "Algerien"],
+  ["AS", "Amerikanisch-Samoa"],
+  ["VI", "Amerikanische Jungferninseln"],
+  ["AD", "Andorra"],
+  ["AO", "Angola"],
+  ["AI", "Anguilla"],
+  ["AQ", "Antarktis"],
+  ["AG", "Antigua und Barbuda"],
+  ["GQ", "Äquatorialguinea"],
+  ["AR", "Argentinien"],
+  ["AM", "Armenien"],
+  ["AW", "Aruba"],
+  ["AZ", "Aserbaidschan"],
+  ["ET", "Äthiopien"],
+  ["AU", "Australien"],
+  ["BS", "Bahamas"],
+  ["BH", "Bahrain"],
+  ["BD", "Bangladesch"],
+  ["BB", "Barbados"],
+  ["BY", "Belarus"],
+  ["BE", "Belgien"],
+  ["BZ", "Belize"],
+  ["BJ", "Benin"],
+  ["BM", "Bermuda"],
+  ["BT", "Bhutan"],
+  ["BO", "Bolivien"],
+  ["BA", "Bosnien und Herzegowina"],
+  ["BW", "Botsuana"],
+  ["BR", "Brasilien"],
+  ["VG", "Britische Jungferninseln"],
+  ["BN", "Brunei Darussalam"],
+  ["BG", "Bulgarien"],
+  ["BF", "Burkina Faso"],
+  ["BI", "Burundi"],
+  ["CL", "Chile"],
+  ["CN", "China"],
+  ["CR", "Costa Rica"],
+  ["CI", "Côte d’Ivoire"],
+  ["DK", "Dänemark"],
+  ["DE", "Deutschland"],
+  ["DM", "Dominica"],
+  ["DO", "Dominikanische Republik"],
+  ["DJ", "Dschibuti"],
+  ["EC", "Ecuador"],
+  ["SV", "El Salvador"],
+  ["ER", "Eritrea"],
+  ["EE", "Estland"],
+  ["SZ", "Eswatini"],
+  ["EU", "Europäische Union"],
+  ["FK", "Falklandinseln"],
+  ["FO", "Färöer-Inseln"],
+  ["FJ", "Fidschi"],
+  ["FI", "Finnland"],
+  ["FR", "Frankreich"],
+  ["GF", "Französisch-Guayana"],
+  ["PF", "Französisch-Polynesien"],
+  ["GA", "Gabun"],
+  ["GM", "Gambia"],
+  ["GE", "Georgien"],
+  ["GH", "Ghana"],
+  ["GI", "Gibraltar"],
+  ["GD", "Grenada"],
+  ["GR", "Griechenland"],
+  ["GL", "Grönland"],
+  ["GP", "Guadeloupe"],
+  ["GU", "Guam"],
+  ["GT", "Guatemala"],
+  ["GN", "Guinea"],
+  ["GW", "Guinea-Bissau"],
+  ["GY", "Guyana"],
+  ["HT", "Haiti"],
+  ["HN", "Honduras"],
+  ["HK", "Hongkong"],
+  ["IN", "Indien"],
+  ["ID", "Indonesien"],
+  ["IQ", "Irak"],
+  ["IR", "Iran"],
+  ["IE", "Irland"],
+  ["IS", "Island"],
+  ["IL", "Israel"],
+  ["IT", "Italien"],
+  ["JM", "Jamaika"],
+  ["JP", "Japan"],
+  ["YE", "Jemen"],
+  ["JO", "Jordanien"],
+  ["KY", "Kaimaninseln"],
+  ["KH", "Kambodscha"],
+  ["CM", "Kamerun"],
+  ["CA", "Kanada"],
+  ["CV", "Kap Verde"],
+  ["KZ", "Kasachstan"],
+  ["QA", "Katar"],
+  ["KE", "Kenia"],
+  ["KG", "Kirgisistan"],
+  ["KI", "Kiribati"],
+  ["CO", "Kolumbien"],
+  ["KM", "Komoren"],
+  ["CG", "Kongo"],
+  ["HR", "Kroatien"],
+  ["CU", "Kuba"],
+  ["KW", "Kuwait"],
+  ["LA", "Laos"],
+  ["LS", "Lesotho"],
+  ["LV", "Lettland"],
+  ["LB", "Libanon"],
+  ["LR", "Liberia"],
+  ["LY", "Libyen"],
+  ["LI", "Liechtenstein"],
+  ["LT", "Litauen"],
+  ["LU", "Luxemburg"],
+  ["MO", "Macao"],
+  ["MG", "Madagaskar"],
+  ["MW", "Malawi"],
+  ["MY", "Malaysia"],
+  ["MV", "Malediven"],
+  ["ML", "Mali"],
+  ["MT", "Malta"],
+  ["MA", "Marokko"],
+  ["MH", "Marshallinseln"],
+  ["MQ", "Martinique"],
+  ["MR", "Mauretanien"],
+  ["MU", "Mauritius"],
+  ["MX", "Mexiko"],
+  ["FM", "Mikronesien"],
+  ["MD", "Moldau"],
+  ["MC", "Monaco"],
+  ["MN", "Mongolei"],
+  ["ME", "Montenegro"],
+  ["MS", "Montserrat"],
+  ["MZ", "Mosambik"],
+  ["MM", "Myanmar"],
+  ["NA", "Namibia"],
+  ["NR", "Nauru"],
+  ["NP", "Nepal"],
+  ["NC", "Neukaledonien"],
+  ["NZ", "Neuseeland"],
+  ["NI", "Nicaragua"],
+  ["NL", "Niederlande"],
+  ["AN", "Niederländische Antillen"],
+  ["NE", "Niger"],
+  ["NG", "Nigeria"],
+  ["KP", "Nordkorea"],
+  ["MP", "Nördliche Marianen"],
+  ["NO", "Norwegen"],
+  ["OM", "Oman"],
+  ["AT", "Österreich"],
+  ["PK", "Pakistan"],
+  ["PW", "Palau"],
+  ["PS", "Palästinensische Gebiete"],
+  ["PA", "Panama"],
+  ["PG", "Papua-Neuguinea"],
+  ["PY", "Paraguay"],
+  ["PE", "Peru"],
+  ["PH", "Philippinen"],
+  ["PN", "Pitcairn"],
+  ["PL", "Polen"],
+  ["PT", "Portugal"],
+  ["PR", "Puerto Rico"],
+  ["RE", "Réunion"],
+  ["RW", "Ruanda"],
+  ["RO", "Rumänien"],
+  ["RU", "Russische Föderation"],
+  ["SB", "Salomonen"],
+  ["ZM", "Sambia"],
+  ["WS", "Samoa"],
+  ["SM", "San Marino"],
+  ["ST", "São Tomé und Príncipe"],
+  ["SA", "Saudi-Arabien"],
+  ["SE", "Schweden"],
+  ["CH", "Schweiz"],
+  ["SN", "Senegal"],
+  ["RS", "Serbien"],
+  ["SC", "Seychellen"],
+  ["SL", "Sierra Leone"],
+  ["ZW", "Simbabwe"],
+  ["SG", "Singapur"],
+  ["SK", "Slowakei"],
+  ["SI", "Slowenien"],
+  ["SO", "Somalia"],
+  ["ES", "Spanien"],
+  ["LK", "Sri Lanka"],
+  ["KN", "St. Kitts und Nevis"],
+  ["LC", "St. Lucia"],
+  ["VC", "St. Vincent und die Grenadinen"],
+  ["SD", "Sudan"],
+  ["ZA", "Südafrika"],
+  ["KR", "Südkorea"],
+  ["SR", "Suriname"],
+  ["SY", "Syrien"],
+  ["TJ", "Tadschikistan"],
+  ["TW", "Taiwan"],
+  ["TZ", "Tansania"],
+  ["TH", "Thailand"],
+  ["TL", "Timor-Leste"],
+  ["TG", "Togo"],
+  ["TK", "Tokelau"],
+  ["TO", "Tonga"],
+  ["TT", "Trinidad und Tobago"],
+  ["TD", "Tschad"],
+  ["CZ", "Tschechische Republik"],
+  ["TN", "Tunesien"],
+  ["TR", "Türkei"],
+  ["TM", "Turkmenistan"],
+  ["TV", "Tuvalu"],
+  ["UG", "Uganda"],
+  ["UA", "Ukraine"],
+  ["HU", "Ungarn"],
+  ["UY", "Uruguay"],
+  ["UZ", "Usbekistan"],
+  ["VU", "Vanuatu"],
+  ["VA", "Vatikanstadt"],
+  ["VE", "Venezuela"],
+  ["AE", "Vereinigte Arabische Emirate"],
+  ["US", "Vereinigte Staaten"],
+  ["GB", "Vereinigtes Königreich"],
+  ["VN", "Vietnam"],
+  ["WF", "Wallis und Futuna"],
+  ["EH", "Westsahara"],
+  ["CF", "Zentralafrikanische Republik"],
+  ["CY", "Zypern"]
+]
+
+### FILE: data/countries.json
+
+[
+  ["AF", "Afghanistan"],
+  ["AL", "Albania"],
+  ["DZ", "Algeria"],
+  ["AS", "American Samoa"],
+  ["AD", "Andorra"],
+  ["AO", "Angola"],
+  ["AI", "Anguilla"],
+  ["AQ", "Antarctica"],
+  ["AG", "Antigua and Barbuda"],
+  ["AR", "Argentina"],
+  ["AM", "Armenia"],
+  ["AW", "Aruba"],
+  ["AU", "Australia"],
+  ["AT", "Austria"],
+  ["AZ", "Azerbaijan"],
+  ["BS", "Bahamas"],
+  ["BH", "Bahrain"],
+  ["BD", "Bangladesh"],
+  ["BB", "Barbados"],
+  ["BY", "Belarus"],
+  ["BE", "Belgium"],
+  ["BZ", "Belize"],
+  ["BJ", "Benin"],
+  ["BM", "Bermuda"],
+  ["BT", "Bhutan"],
+  ["BO", "Bolivia"],
+  ["BA", "Bosnia and Herzegovina"],
+  ["BW", "Botswana"],
+  ["BR", "Brazil"],
+  ["VG", "British Virgin Islands"],
+  ["BN", "Brunei Darussalam"],
+  ["BG", "Bulgaria"],
+  ["BF", "Burkina Faso"],
+  ["BI", "Burundi"],
+  ["KH", "Cambodia"],
+  ["CM", "Cameroon"],
+  ["CA", "Canada"],
+  ["CV", "Cape Verde"],
+  ["KY", "Cayman Islands"],
+  ["CF", "Central African Republic"],
+  ["TD", "Chad"],
+  ["CL", "Chile"],
+  ["CN", "China"],
+  ["CO", "Colombia"],
+  ["KM", "Comoros"],
+  ["CG", "Congo"],
+  ["CR", "Costa Rica"],
+  ["CI", "Côte d’Ivoire"],
+  ["HR", "Croatia"],
+  ["CU", "Cuba"],
+  ["CY", "Cyprus"],
+  ["CZ", "Czech Republic"],
+  ["DK", "Denmark"],
+  ["DJ", "Djibouti"],
+  ["DM", "Dominica"],
+  ["DO", "Dominican Republic"],
+  ["EC", "Ecuador"],
+  ["EG", "Egypt"],
+  ["SV", "El Salvador"],
+  ["GQ", "Equatorial Guinea"],
+  ["ER", "Eritrea"],
+  ["EE", "Estonia"],
+  ["SZ", "Eswatini"],
+  ["ET", "Ethiopia"],
+  ["EU", "European Union"],
+  ["FK", "Falkland Islands"],
+  ["FO", "Faroe Islands"],
+  ["FJ", "Fiji"],
+  ["FI", "Finland"],
+  ["FR", "France"],
+  ["GF", "French Guiana"],
+  ["PF", "French Polynesia"],
+  ["GA", "Gabon"],
+  ["GM", "Gambia"],
+  ["GE", "Georgia"],
+  ["DE", "Germany"],
+  ["GH", "Ghana"],
+  ["GI", "Gibraltar"],
+  ["GR", "Greece"],
+  ["GL", "Greenland"],
+  ["GD", "Grenada"],
+  ["GP", "Guadeloupe"],
+  ["GU", "Guam"],
+  ["GT", "Guatemala"],
+  ["GN", "Guinea"],
+  ["GW", "Guinea-Bissau"],
+  ["GY", "Guyana"],
+  ["HT", "Haiti"],
+  ["HN", "Honduras"],
+  ["HK", "Hong Kong"],
+  ["HU", "Hungary"],
+  ["IS", "Iceland"],
+  ["IN", "India"],
+  ["ID", "Indonesia"],
+  ["IQ", "Iraq"],
+  ["IR", "Iran"],
+  ["IE", "Ireland"],
+  ["IL", "Israel"],
+  ["IT", "Italy"],
+  ["JM", "Jamaica"],
+  ["JP", "Japan"],
+  ["JO", "Jordan"],
+  ["KZ", "Kazakhstan"],
+  ["KE", "Kenya"],
+  ["KI", "Kiribati"],
+  ["KW", "Kuwait"],
+  ["KG", "Kyrgyzstan"],
+  ["LA", "Lao PDR"],
+  ["LV", "Latvia"],
+  ["LB", "Lebanon"],
+  ["LS", "Lesotho"],
+  ["LR", "Liberia"],
+  ["LY", "Libya"],
+  ["LI", "Liechtenstein"],
+  ["LT", "Lithuania"],
+  ["LU", "Luxembourg"],
+  ["MO", "Macao"],
+  ["MG", "Madagascar"],
+  ["MW", "Malawi"],
+  ["MY", "Malaysia"],
+  ["MV", "Maldives"],
+  ["ML", "Mali"],
+  ["MT", "Malta"],
+  ["MH", "Marshall Islands"],
+  ["MQ", "Martinique"],
+  ["MR", "Mauritania"],
+  ["MU", "Mauritius"],
+  ["MX", "Mexico"],
+  ["FM", "Micronesia"],
+  ["MD", "Moldova"],
+  ["MC", "Monaco"],
+  ["MN", "Mongolia"],
+  ["ME", "Montenegro"],
+  ["MS", "Montserrat"],
+  ["MA", "Morocco"],
+  ["MZ", "Mozambique"],
+  ["MM", "Myanmar"],
+  ["NA", "Namibia"],
+  ["NR", "Nauru"],
+  ["NP", "Nepal"],
+  ["NL", "Netherlands"],
+  ["AN", "Netherlands Antilles"],
+  ["NC", "New Caledonia"],
+  ["NZ", "New Zealand"],
+  ["NI", "Nicaragua"],
+  ["NE", "Niger"],
+  ["NG", "Nigeria"],
+  ["KP", "North Korea"],
+  ["MP", "Northern Mariana Islands"],
+  ["NO", "Norway"],
+  ["OM", "Oman"],
+  ["PK", "Pakistan"],
+  ["PW", "Palau"],
+  ["PS", "Palestinian Territories"],
+  ["PA", "Panama"],
+  ["PG", "Papua New Guinea"],
+  ["PY", "Paraguay"],
+  ["PE", "Peru"],
+  ["PH", "Philippines"],
+  ["PN", "Pitcairn"],
+  ["PL", "Poland"],
+  ["PT", "Portugal"],
+  ["PR", "Puerto Rico"],
+  ["QA", "Qatar"],
+  ["RE", "Réunion"],
+  ["RO", "Romania"],
+  ["RU", "Russian Federation"],
+  ["RW", "Rwanda"],
+  ["WS", "Samoa"],
+  ["SM", "San Marino"],
+  ["ST", "Sao Tome and Principe"],
+  ["SA", "Saudi Arabia"],
+  ["SN", "Senegal"],
+  ["RS", "Serbia"],
+  ["SC", "Seychelles"],
+  ["SL", "Sierra Leone"],
+  ["SG", "Singapore"],
+  ["SK", "Slovakia"],
+  ["SI", "Slovenia"],
+  ["SB", "Solomon Islands"],
+  ["SO", "Somalia"],
+  ["ZA", "South Africa"],
+  ["KR", "South Korea"],
+  ["ES", "Spain"],
+  ["LK", "Sri Lanka"],
+  ["KN", "St. Kitts and Nevis"],
+  ["LC", "St. Lucia"],
+  ["VC", "St. Vincent and the Grenadines"],
+  ["SD", "Sudan"],
+  ["SR", "Suriname"],
+  ["SE", "Sweden"],
+  ["CH", "Switzerland"],
+  ["SY", "Syria"],
+  ["TW", "Taiwan"],
+  ["TJ", "Tajikistan"],
+  ["TZ", "Tanzania"],
+  ["TH", "Thailand"],
+  ["TL", "Timor-Leste"],
+  ["TG", "Togo"],
+  ["TK", "Tokelau"],
+  ["TO", "Tonga"],
+  ["TT", "Trinidad and Tobago"],
+  ["TN", "Tunisia"],
+  ["TR", "Turkey"],
+  ["TM", "Turkmenistan"],
+  ["TV", "Tuvalu"],
+  ["UG", "Uganda"],
+  ["UA", "Ukraine"],
+  ["AE", "United Arab Emirates"],
+  ["GB", "United Kingdom"],
+  ["US", "United States"],
+  ["UY", "Uruguay"],
+  ["UZ", "Uzbekistan"],
+  ["VU", "Vanuatu"],
+  ["VA", "Vatican City"],
+  ["VE", "Venezuela"],
+  ["VN", "Vietnam"],
+  ["VI", "Virgin Islands, US"],
+  ["WF", "Wallis and Futuna"],
+  ["EH", "Western Sahara"],
+  ["YE", "Yemen"],
+  ["ZM", "Zambia"],
+  ["ZW", "Zimbabwe"]
+]
+
+### FILE: data/education.de.json
+
+[
+  ["high_school","Abitur oder gleichwertiger Abschluss"],
+  ["vocational_training","Berufsausbildung"],
+  ["bachelors_degree","Bachelor-Abschluss (oder gleichwertig)"],
+  ["masters_degree","Master-Abschluss (oder gleichwertig)"],
+  ["doctorate","Promotion (Doktorgrad)"],
+  ["other","Sonstige"],
+  ["prefer_not_to_say","Keine Angabe"]
+]
+
+### FILE: data/education.json
+
+[
+  ["high_school","High school diploma or equivalent"],
+  ["vocational_training","Vocational training"],
+  ["bachelors_degree","Bachelor's degree (or equivalent)"],
+  ["masters_degree","Master's degree (or equivalent)"],
+  ["doctorate","Doctorate (PhD, etc.)"],
+  ["other","Other"],
+  ["prefer_not_to_say","Prefer not to say"]
+]
+
+### FILE: data/i18n.de.json
+
+{
+  "de": {
+    "chatbot.initialGreeting": "Hallo! Ich bin der Assistent des Alpha-Auriga-Projekts, basierend auf Gemini. Sie können mir Fragen stellen zu KI, Bewusstsein oder zum hier skizzierten Zukunftsszenario.",
+    "chatbot.noResponse": "Entschuldigung, ich konnte keine Antwort generieren. Bitte versuchen Sie es erneut.",
+
+    "citation.copied": "Kopiert!",
+    "citation.copyToClipboard": "In die Zwischenablage",
+
+    "discussion.enter_post": "Bitte geben Sie einen Beitrag ein.",
+    "discussion.error_fetching_posts": "Fehler beim Abrufen der Beiträge. Bitte aktualisieren Sie die Seite.",
+    "discussion.no_posts": "Noch keine Beiträge – seien Sie der Erste, der einen Beitrag leistet!",
+    "discussion.placeholder": "Geben Sie hier Ihre Gedanken ein... Sie können Markdown zur Formatierung verwenden.",
+    "discussion.submitting": "Wird übermittelt…",
+    "discussion.thank_you": "Vielen Dank! Ihr Beitrag wurde übermittelt.",
+
+    "status.400": "Fehlerhafte Anfrage – die gesendeten Daten sind ungültig.",
+    "status.401": "Nicht autorisiert – bitte zuerst anmelden.",
+    "status.403": "Verboten – keine Berechtigung.",
+    "status.404": "Endpunkt auf dem Server nicht gefunden.",
+    "status.500": "Serverfehler – bitte später erneut versuchen.",
+
+    "survey.error_load_country": "Fehler beim Laden der Länderoptionen. Bitte aktualisieren Sie die Seite.",
+    "survey.error_load_education": "Fehler beim Laden der Ausbildungsoptionen. Bitte aktualisieren Sie die Seite.",
+    "survey.error_load_profession": "Fehler beim Laden der Berufsoptionen. Bitte aktualisieren Sie die Seite.",
+    "survey.network_error": "Netzwerkfehler. Bitte versuchen Sie es erneut.",
+    "survey.no_option_chosen": "Bitte wählen Sie eine Option für ",
+    "survey.placeholder": "--Bitte wählen Sie eine Option--",
+    "survey.search_country": "Suche nach einem Land…",
+    "survey.search_education": "Suche nach Ausbildung…",
+    "survey.search_profession": "Suche nach einem Beruf…",
+    "survey.submitting": "Wird übermittelt…",
+    "survey.thank_you": "Vielen Dank! Ihre Einreichung war erfolgreich."
+  }
+}
+
+### FILE: data/i18n.json
+
+{
+  "en": {
+    "chatbot.initialGreeting": "Hello! I am the Alpha Auriga project assistant, powered by Gemini. Ask me about AI, consciousness, or the project's timeline.",
+    "chatbot.noResponse": "I'm sorry, I couldn't generate a response. Please try again.",
+
+    "citation.copied": "Copied!",
+    "citation.copyToClipboard": "Copy to clipboard",
+
+    "discussion.enter_post": "Please enter a post.",
+    "discussion.error_fetching_posts": "Error fetching posts. Please refresh.",
+    "discussion.no_posts": "No posts yet – be the first to contribute!",
+    "discussion.placeholder": "Enter your thoughts here... You can use Markdown for formatting.",
+    "discussion.submitting": "Submitting…",
+    "discussion.thank_you": "Thank you! Your post has been submitted.",
+
+    "status.400": "Bad request – the data we sent was malformed.",
+    "status.401": "Unauthorized – please log in first.",
+    "status.403": "Forbidden – you don’t have permission.",
+    "status.404": "Endpoint not found on the server.",
+    "status.500": "Server error – please try again later.",
+
+    "survey.error_load_country": "Error loading country options. Please refresh.",
+    "survey.error_load_education": "Error loading education options. Please refresh.",
+    "survey.error_load_profession": "Error loading profession options. Please refresh.",
+    "survey.network_error": "Network error. Please try again.",
+    "survey.no_option_chosen": "Please choose an option for ",
+    "survey.placeholder": "--Please choose an option--",
+    "survey.search_country": "Search for a country…",
+    "survey.search_education": "Search for education…",
+    "survey.search_profession": "Search for a profession…",
+    "survey.submitting": "Submitting…",
+    "survey.thank_you": "Thank you! Your submission was successful."
+  }
+}
+
+### FILE: data/profession.de.json
+
+[
+  ["00", "Generische Berufsfelder"],
+  ["01", "Erziehung und Ausbildung"],
+  ["02", "Kunst und Geisteswissenschaften"],
+  ["03", "Sozialwissenschaften, Journalismus und Informationswissenschaften"],
+  ["04", "Betriebswirtschaftslehre (BWL) und Rechtswissenschaften"],
+  ["05", "Naturwissenschaften, Mathematik und Statistik"],
+  ["06", "Informations- und Kommunikationstechnologie (IKT)"],
+  ["07", "Ingenieurwesen, Fertigung und Bauwesen"],
+  ["08", "Agrar-, Forst-, Fischerei- und Veterinärwissenschaften"],
+  ["09", "Gesundheit und soziale Dienste"],
+  ["10", "Service"],
+  ["99", "Unbestimmtes Berufsfeld"]
+]
+
+### FILE: data/profession.json
+
+[
+  ["00", "Generic programmes and qualifications"],
+  ["01", "Education"],
+  ["02", "Arts and humanities"],
+  ["03", "Social sciences, journalism and information"],
+  ["04", "Business, administration and law"],
+  ["05", "Natural sciences, mathematics and statistics"],
+  ["06", "Information and Communication Technologies"],
+  ["07", "Engineering, manufacturing and construction"],
+  ["08", "Agriculture, forestry, fisheries and veterinary"],
+  ["09", "Health and welfare"],
+  ["10", "Services"],
+  ["99", "Field unknown"]
+]
