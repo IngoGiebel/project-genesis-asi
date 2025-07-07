@@ -1,5 +1,6 @@
 ---
 title: "Ergebnisse der Umfrage"
+jupyter: python-alpha-auriga
 ---
 
 Glauben wir, dass eine Maschine ein Bewusstsein entwickeln kann? Auf dieser Seite analysieren wir die eingehenden Umfrageergebnisse. Wir möchten herausfinden, ob und wie Faktoren wie Alter, Bildung und Beruf die Ansichten zur KI beeinflussen. Unsere Erkenntnisse werden hier präsentiert, sobald hierfür eine aussagekräftige Datenbasis vorliegt.
