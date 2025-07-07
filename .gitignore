@@ -7,30 +7,30 @@
 ###############################################################################
 # 2. KEEP canonical source files and root-level assets
 ###############################################################################
-!*.qmd
-!*.html
-!*.yml
-!*.yaml
-!*.sh
-!*.ps1
-!/netlify/**
-
-# root-level canonical asset folders
-!/js/**
-!/images/**
-!/data/**
-!/styles.css
 !/apa.csl
 !/bibliography.bib
+!/styles.css
+!*.html
+!*.qmd
+!*.sh
+!*.ps1
+!*.yaml
+!*.yml
+!**/_environment
+!/data/**
+!/images/**
+!/js/**
+!/netlify/**
+!/py/**
 
 ###############################################################################
 # 3. IGNORE Quarto build artefacts (any depth)
 ###############################################################################
+_site/
 **/.quarto/
 **/_freeze/
 **/fonts/
 **/site_libs/
-_site/
 
 ###############################################################################
 # 4. IGNORE editor / tooling folders
