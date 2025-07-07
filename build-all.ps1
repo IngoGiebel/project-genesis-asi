@@ -1,15 +1,25 @@
-# Build multilingual Quarto site (EN + DE) on PowerShell 7+.
+# Build multilingual Quarto site (EN + DE) on PowerShell 7+
 
 $ErrorActionPreference = "Stop"
 
 # -------------------------------------------------------------------
-$Langs       = @('en','de')
-$RepoRoot    = $PSScriptRoot
-$SrcExt      = Join-Path $RepoRoot '_extensions'
-$SrcData     = Join-Path $RepoRoot 'data'
-$SrcImg      = Join-Path $RepoRoot 'images'
-$SrcJs       = Join-Path $RepoRoot 'js'
-$CommonFiles = @('apa.csl','bibliography.bib','styles.css')
+$Langs    = @('en','de')
+
+# Ask Git for the repo root – works no matter where the script lives
+$RepoRoot = (git -C $PSScriptRoot rev-parse --show-toplevel).Trim()
+
+$SrcExt   = Join-Path $RepoRoot '_extensions'
+$SrcData  = Join-Path $RepoRoot 'data'
+$SrcImg   = Join-Path $RepoRoot 'images'
+$SrcJs    = Join-Path $RepoRoot 'js'
+$Common   = @('apa.csl','bibliography.bib','styles.css')
+
+# Make helper modules in py\ import-able to all notebooks
+if ($Env:PYTHONPATH) {
+    $Env:PYTHONPATH = "$RepoRoot\py;$Env:PYTHONPATH"
+} else {
+    $Env:PYTHONPATH = "$RepoRoot\py"
+}
 # -------------------------------------------------------------------
 
 foreach ($Lang in $Langs) {
@@ -24,26 +34,21 @@ foreach ($Lang in $Langs) {
         (Join-Path $LangDir 'data'),
         (Join-Path $LangDir 'images')
     Remove-Item "$LangDir\*.js" -Force -ErrorAction SilentlyContinue
-    foreach ($f in $CommonFiles) {
-        $target = Join-Path $LangDir $f
-        if (Test-Path $target) { Remove-Item $target -Force }
-    }
+    foreach ($f in $Common) { Remove-Item (Join-Path $LangDir $f) -Force -ea SilentlyContinue }
 
     Write-Host "→ Copy assets"
-    Copy-Item -Recurse $SrcExt  (Join-Path $LangDir '_extensions')
-    Copy-Item -Recurse $SrcData (Join-Path $LangDir 'data')
+    Copy-Item -Recurse "$SrcExt\"  (Join-Path $LangDir '_extensions') -Force
+    Copy-Item -Recurse "$SrcData\" (Join-Path $LangDir 'data')        -Force
     New-Item -ItemType Directory -Path (Join-Path $LangDir 'images') -Force | Out-Null
     Copy-Item "$SrcImg\*.webp"  (Join-Path $LangDir 'images')
     Copy-Item "$SrcJs\*.js"     $LangDir
-    foreach ($f in $CommonFiles) {
-        Copy-Item (Join-Path $RepoRoot $f) $LangDir
-    }
+    foreach ($f in $Common) { Copy-Item (Join-Path $RepoRoot $f) $LangDir }
 
     Write-Host "→ Render $Lang"
     # Touch index.qmd so Quarto updates the Modified date
     (Get-Item (Join-Path $LangDir 'index.qmd')).LastWriteTime = Get-Date
     Push-Location $LangDir
-    quarto render
+    quarto.exe render
     Pop-Location
 }
 

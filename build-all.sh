@@ -7,13 +7,12 @@ set -euo pipefail
 # -------------------------------------------------------------------
 LANGS=(en de)
 ROOT="$(git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel)"
-
-
 SRC_EXT="$ROOT/_extensions"
 SRC_DATA="$ROOT/data"
 SRC_IMG="$ROOT/images"
 SRC_JS="$ROOT/js"
 COMMON_FILES=(apa.csl bibliography.bib styles.css)
+export PYTHONPATH="$ROOT/py${PYTHONPATH:+:${PYTHONPATH}}"
 # -------------------------------------------------------------------
 
 for LANG in "${LANGS[@]}"; do
