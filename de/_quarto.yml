@@ -85,8 +85,11 @@ format:
     css: styles.css
     respect-user-color-scheme: false
     toc: true
+    code-fold: true
     code-link: true
     code-overflow: wrap
+    code-tools: true
+    highlight-style: dracula
     fig-responsive: true
     self-contained-math: true
     include-after-body:
