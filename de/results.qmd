@@ -6,3 +6,154 @@ jupyter: python-alpha-auriga
 Glauben wir, dass eine Maschine ein Bewusstsein entwickeln kann? Auf dieser Seite analysieren wir die eingehenden Umfrageergebnisse. Wir möchten herausfinden, ob und wie Faktoren wie Alter, Bildung und Beruf die Ansichten zur KI beeinflussen. Unsere Erkenntnisse werden hier präsentiert, sobald hierfür eine aussagekräftige Datenbasis vorliegt.
 
 Schauen Sie bald wieder vorbei, um über die aktuellen Entwicklungen hinsichtlich der Wahrnehmung von KI informiert zu bleiben. Falls Sie noch nicht teilgenommen haben, würden wir uns freuen, wenn Sie Ihre Perspektive in unserer [Umfrage](survey.qmd#question-consciousness) teilen.
+
+```{python}
+#| echo: false
+
+import altair as alt
+import os
+import pandas as pd
+import re
+from firestore_utils import client
+```
+
+```{python}
+# ══════════════════════════════════════════════════════════════════════
+# Load data (optionally filtered by client.tag)
+# ══════════════════════════════════════════════════════════════════════
+
+# E.g. CLIENT_TAG=test → only demo data
+TAG_FILTER = os.getenv("CLIENT_TAG")
+
+survey_submissions = []
+for snap in client().collection("surveySubmissions").stream():
+    survey_submission = snap.to_dict()
+    tag = survey_submission.get("client", {}).get("tag")
+    if (not TAG_FILTER and not tag) or (TAG_FILTER and tag == TAG_FILTER):
+        survey_submissions.append(survey_submission)
+
+survey_submissions_df = pd.json_normalize(survey_submissions)
+if survey_submissions_df.empty:
+    raise ValueError("Keine Datensätze gefunden (TAG-Filter?)")
+
+# CamelCase → snake_case
+def camel_to_snake(name: str) -> str:
+    """aiCanBeConscious → ai_can_be_conscious"""
+    s1 = re.sub(r"(.)([A-Z][a-z]+)", r"\1_\2", name)
+    return re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
+
+survey_submissions_df.rename(columns={c: camel_to_snake(c) for c in survey_submissions_df.columns}, inplace=True)
+
+survey_submissions_df["server.date"] = pd.to_datetime(survey_submissions_df["server.date"], errors="coerce")
+
+# Derived helper columns
+survey_submissions_df["age_band"] = pd.cut(
+    survey_submissions_df["age"],
+    bins=[0, 18, 30, 45, 60, 120],
+    labels=["≤18", "19–30", "31–45", "46–60", "60+"],
+    right=False,
+)
+
+n_total = len(survey_submissions_df)
+```
+
+**⮕ Insgesamt `{python} n_total` Umfrage-Einreichungen.**
+
+# Verteilung der Hauptfrage
+
+## …nach Altersgruppen
+
+```{python}
+chart_age = (
+    alt.Chart(survey_submissions_df)
+      .mark_bar()
+      .encode(
+          x = alt.X(
+            "count():Q",
+            title="Anzahl",
+            scale=alt.Scale(domain=[0, n_total])),
+          y = alt.Y(
+            "age_band:N",
+            title="Alterskohorte",
+            sort=["≤18","19–30","31–45","46–60","60+"]),
+          color = alt.Color("ai_can_be_conscious:N").title("Antwort"))
+    )
+chart_age
+```
+
+## …nach Geschlecht
+
+```{python}
+chart_sex = (
+    alt.Chart(survey_submissions_df)
+      .mark_bar()
+      .encode(
+          x = alt.X(
+            "count():Q",
+            title="Anzahl",
+            scale=alt.Scale(domain=[0, n_total])),
+          y=alt.Y(
+            "sex:N",
+            title="Geschlecht"),
+          color = alt.Color("ai_can_be_conscious:N").title("Antwort"))
+    )
+chart_sex
+```
+
+## …nach Bildungsgrad
+
+```{python}
+chart_edu = (
+    alt.Chart(survey_submissions_df)
+      .mark_bar()
+      .encode(
+          x = alt.X(
+            "count():Q",
+            title="Anzahl",
+            scale=alt.Scale(domain=[0, n_total])),
+          y=alt.Y(
+            "education:N",
+            title="Bildung"),
+          color = alt.Color("ai_can_be_conscious:N").title("Antwort"))
+    )
+chart_edu
+```
+
+## …nach KI-Vertrautheit
+
+```{python}
+chart_fam = (
+    alt.Chart(survey_submissions_df)
+      .mark_bar()
+      .encode(
+          x = alt.X(
+            "count():Q",
+            title="Anzahl",
+            scale=alt.Scale(domain=[0, n_total])),
+          y=alt.Y(
+            "ai_familiarity:N",
+            title="Selbsteinschätzung"),
+          color = alt.Color("ai_can_be_conscious:N").title("Antwort"))
+    )
+chart_fam
+```
+
+# Freitext-Antworten
+
+```{python}
+from IPython.display import Markdown, display
+
+def show_free(col, title):
+    vals = survey_submissions_df[col].dropna().str.strip()
+    if vals.empty:
+        display(Markdown(f"### {title}\n*(noch keine Antworten)*"))
+        return
+    display(Markdown(f"### {title}\n"))
+    for i, txt in enumerate(vals, 1):
+        display(Markdown(f"**{i}.** {txt}\n"))
+
+show_free("reasoning",             "Begründungen zur Hauptfrage")
+show_free("measure_consciousness", "Vorschläge zur Messung von Bewusstsein")
+show_free("ai_rights",             "Meinungen zu Rechten bewusster KIs")
+show_free("ai_declare_rights",     "Reaktionen auf selbst deklarierte KI-Rechte")
+```
