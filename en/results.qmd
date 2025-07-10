@@ -20,6 +20,28 @@ from firestore_utils import client
 ```
 
 ```{python}
+#| echo: false
+
+# Define label expression for AI consciousness answers
+AI_CONSCIOUSNESS_LABELS = (
+  "datum.value == 'yes_already' ? 'Yes, already'       : "
+  "datum.value == 'yes_future'  ? 'Yes, in the future' : "
+  "datum.value == 'only_bio'    ? 'Only if biological' : "
+  "datum.value == 'unsure'      ? 'Unsure'             : "
+  "datum.value == 'no'          ? 'No'                 : datum.value")
+
+# Define custom color scale (dark red to light green, works well in grayscale)
+AI_CONSCIOUSNESS_COLORS = {
+    "domain": ["no", "unsure", "only_bio", "yes_future", "yes_already"],
+    "range": ["#660000", "#B22222", "#777777", "#66BB6A", "#A5D6A7"]
+}
+
+# TODO: Configure Altair for consistent chart sizing
+# alt.data_transformers.enable('json')
+CHART_HEIGHT = 180
+```
+
+```{python}
 # ══════════════════════════════════════════════════════════════════════
 # Load data (optionally filtered by client.tag)
 # ══════════════════════════════════════════════════════════════════════
@@ -56,6 +78,10 @@ survey_submissions_df["age_band"] = pd.cut(
     right=False,
 )
 
+# Create ordering column for consistent stacking
+order_mapping = {val: i for i, val in enumerate(AI_CONSCIOUSNESS_COLORS["domain"])}
+survey_submissions_df["ai_can_be_conscious_order"] = survey_submissions_df["ai_can_be_conscious"].map(order_mapping)
+
 n_total = len(survey_submissions_df)
 ```
 
@@ -68,17 +94,17 @@ chart_total = (
     alt.Chart(survey_submissions_df)
       .mark_bar()
       .encode(
-          x = alt.X(
-              "count():Q",
-              title = "Count",
-              scale = alt.Scale(domain=[0, n_total])    # same max as other charts
-          ),
-          y = alt.Y(
-              "ai_can_be_conscious:N",
-              title = "Answer",
-              sort = ["yes_already", "yes_future", "only_bio", "unsure", "no"]
-          ),
-          color = alt.Color("ai_can_be_conscious:N").title("Answer"))
+          x = alt.X("count():Q")
+              .scale(alt.Scale(domain=[0, n_total]))
+              .title("Count"),
+          y = alt.Y("ai_can_be_conscious:N")
+              .title("Answer")
+              .sort(["yes_already", "yes_future", "only_bio", "unsure", "no"])
+              .axis(labelExpr=AI_CONSCIOUSNESS_LABELS),
+          color = alt.Color("ai_can_be_conscious:N")
+              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
+              .legend(None))
+      .properties(width="container", height=CHART_HEIGHT)
     )
 chart_total
 ```
@@ -90,15 +116,18 @@ chart_age = (
     alt.Chart(survey_submissions_df)
       .mark_bar()
       .encode(
-          x = alt.X(
-            "count():Q",
-            title="Count",
-            scale=alt.Scale(domain=[0, n_total])),
-          y = alt.Y(
-            "age_band:N",
-            title="Age band",
-            sort=["≤18","19–30","31–45","46–60","60+"]),
-          color = alt.Color("ai_can_be_conscious:N").title("Answer"))
+          x = alt.X("count():Q")
+              .scale(alt.Scale(domain=[0, n_total]))
+              .title("Count"),
+          y = alt.Y("age_band:N")
+              .title("Age band")
+              .sort(["≤18","19–30","31–45","46–60","60+"]),
+          color = alt.Color("ai_can_be_conscious:N")
+              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
+              .title("Answer")
+              .legend(labelExpr=AI_CONSCIOUSNESS_LABELS, orient="right"),
+          order = alt.Order("ai_can_be_conscious_order:O"))
+      .properties(width="container", height=CHART_HEIGHT)
     )
 chart_age
 ```
@@ -110,14 +139,17 @@ chart_sex = (
     alt.Chart(survey_submissions_df)
       .mark_bar()
       .encode(
-          x = alt.X(
-            "count():Q",
-            title="Count",
-            scale=alt.Scale(domain=[0, n_total])),
-          y=alt.Y(
-            "sex:N",
-            title="Sex"),
-          color = alt.Color("ai_can_be_conscious:N").title("Answer"))
+          x = alt.X("count():Q")
+              .scale(alt.Scale(domain=[0, n_total]))
+              .title("Count"),
+          y=alt.Y("sex:N")
+              .title("Sex"),
+          color = alt.Color("ai_can_be_conscious:N")
+              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
+              .title("Answer")
+              .legend(labelExpr=AI_CONSCIOUSNESS_LABELS, orient="right"),
+          order = alt.Order("ai_can_be_conscious_order:O"))
+      .properties(width="container", height=CHART_HEIGHT)
     )
 chart_sex
 ```
@@ -129,14 +161,17 @@ chart_edu = (
     alt.Chart(survey_submissions_df)
       .mark_bar()
       .encode(
-          x = alt.X(
-            "count():Q",
-            title="Count",
-            scale=alt.Scale(domain=[0, n_total])),
-          y=alt.Y(
-            "education:N",
-            title="Education level"),
-          color = alt.Color("ai_can_be_conscious:N").title("Answer"))
+          x = alt.X("count():Q")
+              .scale(alt.Scale(domain=[0, n_total]))
+              .title("Count"),
+          y=alt.Y("education:N")
+              .title("Education level"),
+          color = alt.Color("ai_can_be_conscious:N")
+              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
+              .title("Answer")
+              .legend(labelExpr=AI_CONSCIOUSNESS_LABELS),
+          order = alt.Order("ai_can_be_conscious_order:O"))
+      .properties(width="container", height=CHART_HEIGHT)
     )
 chart_edu
 ```
@@ -144,20 +179,23 @@ chart_edu
 ## …by AI familiarity
 
 ```{python}
-chart_fam = (
+chart_aifamiliarity = (
     alt.Chart(survey_submissions_df)
       .mark_bar()
       .encode(
-          x = alt.X(
-            "count():Q",
-            title="Count",
-            scale=alt.Scale(domain=[0, n_total])),
-          y=alt.Y(
-            "ai_familiarity:N",
-            title="Self-assessment"),
-          color = alt.Color("ai_can_be_conscious:N").title("Answer"))
+          x = alt.X("count():Q")
+              .scale(alt.Scale(domain=[0, n_total]))
+              .title("Count"),
+          y=alt.Y("ai_familiarity:N")
+              .title("Self-assessment"),
+          color = alt.Color("ai_can_be_conscious:N")
+              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
+              .title("Answer")
+              .legend(labelExpr=AI_CONSCIOUSNESS_LABELS),
+          order = alt.Order("ai_can_be_conscious_order:O"))
+      .properties(width="container", height=CHART_HEIGHT)
     )
-chart_fam
+chart_aifamiliarity
 ```
 
 # Free-text responses
