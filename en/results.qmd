@@ -9,6 +9,7 @@ If you haven’t shared your own view yet, you can still do so here: [take the s
 
 ```{python}
 #| echo: false
+#| output: false
 
 import altair as alt
 import os
@@ -19,6 +20,7 @@ from firestore_utils import client
 
 ```{python}
 #| echo: false
+#| output: false
 
 AI_CONSCIOUSNESS_LABELS = (
   "datum.value == 'yes_already' ? 'Yes, already'       : "
@@ -55,9 +57,8 @@ AI_CONSCIOUSNESS_COLORS = {
     "range": ["#660000", "#B22222", "#777777", "#66BB6A", "#A5D6A7"]
 }
 
-# Configure Altair for dark theme and consistent chart sizing
+# Configure Altair for dark theme
 alt.theme.enable('dark')
-CHART_HEIGHT = 180
 ```
 
 ```{python}
@@ -124,7 +125,7 @@ chart_total = (
           color = alt.Color("ai_can_be_conscious:N")
               .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
               .legend(None))
-      .properties(width="container", height=CHART_HEIGHT)
+      .properties(width="container")
     )
 chart_total
 ```
@@ -148,7 +149,7 @@ chart_age = (
               .title("Answer")
               .legend(labelExpr=AI_CONSCIOUSNESS_LABELS, orient="right"),
           order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container", height=CHART_HEIGHT)
+      .properties(width="container")
     )
 chart_age
 ```
@@ -172,7 +173,7 @@ chart_sex = (
               .title("Answer")
               .legend(labelExpr=AI_CONSCIOUSNESS_LABELS, orient="right"),
           order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container", height=CHART_HEIGHT)
+      .properties(width="container")
     )
 chart_sex
 ```
@@ -196,7 +197,7 @@ chart_edu = (
               .title("Answer")
               .legend(labelExpr=AI_CONSCIOUSNESS_LABELS),
           order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container", height=CHART_HEIGHT)
+      .properties(width="container")
     )
 chart_edu
 ```
@@ -220,7 +221,7 @@ chart_aifamiliarity = (
               .title("Answer")
               .legend(labelExpr=AI_CONSCIOUSNESS_LABELS),
           order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container", height=CHART_HEIGHT)
+      .properties(width="container")
     )
 chart_aifamiliarity
 ```
