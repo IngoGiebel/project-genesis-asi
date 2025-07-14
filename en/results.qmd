@@ -3,7 +3,9 @@ title: "Survey results"
 jupyter: python-alpha-auriga
 ---
 
-What do people think about machine consciousness – and how do factors like age, education, and profession correlate with views on AI? Below you’ll find the current results of the survey. The charts are refreshed at regular intervals as new submissions arrive, so the numbers reflect our most up-to-date dataset. If you haven’t shared your own view yet, you can still do so here: [take the survey](survey.qmd#question-consciousness).
+What do people think about machine consciousness – and how do factors like age, education, and profession correlate with views on AI? Below you’ll find the current results of the survey. The charts are refreshed at regular intervals as new submissions arrive, so the numbers reflect our most up-to-date dataset.
+
+If you haven’t shared your own view yet, you can still do so here: [take the survey](survey.qmd#question-consciousness).
 
 ```{python}
 #| echo: false
