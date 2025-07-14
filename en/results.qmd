@@ -22,7 +22,6 @@ from firestore_utils import client
 ```{python}
 #| echo: false
 
-# Define label expression for AI consciousness answers
 AI_CONSCIOUSNESS_LABELS = (
   "datum.value == 'yes_already' ? 'Yes, already'       : "
   "datum.value == 'yes_future'  ? 'Yes, in the future' : "
@@ -30,14 +29,36 @@ AI_CONSCIOUSNESS_LABELS = (
   "datum.value == 'unsure'      ? 'Unsure'             : "
   "datum.value == 'no'          ? 'No'                 : datum.value")
 
+SEX_LABELS = (
+  "datum.value == 'male'              ? 'Male'              : "
+  "datum.value == 'female'            ? 'Female'            : "
+  "datum.value == 'diverse'           ? 'Diverse'           : "
+  "datum.value == 'prefer_not_to_say' ? 'Prefer not to say' : datum.value")
+
+EDUCATION_LABELS = (
+  "datum.value == 'high_school'         ? 'High school'         : "
+  "datum.value == 'vocational_training' ? 'Vocational training' : "
+  "datum.value == 'bachelors_degree'    ? 'Bachelor\\'s degree' : "
+  "datum.value == 'masters_degree'      ? 'Master\\'s degree'   : "
+  "datum.value == 'doctorate'           ? 'Doctorate'           : "
+  "datum.value == 'other'               ? 'Other'               : "
+  "datum.value == 'prefer_not_to_say'   ? 'Prefer not to say'   : datum.value")
+
+AI_FAMILIARITY_LABELS = (
+  "datum.value == '1_not_at_all' ? '1 - Not at all familiar' : "
+  "datum.value == '2_slightly'   ? '2 - Slightly familiar'   : "
+  "datum.value == '3_moderately' ? '3 - Moderately familiar' : "
+  "datum.value == '4_very'       ? '4 - Very familiar'       : "
+  "datum.value == '5_expert'     ? '5 - Expert'              : datum.value")
+
 # Define custom color scale (dark red to light green, works well in grayscale)
 AI_CONSCIOUSNESS_COLORS = {
     "domain": ["no", "unsure", "only_bio", "yes_future", "yes_already"],
     "range": ["#660000", "#B22222", "#777777", "#66BB6A", "#A5D6A7"]
 }
 
-# TODO: Configure Altair for consistent chart sizing
-# alt.data_transformers.enable('json')
+# Configure Altair for dark theme and consistent chart sizing
+alt.theme.enable('dark')
 CHART_HEIGHT = 180
 ```
 
@@ -96,6 +117,7 @@ chart_total = (
       .encode(
           x = alt.X("count():Q")
               .scale(alt.Scale(domain=[0, n_total]))
+              .axis(tickCount=n_total+1, format="d")
               .title("Count"),
           y = alt.Y("ai_can_be_conscious:N")
               .title("Answer")
@@ -118,6 +140,7 @@ chart_age = (
       .encode(
           x = alt.X("count():Q")
               .scale(alt.Scale(domain=[0, n_total]))
+              .axis(tickCount=n_total+1, format="d")
               .title("Count"),
           y = alt.Y("age_band:N")
               .title("Age band")
@@ -141,9 +164,11 @@ chart_sex = (
       .encode(
           x = alt.X("count():Q")
               .scale(alt.Scale(domain=[0, n_total]))
+              .axis(tickCount=n_total+1, format="d")
               .title("Count"),
           y=alt.Y("sex:N")
-              .title("Sex"),
+              .title("Sex")
+              .axis(labelExpr=SEX_LABELS),
           color = alt.Color("ai_can_be_conscious:N")
               .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
               .title("Answer")
@@ -163,9 +188,11 @@ chart_edu = (
       .encode(
           x = alt.X("count():Q")
               .scale(alt.Scale(domain=[0, n_total]))
+              .axis(tickCount=n_total+1, format="d")
               .title("Count"),
           y=alt.Y("education:N")
-              .title("Education level"),
+              .title("Education level")
+              .axis(labelExpr=EDUCATION_LABELS),
           color = alt.Color("ai_can_be_conscious:N")
               .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
               .title("Answer")
@@ -185,9 +212,11 @@ chart_aifamiliarity = (
       .encode(
           x = alt.X("count():Q")
               .scale(alt.Scale(domain=[0, n_total]))
+              .axis(tickCount=n_total+1, format="d")
               .title("Count"),
           y=alt.Y("ai_familiarity:N")
-              .title("Self-assessment"),
+              .title("Self-assessment")
+              .axis(labelExpr=AI_FAMILIARITY_LABELS),
           color = alt.Color("ai_can_be_conscious:N")
               .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
               .title("Answer")
