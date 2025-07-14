@@ -59,6 +59,9 @@ AI_CONSCIOUSNESS_COLORS = {
 
 # Configure Altair for dark theme
 alt.theme.enable('dark')
+
+# Chart padding
+CHART_PADDING = 20
 ```
 
 ```{python}
@@ -125,7 +128,7 @@ chart_total = (
           color = alt.Color("ai_can_be_conscious:N")
               .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
               .legend(None))
-      .properties(width="container")
+      .properties(width="container", padding=CHART_PADDING)
     )
 chart_total
 ```
@@ -149,7 +152,7 @@ chart_age = (
               .title("Answer")
               .legend(labelExpr=AI_CONSCIOUSNESS_LABELS, orient="right"),
           order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container")
+      .properties(width="container", padding=CHART_PADDING)
     )
 chart_age
 ```
@@ -173,7 +176,7 @@ chart_sex = (
               .title("Answer")
               .legend(labelExpr=AI_CONSCIOUSNESS_LABELS, orient="right"),
           order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container")
+      .properties(width="container", padding=CHART_PADDING)
     )
 chart_sex
 ```
@@ -197,7 +200,7 @@ chart_edu = (
               .title("Answer")
               .legend(labelExpr=AI_CONSCIOUSNESS_LABELS),
           order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container")
+      .properties(width="container", padding=CHART_PADDING)
     )
 chart_edu
 ```
@@ -221,7 +224,7 @@ chart_aifamiliarity = (
               .title("Answer")
               .legend(labelExpr=AI_CONSCIOUSNESS_LABELS),
           order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container")
+      .properties(width="container", padding=CHART_PADDING)
     )
 chart_aifamiliarity
 ```
