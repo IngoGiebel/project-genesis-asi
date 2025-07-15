@@ -88,10 +88,9 @@ survey_submissions_df = load_submissions(
     tag_filter=os.getenv("CLIENT_TAG"),
     color_domain=AI_CONSCIOUSNESS_COLORS["domain"]
 )
-n_total = len(survey_submissions_df)
 ```
 
-# Distribution of the main question
+# This is how participants answered the question ‘Can AI be conscious?’
 
 ## …overall distribution of answers
 
@@ -230,7 +229,7 @@ chart_aifamiliarity = bar_chart_by(
     y_field="ai_familiarity",
     y_sort=None,
     y_label_expr=AI_FAMILIARITY_LABELS,
-    y_title="Self-assessment",
+    y_title="AI familiarity",
     color_field="ai_can_be_conscious",
     color_domain=AI_CONSCIOUSNESS_COLORS["domain"],
     color_range=AI_CONSCIOUSNESS_COLORS["range"],
@@ -243,15 +242,15 @@ chart_aifamiliarity
 # Free-text responses
 
 ```{python}
-#| output: asis
+# | output: asis
 
 AI_CONSCIOUSNESS_LABELS_PY = parse_label_expr(AI_CONSCIOUSNESS_LABELS)
 
 FREE_TEXT_FIELDS = [
-    ("reasoning",            "Reasoning for the main question"),
-    ("measure_consciousness","Suggestions for measuring consciousness"),
-    ("ai_rights",            "Views on rights for conscious AIs"),
-    ("ai_declare_rights",    "Reactions to self-declared AI rights"),
+    ("reasoning", "Reasoning for the main question"),
+    ("measure_consciousness", "Suggestions for measuring consciousness"),
+    ("ai_rights", "Views on rights for conscious AIs"),
+    ("ai_declare_rights", "Reactions to self-declared AI rights"),
 ]
 
 md_lines = []
@@ -261,9 +260,13 @@ for answer in AI_CONSCIOUSNESS_COLORS["domain"]:
     if rows[[c for c, _ in FREE_TEXT_FIELDS]].isna().all(axis=None):
         continue
 
-    md_lines.append(f"## …when respondents answered \"{AI_CONSCIOUSNESS_LABELS_PY[answer]}\" to \"Can AI be conscious?\"\n")
+    md_lines.append(
+        f'## …when respondents answered "{AI_CONSCIOUSNESS_LABELS_PY[answer]}" to "Can AI be conscious?"\n'
+    )
 
-    md_lines.append("::: {.callout-note title=\"What they said\" appearance=\"simple\" icon=\"false\" collapse=\"false\"}\n")
+    md_lines.append(
+        '::: {.callout-note title="What they said" appearance="simple" icon="false" collapse="false"}\n'
+    )
 
     for col, title in FREE_TEXT_FIELDS:
         subset = rows[col].dropna().str.strip()
