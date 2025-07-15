@@ -6,7 +6,6 @@ Small helper to obtain an authenticated Firestore client once.
 import json
 import os
 from functools import lru_cache
-
 from google.cloud import firestore
 from google.oauth2 import service_account
 

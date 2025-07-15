@@ -434,218 +434,242 @@ For those interested in the scientific foundations, a list of sources is availab
 
 ### FILE: en/results.qmd
 
----
-title: "Survey results"
-jupyter: python-alpha-auriga
----
 What do people think about machine consciousness – and how do factors like age, education, and profession correlate with views on AI? Below you’ll find the current results of the survey. The charts are refreshed at regular intervals as new submissions arrive, so the numbers reflect our most up-to-date dataset.
 If you haven’t shared your own view yet, you can still do so here: [take the survey](survey.qmd#question-consciousness).
 ```{python}
-#| echo: false
-#| output: false
+# | echo: false
+# | output: false
 import altair as alt
 import os
 import pandas as pd
 import re
 from firestore_utils import client
+from IPython.display import Markdown, display
+from label_utils import parse_label_expr
+from survey_data import load_submissions
+from viz import bar_chart_by
 ```
 ```{python}
-#| echo: false
-#| output: false
+# | echo: false
+# | output: false
 AI_CONSCIOUSNESS_LABELS = (
-  "datum.value == 'yes_already' ? 'Yes, already'       : "
-  "datum.value == 'yes_future'  ? 'Yes, in the future' : "
-  "datum.value == 'only_bio'    ? 'Only if biological' : "
-  "datum.value == 'unsure'      ? 'Unsure'             : "
-  "datum.value == 'no'          ? 'No'                 : datum.value")
+    "datum.value == 'yes_already' ? 'Yes, already'       : "
+    "datum.value == 'yes_future'  ? 'Yes, in the future' : "
+    "datum.value == 'only_bio'    ? 'Only if biological' : "
+    "datum.value == 'unsure'      ? 'Unsure'             : "
+    "datum.value == 'no'          ? 'No'                 : datum.value"
+)
 SEX_LABELS = (
-  "datum.value == 'male'              ? 'Male'              : "
-  "datum.value == 'female'            ? 'Female'            : "
-  "datum.value == 'diverse'           ? 'Diverse'           : "
-  "datum.value == 'prefer_not_to_say' ? 'Prefer not to say' : datum.value")
+    "datum.value == 'male'              ? 'Male'              : "
+    "datum.value == 'female'            ? 'Female'            : "
+    "datum.value == 'diverse'           ? 'Diverse'           : "
+    "datum.value == 'prefer_not_to_say' ? 'Prefer not to say' : datum.value"
+)
 EDUCATION_LABELS = (
-  "datum.value == 'high_school'         ? 'High school'         : "
-  "datum.value == 'vocational_training' ? 'Vocational training' : "
-  "datum.value == 'bachelors_degree'    ? 'Bachelor\\'s degree' : "
-  "datum.value == 'masters_degree'      ? 'Master\\'s degree'   : "
-  "datum.value == 'doctorate'           ? 'Doctorate'           : "
-  "datum.value == 'other'               ? 'Other'               : "
-  "datum.value == 'prefer_not_to_say'   ? 'Prefer not to say'   : datum.value")
+    "datum.value == 'high_school'         ? 'High school'         : "
+    "datum.value == 'vocational_training' ? 'Vocational training' : "
+    "datum.value == 'bachelors_degree'    ? 'Bachelor\\'s degree' : "
+    "datum.value == 'masters_degree'      ? 'Master\\'s degree'   : "
+    "datum.value == 'doctorate'           ? 'Doctorate'           : "
+    "datum.value == 'other'               ? 'Other'               : "
+    "datum.value == 'prefer_not_to_say'   ? 'Prefer not to say'   : datum.value"
+)
 AI_FAMILIARITY_LABELS = (
-  "datum.value == '1_not_at_all' ? '1 - Not at all familiar' : "
-  "datum.value == '2_slightly'   ? '2 - Slightly familiar'   : "
-  "datum.value == '3_moderately' ? '3 - Moderately familiar' : "
-  "datum.value == '4_very'       ? '4 - Very familiar'       : "
-  "datum.value == '5_expert'     ? '5 - Expert'              : datum.value")
+    "datum.value == '1_not_at_all' ? '1 - Not at all familiar' : "
+    "datum.value == '2_slightly'   ? '2 - Slightly familiar'   : "
+    "datum.value == '3_moderately' ? '3 - Moderately familiar' : "
+    "datum.value == '4_very'       ? '4 - Very familiar'       : "
+    "datum.value == '5_expert'     ? '5 - Expert'              : datum.value"
+)
 # Define custom color scale (dark red to light green, works well in grayscale)
 AI_CONSCIOUSNESS_COLORS = {
     "domain": ["no", "unsure", "only_bio", "yes_future", "yes_already"],
-    "range": ["#660000", "#B22222", "#777777", "#66BB6A", "#A5D6A7"]
+    "range": ["#660000", "#B22222", "#777777", "#66BB6A", "#A5D6A7"],
+}
+PROFESSION_LOOKUP = {
+    "00": "Generic programmes & qualifications",
+    "01": "Education",
+    "02": "Arts & humanities",
+    "03": "Social sciences, journalism & information",
+    "04": "Business, administration & law",
+    "05": "Natural sciences, mathematics & statistics",
+    "06": "Information & communication technologies",
+    "07": "Engineering, manufacturing & construction",
+    "08": "Agriculture, forestry, fisheries & veterinary",
+    "09": "Health & welfare",
+    "10": "Services",
+    "99": "Field unknown",
 }
 # Configure Altair for dark theme
-alt.theme.enable('dark')
-# Chart padding
-CHART_PADDING = 20
+alt.theme.enable("dark")
 ```
 ```{python}
-# ══════════════════════════════════════════════════════════════════════
-# Load data (optionally filtered by client.tag)
-# ══════════════════════════════════════════════════════════════════════
-# E.g. CLIENT_TAG=test → only demo data
-TAG_FILTER = os.getenv("CLIENT_TAG")
-survey_submissions = []
-for snap in client().collection("surveySubmissions").stream():
-    survey_submission = snap.to_dict()
-    tag = survey_submission.get("client", {}).get("tag")
-    if (not TAG_FILTER and not tag) or (TAG_FILTER and tag == TAG_FILTER):
-        survey_submissions.append(survey_submission)
-survey_submissions_df = pd.json_normalize(survey_submissions)
-if survey_submissions_df.empty:
-    raise ValueError("No records found (TAG filter?)")
-# CamelCase → snake_case
-def camel_to_snake(name: str) -> str:
-    """aiCanBeConscious → ai_can_be_conscious"""
-    s1 = re.sub(r"(.)([A-Z][a-z]+)", r"\1_\2", name)
-    return re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
-survey_submissions_df.rename(columns={c: camel_to_snake(c) for c in survey_submissions_df.columns}, inplace=True)
-survey_submissions_df["server.date"] = pd.to_datetime(survey_submissions_df["server.date"], errors="coerce")
-# Derived helper columns
-survey_submissions_df["age_band"] = pd.cut(
-    survey_submissions_df["age"],
-    bins=[0, 18, 30, 45, 60, 120],
-    labels=["≤18", "19–30", "31–45", "46–60", "60+"],
-    right=False,
+survey_submissions_df = load_submissions(
+    tag_filter=os.getenv("CLIENT_TAG"),
+    color_domain=AI_CONSCIOUSNESS_COLORS["domain"]
 )
-# Create ordering column for consistent stacking
-order_mapping = {val: i for i, val in enumerate(AI_CONSCIOUSNESS_COLORS["domain"])}
-survey_submissions_df["ai_can_be_conscious_order"] = survey_submissions_df["ai_can_be_conscious"].map(order_mapping)
 n_total = len(survey_submissions_df)
 ```
 # Distribution of the main question
 ## …overall distribution of answers
 ```{python}
-chart_total = (
-    alt.Chart(survey_submissions_df)
-      .mark_bar()
-      .encode(
-          x = alt.X("count():Q")
-              .scale(alt.Scale(domain=[0, n_total]))
-              .axis(tickCount=n_total+1, format="d")
-              .title("Count"),
-          y = alt.Y("ai_can_be_conscious:N")
-              .title("Answer")
-              .sort(["yes_already", "yes_future", "only_bio", "unsure", "no"])
-              .axis(labelExpr=AI_CONSCIOUSNESS_LABELS),
-          color = alt.Color("ai_can_be_conscious:N")
-              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
-              .legend(None))
-      .properties(width="container", padding=CHART_PADDING)
-    )
+chart_total = bar_chart_by(
+    survey_submissions_df,
+    x_title="Count",
+    y_field="ai_can_be_conscious",
+    y_sort=["yes_already", "yes_future", "only_bio", "unsure", "no"],
+    y_label_expr=AI_CONSCIOUSNESS_LABELS,
+    y_title="Answer",
+    color_field="ai_can_be_conscious",
+    color_domain=AI_CONSCIOUSNESS_COLORS["domain"],
+    color_range=AI_CONSCIOUSNESS_COLORS["range"],
+    legend=False,
+)
 chart_total
 ```
 ## …by age group
 ```{python}
-chart_age = (
-    alt.Chart(survey_submissions_df)
-      .mark_bar()
-      .encode(
-          x = alt.X("count():Q")
-              .scale(alt.Scale(domain=[0, n_total]))
-              .axis(tickCount=n_total+1, format="d")
-              .title("Count"),
-          y = alt.Y("age_band:N")
-              .title("Age band")
-              .sort(["≤18","19–30","31–45","46–60","60+"]),
-          color = alt.Color("ai_can_be_conscious:N")
-              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
-              .title("Answer")
-              .legend(labelExpr=AI_CONSCIOUSNESS_LABELS, orient="right"),
-          order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container", padding=CHART_PADDING)
-    )
+chart_age = bar_chart_by(
+    survey_submissions_df,
+    x_title="Count",
+    y_field="age_band",
+    y_sort=["≤18", "19–30", "31–45", "46–60", "60+"],
+    y_label_expr=None,
+    y_title="Age",
+    color_field="ai_can_be_conscious",
+    color_domain=AI_CONSCIOUSNESS_COLORS["domain"],
+    color_range=AI_CONSCIOUSNESS_COLORS["range"],
+    color_label_expr=AI_CONSCIOUSNESS_LABELS,
+    color_title="Answer",
+)
 chart_age
 ```
 ## …by sex
 ```{python}
-chart_sex = (
-    alt.Chart(survey_submissions_df)
-      .mark_bar()
-      .encode(
-          x = alt.X("count():Q")
-              .scale(alt.Scale(domain=[0, n_total]))
-              .axis(tickCount=n_total+1, format="d")
-              .title("Count"),
-          y=alt.Y("sex:N")
-              .title("Sex")
-              .axis(labelExpr=SEX_LABELS),
-          color = alt.Color("ai_can_be_conscious:N")
-              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
-              .title("Answer")
-              .legend(labelExpr=AI_CONSCIOUSNESS_LABELS, orient="right"),
-          order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container", padding=CHART_PADDING)
-    )
+chart_sex = bar_chart_by(
+    survey_submissions_df,
+    x_title="Count",
+    y_field="sex",
+    y_sort=None,
+    y_label_expr=SEX_LABELS,
+    y_title="Sex",
+    color_field="ai_can_be_conscious",
+    color_domain=AI_CONSCIOUSNESS_COLORS["domain"],
+    color_range=AI_CONSCIOUSNESS_COLORS["range"],
+    color_label_expr=AI_CONSCIOUSNESS_LABELS,
+    color_title="Answer",
+)
 chart_sex
+```
+## …by nationality
+```{python}
+chart_nationality = bar_chart_by(
+    survey_submissions_df,
+    x_title="Count",
+    y_field="nationality",
+    y_sort=None,
+    y_label_expr=None,
+    y_title="Nationality",
+    color_field="ai_can_be_conscious",
+    color_domain=AI_CONSCIOUSNESS_COLORS["domain"],
+    color_range=AI_CONSCIOUSNESS_COLORS["range"],
+    color_label_expr=AI_CONSCIOUSNESS_LABELS,
+    color_title="Answer",
+)
+chart_nationality
 ```
 ## …by education level
 ```{python}
-chart_edu = (
-    alt.Chart(survey_submissions_df)
-      .mark_bar()
-      .encode(
-          x = alt.X("count():Q")
-              .scale(alt.Scale(domain=[0, n_total]))
-              .axis(tickCount=n_total+1, format="d")
-              .title("Count"),
-          y=alt.Y("education:N")
-              .title("Education level")
-              .axis(labelExpr=EDUCATION_LABELS),
-          color = alt.Color("ai_can_be_conscious:N")
-              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
-              .title("Answer")
-              .legend(labelExpr=AI_CONSCIOUSNESS_LABELS),
-          order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container", padding=CHART_PADDING)
-    )
+chart_edu = bar_chart_by(
+    survey_submissions_df,
+    x_title="Count",
+    y_field="education",
+    y_sort=[
+        "high_school",
+        "vocational_training",
+        "bachelors_degree",
+        "masters_degree",
+        "doctorate",
+        "other",
+        "prefer_not_to_say",
+    ],
+    y_label_expr=EDUCATION_LABELS,
+    y_title="Education level",
+    color_field="ai_can_be_conscious",
+    color_domain=AI_CONSCIOUSNESS_COLORS["domain"],
+    color_range=AI_CONSCIOUSNESS_COLORS["range"],
+    color_label_expr=AI_CONSCIOUSNESS_LABELS,
+    color_title="Answer",
+)
 chart_edu
+```
+## …by profession
+```{python}
+chart_profession = bar_chart_by(
+    survey_submissions_df,
+    x_title="Count",
+    y_field="profession",
+    y_sort=None,
+    y_label_expr=None,
+    y_title="Profession",
+    color_field="ai_can_be_conscious",
+    color_domain=AI_CONSCIOUSNESS_COLORS["domain"],
+    color_range=AI_CONSCIOUSNESS_COLORS["range"],
+    color_label_expr=AI_CONSCIOUSNESS_LABELS,
+    color_title="Answer",
+)
+chart_profession
+```
+```{python}
+legend_profession = "**Profession-code legend:**" + "\n".join(
+    f"■ **{k}** — {v}" for k, v in PROFESSION_LOOKUP.items()
+)
+display(Markdown(legend_profession))
 ```
 ## …by AI familiarity
 ```{python}
-chart_aifamiliarity = (
-    alt.Chart(survey_submissions_df)
-      .mark_bar()
-      .encode(
-          x = alt.X("count():Q")
-              .scale(alt.Scale(domain=[0, n_total]))
-              .axis(tickCount=n_total+1, format="d")
-              .title("Count"),
-          y=alt.Y("ai_familiarity:N")
-              .title("Self-assessment")
-              .axis(labelExpr=AI_FAMILIARITY_LABELS),
-          color = alt.Color("ai_can_be_conscious:N")
-              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
-              .title("Answer")
-              .legend(labelExpr=AI_CONSCIOUSNESS_LABELS),
-          order = alt.Order("ai_can_be_conscious_order:O"))
-      .properties(width="container", padding=CHART_PADDING)
-    )
+chart_aifamiliarity = bar_chart_by(
+    survey_submissions_df,
+    x_title="Count",
+    y_field="ai_familiarity",
+    y_sort=None,
+    y_label_expr=AI_FAMILIARITY_LABELS,
+    y_title="Self-assessment",
+    color_field="ai_can_be_conscious",
+    color_domain=AI_CONSCIOUSNESS_COLORS["domain"],
+    color_range=AI_CONSCIOUSNESS_COLORS["range"],
+    color_label_expr=AI_CONSCIOUSNESS_LABELS,
+    color_title="Answer",
+)
 chart_aifamiliarity
 ```
 # Free-text responses
 ```{python}
-from IPython.display import Markdown, display
-def show_free(col, title):
-    vals = survey_submissions_df[col].dropna().str.strip()
-    if vals.empty:
-        display(Markdown(f"### {title}\n*(no responses yet)*"))
-        return
-    display(Markdown(f"### {title}\n"))
-    for i, txt in enumerate(vals, 1):
-        display(Markdown(f"**{i}.** {txt}\n"))
-show_free("reasoning",             "Reasoning for the main question")
-show_free("measure_consciousness", "Suggestions for measuring consciousness")
-show_free("ai_rights",             "Views on rights for conscious AIs")
-show_free("ai_declare_rights",     "Reactions to self-declared AI rights")
+#| output: asis
+AI_CONSCIOUSNESS_LABELS_PY = parse_label_expr(AI_CONSCIOUSNESS_LABELS)
+FREE_TEXT_FIELDS = [
+    ("reasoning",            "Reasoning for the main question"),
+    ("measure_consciousness","Suggestions for measuring consciousness"),
+    ("ai_rights",            "Views on rights for conscious AIs"),
+    ("ai_declare_rights",    "Reactions to self-declared AI rights"),
+]
+md_lines = []
+for answer in AI_CONSCIOUSNESS_COLORS["domain"]:
+    rows = survey_submissions_df.query("ai_can_be_conscious == @answer")
+    if rows[[c for c, _ in FREE_TEXT_FIELDS]].isna().all(axis=None):
+        continue
+    md_lines.append(f"## …when respondents answered \"{AI_CONSCIOUSNESS_LABELS_PY[answer]}\" to \"Can AI be conscious?\"\n")
+    md_lines.append("::: {.callout-note title=\"What they said\" appearance=\"simple\" icon=\"false\" collapse=\"false\"}\n")
+    for col, title in FREE_TEXT_FIELDS:
+        subset = rows[col].dropna().str.strip()
+        if subset.empty:
+            continue
+        md_lines.append(f"### {title}\n")
+        md_lines.extend(f"> {txt}\n" for txt in subset)
+        md_lines.append("")
+    md_lines.append(":::\n")
+    md_lines.append("")
+print("\n".join(md_lines))
 ```
 
 ### FILE: en/survey-concept.qmd
