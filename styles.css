@@ -217,6 +217,37 @@ input[type="radio"]:focus-visible {
 }
 
 /*────────────────────────────────────────────────────────────────────────
+  CALLOUT NOTES
+─────────────────────────────────────────────────────────────────────────*/
+
+/* Force callout text to use the site’s normal body colour */
+.callout-note,
+.callout-note .callout-header,
+.callout-note .callout-body {
+  color: var(--clr-text-main);
+}
+
+/* Darken the note panel a bit so it stands out */
+.callout-note.appearance-simple {
+  background-color: var(--clr-panel);
+  border-color: var(--clr-border);
+}
+
+.callout-note blockquote {
+  background-color: var(--clr-panel);
+  color: var(--clr-text-main);
+  border: solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: .5rem 1rem;
+  margin: 0 0 1rem 0;
+}
+
+/* Remove the default “italic grey” styling many browsers apply */
+.callout-note blockquote > :first-child {
+  margin-top: 0;
+}
+
+/*────────────────────────────────────────────────────────────────────────
   CHOICES.JS DROPDOWN
 ─────────────────────────────────────────────────────────────────────────*/
 
