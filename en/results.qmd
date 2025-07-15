@@ -145,7 +145,7 @@ chart_age = (
               .axis(tickCount=n_total+1, format="d")
               .title("Count"),
           y = alt.Y("age_band:N")
-              .title("Age band")
+              .title("Age")
               .sort(["≤18","19–30","31–45","46–60","60+"]),
           color = alt.Color("ai_can_be_conscious:N")
               .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
@@ -181,6 +181,29 @@ chart_sex = (
 chart_sex
 ```
 
+## …by nationality
+
+```{python}
+chart_nationality = (
+    alt.Chart(survey_submissions_df)
+      .mark_bar()
+      .encode(
+          x = alt.X("count():Q")
+              .scale(alt.Scale(domain=[0, n_total]))
+              .axis(tickCount=n_total+1, format="d")
+              .title("Count"),
+          y=alt.Y("nationality:N")
+              .title("Nationality"),
+          color = alt.Color("ai_can_be_conscious:N")
+              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
+              .title("Answer")
+              .legend(labelExpr=AI_CONSCIOUSNESS_LABELS, orient="right"),
+          order = alt.Order("ai_can_be_conscious_order:O"))
+      .properties(width="container", padding=CHART_PADDING)
+    )
+chart_nationality
+```
+
 ## …by education level
 
 ```{python}
@@ -203,6 +226,29 @@ chart_edu = (
       .properties(width="container", padding=CHART_PADDING)
     )
 chart_edu
+```
+
+## …by profession
+
+```{python}
+chart_profession = (
+    alt.Chart(survey_submissions_df)
+      .mark_bar()
+      .encode(
+          x = alt.X("count():Q")
+              .scale(alt.Scale(domain=[0, n_total]))
+              .axis(tickCount=n_total+1, format="d")
+              .title("Count"),
+          y=alt.Y("profession:N")
+              .title("Profession"),
+          color = alt.Color("ai_can_be_conscious:N")
+              .scale(domain=AI_CONSCIOUSNESS_COLORS["domain"], range=AI_CONSCIOUSNESS_COLORS["range"])
+              .title("Answer")
+              .legend(labelExpr=AI_CONSCIOUSNESS_LABELS, orient="right"),
+          order = alt.Order("ai_can_be_conscious_order:O"))
+      .properties(width="container", padding=CHART_PADDING)
+    )
+chart_profession
 ```
 
 ## …by AI familiarity
