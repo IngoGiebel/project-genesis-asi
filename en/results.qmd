@@ -321,14 +321,14 @@ FREE_TEXT_FIELDS = [
 
 md_lines = []
 
-for answer in AI_CONSCIOUSNESS_COLORS["domain"]:          # fixed order
-    rows = survey_submissions_df.query(
-        "ai_can_be_conscious == @answer"
-    )
-    if rows[ [c for c, _ in FREE_TEXT_FIELDS] ].isna().all(axis=None):
+for answer in AI_CONSCIOUSNESS_COLORS["domain"]:
+    rows = survey_submissions_df.query("ai_can_be_conscious == @answer")
+    if rows[[c for c, _ in FREE_TEXT_FIELDS]].isna().all(axis=None):
         continue
 
-    md_lines.append(f"## {AI_CONSCIOUSNESS_LABELS_PY[answer]}\n")
+    md_lines.append(f"## Answer \"Can AI be conscious\": {AI_CONSCIOUSNESS_LABELS_PY[answer]}\n")
+
+    md_lines.append("::: {.callout-note title=\"Free-text responses\" appearance=\"simple\" icon=\"false\" collapse=\"false\"}\n")
 
     for col, title in FREE_TEXT_FIELDS:
         subset = rows[col].dropna().str.strip()
@@ -336,9 +336,11 @@ for answer in AI_CONSCIOUSNESS_COLORS["domain"]:          # fixed order
             continue
 
         md_lines.append(f"### {title}\n")
-        # block-quote each response
         md_lines.extend(f"> {txt}\n" for txt in subset)
-        md_lines.append("")  # blank line after each subsection
+        md_lines.append("")
+
+    md_lines.append(":::\n")
+    md_lines.append("")
 
 print("\n".join(md_lines))
 ```
