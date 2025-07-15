@@ -13,8 +13,6 @@ If you haven’t shared your own view yet, you can still do so here: [take the s
 
 import altair as alt
 import os
-import pandas as pd
-import re
 from firestore_utils import client
 from IPython.display import Markdown, display
 
