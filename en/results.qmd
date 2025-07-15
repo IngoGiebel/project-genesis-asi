@@ -326,9 +326,9 @@ for answer in AI_CONSCIOUSNESS_COLORS["domain"]:
     if rows[[c for c, _ in FREE_TEXT_FIELDS]].isna().all(axis=None):
         continue
 
-    md_lines.append(f"## Answer \"Can AI be conscious\": {AI_CONSCIOUSNESS_LABELS_PY[answer]}\n")
+    md_lines.append(f"## …when respondents answered \"{AI_CONSCIOUSNESS_LABELS_PY[answer]}\" to \"Can AI be conscious?\"\n")
 
-    md_lines.append("::: {.callout-note title=\"Answers\" appearance=\"simple\" icon=\"false\" collapse=\"false\"}\n")
+    md_lines.append("::: {.callout-note title=\"What they said\" appearance=\"simple\" icon=\"false\" collapse=\"false\"}\n")
 
     for col, title in FREE_TEXT_FIELDS:
         subset = rows[col].dropna().str.strip()
