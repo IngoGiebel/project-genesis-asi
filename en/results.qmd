@@ -16,6 +16,7 @@ import os
 import pandas as pd
 import re
 from firestore_utils import client
+from IPython.display import Markdown, display
 ```
 
 ```{python}
@@ -55,6 +56,21 @@ AI_FAMILIARITY_LABELS = (
 AI_CONSCIOUSNESS_COLORS = {
     "domain": ["no", "unsure", "only_bio", "yes_future", "yes_already"],
     "range": ["#660000", "#B22222", "#777777", "#66BB6A", "#A5D6A7"]
+}
+
+PROFESSION_LOOKUP = {
+    "00": "Generic programmes & qualifications",
+    "01": "Education",
+    "02": "Arts & humanities",
+    "03": "Social sciences, journalism & information",
+    "04": "Business, administration & law",
+    "05": "Natural sciences, mathematics & statistics",
+    "06": "Information & communication technologies",
+    "07": "Engineering, manufacturing & construction",
+    "08": "Agriculture, forestry, fisheries & veterinary",
+    "09": "Health & welfare",
+    "10": "Services",
+    "99": "Field unknown",
 }
 
 # Configure Altair for dark theme
@@ -249,6 +265,13 @@ chart_profession = (
       .properties(width="container", padding=CHART_PADDING)
     )
 chart_profession
+```
+
+```{python}
+legend_profession = "**Profession-code legend:**" + "\n".join(
+    f"■ **{k}** — {v}" for k, v in PROFESSION_LOOKUP.items()
+)
+display(Markdown(legend_profession))
 ```
 
 ## …by AI familiarity
