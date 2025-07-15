@@ -301,19 +301,44 @@ chart_aifamiliarity
 # Free-text responses
 
 ```{python}
-from IPython.display import Markdown, display
+#| output: asis
 
-def show_free(col, title):
-    vals = survey_submissions_df[col].dropna().str.strip()
-    if vals.empty:
-        display(Markdown(f"### {title}\n*(no responses yet)*"))
-        return
-    display(Markdown(f"### {title}\n"))
-    for i, txt in enumerate(vals, 1):
-        display(Markdown(f"**{i}.** {txt}\n"))
+def _parse_label_expr(expr: str) -> dict[str, str]:
+    """
+    Convert a Vega-Lite labelExpr such as "datum.value == 'yes_already' ? 'Yes, already' : …"
+    to  {"yes_already": "Yes, already", …}
+    """
+    return {k: v for k, v in re.findall(r"datum\.value\s*==\s*'([^']+)'\s*\?\s*'([^']+)'", expr)}
 
-show_free("reasoning",             "Reasoning for the main question")
-show_free("measure_consciousness", "Suggestions for measuring consciousness")
-show_free("ai_rights",             "Views on rights for conscious AIs")
-show_free("ai_declare_rights",     "Reactions to self-declared AI rights")
+AI_CONSCIOUSNESS_LABELS_PY = _parse_label_expr(AI_CONSCIOUSNESS_LABELS)
+
+FREE_TEXT_FIELDS = [
+    ("reasoning",            "Reasoning for the main question"),
+    ("measure_consciousness","Suggestions for measuring consciousness"),
+    ("ai_rights",            "Views on rights for conscious AIs"),
+    ("ai_declare_rights",    "Reactions to self-declared AI rights"),
+]
+
+md_lines = []
+
+for answer in AI_CONSCIOUSNESS_COLORS["domain"]:          # fixed order
+    rows = survey_submissions_df.query(
+        "ai_can_be_conscious == @answer"
+    )
+    if rows[ [c for c, _ in FREE_TEXT_FIELDS] ].isna().all(axis=None):
+        continue
+
+    md_lines.append(f"## {AI_CONSCIOUSNESS_LABELS_PY[answer]}\n")
+
+    for col, title in FREE_TEXT_FIELDS:
+        subset = rows[col].dropna().str.strip()
+        if subset.empty:
+            continue
+
+        md_lines.append(f"### {title}\n")
+        # block-quote each response
+        md_lines.extend(f"> {txt}\n" for txt in subset)
+        md_lines.append("")  # blank line after each subsection
+
+print("\n".join(md_lines))
 ```

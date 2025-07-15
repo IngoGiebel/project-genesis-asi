@@ -5,6 +5,7 @@ dependencies:
   - altair
   - google-cloud-firestore
   - ipykernel
+  - IPython
   - jupyterlab
   - pandas
   - python-dateutil
