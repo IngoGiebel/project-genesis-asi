@@ -1,0 +1,98 @@
+---
+title: "Who believes that artificial intelligence can be conscious?"
+author:
+  - name: Ingo Giebel
+    email: Ingo.Giebel@hhu.de
+    affiliations: Heinrich-Heine-Universität Düsseldorf
+license: CC BY
+date: 2025-07-16
+date-format: long
+lang: en-US
+eol: lf
+bibliography: bibliography.bib
+csl: apa.csl
+nocite: |
+  @*
+format:
+  revealjs:
+    standalone: true
+    embed-resources: true
+    self-contained-math: true
+    mchem: true
+    theme: sky
+    smaller: true
+    slide-number: c/t
+    link-external-icon: true
+    link-external-newwindow: true
+    preview-links: false
+    smooth-scroll: true
+    title-block-banner: true
+    code-tools: true
+    code-link: true
+    code-fold: show
+    code-overflow: wrap
+    fig-align: left
+    fig-responsive: true
+    citations-hover: true
+    callout-appearance: minimal
+---
+
+## Scan & join the survey!
+
+![QR-Code Alpha Auriga](images/qr-code.webp){#qr-code height=400}
+
+or open → [https://alpha-auriga.netlify.app](https://alpha-auriga.netlify.app){target="_blank"}
+
+---
+
+## Why ask about AI consciousness?
+
+:::: {.columns}
+::: {.column width="60%"}
+- Media hype precedes evidence: *Scientific American* describes Grok 4 as taking on “Humanity’s Last Exam”, hinting at near-human abilities [@bechard_elon_nodate].
+- Public belief is measurable: an *Forbes* article reports that two-thirds of Americans think generative AI such as ChatGPT is conscious [@eliot_why_nodate].
+- Scholarship calls for data: a 2025 review article in *Trends in Cognitive Sciences* urges systematic surveys of lay intuitions about AI consciousness [@caviola_what_2025].
+:::
+::: {.column width="40%"}
+![Cartoon meme: a puzzled scientist faces a smiling robot with a glowing brain. Created by ChatGPT o3.](images/ai-consciousness-question-meme.webp)
+:::
+::::
+
+---
+
+## The survey design
+
+:::: {.columns}
+::: {.column width="60%"}
+- Platform: An interactive, bilingual website with a speculative timeline and an AI chatbot to provide context.
+- Data collection: An anonymous survey collecting views on AI consciousness, correlated with key demographic factors.
+- Analysis: An initial descriptive analysis of the data is complete, including freetext answers. Inferential statistics will be applied once a larger dataset is available to identify significant predictors.
+:::
+::: {.column width="40%"}
+![Cartoon meme: A friendly, slightly retro-styled robot holds a clipboard and pen, looking expectantly at a puzzled human. The robot's thought bubble contains charts and graphs, while the human's has a question mark, illustrating the survey process. Created by Gemini 2.5 Flash.](images/robot_survey_meme.webp)
+:::
+::::
+
+---
+
+## Not a debate, but data
+
+:::: {.columns}
+::: {.column width="40%"}
+![Cartoon meme: A person shrugging dismissively while standing next to a globe with various global problems drawn on it. Quote inspired by Morrissey's tenth solo studio album "World Peace Is None of Your Business", released on 15 July 2014. Created by Gemini 2.5 Flash.](images/morrissey_peace_meme.webp)
+:::
+::: {.column width="60%"}
+This survey aims to **understand public perception**, not to argue or convince.
+:::
+::::
+
+---
+
+## Questions?
+
+---
+
+## References {.unnumbered}
+
+::: {#refs}
+:::
