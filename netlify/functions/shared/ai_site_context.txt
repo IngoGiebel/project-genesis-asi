@@ -881,7 +881,7 @@ This project bridges AI, ethics, and public perception. By combining outreach wi
 ### FILE: en/survey-presentation.qmd
 
 ## Scan & join the survey!
-![QR-Code Alpha Auriga](images/qr-code.webp){#qr-code height=400}
+![QR-Code Alpha Auriga](images/qr-code.webp){#qr-code height=450}
 or open → [https://alpha-auriga.netlify.app](https://alpha-auriga.netlify.app){target="_blank"}
 ## The survey design
 :::: {.columns}
@@ -894,7 +894,25 @@ or open → [https://alpha-auriga.netlify.app](https://alpha-auriga.netlify.app)
 ![Cartoon meme: A friendly, slightly retro-styled robot holds a clipboard and pen, looking expectantly at a puzzled human. The robot's thought bubble contains charts and graphs, while the human's has a question mark, illustrating the survey process. Created by Gemini 2.5 Flash.](images/robot_survey_meme.webp)
 :::
 ::::
-## Questions?
+## Live presentation of the website
+Open → [https://alpha-auriga.netlify.app](https://alpha-auriga.netlify.app){target="_blank"}
+![Cartoon presenter pointing at the AI consciousness survey screen. Created by ChatGPT o3.](images/ai-survey-website-presenter.webp){height=450}
+## Join the conversation: Live demo & discussion
+[Live dashboard](https://alpha-auriga.netlify.app/survey.html){target="_blank"}
+## The road ahead
+- Dedicated page on the evolution and current state of AI technology  
+- Page exploring philosophy and ethics in their historical context  
+- Extras such as learning apps on selected topics  
+- Detailed implementation plan for the new features  
+- Ongoing code maintenance and documentation  
+  - TODO list for adding another language  
+  - TODO list for building a similar website  
+- Further statistical analyses, automated every three months  
+- Autonomous AI agents to promote the survey
+- Detailed design roadmap for implementing ASI
+## References {.unnumbered}
+::: {#refs}
+:::
 
 ### FILE: en/survey.qmd
 
