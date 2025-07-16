@@ -122,6 +122,16 @@ Open → [https://alpha-auriga.netlify.app](https://alpha-auriga.netlify.app){ta
 
 ## From concept to code: Building Alpha Auriga
 
+- Netlify for hosting, HTTPS, and automated CI/CD  
+- Google Firestore NoSQL database for survey data  
+- Pages written in Quarto, rendered to HTML + CSS  
+- Go serverless functions on Netlify for data writes and hooks  
+- JavaScript for interactive UI and chatbot widget  
+- Python (Pandas + Altair) for live results dashboard  
+- Git with GitHub for version control and collaboration  
+- IDEs used: RStudio, GoLand, VS Code, PyCharm
+- ChatGPT Plus and Gemini Pro for code, content, and image generation
+
 ---
 
 ## The road ahead
