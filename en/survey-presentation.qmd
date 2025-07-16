@@ -114,6 +114,20 @@ Open → [https://alpha-auriga.netlify.app](https://alpha-auriga.netlify.app){ta
 
 ---
 
+## Join the conversation: Live demo & discussion
+
+[Live dashboard](https://alpha-auriga.netlify.app/survey.html){target="_blank"}
+
+---
+
+## From concept to code: Building Alpha Auriga
+
+---
+
+## The road ahead
+
+---
+
 ## Questions?
 
 ---
