@@ -39,7 +39,7 @@ format:
 
 ## Scan & join the survey!
 
-![QR-Code Alpha Auriga](images/qr-code.webp){#qr-code height=400}
+![QR-Code Alpha Auriga](images/qr-code.webp){#qr-code height=450}
 
 or open → [https://alpha-auriga.netlify.app](https://alpha-auriga.netlify.app){target="_blank"}
 
@@ -83,6 +83,32 @@ or open → [https://alpha-auriga.netlify.app](https://alpha-auriga.netlify.app)
 :::
 ::: {.column width="60%"}
 This survey aims to **understand public perception**, not to argue or convince.
+:::
+::::
+
+---
+
+## Live presentation of the website
+
+Open → [https://alpha-auriga.netlify.app](https://alpha-auriga.netlify.app){target="_blank"}
+
+![Cartoon presenter pointing at the AI consciousness survey screen. Created by ChatGPT o3.](images/ai-survey-website-presenter.webp){height=450}
+
+---
+
+## Early survey results
+
+:::: {.columns}
+::: {.column width="60%"}
+- Small sample so far: 9 participants  
+- Diverse range of responses  
+- Several intriguing free-text comments  
+- Almost no respondents over 50 years
+
+[Live dashboard](https://alpha-auriga.netlify.app/results.html){target="_blank"}
+:::
+::: {.column width="40%"}
+![Researcher inspecting a small, diverse group through a magnifying glass, with a larger crowd in the background. Created by ChatGPT o3.](images/early-survey-magnifier.webp)
 :::
 ::::
 

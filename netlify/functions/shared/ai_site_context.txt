@@ -878,6 +878,24 @@ This project bridges AI, ethics, and public perception. By combining outreach wi
 ::: {#refs}
 :::
 
+### FILE: en/survey-presentation.qmd
+
+## Scan & join the survey!
+![QR-Code Alpha Auriga](images/qr-code.webp){#qr-code height=400}
+or open → [https://alpha-auriga.netlify.app](https://alpha-auriga.netlify.app){target="_blank"}
+## The survey design
+:::: {.columns}
+::: {.column width="60%"}
+- Platform: An interactive, bilingual website with a speculative timeline and an AI chatbot to provide context.
+- Data collection: An anonymous survey collecting views on AI consciousness, correlated with key demographic factors.
+- Analysis: An initial descriptive analysis of the data is complete, including freetext answers. Inferential statistics will be applied once a larger dataset is available to identify significant predictors.
+:::
+::: {.column width="40%"}
+![Cartoon meme: A friendly, slightly retro-styled robot holds a clipboard and pen, looking expectantly at a puzzled human. The robot's thought bubble contains charts and graphs, while the human's has a question mark, illustrating the survey process. Created by Gemini 2.5 Flash.](images/robot_survey_meme.webp)
+:::
+::::
+## Questions?
+
 ### FILE: en/survey.qmd
 
 ---
