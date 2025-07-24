@@ -21,7 +21,12 @@
 !/images/**
 !/js/**
 !/netlify/**
+!/package.json
+!/package-lock.json
 !/py/**
+!/tsconfig.json
+!/ts/**
+!/ts-types/**
 
 ###############################################################################
 # 3. IGNORE Quarto build artefacts (any depth)
@@ -44,9 +49,17 @@ _site/
 /.netlify
 /.unused/
 /_promotion-campaign/
+/node_modules/
 
 ###############################################################################
-# 5. IGNORE language-local copies created by build scripts
+# 5. TODO (after having deleted the JavaScript files): IGNORE generated JavaScript (compiled from ts/)
+###############################################################################
+# Just remove !/js/**
+# /js/
+!/js/README.md
+
+###############################################################################
+# 6. IGNORE language-local copies created by build scripts
 ###############################################################################
 /en/_extensions/
 /de/_extensions/

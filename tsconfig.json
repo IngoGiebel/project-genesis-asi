@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2024",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "outDir": "js",
+    "rootDir": "ts",
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": false,
+    "skipLibCheck": true
+  },
+  "include": ["ts/**/*.ts", "ts-types/**/*.d.ts"]
+}
