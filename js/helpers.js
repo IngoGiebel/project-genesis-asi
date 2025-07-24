@@ -10,8 +10,8 @@ const STATUS_CODES = [400, 401, 403, 404, 500]
 
 export const STATUS_TEXT = Object.fromEntries(
   await Promise.all(
-    STATUS_CODES.map(async (code) => [code, await t(`status.${code}`)])
-  )
+    STATUS_CODES.map(async (code) => [code, await t(`status.${code}`)]),
+  ),
 )
 
 export const $ = (sel, ctx = document) => ctx.querySelector(sel)
