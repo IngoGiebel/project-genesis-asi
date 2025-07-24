@@ -54,7 +54,6 @@ function loadHistory() {
 function saveHistory(history) {
   if (!hasCookieConsent(CONSENT.FUNCTIONALITY)) return
   try {
-    // Crude size guard (~200 KB)
     const trimmed = history.length > 25 ? history.slice(-25) : history
     localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed))
   } catch {

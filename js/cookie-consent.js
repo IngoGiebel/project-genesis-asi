@@ -20,9 +20,9 @@ export const CONSENT = {
  */
 export function hasCookieConsent(level = CONSENT.FUNCTIONALITY) {
   // Find the cookie
-  const c = document.cookie.split("; ").find(c => c.startsWith("cookie_consent_level="))
+  const cookie = document.cookie.split("; ").find(cookie => cookie.startsWith("cookie_consent_level="))
 
-  if (!c) return false
+  if (!cookie) return false
 
   try {
     const prefs = JSON.parse(decodeURIComponent(c.split("=")[1]))
