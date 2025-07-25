@@ -9,8 +9,8 @@
 
 import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3/+esm"
 import {marked} from "https://cdn.jsdelivr.net/npm/marked@15/+esm"
-import {CONSENT, hasCookieConsent} from "./cookie-consent.js"
-import {t} from "./i18n.js"
+import {CONSENT, hasCookieConsent} from "./cookie-consent"
+import {t} from "./i18n"
 
 /*───── Constants ──────────────────────────────────────────────────────*/
 
@@ -184,9 +184,9 @@ async function setupChatUI() {
   chatForm.addEventListener("submit", handleChatSubmit)
 
   // Logic for auto-growing textarea and Enter/Shift+Enter key presses
-  chatInput.addEventListener("keydown", e => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault()
+  chatInput.addEventListener("keydown", evt => {
+    if (evt.key === "Enter" && !evt.shiftKey) {
+      evt.preventDefault()
       chatForm.requestSubmit()
     }
   })
