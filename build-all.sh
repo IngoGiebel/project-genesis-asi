@@ -5,6 +5,7 @@
 set -euo pipefail
 
 # -------------------------------------------------------------------
+
 LANGS=(en de)
 ROOT="$(git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel)"
 SRC_EXT="$ROOT/_extensions"
@@ -14,6 +15,10 @@ SRC_JS="$ROOT/js"
 COMMON_FILES=(apa.csl bibliography.bib styles.css)
 export PYTHONPATH="$ROOT/py${PYTHONPATH:+:${PYTHONPATH}}"
 # -------------------------------------------------------------------
+
+echo "→ Compile TypeScript"
+( cd "$ROOT" && npm run build )
+echo "✓ TypeScript compiled"
 
 for LANG in "${LANGS[@]}"; do
   LANG_DIR="$ROOT/$LANG"
