@@ -57,4 +57,7 @@ while IFS= read -r -d '' f; do
   } >>"$out"
 done < <(git -C "$repo_root" ls-files -z 'data/**')
 
+# ---------- 5.  Normalize line endings -----------------------------
+dos2unix -q "$out"
+
 echo "Site dump written → $out  ($(wc -c <"$out") bytes)"
