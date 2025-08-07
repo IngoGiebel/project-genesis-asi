@@ -6,4 +6,4 @@ publish = "_site"
 directory = "netlify/functions"
 
 [build.environment]
-GO_VERSION = "1.24"
+GO_VERSION = "1.26"
